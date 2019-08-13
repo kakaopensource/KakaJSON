@@ -1,6 +1,7 @@
 # KakaJSON
-Fast conversion between JSON and model in Swift.
 ![podversion](https://img.shields.io/cocoapods/v/KakaJSON.svg)
+
+Fast conversion between JSON and model in Swift.
 
 ## Integration
 ### CocoaPods
