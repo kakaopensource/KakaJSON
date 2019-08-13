@@ -20,7 +20,7 @@ protocol NominalLayout: Layout {
 }
 
 extension NominalLayout {
-    var genericTypeOffset: Int { 2 }
+    var genericTypeOffset: Int { return 2 }
 }
 
 protocol ModelLayout: NominalLayout where DescriptorType: ModelDescriptor  {}

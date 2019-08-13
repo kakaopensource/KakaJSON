@@ -31,10 +31,10 @@ public class Property: CustomStringConvertible {
     }
     
     func get(from model: UnsafeMutableRawPointer) -> Any {
-        (model + offset).kk.get(type)
+        return (model + offset).kk.get(type)
     }
     
     public var description: String {
-        "\(name) { type = \(type), isVar = \(isVar), offset = \(offset), ownerType = \(ownerType) }"
+        return "\(name) { type = \(type), isVar = \(isVar), offset = \(offset), ownerType = \(ownerType) }"
     }
 }

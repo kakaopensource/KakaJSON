@@ -35,8 +35,8 @@ protocol NominalDescriptor: Descriptor {
 }
 
 extension NominalDescriptor {
-    var isGeneric: Bool { (flags.value & 0x80) != 0 }
-    var genericTypesCount: Int { Int(genericContextHeader.base.numberOfParams) }
+    var isGeneric: Bool { return (flags.value & 0x80) != 0 }
+    var genericTypesCount: Int { return Int(genericContextHeader.base.numberOfParams) }
 }
 
 // MARK: - ModelDescriptor
@@ -48,19 +48,19 @@ extension ModelDescriptor {
     func fieldOffsets(_ type: Any.Type) -> [Int] {
         let ptr = ((type ~>> UnsafePointer<Int>.self) + Int(fieldOffsetVectorOffset.offset))
             .kk.raw ~> OffsetType.self
-        return (0..<Int(numFields)).map { Int(ptr[$0]) }
+        return (0..<Int(numFields)).map { return Int(ptr[$0]) }
     }
 }
 
 // MARK: - Descriptor Inner Data Types
 struct ContextDescriptorFlags: CustomStringConvertible {
     let value: UInt32
-    var description: String { "\(value)" }
+    var description: String { return "\(value)" }
 }
 
 struct RelativeContextPointer: CustomStringConvertible {
     let offset: Int32
-    var description: String { "\(offset)" }
+    var description: String { return "\(offset)" }
 }
 
 struct RelativeDirectPointer <Pointee>: CustomStringConvertible {
@@ -73,12 +73,12 @@ struct RelativeDirectPointer <Pointee>: CustomStringConvertible {
         }
     }
     
-    var description: String { "\(relativeOffset)" }
+    var description: String { return "\(relativeOffset)" }
 }
 
 struct FieldOffsetPointer <Pointee: BinaryInteger>: CustomStringConvertible {
     let offset: UInt32
-    var description: String { "\(offset)" }
+    var description: String { return "\(offset)" }
 }
 
 struct MetadataResponse {}

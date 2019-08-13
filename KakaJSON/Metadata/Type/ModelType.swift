@@ -10,12 +10,12 @@ public class ModelType: BaseType {
     public internal(set) var properties: [Property]?
     public internal(set) var genericTypes: [Any.Type]?
     private let modelKeyLock = DispatchSemaphore(value: 1)
-    private var modelKeys: [String: ConvertibleKey] = [:]
+    private var modelKeys: [String: ModelKey] = [:]
     private let JSONKeyLock = DispatchSemaphore(value: 1)
     private var JSONKeys: [String: String] = [:]
     
     func modelKey(from propertyName: String,
-                  _ createdKey: @autoclosure () -> ConvertibleKey) -> ConvertibleKey {
+                  _ createdKey: @autoclosure () -> ModelKey) -> ModelKey {
         if let key = modelKeys[propertyName] { return key }
         
         modelKeyLock.wait()

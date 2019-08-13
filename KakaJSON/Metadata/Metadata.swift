@@ -11,7 +11,7 @@ public struct Metadata {
     private static let typeLock = NSRecursiveLock()
     private typealias TypeKey = UInt
     private static func typeKey(_ type: Any.Type) -> TypeKey {
-        type ~>> TypeKey.self
+        return type ~>> TypeKey.self
     }
     private static var types = [TypeKey: BaseType]()
     
@@ -53,6 +53,6 @@ public struct Metadata {
     }
     
     public static func type(_ obj: Any) -> BaseType? {
-        type(Swift.type(of: obj))
+        return type(Swift.type(of: obj))
     }
 }

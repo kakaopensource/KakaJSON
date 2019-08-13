@@ -30,6 +30,6 @@ public class FunctionType: BaseType, LayoutType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), argumentTypes = \(argumentTypes ?? []), returnType = \(returnType), throws = \(`throws`) }"
+        return "\(name) { kind = \(kind), argumentTypes = \(argumentTypes ?? []), returnType = \(returnType), throws = \(`throws`) }"
     }
 }

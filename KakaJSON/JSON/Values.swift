@@ -131,7 +131,7 @@ struct ValueParser {
         }
         
         // number
-        return Double("\(decimal)").map { NSNumber(value: $0) }
+        return Double("\(decimal)").map { return NSNumber(value: $0) }
     }
 }
 
@@ -142,7 +142,7 @@ protocol CollectionValue {
 
 extension CollectionValue {
     func _JSONValue() -> Any? {
-        self as? NSCoding
+        return self as? NSCoding
     }
 }
 

@@ -40,15 +40,15 @@ public struct Instance {
     }
     
     public static func retainCount(of object: AnyObject) -> Int {
-        _swift_retainCount(object ~>> UnsafeRawPointer.self) - 1
+        return _swift_retainCount(object ~>> UnsafeRawPointer.self) - 1
     }
     
     public static func unownedRetainCount(of object: AnyObject) -> Int {
-        _swift_unownedRetainCount(object ~>> UnsafeRawPointer.self) - 1
+        return _swift_unownedRetainCount(object ~>> UnsafeRawPointer.self) - 1
     }
     
     public static func weakRetainCount(of object: AnyObject) -> Int {
-        _swift_weakRetainCount(object ~>> UnsafeRawPointer.self) - 1
+        return _swift_weakRetainCount(object ~>> UnsafeRawPointer.self) - 1
     }
 }
 

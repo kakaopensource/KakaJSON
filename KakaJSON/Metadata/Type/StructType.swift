@@ -18,6 +18,6 @@ public class StructType: ModelType, PropertyType, LayoutType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), properties = \(properties ?? []), genericTypes = \(genericTypes ?? []) }"
+        return "\(name) { kind = \(kind), properties = \(properties ?? []), genericTypes = \(genericTypes ?? []) }"
     }
 }

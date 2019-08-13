@@ -12,8 +12,8 @@ extension Dictionary: KKGenericCompatible {
 }
 
 public extension KKGeneric where Base == [String: T] {
-    func value(for jsonKey: ConvertibleKey) -> Any? {
-        base._value(jsonKey: jsonKey)
+    func value(for jsonKey: ModelKey) -> Any? {
+        return base._value(jsonKey: jsonKey)
     }
     
     // MARK: JSON -> Model
@@ -31,8 +31,8 @@ public extension KKGeneric where Base == [String: T] {
 }
 
 public extension KKGeneric where Base == [NSString: T] {
-    func value(for jsonKey: ConvertibleKey) -> Any? {
-        (base as [String: Any])._value(jsonKey: jsonKey)
+    func value(for jsonKey: ModelKey) -> Any? {
+        return (base as [String: Any])._value(jsonKey: jsonKey)
     }
     
     // MARK: JSON -> Model
@@ -46,16 +46,16 @@ public extension KKGeneric where Base == [NSString: T] {
 }
 
 public extension KK where Base: NSDictionary {
-    func value(for jsonKey: ConvertibleKey) -> Any? {
-        (base as? [String: Any])?._value(jsonKey: jsonKey)
+    func value(for jsonKey: ModelKey) -> Any? {
+        return (base as? [String: Any])?._value(jsonKey: jsonKey)
     }
     
     func model<M: Convertible>(_ type: M.Type) -> M? {
-        (base as? [String: Any])?.kk.model(type)
+        return (base as? [String: Any])?.kk.model(type)
     }
     
     func model(anyType: Any.Type) -> Any? {
-        (base as? [String: Any])?.kk.model(anyType: anyType)
+        return (base as? [String: Any])?.kk.model(anyType: anyType)
     }
 }
 
@@ -83,7 +83,7 @@ extension Dictionary where Key == String {
 
 extension NSDictionary {
     func _JSONValue() -> Any? {
-        (self as? [String: Any])?._JSONValue()
+        return (self as? [String: Any])?._JSONValue()
     }
 }
 
@@ -105,7 +105,7 @@ private extension Dictionary {
         return value
     }
     
-    func _value(jsonKey: ConvertibleKey) -> Any? {
+    func _value(jsonKey: ModelKey) -> Any? {
         if let key = jsonKey as? String {
             return _value(stringKey: key)
         }

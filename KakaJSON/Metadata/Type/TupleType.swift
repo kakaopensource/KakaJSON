@@ -30,6 +30,6 @@ public class TupleType: BaseType, LayoutType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), properties = \(properties ?? []) }"
+        return "\(name) { kind = \(kind), properties = \(properties ?? []) }"
     }
 }

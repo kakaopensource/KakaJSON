@@ -28,6 +28,6 @@ public class EnumType: BaseType, NominalType, LayoutType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), genericTypes = \(genericTypes ?? []), cases = \(cases ?? []) }"
+        return "\(name) { kind = \(kind), genericTypes = \(genericTypes ?? []), cases = \(cases ?? []) }"
     }
 }

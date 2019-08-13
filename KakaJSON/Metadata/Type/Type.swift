@@ -23,23 +23,23 @@ protocol LayoutType: Type {
 
 extension LayoutType {
     func builtLayout() -> UnsafeMutablePointer<InnerLayout> {
-        type ~>> UnsafeMutablePointer<InnerLayout>.self
+        return type ~>> UnsafeMutablePointer<InnerLayout>.self
     }
     
     var size: Int {
-        valueWitnessTable.pointee.size
+        return valueWitnessTable.pointee.size
     }
     
     var alignment: Int {
-        (valueWitnessTable.pointee.flags & ValueWitnessFlags.alignmentMask) + 1
+        return (valueWitnessTable.pointee.flags & ValueWitnessFlags.alignmentMask) + 1
     }
     
     var stride: Int {
-        valueWitnessTable.pointee.stride
+        return valueWitnessTable.pointee.stride
     }
     
     private var valueWitnessTable: UnsafeMutablePointer<ValueWitnessTable> {
-        ((layout.kk.raw - MemoryLayout<UnsafeRawPointer>.size) ~> UnsafeMutablePointer<ValueWitnessTable>.self).pointee
+        return ((layout.kk.raw - MemoryLayout<UnsafeRawPointer>.size) ~> UnsafeMutablePointer<ValueWitnessTable>.self).pointee
     }
 }
 
@@ -69,7 +69,7 @@ extension NominalType where Self: LayoutType, InnerLayout: NominalLayout {
         // pointer to generic types
         let ptr = genenicTypesPtr()
         return (0..<typesCount).map {
-            ptr.pointee.item($0)
+            return ptr.pointee.item($0)
         }
     }
 }

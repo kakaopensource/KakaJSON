@@ -9,14 +9,14 @@
 struct FieldList<Item> {
     private let item: Item
     mutating func ptr(_ index: Int) -> UnsafeMutablePointer<Item> {
-        withUnsafeMutablePointer(to: &self) {
-            ($0 + index).kk.raw ~> Item.self
+        return withUnsafeMutablePointer(to: &self) {
+            return ($0 + index).kk.raw ~> Item.self
         }
     }
     
     mutating func item(_ index: Int) -> Item {
-        withUnsafeMutablePointer(to: &self) {
-            $0[index].item
+        return withUnsafeMutablePointer(to: &self) {
+            return $0[index].item
         }
     }
 }

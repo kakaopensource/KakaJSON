@@ -1,9 +1,21 @@
 # KakaJSON
-Fast conversion between json and model in swift.
+Fast conversion between JSON and model in Swift.
+![podversion](https://img.shields.io/cocoapods/v/KakaJSON.svg)
+
+## Integration
+### CocoaPods
+```ruby
+pod 'KakaJSON', '~> 1.0.0' 
+```
 
 ## Usages
-- JSON To Model
+### JSON To Model
 ```swift
+struct SCat: Convertible {
+    var weight: Double = 0.0
+    var name: String = ""
+}
+
 let name = "Miaomiao"
 let weight = 6.66
 
@@ -16,9 +28,9 @@ let JSON: [String: Any] = [
 let cat = JSON.kk.model(SCat.self)
 ```
 
-- Model To JSON
+### Model To JSON
 ```swift
-struct SCar: Convertible, Equatable {
+struct SCar: Convertible {
     var new: Bool = true
     var age: Int = 10
     var weight: Double = 0.1234567890123456

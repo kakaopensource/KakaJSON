@@ -13,7 +13,7 @@ struct FieldDescriptor {
     let fieldRecordSize : UInt16
     let numFields : UInt32
     var fieldRecords: FieldList<FieldRecord>
-    var kind: FieldDescriptorKind { FieldDescriptorKind(rawValue: _kind)! }
+    var kind: FieldDescriptorKind { return FieldDescriptorKind(rawValue: _kind)! }
 }
 
 enum FieldDescriptorKind: UInt16 {

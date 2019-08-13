@@ -17,11 +17,11 @@ public struct KK<Base> {
 public protocol KKCompatible {}
 public extension KKCompatible {
     static var kk: KK<Self>.Type {
-        get { KK<Self>.self }
+        get { return KK<Self>.self }
         set {}
     }
     var kk: KK<Self> {
-        get { KK(self) }
+        get { return KK(self) }
         set {}
     }
 }
@@ -38,11 +38,11 @@ public protocol KKGenericCompatible {
 }
 public extension KKGenericCompatible {
     static var kk: KKGeneric<Self, T>.Type {
-        get { KKGeneric<Self, T>.self }
+        get { return KKGeneric<Self, T>.self }
         set {}
     }
     var kk: KKGeneric<Self, T> {
-        get { KKGeneric(self) }
+        get { return KKGeneric(self) }
         set {}
     }
 }
@@ -60,11 +60,11 @@ public protocol KKGenericCompatible2 {
 }
 public extension KKGenericCompatible2 {
     static var kk: KKGeneric2<Self, T1, T2>.Type {
-        get { KKGeneric2<Self, T1, T2>.self }
+        get { return KKGeneric2<Self, T1, T2>.self }
         set {}
     }
     var kk: KKGeneric2<Self, T1, T2> {
-        get { KKGeneric2(self) }
+        get { return KKGeneric2(self) }
         set {}
     }
 }

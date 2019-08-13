@@ -31,7 +31,7 @@ extension Optional: KKGenericCompatible {
     public typealias T = Wrapped
 }
 public extension KKGeneric where Base == Optional<T> {
-    var valueString: String { base._valueString }
+    var valueString: String { return base._valueString }
     func print() {
         Swift.print(base._valueString)
     }

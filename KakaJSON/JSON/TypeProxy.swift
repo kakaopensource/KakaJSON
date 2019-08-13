@@ -10,19 +10,19 @@ protocol TypeProxy {}
 
 extension TypeProxy {
     static func `is`(_ value: Any) -> Bool {
-        value is Self
+        return value is Self
     }
     
     static func `is`(_ type: Any.Type) -> Bool {
-        type is Self.Type
+        return type is Self.Type
     }
     
     static func `as`(_ value: Any) -> Self? {
-        value as? Self
+        return value as? Self
     }
     
     static func `as`(_ type: Any.Type) -> Self.Type? {
-        type as? Self.Type
+        return type as? Self.Type
     }
 }
 

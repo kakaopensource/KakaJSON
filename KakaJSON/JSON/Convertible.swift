@@ -7,13 +7,19 @@
 //
 
 // MARK: - Convertible Interface
+public protocol ModelKey {}
+extension String: ModelKey {}
+extension Array: ModelKey where Element == String {}
+
+public typealias JSONKey = String
+
 public protocol Convertible {
     init()
     
     /// Get a key from propertyName when converting from JSON to model
     ///
     /// Only call once for every property of every type
-    func kk_modelKey(from property: Property) -> ConvertibleKey
+    func kk_modelKey(from property: Property) -> ModelKey
     
     /// Get a model modelValue from JSONValue when converting from JSON to model
     ///
@@ -36,7 +42,7 @@ public protocol Convertible {
     /// Get a key from propertyName when converting from model to JSON
     ///
     /// Only call once for every property of every type
-    func kk_JSONKey(from property: Property) -> String
+    func kk_JSONKey(from property: Property) -> JSONKey
     
     /// Get a JSONValue from modelValue when converting from JSON to model
     ///
@@ -52,26 +58,22 @@ public protocol Convertible {
     func kk_didConvertToJSON(JSON: [String: Any]?)
 }
 
-public protocol ConvertibleKey {}
-extension String: ConvertibleKey {}
-extension Array: ConvertibleKey where Element == String {}
-
 public extension Convertible {
-    func kk_modelKey(from property: Property) -> ConvertibleKey {
-        property.name
+    func kk_modelKey(from property: Property) -> ModelKey {
+        return property.name
     }
     func kk_modelValue(from JSONValue: Any?,
-                       property: Property) -> Any? { JSONValue }
+                       property: Property) -> Any? { return JSONValue }
     func kk_modelType(from JSONValue: Any?,
-                      property: Property) -> Convertible.Type? { nil }
+                      property: Property) -> Convertible.Type? { return nil }
     func kk_willConvertToModel(from JSON: [String: Any]) {}
     func kk_didConvertToModel(from JSON: [String: Any]) {}
     
-    func kk_JSONKey(from property: Property) -> String {
-        property.name
+    func kk_JSONKey(from property: Property) -> JSONKey {
+        return property.name
     }
     func kk_JSONValue(from modelValue: Any?,
-                      property: Property) -> Any? { modelValue }
+                      property: Property) -> Any? { return modelValue }
     func kk_willConvertToJSON() {}
     func kk_didConvertToJSON(JSON: [String: Any]?) {}
 }
@@ -79,17 +81,17 @@ public extension Convertible {
 // MARK: - Wrapper for Convertible
 public extension Convertible {
     static var kk: ConvertibleKK<Self>.Type {
-        get { ConvertibleKK<Self>.self }
+        get { return ConvertibleKK<Self>.self }
         set {}
     }
     var kk: ConvertibleKK<Self> {
-        get { ConvertibleKK(self) }
+        get { return ConvertibleKK(self) }
         set {}
     }
     
     /// mutable version
     var kk_m: ConvertibleKK_M<Self> {
-        mutating get { ConvertibleKK_M(&self) }
+        mutating get { return ConvertibleKK_M(&self) }
         set {}
     }
 }
@@ -128,7 +130,7 @@ private extension Convertible {
     /// get the ponter of model
     mutating func _ptr() -> UnsafeMutableRawPointer {
         return (Metadata.type(self)!.kind == .struct)
-            ? withUnsafeMutablePointer(to: &self) { UnsafeMutableRawPointer($0) }
+            ? withUnsafeMutablePointer(to: &self) { return UnsafeMutableRawPointer($0) }
             : self ~>> UnsafeMutableRawPointer.self
     }
 }

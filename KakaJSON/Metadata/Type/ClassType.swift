@@ -35,6 +35,6 @@ public class ClassType: ModelType, PropertyType, LayoutType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), properties = \(properties ?? []), genericTypes = \(genericTypes ?? []), super = \(`super` != nil ? String(describing: `super`!) : "nil") }"
+        return "\(name) { kind = \(kind), properties = \(properties ?? []), genericTypes = \(genericTypes ?? []), super = \(`super` != nil ? String(describing: `super`!) : "nil") }"
     }
 }

@@ -21,6 +21,6 @@ public class OptionalType: EnumType {
     }
     
     override public var description: String {
-        "\(name) { kind = \(kind), wrapType = \(wrapType) }"
+        return "\(name) { kind = \(kind), wrapType = \(wrapType) }"
     }
 }

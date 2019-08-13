@@ -17,5 +17,5 @@ public extension RawRepresentable where Self: ConvertibleEnum {
         guard let rv = v as? RawValue else { return nil }
         return Self.init(rawValue: rv)
     }
-    var _value: Any { rawValue }
+    var _value: Any { return rawValue }
 }

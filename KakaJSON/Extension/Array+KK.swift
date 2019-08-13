@@ -37,7 +37,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     // MARK: - Model -> JSON
     func JSON() -> [[String: Any]]? {
         let arr = base.compactMap { element in
-            (element~! as? Convertible)?._JSON()
+            return (element~! as? Convertible)?._JSON()
         }
         return arr.isEmpty ? nil : arr
     }
@@ -54,7 +54,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
 
 extension NSArray {
     func _JSONValue() -> Any? {
-        (self as? [Any])?._JSONValue()
+        return (self as? [Any])?._JSONValue()
     }
 }
 

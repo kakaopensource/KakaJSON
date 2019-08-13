@@ -36,6 +36,6 @@ public class BaseType: Type, CustomStringConvertible {
     }
     
     public var description: String {
-        "\(name) { kind = \(kind), module = \(module) }"
+        return "\(name) { kind = \(kind), module = \(module) }"
     }
 }
