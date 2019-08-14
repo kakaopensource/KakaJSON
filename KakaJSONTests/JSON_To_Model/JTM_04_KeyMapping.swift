@@ -23,13 +23,13 @@ class JTM_04_KeyMapping: XCTestCase {
         let most_favorite_number = 666
         let birthday = "2011-10-12"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "nick_name": nick_name,
             "most_favorite_number": most_favorite_number,
             "birthday": birthday
         ]
         
-        let student = JSON.kk.model(Person.self)
+        let student = json.kk.model(Person.self)
         XCTAssert(student?.nickName == nick_name)
         XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
         XCTAssert(student?.birthday == birthday)
@@ -51,13 +51,13 @@ class JTM_04_KeyMapping: XCTestCase {
         let mostFavoriteNumber = 666
         let birthday = "2011-10-12"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "nickName": nickName,
             "mostFavoriteNumber": mostFavoriteNumber,
             "birthday": birthday
         ]
         
-        let student = JSON.kk.model(Person.self)
+        let student = json.kk.model(Person.self)
         XCTAssert(student?.nick_name == nickName)
         XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
         XCTAssert(student?.birthday == birthday)
@@ -186,7 +186,7 @@ class JTM_04_KeyMapping: XCTestCase {
         let nickName4 = "Jake4"
         let toy = (name: "Bobbi", price: 20.5)
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "data": [10, ["dog" : ["name": name]]],
             "age": age,
             "nickName": nickName1,
@@ -198,7 +198,7 @@ class JTM_04_KeyMapping: XCTestCase {
             ]
         ]
         
-        let dog = JSON.kk.model(Dog.self)
+        let dog = json.kk.model(Dog.self)
         XCTAssert(dog?.name == name)
         XCTAssert(dog?.age == age)
         XCTAssert(dog?.nickName == nickName1)

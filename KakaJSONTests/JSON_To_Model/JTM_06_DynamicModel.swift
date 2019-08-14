@@ -70,7 +70,7 @@ class JTM_06_DynamicModel: XCTestCase {
             (name: "Bently", price: 300.6)
         ]
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "pet": ["name": dog.name, "weight": dog.weight],
 //            "pet": ["name": pig.name, "height": pig.height],
@@ -84,7 +84,7 @@ class JTM_06_DynamicModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(Person.self)
+        let person = json.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         if let pet = person?.pet as? Dog {

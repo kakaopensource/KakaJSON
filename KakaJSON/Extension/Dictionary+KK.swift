@@ -50,7 +50,7 @@ public extension KK where Base: NSDictionary {
 extension Dictionary where Key == String {
     func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
         var model = type.init()
-        model._convert(from: self)
+        model.kk_convert(from: self)
         return model
     }
     

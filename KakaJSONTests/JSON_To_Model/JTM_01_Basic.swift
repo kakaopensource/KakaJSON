@@ -11,12 +11,12 @@ class JTM_01_Basic: XCTestCase {
         var weight: Double = 0.0
         var name: String = ""
         
-        func kk_willConvertToModel(from JSON: [String: Any]) {
-            print("kk_willConvertToModel -", JSON)
+        func kk_willConvertToModel(from json: [String: Any]) {
+            print("kk_willConvertToModel -", json)
         }
         
-        func kk_didConvertToModel(from JSON: [String: Any]) {
-            print("kk_didConvertToModel -", JSON)
+        func kk_didConvertToModel(from json: [String: Any]) {
+            print("kk_didConvertToModel -", json)
         }
     }
     
@@ -25,12 +25,12 @@ class JTM_01_Basic: XCTestCase {
         let name = "Miaomiao"
         let weight = 6.66
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "weight": weight,
             "name": name
         ]
         
-        let cat = JSON.kk.model(Cat.self)
+        let cat = json.kk.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -40,18 +40,18 @@ class JTM_01_Basic: XCTestCase {
         let name: String = "Miaomiao"
         let weight: Double = 6.66
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "weight": weight,
             "name": name
         ]
         
         let type: Any.Type = Cat.self
-        let cat = JSON.kk.model(anyType: type) as? Cat
+        let cat = json.kk.model(anyType: type) as? Cat
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
     
-    // MARK: - JSON String
+    // MARK: - json String
     func testJSONString() {
         let name = "Miaomiao"
         let weight = 6.66
@@ -87,14 +87,14 @@ class JTM_01_Basic: XCTestCase {
         let score = 98
         let no = "9527"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "age": age,
             "score": score,
             "no": no
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -119,14 +119,14 @@ class JTM_01_Basic: XCTestCase {
         let score = 98
         let no = "9527"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "age": age,
             "score": score,
             "no": no
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -138,13 +138,13 @@ class JTM_01_Basic: XCTestCase {
         let name = "Miaomiao"
         let weight = 6.66
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "weight": weight,
             "name": name
         ]
         
         var cat = Cat()
-        cat.kk_m.convert(from: JSON)
+        cat.kk_m.convert(from: json)
         XCTAssert(cat.name == name)
         XCTAssert(cat.weight == weight)
         
@@ -173,7 +173,7 @@ class JTM_01_Basic: XCTestCase {
             var age8: UInt64 = 0
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "age1": "suanfa8",
             "age2": "6suanfa8",
             "age3": "6",
@@ -184,7 +184,7 @@ class JTM_01_Basic: XCTestCase {
             "age8": "FALSE" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.age1 == 6) // default value
         XCTAssert(student?.age2 == 6)
         XCTAssert(student?.age3 == 6)
@@ -208,7 +208,7 @@ class JTM_01_Basic: XCTestCase {
             var height8: Float = 0.0
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "height1": "6.66suanfa8",
             "height2": longDoubleString,
             "height3": NSDecimalNumber(string: longDoubleString),
@@ -219,7 +219,7 @@ class JTM_01_Basic: XCTestCase {
             "height8": longFloatString
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.height1 == 6.66)
         XCTAssert(student?.height2 == longDouble)
         XCTAssert(student?.height3 == longDouble)
@@ -242,7 +242,7 @@ class JTM_01_Basic: XCTestCase {
         }
         
         // 0 -> false , other -> true
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "rich1": 100,
             "rich2": 0.0,
             "rich3": "0",
@@ -251,7 +251,7 @@ class JTM_01_Basic: XCTestCase {
             "rich6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == false)
@@ -274,7 +274,7 @@ class JTM_01_Basic: XCTestCase {
         }
         
         // 0 >> false , other >> true
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name1": 666,
             "name2": NSMutableString(string: "777"),
             "name3": [1,[2,3],"4"],
@@ -285,7 +285,7 @@ class JTM_01_Basic: XCTestCase {
             "name8": URL(string: "http://www.520suanfa.com") as Any
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.name1 == "666")
         XCTAssert(student?.name2 == "777")
         XCTAssert(student?.name3 == "[1, [2, 3], \"4\"]")
@@ -307,7 +307,7 @@ class JTM_01_Basic: XCTestCase {
             var money6: Decimal = 0
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "money1": longDouble,
             "money2": true,
             "money3": longDecimalNumber,
@@ -316,7 +316,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.money1 == Decimal(string: longDoubleString))
         XCTAssert(student?.money2 == 1)
         XCTAssert(student?.money3 == Decimal(string: longDecimalString))
@@ -336,7 +336,7 @@ class JTM_01_Basic: XCTestCase {
             var money6: NSDecimalNumber = 0
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "money1": longDouble,
             "money2": true,
             "money3": longDecimal,
@@ -345,7 +345,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.money1 == NSDecimalNumber(string: longDoubleString))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -367,7 +367,7 @@ class JTM_01_Basic: XCTestCase {
             var money6: NSNumber = 0
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "money1": longDouble,
             "money2": true,
             "money3": Decimal(string: longDoubleString) as Any,
@@ -376,7 +376,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.money1 == NSNumber(value: longDouble))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -406,7 +406,7 @@ class JTM_01_Basic: XCTestCase {
         let rich6: String = "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         
         // 0 -> false , other -> true
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "rich1": rich1 as Any,
             "rich2": rich2 as Any,
             "rich3": rich3 as Any,
@@ -415,7 +415,7 @@ class JTM_01_Basic: XCTestCase {
             "rich6": rich6
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == false)
@@ -436,14 +436,14 @@ class JTM_01_Basic: XCTestCase {
         let url = "http://520suanfa.com/红黑树"
         let encodedUrl = "http://520suanfa.com/%E7%BA%A2%E9%BB%91%E6%A0%91"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "url1": url,
             "url2": URL(string: encodedUrl) as Any,
             "url3": url,
             "url4": NSURL(string: encodedUrl) as Any
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.url1?.absoluteString == encodedUrl)
         XCTAssert(student?.url2?.absoluteString == encodedUrl)
         XCTAssert(student?.url3?.absoluteString == encodedUrl)
@@ -463,14 +463,14 @@ class JTM_01_Basic: XCTestCase {
         let str = "RedBlackTree"
         let data = str.data(using: utf8)!
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "data1": str,
             "data2": data,
             "data3": str,
             "data4": NSData(data: data)
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(String(data: (student?.data1)! as Data, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
@@ -491,12 +491,12 @@ class JTM_01_Basic: XCTestCase {
             var grade2: Grade = .perfect
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "grade1": "C",
             "grade2": "D"
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.grade1 == .good)
         XCTAssert(student?.grade2 == .bad)
     }

@@ -25,23 +25,23 @@ public protocol Convertible {
     /// Only call once for every property of every type
     func kk_modelKey(from property: Property) -> ModelKey
     
-    /// Get a model modelValue from JSONValue when converting from JSON to model
+    /// Get a model modelValue from jsonValue when converting from JSON to model
     ///
     /// - Returns: return `nil` indicates ignore the property,
     /// use the initial value instead.
     /// return `JSONValue` indicates do nothing
-    func kk_modelValue(from JSONValue: Any?,
+    func kk_modelValue(from jsonValue: Any?,
                        property: Property) -> Any?
     
     /// model type for Any、AnyObject、Convertible...
-    func kk_modelType(from JSONValue: Any?,
+    func kk_modelType(from jsonValue: Any?,
                       property: Property) -> Convertible.Type?
     
     /// call when will begin to convert from JSON to model
-    mutating func kk_willConvertToModel(from JSON: JSONObject)
+    mutating func kk_willConvertToModel(from json: JSONObject)
     
     /// call when did finish converting from JSON to model
-    mutating func kk_didConvertToModel(from JSON: JSONObject)
+    mutating func kk_didConvertToModel(from json: JSONObject)
     
     /// Get a key from propertyName when converting from model to JSON
     ///
@@ -59,19 +59,19 @@ public protocol Convertible {
     func kk_willConvertToJSON()
     
     /// call when did finish converting from model to JSON
-    func kk_didConvertToJSON(JSON: JSONObject?)
+    func kk_didConvertToJSON(json: JSONObject?)
 }
 
 public extension Convertible {
     func kk_modelKey(from property: Property) -> ModelKey {
         return property.name
     }
-    func kk_modelValue(from JSONValue: Any?,
-                       property: Property) -> Any? { return JSONValue }
-    func kk_modelType(from JSONValue: Any?,
+    func kk_modelValue(from jsonValue: Any?,
+                       property: Property) -> Any? { return jsonValue }
+    func kk_modelType(from jsonValue: Any?,
                       property: Property) -> Convertible.Type? { return nil }
-    func kk_willConvertToModel(from JSON: JSONObject) {}
-    func kk_didConvertToModel(from JSON: JSONObject) {}
+    func kk_willConvertToModel(from json: JSONObject) {}
+    func kk_didConvertToModel(from json: JSONObject) {}
     
     func kk_JSONKey(from property: Property) -> JSONKey {
         return property.name
@@ -79,7 +79,7 @@ public extension Convertible {
     func kk_JSONValue(from modelValue: Any?,
                       property: Property) -> Any? { return modelValue }
     func kk_willConvertToJSON() {}
-    func kk_didConvertToJSON(JSON: JSONObject?) {}
+    func kk_didConvertToJSON(json: JSONObject?) {}
 }
 
 // MARK: - Wrapper for Convertible
@@ -106,12 +106,12 @@ public struct ConvertibleKK_M<T: Convertible> {
         self.basePtr = basePtr
     }
     
-    public func convert(from JSONString: String?) {
-        basePtr.pointee._convert(from: JSONString)
+    public func convert(from jsonString: String?) {
+        basePtr.pointee.kk_convert(from: jsonString)
     }
     
-    public func convert(from JSON: JSONObject?) {
-        basePtr.pointee._convert(from: JSON)
+    public func convert(from json: JSONObject?) {
+        basePtr.pointee.kk_convert(from: json)
     }
 }
 
@@ -122,11 +122,11 @@ public struct ConvertibleKK<T: Convertible> {
     }
     
     public func JSON() -> JSONObject? {
-        return base._JSON()
+        return base.kk_JSON()
     }
     
     public func JSONString(prettyPrinted: Bool = false) -> String? {
-        return base._JSONString(prettyPrinted: prettyPrinted)
+        return base.kk_JSONString(prettyPrinted: prettyPrinted)
     }
 }
 
@@ -141,16 +141,16 @@ private extension Convertible {
 
 // MARK: - JSON -> Model
 extension Convertible {
-    mutating func _convert(from JSONString: String?) {
-        if let JSON = JSONSerialization.kk_JSON(JSONString, JSONObject.self) {
-            _convert(from: JSON)
+    mutating func kk_convert(from jsonString: String?) {
+        if let json = JSONSerialization.kk_JSON(jsonString, JSONObject.self) {
+            kk_convert(from: json)
             return
         }
         Logger.error("Failed to get JSON from JSONString.")
     }
     
-    mutating func _convert(from JSON: JSONObject?) {
-        guard let dict = JSON,
+    mutating func kk_convert(from json: JSONObject?) {
+        guard let dict = json,
             let mt = Metadata.type(self) as? ModelType,
             let properties = mt.properties else { return }
         
@@ -186,7 +186,8 @@ extension Convertible {
             }
             
             guard let value = ValueParser.modelValue(from: newValue,
-                                                propertyType)~! else { continue }
+                                                     propertyType)~! else { continue }
+            
             property.set(value, for: model)
         }
         
@@ -194,22 +195,22 @@ extension Convertible {
     }
     
     private mutating
-    func _modelTypeValue(_ JSONValue: Any,
+    func _modelTypeValue(_ jsonValue: Any,
                          _ modelType: Any.Type,
                          _ propertyType: Any.Type) -> Any? {
         // don't use `propertyType is XX.Type`
         // because it may be an `Any` type
-        if let JSON = JSONValue as? [Any],
-            let models = JSON.kk.modelArray(anyType: modelType) {
+        if let json = jsonValue as? [Any],
+            let models = json.kk.modelArray(anyType: modelType) {
             return propertyType is NSMutableArray.Type
                 ? NSMutableArray(array: models)
                 : models
         }
         
-        if let JSON = JSONValue as? JSONObject {
-            if let JSONDict = JSONValue as? [String: JSONObject?] {
+        if let json = jsonValue as? JSONObject {
+            if let jsonDict = jsonValue as? [String: JSONObject?] {
                 var modelDict = JSONObject()
-                for (k, v) in JSONDict {
+                for (k, v) in jsonDict {
                     guard let m = v?.kk.model(anyType: modelType) else { continue }
                     modelDict[k] = m
                 }
@@ -219,7 +220,7 @@ extension Convertible {
                     ? NSMutableDictionary(dictionary: modelDict)
                     : modelDict
             } else {
-                return JSON.kk.model(anyType: modelType)
+                return json.kk.model(anyType: modelType)
             }
         }
         // return nil when in other case
@@ -229,7 +230,7 @@ extension Convertible {
 
 // MARK: - Model -> JSON
 extension Convertible {
-    func _JSON() -> JSONObject? {
+    func kk_JSON() -> JSONObject? {
         guard let mt = Metadata.type(self) as? ModelType,
             let properties = mt.properties
             else { return nil }
@@ -244,7 +245,7 @@ extension Convertible {
         let ptr = model._ptr()
         
         // get JSON from model
-        var JSON = JSONObject()
+        var json = JSONObject()
         for property in properties {
             // value filter
             guard let value = kk_JSONValue(
@@ -254,17 +255,17 @@ extension Convertible {
             guard let v = ValueParser.JSONValue(from: value)~! else { continue }
             
             // key filter
-            JSON[mt.JSONKey(from: property.name,
+            json[mt.JSONKey(from: property.name,
                             kk_JSONKey(from: property))] = v
         }
         
-        kk_didConvertToJSON(JSON: JSON.isEmpty ? nil : JSON)
+        kk_didConvertToJSON(json: json.isEmpty ? nil : json)
         
-        return JSON
+        return json
     }
     
-    func _JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kk_string(_JSON(),
+    func kk_JSONString(prettyPrinted: Bool = false) -> String? {
+        if let str = JSONSerialization.kk_string(kk_JSON(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }

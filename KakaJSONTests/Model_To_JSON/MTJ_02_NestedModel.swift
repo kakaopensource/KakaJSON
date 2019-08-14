@@ -71,13 +71,13 @@ class MTJ_02_NestedModel: XCTestCase {
         }
         
         let person = Person()
-        guard let JSON = person.kk.JSON() else { fatalError() }
+        guard let json = person.kk.JSON() else { fatalError() }
         
-        let books0 = (JSON["books"] as? [Any])?.kk.modelArray(Book.self)
+        let books0 = (json["books"] as? [Any])?.kk.modelArray(Book.self)
         let books1 = person.books as? [Book]
         XCTAssert(books0 == books1)
         
-        let dogs = JSON["dogs"] as? [String: Any]
+        let dogs = json["dogs"] as? [String: Any]
         let dog0 = (dogs?["dog0"] as? [String: Any])?.kk.model(Dog.self)
         XCTAssert(dog0 == person.dogs?["dog0"] as? Dog)
         

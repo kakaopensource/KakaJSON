@@ -39,12 +39,12 @@ class JTM_05_CustomValue: XCTestCase {
         let date1 = "2008-09-09"
         let date2 = "2011-11-12 14:20:30"
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "date1": date1,
             "date2": date2
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
         XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
     }
@@ -71,12 +71,12 @@ class JTM_05_CustomValue: XCTestCase {
         let name = "Jack"
         let dog = (name: "Wang", weight: 109.5)
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "pet": ["name": dog.name, "weight": dog.weight]
         ]
         
-        let person = JSON.kk.model(Person.self)
+        let person = json.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         let pet = person?.pet as? Dog
@@ -112,7 +112,7 @@ class JTM_05_CustomValue: XCTestCase {
             (name: "Data Structure And Algorithm", price: 1666)
         ]
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "books": [
                 ["name": books[0].name, "price": books[0].price],
@@ -120,7 +120,7 @@ class JTM_05_CustomValue: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(Person.self)
+        let person = json.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)
@@ -150,12 +150,12 @@ class JTM_05_CustomValue: XCTestCase {
             }
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "age": 10,
             "name": "Jack"
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.age == 15)
         XCTAssert(student?.name == "kk_Jack")
     }
@@ -165,18 +165,18 @@ class JTM_05_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            mutating func kk_didConvertToModel(from JSON: [String: Any]) {
+            mutating func kk_didConvertToModel(from json: [String: Any]) {
                 age += 5
                 name = "kk_" + name
             }
         }
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "age": 10,
             "name": "Jack"
         ]
         
-        let student = JSON.kk.model(Student.self)
+        let student = json.kk.model(Student.self)
         XCTAssert(student?.age == 15)
         XCTAssert(student?.name == "kk_Jack")
     }

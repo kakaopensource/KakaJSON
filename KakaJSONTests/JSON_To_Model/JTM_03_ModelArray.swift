@@ -19,45 +19,45 @@ class JTM_03_ModelArray: XCTestCase {
     }
     
     func testArray() {
-        let JSON: [[String: Any]] = [
+        let json: [[String: Any]] = [
             ["name": tuples[0].name, "price": tuples[0].price],
             ["name": tuples[1].name, "price": tuples[1].price],
             ["name": tuples[2].name, "price": tuples[2].price]
         ]
         
-        let cars = JSON.kk.modelArray(Car.self)
+        let cars = json.kk.modelArray(Car.self)
         check(cars)
     }
     
     func testNSArray() {
-        let JSON = NSArray(objects:
+        let json = NSArray(objects:
             ["name": tuples[0].name, "price": tuples[0].price],
             ["name": tuples[1].name, "price": tuples[1].price],
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = JSON.kk.modelArray(Car.self)
+        let cars = json.kk.modelArray(Car.self)
         check(cars)
     }
     
     func testNSMutableArray() {
-        let JSON = NSMutableArray(objects:
+        let json = NSMutableArray(objects:
             ["name": tuples[0].name, "price": tuples[0].price],
             ["name": tuples[1].name, "price": tuples[1].price],
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = JSON.kk.modelArray(Car.self)
+        let cars = json.kk.modelArray(Car.self)
         check(cars)
     }
     
     func testSet() {
         // NSSet\NSMutableSet
-        let JSON: Set<NSDictionary> = [
+        let json: Set<NSDictionary> = [
             ["name": tuples[0].name, "price": tuples[0].price]
         ]
         
-        let cars = JSON.kk.modelArray(Car.self)
+        let cars = json.kk.modelArray(Car.self)
         XCTAssert(cars?[0].name == tuples[0].name)
         XCTAssert(cars?[0].price == tuples[0].price)
     }

@@ -7,58 +7,59 @@
 //
 
 struct ValueParser {
-    static func modelValue(from JSONValue: Any?,
+    static func modelValue(from jsonValue: Any?,
                            _ propertyType: Any.Type) -> Any? {
         let mt = Metadata.type(propertyType)
+        
         if propertyType is Convertible.Type,
-            let JSON = JSONValue as? JSONObject {
+            let json = jsonValue as? JSONObject {
             // e.g. JSONObject\NSDictionry\NSMutableDictionry
             // model contains model
-            return JSON.kk.model(anyType: propertyType)
+            return json.kk.model(anyType: propertyType)
         } else if propertyType is SwiftArrayValue.Type,
-            let JSON = JSONValue as? [Any],
+            let json = jsonValue as? [Any],
             let type = (mt as? NominalType)?.genericTypes?.first,
             let modelType = type~! as? Convertible.Type {
             // model contains model array
-            return JSON.kk.modelArray(anyType: modelType)
+            return json.kk.modelArray(anyType: modelType)
         } else if propertyType is SwiftDictionaryValue.Type,
-            let JSON = JSONValue as? [String: JSONObject?],
+            let json = jsonValue as? [String: JSONObject?],
             let type = (mt as? NominalType)?.genericTypes?.last,
             let modelType = type~! as? Convertible.Type {
             var modelDict = JSONObject()
-            for (k, v) in JSON {
+            for (k, v) in json {
                 guard let m = v?.kk.model(anyType: modelType) else { continue }
                 modelDict[k] = m
             }
             return modelDict.isEmpty ? nil : modelDict
         } else if propertyType is StringValue.Type {
-            return _string(JSONValue, propertyType)
+            return _string(jsonValue, propertyType)
         } else if propertyType is NumberValue.Type {
-            return _number(JSONValue, propertyType)
+            return _number(jsonValue, propertyType)
         } else if propertyType is URLValue.Type {
-            return _url(JSONValue, propertyType)
+            return _url(jsonValue, propertyType)
         } else if propertyType is DataValue.Type {
-            return _data(JSONValue, propertyType)
+            return _data(jsonValue, propertyType)
         } else if let enumType = propertyType as? ConvertibleEnum.Type {
-            return enumType._convert(from: JSONValue)
+            return enumType._convert(from: jsonValue)
         }
-        return JSONValue
+        return jsonValue
     }
     
     static func JSONValue(from modelValue: Any?) -> Any? {
-        if let JSON = (modelValue as? Convertible)?._JSON() {
+        if let json = (modelValue as? Convertible)?.kk_JSON() {
             // model contains model
-            return JSON
-        } else if let JSON = (modelValue as? [Convertible?])?.kk.JSON() {
+            return json
+        } else if let json = (modelValue as? [Convertible?])?.kk.JSON() {
             // model contains model array
-            return JSON
+            return json
         } else if let modelDict = modelValue as? [String: Convertible?] {
-            var JSONDict = JSONObject()
+            var jsonDict = JSONObject()
             for (k, model) in modelDict {
-                guard let JSON = model?._JSON() else { continue }
-                JSONDict[k] = JSON
+                guard let json = model?.kk_JSON() else { continue }
+                jsonDict[k] = json
             }
-            return JSONDict.isEmpty ? nil : JSONDict
+            return jsonDict.isEmpty ? nil : jsonDict
         } else if let v = modelValue as? NumberValue {
             // stay Bool\Decimal
             if v is Bool || v is Decimal { return v }

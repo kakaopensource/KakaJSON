@@ -15,30 +15,30 @@ class Common: XCTestCase {
     func testJSON_To_Model() {
         let name = "Miaomiao"
         let age = 26
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "age": age,
             "name": name
         ]
-        let JSONString = """
+        let jsonString = """
         {
             "name": "\(name)",
             "age": \(age)
         }
         """
         
-        let cat1 = model(from: JSON, Cat.self)
+        let cat1 = model(from: json, Cat.self)
         XCTAssert(cat1?.name == name)
         XCTAssert(cat1?.age == age)
         
-        let cat2 = model(from: JSON, anyType: Cat.self) as? Cat
+        let cat2 = model(from: json, anyType: Cat.self) as? Cat
         XCTAssert(cat2?.name == name)
         XCTAssert(cat2?.age == age)
         
-        let cat3 = model(from: JSONString, Cat.self)
+        let cat3 = model(from: jsonString, Cat.self)
         XCTAssert(cat3?.name == name)
         XCTAssert(cat3?.age == age)
         
-        let cat4 = model(from: JSONString, anyType: Cat.self) as? Cat
+        let cat4 = model(from: jsonString, anyType: Cat.self) as? Cat
         XCTAssert(cat4?.name == name)
         XCTAssert(cat4?.age == age)
     }
@@ -58,36 +58,36 @@ class Common: XCTestCase {
     func testJSONArray_To_ModelArray() {
         let name = "Miaomiao"
         let age = 26
-        let JSON: [[String: Any]] = [
+        let json: [[String: Any]] = [
             ["age": age, "name": name],
             ["age": age, "name": name]
         ]
-        let JSONString = """
+        let jsonString = """
         [
             {"name": "\(name)", "age": \(age)},
             {"name": "\(name)", "age": \(age)}
         ]
         """
         
-        let cats1 = modelArray(from: JSON, Cat.self)
+        let cats1 = modelArray(from: json, Cat.self)
         XCTAssert(cats1?[0].name == name)
         XCTAssert(cats1?[0].age == age)
         XCTAssert(cats1?[1].name == name)
         XCTAssert(cats1?[1].age == age)
         
-        let cats2 = modelArray(from: JSON, anyType: Cat.self) as? [Cat]
+        let cats2 = modelArray(from: json, anyType: Cat.self) as? [Cat]
         XCTAssert(cats2?[0].name == name)
         XCTAssert(cats2?[0].age == age)
         XCTAssert(cats2?[1].name == name)
         XCTAssert(cats2?[1].age == age)
         
-        let cats3 = modelArray(from: JSONString, Cat.self)
+        let cats3 = modelArray(from: jsonString, Cat.self)
         XCTAssert(cats3?[0].name == name)
         XCTAssert(cats3?[0].age == age)
         XCTAssert(cats3?[1].name == name)
         XCTAssert(cats3?[1].age == age)
         
-        let cats4 = modelArray(from: JSONString, anyType: Cat.self) as? [Cat]
+        let cats4 = modelArray(from: jsonString, anyType: Cat.self) as? [Cat]
         XCTAssert(cats4?[0].name == name)
         XCTAssert(cats4?[0].age == age)
         XCTAssert(cats4?[1].name == name)
@@ -128,15 +128,15 @@ func checkModelToJSon<M: Equatable & Convertible>(_ type: M.Type) {
     // create model
     let model = type.init()
     // get JSON from model
-    let JSON = model.kk.JSON()
+    let json = model.kk.JSON()
     // get JSONString from model
-    let JSONString = model.kk.JSONString()
+    let jsonString = model.kk.JSONString()
     
     // check JSON and JSONString
-    let modelFromJSON = JSON?.kk.model(anyType: type) as? M
-    let modelFromJSONString = JSONString?.kk.model(anyType: type) as? M
-    XCTAssert(model == modelFromJSON)
-    XCTAssert(model == modelFromJSONString)
+    let modelFromJson = json?.kk.model(anyType: type) as? M
+    let modelFromJsonString = jsonString?.kk.model(anyType: type) as? M
+    XCTAssert(model == modelFromJson)
+    XCTAssert(model == modelFromJsonString)
 }
 
 /// note

@@ -17,8 +17,8 @@ extension JSONSerialization {
     
     static func kk_string(_ jsonObject: Any?,
                        prettyPrinted: Bool = false) -> String? {
-        guard let JSON = jsonObject,
-            let data = try? data(withJSONObject: JSON,
+        guard let json = jsonObject,
+            let data = try? data(withJSONObject: json,
                                  options: prettyPrinted ? [.prettyPrinted] : [])
             else { return nil }
         return String(data: data, encoding: String.Encoding.utf8)

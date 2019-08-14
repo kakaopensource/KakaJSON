@@ -41,7 +41,7 @@ class JTM_02_NestedModel: XCTestCase {
             (name: "Wangwang", age: 2)
         ]
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "car": ["name": car.name, "price": car.price],
             "books": [
@@ -54,7 +54,7 @@ class JTM_02_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(Person.self)
+        let person = json.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.car?.name == car.name)
@@ -101,7 +101,7 @@ class JTM_02_NestedModel: XCTestCase {
             (name: "Wangwang", age: 2)
         ]
         
-        let JSON: [String: Any] = [
+        let json: [String: Any] = [
             "name": name,
             "books": [
                 ["name": books[0].name, "price": books[0].price],
@@ -113,7 +113,7 @@ class JTM_02_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(Person.self)
+        let person = json.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)

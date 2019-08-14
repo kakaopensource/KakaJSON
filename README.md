@@ -3,6 +3,9 @@
 
 Fast conversion between JSON and model in Swift.
 
+## 中文教程
+- [KakaJSON手册](https://www.cnblogs.com/mjios/category/1526581.html)
+
 ## Integration
 ### CocoaPods
 ```ruby

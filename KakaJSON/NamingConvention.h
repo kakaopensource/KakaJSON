@@ -6,16 +6,18 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-① public extension for system types
+① public extension for system types、model types
 - obj.kk.member
-- e.g. "123".kk.numberCount
+- e.g. "123".kk.numberCount, model.kk.JSON()
 
-② internal extension for system types
+② internal extension for system types、model types
 - obj.kk_member
-- e.g. "123".kk_numberCount
+- e.g. "123".kk_numberCount, model.kk_JSON()
 
 ③ private\fileprivate
 - obj._member
-- e.g. "123"._numberCount
+- e.g. "123"._numberCount, model._JSON()
 
-④ is JSON, not json, not Json, not jSON
+④ Name of method or tpye must be `JSON`
+- not `json`, not `Json`, not `jSON`
+- name of variable can be `json`
