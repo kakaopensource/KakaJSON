@@ -17,12 +17,12 @@
  */
 
 // MARK: - JSON -> Model
-public func model<M: Convertible>(from JSON: [String: Any]?,
+public func model<M: Convertible>(from JSON: JSONObject?,
                                   _ type: M.Type) -> M? {
     return JSON?.kk.model(type)
 }
 
-public func model(from JSON: [String: Any]?,
+public func model(from JSON: JSONObject?,
                   anyType: Any.Type) -> Any? {
     return JSON?.kk.model(anyType: anyType)
 }
@@ -58,11 +58,11 @@ public func modelArray(from JSONString: String?,
 }
 
 // MARK: Model -> JSON
-public func JSON<M: Convertible>(from model: M?) -> [String: Any]? {
+public func JSON<M: Convertible>(from model: M?) -> JSONObject? {
     return model?.kk.JSON()
 }
 
-public func JSON(from models: [Any]?) -> [[String: Any]]? {
+public func JSON(from models: [Any]?) -> JSONArray? {
     return models?.kk.JSON()
 }
 

@@ -47,8 +47,8 @@ protocol ModelDescriptor: NominalDescriptor {
 extension ModelDescriptor {
     func fieldOffsets(_ type: Any.Type) -> [Int] {
         let ptr = ((type ~>> UnsafePointer<Int>.self) + Int(fieldOffsetVectorOffset.offset))
-            .kk.raw ~> OffsetType.self
-        return (0..<Int(numFields)).map { return Int(ptr[$0]) }
+            .kk_raw ~> OffsetType.self
+        return (0..<Int(numFields)).map { Int(ptr[$0]) }
     }
 }
 
@@ -69,7 +69,7 @@ struct RelativeDirectPointer <Pointee>: CustomStringConvertible {
     mutating func advanced() -> UnsafeMutablePointer<Pointee> {
         let offset = relativeOffset
         return withUnsafeMutablePointer(to: &self) {
-            ($0.kk.raw + Int(offset)) ~> Pointee.self
+            ($0.kk_raw + Int(offset)) ~> Pointee.self
         }
     }
     

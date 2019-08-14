@@ -7,7 +7,7 @@
 //
 
 class MTJ_04_KeyMapping: XCTestCase {
-    struct SDog: Convertible {
+    struct Dog: Convertible {
         var nickName: String = "Wang"
         var price: Double = 100.6
         
@@ -20,7 +20,7 @@ class MTJ_04_KeyMapping: XCTestCase {
     }
     
     func test() {
-        let dog = SDog()
+        let dog = Dog()
         XCTAssert(dog.kk.JSON()?["_nick_name_"] != nil)
         XCTAssert(dog.kk.JSONString()?.contains("_nick_name_") == true)
     }

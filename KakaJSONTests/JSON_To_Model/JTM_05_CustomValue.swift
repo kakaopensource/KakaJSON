@@ -21,7 +21,7 @@ private let date2Fmt: DateFormatter = {
 class JTM_05_CustomValue: XCTestCase {
     // MARK: - Date
     func testDate() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var date1: Date?
             var date2: NSDate?
             
@@ -44,27 +44,27 @@ class JTM_05_CustomValue: XCTestCase {
             "date2": date2
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
         XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
     }
     
     // MARK: - Any
     func testAny() {
-        class SDog: Convertible {
+        class Dog: Convertible {
             var name: String = ""
             var weight: Double = 0.0
             required init() {}
         }
         
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var name: String = ""
             // AnyObject、Convertible
             var pet: Any?
             func kk_modelValue(from JSONValue: Any?,
                                         property: Property) -> Any? {
                 if property.name != "pet" { return JSONValue }
-                return (JSONValue as? [String: Any])?.kk.model(SDog.self)
+                return (JSONValue as? [String: Any])?.kk.model(Dog.self)
             }
         }
         
@@ -76,23 +76,23 @@ class JTM_05_CustomValue: XCTestCase {
             "pet": ["name": dog.name, "weight": dog.weight]
         ]
         
-        let person = JSON.kk.model(SPerson.self)
+        let person = JSON.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
-        let pet = person?.pet as? SDog
+        let pet = person?.pet as? Dog
         XCTAssert(pet?.name == dog.name)
         XCTAssert(pet?.weight == dog.weight)
     }
     
     // MARK: - Array<Any>
     func testAnyArray() {
-        class SBook: Convertible {
+        class Book: Convertible {
             var name: String = ""
             var price: Double = 0.0
             required init() {}
         }
         
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var name: String = ""
             // [AnyObject]、[Convertible]、NSArray、NSMutableArray
             var books: [Any]?
@@ -102,7 +102,7 @@ class JTM_05_CustomValue: XCTestCase {
                 if property.name != "books" { return JSONValue }
                 // if books is `NSMutableArray`, neet convert `Array` to `NSMutableArray`
                 // because `Array` to `NSMutableArray` is not a bridging conversion
-                return (JSONValue as? [Any])?.kk.modelArray(SBook.self)
+                return (JSONValue as? [Any])?.kk.modelArray(Book.self)
             }
         }
         
@@ -120,23 +120,23 @@ class JTM_05_CustomValue: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(SPerson.self)
+        let person = JSON.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)
         
-        let book0 = person?.books?[0] as? SBook
+        let book0 = person?.books?[0] as? Book
         XCTAssert(book0?.name == books[0].name)
         XCTAssert(book0?.price == Double(books[0].price))
         
-        let book1 = person?.books?[1] as? SBook
+        let book1 = person?.books?[1] as? Book
         XCTAssert(book1?.name == books[1].name)
         XCTAssert(book1?.price == Double(books[1].price))
     }
     
     // MARK: - Other
     func testOther1() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var age: Int = 0
             var name: String = ""
             
@@ -155,13 +155,13 @@ class JTM_05_CustomValue: XCTestCase {
             "name": "Jack"
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.age == 15)
         XCTAssert(student?.name == "kk_Jack")
     }
     
     func testOther2() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var age: Int = 0
             var name: String = ""
             
@@ -176,7 +176,7 @@ class JTM_05_CustomValue: XCTestCase {
             "name": "Jack"
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.age == 15)
         XCTAssert(student?.name == "kk_Jack")
     }

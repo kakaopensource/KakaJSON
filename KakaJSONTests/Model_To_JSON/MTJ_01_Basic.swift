@@ -10,7 +10,7 @@ class MTJ_01_Basic: XCTestCase {
     // MARK: - Normal
     func testNormal() {
         // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct SCar: Convertible, Equatable {
+        struct Car: Convertible, Equatable {
             var new: Bool = true
             var age: Int = 10
             var weight: Double = longDouble
@@ -21,20 +21,20 @@ class MTJ_01_Basic: XCTestCase {
             var maxSpeed: NSNumber = 77.77
         }
         
-        let jsonString = SCar().kk.JSONString()
+        let jsonString = Car().kk.JSONString()
         XCTAssert(jsonString?.contains("true") == true)
         XCTAssert(jsonString?.contains("66.66") == true)
         XCTAssert(jsonString?.contains("77.77") == true)
         XCTAssert(jsonString?.contains(longDoubleString) == true)
         XCTAssert(jsonString?.contains(longDecimalString) == true)
         
-        checkModelToJSon(SCar.self)
+        checkModelToJSon(Car.self)
     }
     
     // MARK: - Optional Type
     func testOptional() {
         // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct SStudent: Convertible, Equatable {
+        struct Student: Convertible, Equatable {
             var op1: Int? = 10
             var op2: Double?? = 66.66
             var op3: Float??? = 77.77
@@ -45,25 +45,25 @@ class MTJ_01_Basic: XCTestCase {
             var op6: [Double]?????? = [44.44, 55.55]
         }
         
-        let jsonString = SStudent().kk.JSONString()
+        let jsonString = Student().kk.JSONString()
         XCTAssert(jsonString?.contains("66.66") == true)
         XCTAssert(jsonString?.contains("77.77") == true)
         XCTAssert(jsonString?.contains("true") == true)
         XCTAssert(jsonString?.contains("44.44") == true)
         XCTAssert(jsonString?.contains("55.55") == true)
         
-        checkModelToJSon(SStudent.self)
+        checkModelToJSon(Student.self)
     }
     
     // MARK: - URL Type
     func testURL() {
         // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct SStudent: Convertible, Equatable {
+        struct Student: Convertible, Equatable {
             var url1: NSURL? = NSURL(string: "file:///520suanfa")
             var url2: URL? = URL(string: "http://520suanfa.com")
         }
         
-        checkModelToJSon(SStudent.self)
+        checkModelToJSon(Student.self)
     }
     
     // MARK: - Enum Type
@@ -76,11 +76,11 @@ class MTJ_01_Basic: XCTestCase {
         }
         
         // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct SStudent: Convertible, Equatable {
+        struct Student: Convertible, Equatable {
             var grade1: Grade = .great
             var grade2: Grade = .bad
         }
         
-        checkModelToJSon(SStudent.self)
+        checkModelToJSon(Student.self)
     }
 }

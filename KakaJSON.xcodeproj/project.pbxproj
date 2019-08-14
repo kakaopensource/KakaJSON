@@ -79,6 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0EAA0E2303C0EB000691AC /* NamingConvention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamingConvention.h; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
 		2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_04_KeyMapping.swift; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 				2D92DDBD2301279E00A96858 /* Metadata */,
 				2D92DDB62301279E00A96858 /* KakaJSON.swift */,
 				2D92DD1C2301262500A96858 /* KakaJSON.h */,
+				2D0EAA0E2303C0EB000691AC /* NamingConvention.h */,
 				2D92DD1D2301262500A96858 /* Info.plist */,
 			);
 			path = KakaJSON;

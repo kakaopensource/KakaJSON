@@ -13,7 +13,7 @@ class JTM_03_ModelArray: XCTestCase {
         (name: "Bently", price: 300.0)
     ]
     
-    struct SCar: Convertible {
+    struct Car: Convertible {
         var name: String = ""
         var price: Double = 0.0
     }
@@ -25,7 +25,7 @@ class JTM_03_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         ]
         
-        let cars = JSON.kk.modelArray(SCar.self)
+        let cars = JSON.kk.modelArray(Car.self)
         check(cars)
     }
     
@@ -36,7 +36,7 @@ class JTM_03_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = JSON.kk.modelArray(SCar.self)
+        let cars = JSON.kk.modelArray(Car.self)
         check(cars)
     }
     
@@ -47,7 +47,7 @@ class JTM_03_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = JSON.kk.modelArray(SCar.self)
+        let cars = JSON.kk.modelArray(Car.self)
         check(cars)
     }
     
@@ -57,7 +57,7 @@ class JTM_03_ModelArray: XCTestCase {
             ["name": tuples[0].name, "price": tuples[0].price]
         ]
         
-        let cars = JSON.kk.modelArray(SCar.self)
+        let cars = JSON.kk.modelArray(Car.self)
         XCTAssert(cars?[0].name == tuples[0].name)
         XCTAssert(cars?[0].price == tuples[0].price)
     }
@@ -71,11 +71,11 @@ class JTM_03_ModelArray: XCTestCase {
         ]
         """
         
-        let cars = JSONString.kk.modelArray(SCar.self)
+        let cars = JSONString.kk.modelArray(Car.self)
         check(cars)
     }
     
-    func check(_ cars: [SCar]?) {
+    func check(_ cars: [Car]?) {
         XCTAssert(cars?.count == tuples.count)
         XCTAssert(cars?[0].name == tuples[0].name)
         XCTAssert(cars?[0].price == tuples[0].price)

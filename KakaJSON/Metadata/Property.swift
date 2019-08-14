@@ -27,11 +27,11 @@ public class Property: CustomStringConvertible {
     }
     
     func set(_ value: Any, for model: UnsafeMutableRawPointer) {
-        (model + offset).kk.set(value, type)
+        (model + offset).kk_set(value, type)
     }
     
     func get(from model: UnsafeMutableRawPointer) -> Any {
-        return (model + offset).kk.get(type)
+        return (model + offset).kk_get(type)
     }
     
     public var description: String {

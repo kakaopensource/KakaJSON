@@ -15,7 +15,7 @@ private let dateFmt: DateFormatter = {
 class MTJ_05_CustomValue: XCTestCase {
     // MARK: - Date
     func testDate() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var birthday: Date?
             
             func kk_JSONValue(from modelValue: Any?,
@@ -27,7 +27,7 @@ class MTJ_05_CustomValue: XCTestCase {
         
         let time = "2019-08-13 12:52:51"
         let date = dateFmt.date(from: time)
-        let student = SStudent(birthday: date)
+        let student = Student(birthday: date)
         XCTAssert(student.kk.JSON()?["birthday"] as? String == time)
         XCTAssert(student.kk.JSONString()?.contains(time) == true)
     }

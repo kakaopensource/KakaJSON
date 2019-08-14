@@ -7,13 +7,13 @@
 //
 
 class JTM_06_DynamicModel: XCTestCase {
-    class SBook: Convertible {
+    class Book: Convertible {
         var name: String = ""
         var price: Double = 0.0
         required init() {}
     }
     
-    class SCar: Convertible {
+    class Car: Convertible {
         var name: String = ""
         var price: Double = 0.0
         required init() {}
@@ -25,13 +25,13 @@ class JTM_06_DynamicModel: XCTestCase {
         required init() {}
     }
     
-    class SDog: Convertible {
+    class Dog: Convertible {
         var name: String = ""
         var weight: Double = 0.0
         required init() {}
     }
     
-    struct SPerson: Convertible {
+    struct Person: Convertible {
         var name: String = ""
         // AnyObject、Convertible
         var pet: Any?
@@ -49,9 +49,9 @@ class JTM_06_DynamicModel: XCTestCase {
                     let _ = pet["height"] {
                     return SPig.self
                 }
-                return SDog.self
-            case "toys": return SCar.self
-            case "foods": return SBook.self
+                return Dog.self
+            case "toys": return Car.self
+            case "foods": return Book.self
             default: return nil
             }
         }
@@ -84,10 +84,10 @@ class JTM_06_DynamicModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(SPerson.self)
+        let person = JSON.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
-        if let pet = person?.pet as? SDog {
+        if let pet = person?.pet as? Dog {
             XCTAssert(pet.name == dog.name)
             XCTAssert(pet.weight == dog.weight)
         } else if let pet = person?.pet as? SPig {
@@ -95,19 +95,19 @@ class JTM_06_DynamicModel: XCTestCase {
             XCTAssert(pet.height == pig.height)
         }
         
-        let toy0 = person?.toys?[0] as? SCar
+        let toy0 = person?.toys?[0] as? Car
         XCTAssert(toy0?.name == cars[0].name)
         XCTAssert(toy0?.price == cars[0].price)
         
-        let toy1 = person?.toys?[1] as? SCar
+        let toy1 = person?.toys?[1] as? Car
         XCTAssert(toy1?.name == cars[1].name)
         XCTAssert(toy1?.price == cars[1].price)
         
-        let food0 = person?.foods?["food0"] as? SBook
+        let food0 = person?.foods?["food0"] as? Book
         XCTAssert(food0?.name == books[0].name)
         XCTAssert(food0?.price == books[0].price)
         
-        let food1 = person?.foods?["food1"] as? SBook
+        let food1 = person?.foods?["food1"] as? Book
         XCTAssert(food1?.name == books[1].name)
         XCTAssert(food1?.price == books[1].price)
     }

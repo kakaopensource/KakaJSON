@@ -8,26 +8,26 @@
 
 class JTM_02_NestedModel: XCTestCase {
     func test() {
-        struct SBook: Convertible {
+        struct Book: Convertible {
             var name: String = ""
             var price: Double = 0.0
         }
         
-        struct SCar: Convertible {
+        struct Car: Convertible {
             var name: String = ""
             var price: Double = 0.0
         }
         
-        struct SDog: Convertible {
+        struct Dog: Convertible {
             var name: String = ""
             var age: Int = 0
         }
         
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var name: String = ""
-            var car: SCar?
-            var books: [SBook]?
-            var dogs: [String: SDog]?
+            var car: Car?
+            var books: [Book]?
+            var dogs: [String: Dog]?
         }
         
         let name = "Jack"
@@ -54,7 +54,7 @@ class JTM_02_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(SPerson.self)
+        let person = JSON.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.car?.name == car.name)
@@ -75,20 +75,20 @@ class JTM_02_NestedModel: XCTestCase {
 
     
     func testOptional() {
-        struct SBook: Convertible {
+        struct Book: Convertible {
             var name: String = ""
             var price: Double = 0.0
         }
         
-        struct SDog: Convertible {
+        struct Dog: Convertible {
             var name: String = ""
             var age: Int = 0
         }
         
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var name: String = ""
-            var books: [SBook??]?
-            var dogs: [String: SDog???]?
+            var books: [Book??]?
+            var dogs: [String: Dog???]?
         }
         
         let name = "Jack"
@@ -113,7 +113,7 @@ class JTM_02_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = JSON.kk.model(SPerson.self)
+        let person = JSON.kk.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)

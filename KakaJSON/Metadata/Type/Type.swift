@@ -39,7 +39,7 @@ extension LayoutType {
     }
     
     private var valueWitnessTable: UnsafeMutablePointer<ValueWitnessTable> {
-        return ((layout.kk.raw - MemoryLayout<UnsafeRawPointer>.size) ~> UnsafeMutablePointer<ValueWitnessTable>.self).pointee
+        return ((layout.kk_raw - MemoryLayout<UnsafeRawPointer>.size) ~> UnsafeMutablePointer<ValueWitnessTable>.self).pointee
     }
 }
 
@@ -68,9 +68,7 @@ extension NominalType where Self: LayoutType, InnerLayout: NominalLayout {
         
         // pointer to generic types
         let ptr = genenicTypesPtr()
-        return (0..<typesCount).map {
-            return ptr.pointee.item($0)
-        }
+        return (0..<typesCount).map { ptr.pointee.item($0) }
     }
 }
 

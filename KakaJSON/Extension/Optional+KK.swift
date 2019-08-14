@@ -7,22 +7,22 @@
 //
 
 protocol OptionalValue {
-    var _value: Any? { get }
-    var _valueString: String { get }
+    var kk_value: Any? { get }
+    var kk_valueString: String { get }
 }
 
 extension Optional: OptionalValue {
-    var _value: Any? {
+    var kk_value: Any? {
         guard self != nil else { return nil }
         let value = self!
         guard let osc = value as? OptionalValue else {
             return value
         }
-        return osc._value
+        return osc.kk_value
     }
     
-    var _valueString: String {
-        if let value = _value { return "\(value)" }
+    var kk_valueString: String {
+        if let value = kk_value { return "\(value)" }
         return "nil"
     }
 }
@@ -30,9 +30,11 @@ extension Optional: OptionalValue {
 extension Optional: KKGenericCompatible {
     public typealias T = Wrapped
 }
+
 public extension KKGeneric where Base == Optional<T> {
-    var valueString: String { return base._valueString }
+    var value: Any? { return base.kk_value }
+    var valueString: String { return base.kk_valueString }
     func print() {
-        Swift.print(base._valueString)
+        Swift.print(base.kk_valueString)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 class Common: XCTestCase {
-    struct SCat: Convertible {
+    struct Cat: Convertible {
         var age: Int = 0
         var name: String = ""
     }
@@ -26,25 +26,25 @@ class Common: XCTestCase {
         }
         """
         
-        let cat1 = model(from: JSON, SCat.self)
+        let cat1 = model(from: JSON, Cat.self)
         XCTAssert(cat1?.name == name)
         XCTAssert(cat1?.age == age)
         
-        let cat2 = model(from: JSON, anyType: SCat.self) as? SCat
+        let cat2 = model(from: JSON, anyType: Cat.self) as? Cat
         XCTAssert(cat2?.name == name)
         XCTAssert(cat2?.age == age)
         
-        let cat3 = model(from: JSONString, SCat.self)
+        let cat3 = model(from: JSONString, Cat.self)
         XCTAssert(cat3?.name == name)
         XCTAssert(cat3?.age == age)
         
-        let cat4 = model(from: JSONString, anyType: SCat.self) as? SCat
+        let cat4 = model(from: JSONString, anyType: Cat.self) as? Cat
         XCTAssert(cat4?.name == name)
         XCTAssert(cat4?.age == age)
     }
     
     func testModel_To_JSON() {
-        let cat = SCat(age: 26, name: "Miaomiao")
+        let cat = Cat(age: 26, name: "Miaomiao")
         
         let json = JSON(from: cat)
         XCTAssert(json?["name"] as? String == cat.name)
@@ -69,25 +69,25 @@ class Common: XCTestCase {
         ]
         """
         
-        let cats1 = modelArray(from: JSON, SCat.self)
+        let cats1 = modelArray(from: JSON, Cat.self)
         XCTAssert(cats1?[0].name == name)
         XCTAssert(cats1?[0].age == age)
         XCTAssert(cats1?[1].name == name)
         XCTAssert(cats1?[1].age == age)
         
-        let cats2 = modelArray(from: JSON, anyType: SCat.self) as? [SCat]
+        let cats2 = modelArray(from: JSON, anyType: Cat.self) as? [Cat]
         XCTAssert(cats2?[0].name == name)
         XCTAssert(cats2?[0].age == age)
         XCTAssert(cats2?[1].name == name)
         XCTAssert(cats2?[1].age == age)
         
-        let cats3 = modelArray(from: JSONString, SCat.self)
+        let cats3 = modelArray(from: JSONString, Cat.self)
         XCTAssert(cats3?[0].name == name)
         XCTAssert(cats3?[0].age == age)
         XCTAssert(cats3?[1].name == name)
         XCTAssert(cats3?[1].age == age)
         
-        let cats4 = modelArray(from: JSONString, anyType: SCat.self) as? [SCat]
+        let cats4 = modelArray(from: JSONString, anyType: Cat.self) as? [Cat]
         XCTAssert(cats4?[0].name == name)
         XCTAssert(cats4?[0].age == age)
         XCTAssert(cats4?[1].name == name)
@@ -95,7 +95,7 @@ class Common: XCTestCase {
     }
     
     func testModelArray_To_JSONArray() {
-        let cat = SCat(age: 26, name: "Miaomiao")
+        let cat = Cat(age: 26, name: "Miaomiao")
         let cats = [cat, cat]
         
         let json = JSON(from: cats)

@@ -7,7 +7,7 @@
 //
 
 class JTM_01_Basic: XCTestCase {
-    struct SCat: Convertible {
+    struct Cat: Convertible {
         var weight: Double = 0.0
         var name: String = ""
         
@@ -30,7 +30,7 @@ class JTM_01_Basic: XCTestCase {
             "name": name
         ]
         
-        let cat = JSON.kk.model(SCat.self)
+        let cat = JSON.kk.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -45,8 +45,8 @@ class JTM_01_Basic: XCTestCase {
             "name": name
         ]
         
-        let type: Any.Type = SCat.self
-        let cat = JSON.kk.model(anyType: type) as? SCat
+        let type: Any.Type = Cat.self
+        let cat = JSON.kk.model(anyType: type) as? Cat
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -64,20 +64,20 @@ class JTM_01_Basic: XCTestCase {
         }
         """
         
-        let cat = JSONString.kk.model(SCat.self)
+        let cat = JSONString.kk.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
     
     // MARK: - Class Type
     func testClass() {
-        class CPerson: Convertible {
+        class Person: Convertible {
             var name: String = ""
             var age: Int = 0
             required init() {}
         }
         
-        class CStudent: CPerson {
+        class Student: Person {
             var score: Int = 0
             var no: String = ""
         }
@@ -94,7 +94,7 @@ class JTM_01_Basic: XCTestCase {
             "no": no
         ]
         
-        let student = JSON.kk.model(CStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -103,13 +103,13 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - NSObject Class Type
     func testNSObjectClass() {
-        class CPerson: NSObject, Convertible {
+        class Person: NSObject, Convertible {
             var name: String = ""
             var age: Int = 0
             required override init() {}
         }
         
-        class CStudent: CPerson {
+        class Student: Person {
             var score: Int = 0
             var no: String = ""
         }
@@ -126,7 +126,7 @@ class JTM_01_Basic: XCTestCase {
             "no": no
         ]
         
-        let student = JSON.kk.model(CStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -143,7 +143,7 @@ class JTM_01_Basic: XCTestCase {
             "name": name
         ]
         
-        var cat = SCat()
+        var cat = Cat()
         cat.kk_m.convert(from: JSON)
         XCTAssert(cat.name == name)
         XCTAssert(cat.weight == weight)
@@ -162,7 +162,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Int Type
     func testInt() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var age1: Int8 = 6
             var age2: Int16 = 0
             var age3: Int32 = 0
@@ -184,7 +184,7 @@ class JTM_01_Basic: XCTestCase {
             "age8": "FALSE" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.age1 == 6) // default value
         XCTAssert(student?.age2 == 6)
         XCTAssert(student?.age3 == 6)
@@ -197,7 +197,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Float Type
     func testFloat() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var height1: Float = 0.0
             var height2: Double = 0.0
             var height3: Double = 0.0
@@ -219,7 +219,7 @@ class JTM_01_Basic: XCTestCase {
             "height8": longFloatString
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.height1 == 6.66)
         XCTAssert(student?.height2 == longDouble)
         XCTAssert(student?.height3 == longDouble)
@@ -232,7 +232,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Bool Type
     func testBool() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var rich1: Bool = false
             var rich2: Bool = false
             var rich3: Bool = false
@@ -251,7 +251,7 @@ class JTM_01_Basic: XCTestCase {
             "rich6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == false)
@@ -262,7 +262,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - String Type
     func testString() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var name1: String = ""
             var name2: String = ""
             var name3: NSString = ""
@@ -285,7 +285,7 @@ class JTM_01_Basic: XCTestCase {
             "name8": URL(string: "http://www.520suanfa.com") as Any
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.name1 == "666")
         XCTAssert(student?.name2 == "777")
         XCTAssert(student?.name3 == "[1, [2, 3], \"4\"]")
@@ -298,7 +298,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Decimal Type
     func testDecimal() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var money1: Decimal = 0
             var money2: Decimal = 0
             var money3: Decimal = 0
@@ -316,7 +316,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.money1 == Decimal(string: longDoubleString))
         XCTAssert(student?.money2 == 1)
         XCTAssert(student?.money3 == Decimal(string: longDecimalString))
@@ -327,7 +327,7 @@ class JTM_01_Basic: XCTestCase {
         
     // MARK: - Decimal Number Type
     func testDecimalNumber() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var money1: NSDecimalNumber = 0
             var money2: NSDecimalNumber = 0
             var money3: NSDecimalNumber = 0
@@ -345,7 +345,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.money1 == NSDecimalNumber(string: longDoubleString))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -358,7 +358,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Number Type
     func testNumber() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var money1: NSNumber = 0
             var money2: NSNumber = 0
             var money3: NSNumber = 0
@@ -376,7 +376,7 @@ class JTM_01_Basic: XCTestCase {
             "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.money1 == NSNumber(value: longDouble))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -389,7 +389,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Optional Type
     func testOptional() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var rich1: Bool = false
             var rich2: Bool? = false
             var rich3: Bool?? = false
@@ -415,7 +415,7 @@ class JTM_01_Basic: XCTestCase {
             "rich6": rich6
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == false)
@@ -426,7 +426,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - URL Type
     func testURL() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var url1: NSURL?
             var url2: NSURL?
             var url3: URL?
@@ -443,7 +443,7 @@ class JTM_01_Basic: XCTestCase {
             "url4": NSURL(string: encodedUrl) as Any
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.url1?.absoluteString == encodedUrl)
         XCTAssert(student?.url2?.absoluteString == encodedUrl)
         XCTAssert(student?.url3?.absoluteString == encodedUrl)
@@ -452,7 +452,7 @@ class JTM_01_Basic: XCTestCase {
     
     // MARK: - Data Type
     func testData() {
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var data1: NSData?
             var data2: NSData?
             var data3: Data?
@@ -470,7 +470,7 @@ class JTM_01_Basic: XCTestCase {
             "data4": NSData(data: data)
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(String(data: (student?.data1)! as Data, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
@@ -486,7 +486,7 @@ class JTM_01_Basic: XCTestCase {
             case bad = "D"
         }
         
-        struct SStudent: Convertible {
+        struct Student: Convertible {
             var grade1: Grade = .perfect
             var grade2: Grade = .perfect
         }
@@ -496,7 +496,7 @@ class JTM_01_Basic: XCTestCase {
             "grade2": "D"
         ]
         
-        let student = JSON.kk.model(SStudent.self)
+        let student = JSON.kk.model(Student.self)
         XCTAssert(student?.grade1 == .good)
         XCTAssert(student?.grade2 == .bad)
     }

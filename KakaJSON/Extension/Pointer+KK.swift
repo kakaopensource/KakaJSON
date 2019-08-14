@@ -6,58 +6,48 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-extension UnsafePointer: KKGenericCompatible {
-    public typealias T = Pointee
-}
-extension KKGeneric where Base == UnsafePointer<T> {
-    var raw: UnsafeRawPointer {
-        return UnsafeRawPointer(base)
+extension UnsafePointer {
+    var kk_raw: UnsafeRawPointer {
+        return UnsafeRawPointer(self)
     }
-    var mutable: UnsafeMutablePointer<T> {
-        return UnsafeMutablePointer(mutating: base)
+    var kk_mutable: UnsafeMutablePointer<Pointee> {
+        return UnsafeMutablePointer(mutating: self)
     }
 }
 
-extension UnsafeMutablePointer: KKGenericCompatible {
-    public typealias T = Pointee
-}
-extension KKGeneric where Base == UnsafeMutablePointer<T> {
-    var raw: UnsafeMutableRawPointer {
-        return UnsafeMutableRawPointer(base)
+extension UnsafeMutablePointer {
+    var kk_raw: UnsafeMutableRawPointer {
+        return UnsafeMutableRawPointer(self)
     }
     
-    var immutable: UnsafePointer<T> {
-        return UnsafePointer(base)
+    var kk_immutable: UnsafePointer<Pointee> {
+        return UnsafePointer(self)
     }
 }
 
-extension UnsafeRawPointer: KKCompatible {}
-extension KK where Base == UnsafeRawPointer {
-    var mutable: UnsafeMutableRawPointer {
-        return UnsafeMutableRawPointer(mutating: base)
-    }
-}
 extension UnsafeRawPointer {
+    var kk_mutable: UnsafeMutableRawPointer {
+        return UnsafeMutableRawPointer(mutating: self)
+    }
+    
     static func ~><T>(ptr: UnsafeRawPointer, type: T.Type) -> UnsafePointer<T> {
         return ptr.assumingMemoryBound(to: type)
     }
 }
 
-extension UnsafeMutableRawPointer: KKCompatible {}
-extension KK where Base == UnsafeMutableRawPointer {
-    var immutable: UnsafeRawPointer {
-        return UnsafeRawPointer(base)
-    }
-    
-    func set(_ value: Any, _ type: Any.Type) {
-        return typeProxy(type)._set(value, base)
-    }
-    
-    func get(_ type: Any.Type) -> Any {
-        return typeProxy(type)._get(base)
-    }
-}
 extension UnsafeMutableRawPointer {
+    var kk_immutable: UnsafeRawPointer {
+        return UnsafeRawPointer(self)
+    }
+    
+    func kk_set(_ value: Any, _ type: Any.Type) {
+        return typeProxy(type)._set(value, self)
+    }
+    
+    func kk_get(_ type: Any.Type) -> Any {
+        return typeProxy(type)._get(self)
+    }
+    
     static func ~><T>(ptr: UnsafeMutableRawPointer, type: T.Type) -> UnsafeMutablePointer<T> {
         return ptr.assumingMemoryBound(to: type)
     }

@@ -6,6 +6,10 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+// MARK: - Types
+public typealias JSONObject = [String: Any]
+public typealias JSONArray = [[String: Any]]
+
 // MARK: - Convertible Interface
 public protocol ModelKey {}
 extension String: ModelKey {}
@@ -34,10 +38,10 @@ public protocol Convertible {
                       property: Property) -> Convertible.Type?
     
     /// call when will begin to convert from JSON to model
-    mutating func kk_willConvertToModel(from JSON: [String: Any])
+    mutating func kk_willConvertToModel(from JSON: JSONObject)
     
     /// call when did finish converting from JSON to model
-    mutating func kk_didConvertToModel(from JSON: [String: Any])
+    mutating func kk_didConvertToModel(from JSON: JSONObject)
     
     /// Get a key from propertyName when converting from model to JSON
     ///
@@ -55,7 +59,7 @@ public protocol Convertible {
     func kk_willConvertToJSON()
     
     /// call when did finish converting from model to JSON
-    func kk_didConvertToJSON(JSON: [String: Any]?)
+    func kk_didConvertToJSON(JSON: JSONObject?)
 }
 
 public extension Convertible {
@@ -66,8 +70,8 @@ public extension Convertible {
                        property: Property) -> Any? { return JSONValue }
     func kk_modelType(from JSONValue: Any?,
                       property: Property) -> Convertible.Type? { return nil }
-    func kk_willConvertToModel(from JSON: [String: Any]) {}
-    func kk_didConvertToModel(from JSON: [String: Any]) {}
+    func kk_willConvertToModel(from JSON: JSONObject) {}
+    func kk_didConvertToModel(from JSON: JSONObject) {}
     
     func kk_JSONKey(from property: Property) -> JSONKey {
         return property.name
@@ -75,7 +79,7 @@ public extension Convertible {
     func kk_JSONValue(from modelValue: Any?,
                       property: Property) -> Any? { return modelValue }
     func kk_willConvertToJSON() {}
-    func kk_didConvertToJSON(JSON: [String: Any]?) {}
+    func kk_didConvertToJSON(JSON: JSONObject?) {}
 }
 
 // MARK: - Wrapper for Convertible
@@ -106,7 +110,7 @@ public struct ConvertibleKK_M<T: Convertible> {
         basePtr.pointee._convert(from: JSONString)
     }
     
-    public func convert(from JSON: [String: Any]?) {
+    public func convert(from JSON: JSONObject?) {
         basePtr.pointee._convert(from: JSON)
     }
 }
@@ -117,7 +121,7 @@ public struct ConvertibleKK<T: Convertible> {
         self.base = base
     }
     
-    public func JSON() -> [String: Any]? {
+    public func JSON() -> JSONObject? {
         return base._JSON()
     }
     
@@ -130,7 +134,7 @@ private extension Convertible {
     /// get the ponter of model
     mutating func _ptr() -> UnsafeMutableRawPointer {
         return (Metadata.type(self)!.kind == .struct)
-            ? withUnsafeMutablePointer(to: &self) { return UnsafeMutableRawPointer($0) }
+            ? withUnsafeMutablePointer(to: &self) { UnsafeMutableRawPointer($0) }
             : self ~>> UnsafeMutableRawPointer.self
     }
 }
@@ -138,14 +142,14 @@ private extension Convertible {
 // MARK: - JSON -> Model
 extension Convertible {
     mutating func _convert(from JSONString: String?) {
-        if let JSON = JSONSerialization.kk.JSON(JSONString, [String: Any].self) {
+        if let JSON = JSONSerialization.kk_JSON(JSONString, JSONObject.self) {
             _convert(from: JSON)
             return
         }
         Logger.error("Failed to get JSON from JSONString.")
     }
     
-    mutating func _convert(from JSON: [String: Any]?) {
+    mutating func _convert(from JSON: JSONObject?) {
         guard let dict = JSON,
             let mt = Metadata.type(self) as? ModelType,
             let properties = mt.properties else { return }
@@ -163,7 +167,7 @@ extension Convertible {
             
             // value filter
             guard let newValue = kk_modelValue(
-                from: dict.kk.value(for: key)~!,
+                from: dict.kk_value(for: key)~!,
                 property: property)~! else { continue }
             
             let propertyType = property.dataType
@@ -193,6 +197,8 @@ extension Convertible {
     func _modelTypeValue(_ JSONValue: Any,
                          _ modelType: Any.Type,
                          _ propertyType: Any.Type) -> Any? {
+        // don't use `propertyType is XX.Type`
+        // because it may be an `Any` type
         if let JSON = JSONValue as? [Any],
             let models = JSON.kk.modelArray(anyType: modelType) {
             return propertyType is NSMutableArray.Type
@@ -200,9 +206,9 @@ extension Convertible {
                 : models
         }
         
-        if let JSON = JSONValue as? [String: Any] {
-            if let JSONDict = JSONValue as? [String: [String: Any]?] {
-                var modelDict = [String: Any]()
+        if let JSON = JSONValue as? JSONObject {
+            if let JSONDict = JSONValue as? [String: JSONObject?] {
+                var modelDict = JSONObject()
                 for (k, v) in JSONDict {
                     guard let m = v?.kk.model(anyType: modelType) else { continue }
                     modelDict[k] = m
@@ -216,14 +222,14 @@ extension Convertible {
                 return JSON.kk.model(anyType: modelType)
             }
         }
-        
+        // return nil when in other case
         return nil
     }
 }
 
 // MARK: - Model -> JSON
 extension Convertible {
-    func _JSON() -> [String: Any]? {
+    func _JSON() -> JSONObject? {
         guard let mt = Metadata.type(self) as? ModelType,
             let properties = mt.properties
             else { return nil }
@@ -238,7 +244,7 @@ extension Convertible {
         let ptr = model._ptr()
         
         // get JSON from model
-        var JSON = [String: Any]()
+        var JSON = JSONObject()
         for property in properties {
             // value filter
             guard let value = kk_JSONValue(
@@ -258,7 +264,7 @@ extension Convertible {
     }
     
     func _JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kk.string(_JSON(),
+        if let str = JSONSerialization.kk_string(_JSON(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }

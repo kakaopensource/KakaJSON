@@ -8,7 +8,7 @@
 
 class JTM_04_KeyMapping: XCTestCase {
     func testCamelToUnderline() {
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var nickName: String = ""
             var mostFavoriteNumber: Int = 0
             var birthday: String = ""
@@ -29,14 +29,14 @@ class JTM_04_KeyMapping: XCTestCase {
             "birthday": birthday
         ]
         
-        let student = JSON.kk.model(SPerson.self)
+        let student = JSON.kk.model(Person.self)
         XCTAssert(student?.nickName == nick_name)
         XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
         XCTAssert(student?.birthday == birthday)
     }
     
     func testUnderlineToCamel() {
-        struct SPerson: Convertible {
+        struct Person: Convertible {
             var nick_name: String = ""
             var most_favorite_number: Int = 0
             var birthday: String = ""
@@ -57,14 +57,14 @@ class JTM_04_KeyMapping: XCTestCase {
             "birthday": birthday
         ]
         
-        let student = JSON.kk.model(SPerson.self)
+        let student = JSON.kk.model(Person.self)
         XCTAssert(student?.nick_name == nickName)
         XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
         XCTAssert(student?.birthday == birthday)
     }
     
     func testClass1() {
-        class CPerson: Convertible {
+        class Person: Convertible {
             var name: String = ""
             required init() {}
             
@@ -73,25 +73,25 @@ class JTM_04_KeyMapping: XCTestCase {
             }
         }
         
-        class CStudent: CPerson {
+        class Student: Person {
             var score: Int = 0
         }
         
         let personName = "Jack"
         let personJSON: [String: Any] = ["_name_": personName]
-        let person = personJSON.kk.model(CPerson.self)
+        let person = personJSON.kk.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let studentJSON: [String: Any] = ["_name_": studentName, "score": studentScore]
-        let student = studentJSON.kk.model(CStudent.self)
+        let student = studentJSON.kk.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
     }
     
     func testClass2() {
-        class CPerson: Convertible {
+        class Person: Convertible {
             var name: String = ""
             required init() {}
             
@@ -100,7 +100,7 @@ class JTM_04_KeyMapping: XCTestCase {
             }
         }
         
-        class CStudent: CPerson {
+        class Student: Person {
             var score: Int = 0
             
             override func kk_modelKey(from property: Property) -> ModelKey {
@@ -112,19 +112,19 @@ class JTM_04_KeyMapping: XCTestCase {
         
         let personName = "Jack"
         let personJSON: [String: Any] = ["_name_": personName]
-        let person = personJSON.kk.model(CPerson.self)
+        let person = personJSON.kk.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let studentJSON: [String: Any] = ["_name_": studentName, "_score_": studentScore]
-        let student = studentJSON.kk.model(CStudent.self)
+        let student = studentJSON.kk.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
     }
     
     func testClass3() {
-        class CPerson: Convertible {
+        class Person: Convertible {
             var name: String = ""
             required init() {}
             
@@ -133,7 +133,7 @@ class JTM_04_KeyMapping: XCTestCase {
             }
         }
         
-        class CStudent: CPerson {
+        class Student: Person {
             var score: Int = 0
             
             override func kk_modelKey(from property: Property) -> ModelKey {
@@ -143,28 +143,28 @@ class JTM_04_KeyMapping: XCTestCase {
         
         let personName = "Jack"
         let personJSON: [String: Any] = ["_name_": personName]
-        let person = personJSON.kk.model(CPerson.self)
+        let person = personJSON.kk.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let studentJSON: [String: Any] = ["name": studentName, "_score_": studentScore]
-        let student = studentJSON.kk.model(CStudent.self)
+        let student = studentJSON.kk.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
     }
     
     func testComplex() {
-        struct SToy: Convertible {
+        struct Toy: Convertible {
             var price: Double = 0.0
             var name: String = ""
         }
         
-        struct SDog: Convertible {
+        struct Dog: Convertible {
             var name: String = ""
             var age: Int = 0
             var nickName: String?
-            var toy: SToy?
+            var toy: Toy?
             
             func kk_modelKey(from property: Property) -> ModelKey {
                 switch property.name {
@@ -198,7 +198,7 @@ class JTM_04_KeyMapping: XCTestCase {
             ]
         ]
         
-        let dog = JSON.kk.model(SDog.self)
+        let dog = JSON.kk.model(Dog.self)
         XCTAssert(dog?.name == name)
         XCTAssert(dog?.age == age)
         XCTAssert(dog?.nickName == nickName1)

@@ -8,7 +8,7 @@
 
 class MTJ_03_ModelArray: XCTestCase {
     // Equatable is only for test cases, is not necessary for Model-To-JSON.
-    struct SCar: Convertible, Equatable, Hashable {
+    struct Car: Convertible, Equatable, Hashable {
         var name: String = ""
         var price: Double = 0.0
     }
@@ -16,24 +16,24 @@ class MTJ_03_ModelArray: XCTestCase {
     func testArray() {
         // NSArray\NSMutableArray
         let models = [
-            SCar(name: "BMW", price: 100.0),
-            SCar(name: "Audi", price: 70.0),
-            SCar(name: "Bently", price: 300.0)
+            Car(name: "BMW", price: 100.0),
+            Car(name: "Audi", price: 70.0),
+            Car(name: "Bently", price: 300.0)
         ]
         
-        XCTAssert(models.kk.JSON()?.kk.modelArray(SCar.self) == models)
-        XCTAssert(models.kk.JSONString()?.kk.modelArray(SCar.self) == models)
+        XCTAssert(models.kk.JSON()?.kk.modelArray(Car.self) == models)
+        XCTAssert(models.kk.JSONString()?.kk.modelArray(Car.self) == models)
     }
     
     func testSet() {
-        let models: Set<SCar> = [
-            SCar(name: "BMW", price: 100.0)
+        let models: Set<Car> = [
+            Car(name: "BMW", price: 100.0)
         ]
         
-        var cars: [SCar] = []
+        var cars: [Car] = []
         cars.append(contentsOf: models)
         
-        XCTAssert(models.kk.JSON()?.kk.modelArray(SCar.self) == cars)
-        XCTAssert(models.kk.JSONString()?.kk.modelArray(SCar.self) == cars)
+        XCTAssert(models.kk.JSON()?.kk.modelArray(Car.self) == cars)
+        XCTAssert(models.kk.JSONString()?.kk.modelArray(Car.self) == cars)
     }
 }

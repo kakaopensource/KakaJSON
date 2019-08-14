@@ -25,9 +25,9 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
         let arr = base.compactMap { element -> Any? in
             var model: Any?
             if let string = element as? String {
-                model = string._fastModel(t)
-            } else if let dict = element as? [String: Any] {
-                model = dict._fastModel(t)
+                model = string.kk_fastModel(t)
+            } else if let dict = element as? JSONObject {
+                model = dict.kk_fastModel(t)
             }
             return model
         }
@@ -35,7 +35,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     }
     
     // MARK: - Model -> JSON
-    func JSON() -> [[String: Any]]? {
+    func JSON() -> JSONArray? {
         let arr = base.compactMap { element in
             return (element~! as? Convertible)?._JSON()
         }
@@ -43,7 +43,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     }
     
     func JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kk.string(JSON(),
+        if let str = JSONSerialization.kk_string(JSON(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }
@@ -53,20 +53,20 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
 }
 
 extension NSArray {
-    func _JSONValue() -> Any? {
-        return (self as? [Any])?._JSONValue()
+    func kk_JSONValue() -> Any? {
+        return (self as? [Any])?.kk_JSONValue()
     }
 }
 
 extension Array {
-    func _JSONValue() -> Any? {
+    func kk_JSONValue() -> Any? {
         var arr: [Any] = []
         for element in self {
             let value = element~!
             if let v = ValueParser.JSONValue(from: value) {
                 arr.append(v)
             } else if let cv = value as? CollectionValue,
-                let v = cv._JSONValue() {
+                let v = cv.kk_JSONValue() {
                 arr.append(v)
             }
         }

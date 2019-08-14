@@ -11,8 +11,8 @@ struct ValueParser {
                            _ propertyType: Any.Type) -> Any? {
         let mt = Metadata.type(propertyType)
         if propertyType is Convertible.Type,
-            let JSON = JSONValue as? [String: Any] {
-            // e.g. [String: Any]\NSDictionry\NSMutableDictionry
+            let JSON = JSONValue as? JSONObject {
+            // e.g. JSONObject\NSDictionry\NSMutableDictionry
             // model contains model
             return JSON.kk.model(anyType: propertyType)
         } else if propertyType is SwiftArrayValue.Type,
@@ -22,10 +22,10 @@ struct ValueParser {
             // model contains model array
             return JSON.kk.modelArray(anyType: modelType)
         } else if propertyType is SwiftDictionaryValue.Type,
-            let JSON = JSONValue as? [String: [String: Any]?],
+            let JSON = JSONValue as? [String: JSONObject?],
             let type = (mt as? NominalType)?.genericTypes?.last,
             let modelType = type~! as? Convertible.Type {
-            var modelDict = [String: Any]()
+            var modelDict = JSONObject()
             for (k, v) in JSON {
                 guard let m = v?.kk.model(anyType: modelType) else { continue }
                 modelDict[k] = m
@@ -53,7 +53,7 @@ struct ValueParser {
             // model contains model array
             return JSON
         } else if let modelDict = modelValue as? [String: Convertible?] {
-            var JSONDict = [String: Any]()
+            var JSONDict = JSONObject()
             for (k, model) in modelDict {
                 guard let JSON = model?._JSON() else { continue }
                 JSONDict[k] = JSON
@@ -68,14 +68,14 @@ struct ValueParser {
         } else if let v = modelValue as? ConvertibleEnum {
             return v._value
         } else if let c = modelValue as? CollectionValue,
-            let v = c._JSONValue() {
+            let v = c.kk_JSONValue() {
             return v
         }
         return modelValue as? NSCoding
     }
     
     private static func _data(_ value: Any?, _ type: Any.Type) -> DataValue? {
-        guard let vv = value._value else { return nil }
+        guard let vv = value.kk_value else { return nil }
         var data = vv as? Data
         if data == nil {
             data = (vv as? String)?.data(using: String.Encoding.utf8)
@@ -85,7 +85,7 @@ struct ValueParser {
     }
     
     private static func _url(_ value: Any?, _ type: Any.Type) -> URLValue? {
-        guard let vv = value._value else { return nil }
+        guard let vv = value.kk_value else { return nil }
         let urlType = type as! URLValue.Type
         if let str = vv as? String, str.contains("://") {
             return str.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -97,14 +97,14 @@ struct ValueParser {
     }
     
     private static func _string(_ value: Any?, _ type: Any.Type) -> StringValue? {
-        guard let vv = value._value else { return nil }
+        guard let vv = value.kk_value else { return nil }
         if let url = value as? URL { return url.absoluteString }
         let str = "\(vv)"
         return type is NSMutableString.Type ? NSMutableString(string: str) : str
     }
     
     private static func _numberString(_ value: Any?) -> String? {
-        guard let vv = value._value else { return nil }
+        guard let vv = value.kk_value else { return nil }
         let lower = "\(vv)".lowercased()
         if lower == "true" || lower == "yes" { return "1" }
         if lower == "false" || lower == "no" { return "0" }
@@ -131,17 +131,17 @@ struct ValueParser {
         }
         
         // number
-        return Double("\(decimal)").map { return NSNumber(value: $0) }
+        return Double("\(decimal)").map { NSNumber(value: $0) }
     }
 }
 
 // MARK: - Types
 protocol CollectionValue {
-    func _JSONValue() -> Any?
+    func kk_JSONValue() -> Any?
 }
 
 extension CollectionValue {
-    func _JSONValue() -> Any? {
+    func kk_JSONValue() -> Any? {
         return self as? NSCoding
     }
 }
@@ -223,9 +223,9 @@ public postfix func ~! (_ type: Any.Type) -> Any.Type {
 ///     print(value~!) // Optional(10)
 public postfix func ~! (_ value: Any) -> Any? {
     guard let ov = value as? OptionalValue else { return value }
-    return ov._value
+    return ov.kk_value
 }
 
 public postfix func ~! (_ value: Any?) -> Any? {
-    return (value as OptionalValue)._value
+    return (value as OptionalValue).kk_value
 }
