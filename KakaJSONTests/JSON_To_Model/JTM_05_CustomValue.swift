@@ -25,13 +25,13 @@ class JTM_05_CustomValue: XCTestCase {
             var date1: Date?
             var date2: NSDate?
             
-            func kk_modelValue(from JSONValue: Any?,
+            func kk_modelValue(from jsonValue: Any?,
                                property: Property) -> Any? {
                 switch property.name {
-                case "date1": return (JSONValue as? String).flatMap(date1Fmt.date)
+                case "date1": return (jsonValue as? String).flatMap(date1Fmt.date)
                 // Date to NSDate is a bridging conversion
-                case "date2": return (JSONValue as? String).flatMap(date2Fmt.date)
-                default: return JSONValue
+                case "date2": return (jsonValue as? String).flatMap(date2Fmt.date)
+                default: return jsonValue
                 }
             }
         }
@@ -61,10 +61,10 @@ class JTM_05_CustomValue: XCTestCase {
             var name: String = ""
             // AnyObject、Convertible
             var pet: Any?
-            func kk_modelValue(from JSONValue: Any?,
-                                        property: Property) -> Any? {
-                if property.name != "pet" { return JSONValue }
-                return (JSONValue as? [String: Any])?.kk.model(Dog.self)
+            func kk_modelValue(from jsonValue: Any?,
+                               property: Property) -> Any? {
+                if property.name != "pet" { return jsonValue }
+                return (jsonValue as? [String: Any])?.kk.model(Dog.self)
             }
         }
         
@@ -97,12 +97,12 @@ class JTM_05_CustomValue: XCTestCase {
             // [AnyObject]、[Convertible]、NSArray、NSMutableArray
             var books: [Any]?
             
-            func kk_modelValue(from JSONValue: Any?,
+            func kk_modelValue(from jsonValue: Any?,
                                property: Property) -> Any? {
-                if property.name != "books" { return JSONValue }
+                if property.name != "books" { return jsonValue }
                 // if books is `NSMutableArray`, neet convert `Array` to `NSMutableArray`
                 // because `Array` to `NSMutableArray` is not a bridging conversion
-                return (JSONValue as? [Any])?.kk.modelArray(Book.self)
+                return (jsonValue as? [Any])?.kk.modelArray(Book.self)
             }
         }
         
@@ -140,12 +140,12 @@ class JTM_05_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            func kk_modelValue(from JSONValue: Any?,
+            func kk_modelValue(from jsonValue: Any?,
                                property: Property) -> Any? {
                 switch property.name {
-                case "age": return (JSONValue as? Int).flatMap { $0 + 5 }
-                case "name": return (JSONValue as? String).flatMap { "kk_" + $0 }
-                default: return JSONValue
+                case "age": return (jsonValue as? Int).flatMap { $0 + 5 }
+                case "name": return (jsonValue as? String).flatMap { "kk_" + $0 }
+                default: return jsonValue
                 }
             }
         }
@@ -165,7 +165,7 @@ class JTM_05_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            mutating func kk_didConvertToModel(from json: [String: Any]) {
+            mutating func kk_didConvertToModel(from json: JSONObject) {
                 age += 5
                 name = "kk_" + name
             }

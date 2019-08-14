@@ -41,7 +41,9 @@ struct ValueParser {
         } else if propertyType is DataValue.Type {
             return _data(jsonValue, propertyType)
         } else if let enumType = propertyType as? ConvertibleEnum.Type {
-            return enumType._convert(from: jsonValue)
+            let v = ValueParser.modelValue(from: jsonValue,
+                                           enumType.kk_valueType)
+            return enumType.kk_convert(from: v)
         }
         return jsonValue
     }
@@ -67,7 +69,7 @@ struct ValueParser {
         } else if let v = modelValue as? URL {
             return v.absoluteString
         } else if let v = modelValue as? ConvertibleEnum {
-            return v._value
+            return JSONValue(from: v.kk_value)
         } else if let c = modelValue as? CollectionValue,
             let v = c.kk_JSONValue() {
             return v

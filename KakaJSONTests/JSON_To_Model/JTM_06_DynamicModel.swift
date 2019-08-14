@@ -41,11 +41,11 @@ class JTM_06_DynamicModel: XCTestCase {
         // NSDictionary、NSMutableDictionary
         var foods: [String: Any]?
         
-        func kk_modelType(from JSONValue: Any?,
+        func kk_modelType(from jsonValue: Any?,
                           property: Property) -> Convertible.Type? {
             switch property.name {
             case "pet":
-                if let pet = JSONValue as? [String: Any],
+                if let pet = jsonValue as? [String: Any],
                     let _ = pet["height"] {
                     return SPig.self
                 }

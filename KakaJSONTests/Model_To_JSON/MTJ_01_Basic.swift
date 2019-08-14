@@ -67,7 +67,7 @@ class MTJ_01_Basic: XCTestCase {
     }
     
     // MARK: - Enum Type
-    func testEnum() {
+    func testEnum1() {
         enum Grade: String, ConvertibleEnum {
             case perfect = "A"
             case great = "B"
@@ -80,6 +80,30 @@ class MTJ_01_Basic: XCTestCase {
             var grade1: Grade = .great
             var grade2: Grade = .bad
         }
+        
+        checkModelToJSon(Student.self)
+    }
+    
+    func testEnum2() {
+        enum Grade: Double, ConvertibleEnum {
+            case perfect = 8.88
+            case great = 7.77
+            case good = 6.66
+            case bad = 5.55
+        }
+        
+        struct Student: Convertible, Equatable {
+            var grade1: Grade = .perfect
+            var grade2: Grade = .great
+            var grade3: Grade = .good
+            var grade4: Grade = .bad
+        }
+        
+        let jsonString = Student().kk.JSONString()
+        XCTAssert(jsonString?.contains("5.55") == true)
+        XCTAssert(jsonString?.contains("6.66") == true)
+        XCTAssert(jsonString?.contains("7.77") == true)
+        XCTAssert(jsonString?.contains("8.88") == true)
         
         checkModelToJSon(Student.self)
     }
