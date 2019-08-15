@@ -2,6 +2,9 @@
 
 ---
 
+## [1.0.4](https://github.com/kakaopensource/KakaJSON/releases/tag/1.0.4) (2019-08-15)
+- Fix a bug in release mode
+
 ## [1.0.3](https://github.com/kakaopensource/KakaJSON/releases/tag/1.0.3) (2019-08-15)
 - Support Xcode10
 - Add test case of CGFloat

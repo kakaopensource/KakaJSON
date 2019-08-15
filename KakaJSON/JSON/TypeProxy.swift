@@ -28,5 +28,5 @@ extension TypeProxy {
 
 func typeProxy(_ type: Any.Type) -> TypeProxy.Type {
     // Any.Type(8 bytes) * 2 == Protocol.Type(16 bytes)
-    return (type, Any.self)  ~>> TypeProxy.Type.self
+    return (type, 0)  ~>> TypeProxy.Type.self
 }

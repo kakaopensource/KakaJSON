@@ -6,7 +6,7 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-1. Please make all test cases right before pushing your code
+1. Please make all test cases right in release\debug mode before pushing your code
 
 2. NamingConvention
 ① public extension for system types、model types
