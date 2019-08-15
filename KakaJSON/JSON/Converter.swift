@@ -6,7 +6,11 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-import CoreGraphics
+#if os(iOS) || os(watchOS) || os(tvOS)
+import UIKit
+#else
+import Cocoa
+#endif
 
 struct Converter {
     static func modelValue(from jsonValue: Any?,
