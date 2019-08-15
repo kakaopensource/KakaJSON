@@ -38,11 +38,12 @@ public extension KK where Base: ExpressibleByStringLiteral {
     func underlineCased() -> String {
         guard let str = base as? String else { return "" }
         var newStr = ""
+        //todo: vesion:1.0.2
         for c in str {
-            if c >= "A", c <= "Z" {
-                newStr += "_"
-                newStr += c.lowercased()
-            } else {
+            if c >= "A",c <= "Z" {
+                newStr.append("_")
+    			newStr.append(c.lowercased())
+            }else {
                 newStr.append(c)
             }
         }
