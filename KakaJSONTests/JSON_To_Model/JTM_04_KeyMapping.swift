@@ -205,4 +205,33 @@ class JTM_04_KeyMapping: XCTestCase {
         XCTAssert(dog?.toy?.name == toy.name)
         XCTAssert(dog?.toy?.price == toy.price)
     }
+    
+    func testConfig() {
+        class Person: Convertible {
+            var nickName: String = ""
+            required init() {}
+        }
+        
+        class Student: Person {
+            var mathScore: Int = 0
+        }
+        
+        let personName = "Jack"
+        let personJson: [String: Any] = ["nick_name": personName]
+        let person1 = personJson.kk.model(Person.self)
+        XCTAssert(person1?.nickName != personName)
+        
+        // 全局配置
+        ConvertibleConfig.setModelKey { $0.name.kk.underlineCased() }
+        
+        let person2 = personJson.kk.model(Person.self)
+        XCTAssert(person2?.nickName == personName)
+        
+        let studentName = "Rose"
+        let studentScore = 96
+        let studentJson: [String: Any] = ["nick_name": studentName, "math_score": studentScore]
+        let student = studentJson.kk.model(Student.self)
+        XCTAssert(student?.nickName == studentName)
+        XCTAssert(student?.mathScore == studentScore)
+    }
 }

@@ -9,17 +9,17 @@
 public class ModelType: BaseType {
     public internal(set) var properties: [Property]?
     public internal(set) var genericTypes: [Any.Type]?
-    private let modelKeyLock = DispatchSemaphore(value: 1)
-    private var modelKeys: [String: ModelPropertyKey] = [:]
-    private let JSONKeyLock = DispatchSemaphore(value: 1)
-    private var JSONKeys: [String: String] = [:]
+    private lazy var modelKeysLock = DispatchSemaphore(value: 1)
+    private lazy var modelKeys: [String: ModelPropertyKey] = [:]
+    private lazy var jsonKeysLock = DispatchSemaphore(value: 1)
+    private lazy var jsonKeys: [String: String] = [:]
     
     func modelKey(from propertyName: String,
                   _ createdKey: @autoclosure () -> ModelPropertyKey) -> ModelPropertyKey {
         if let key = modelKeys[propertyName] { return key }
         
-        modelKeyLock.wait()
-        defer { modelKeyLock.signal() }
+        modelKeysLock.wait()
+        defer { modelKeysLock.signal() }
         if let key = modelKeys[propertyName] { return key }
 
         let resultKey = createdKey()
@@ -27,16 +27,30 @@ public class ModelType: BaseType {
         return resultKey
     }
     
-    func JSONPropertyKey(from propertyName: String,
-                 _ createdKey: @autoclosure () -> String) -> String {
-        if let key = JSONKeys[propertyName] { return key }
+    func clearModelKeys() {
+        modelKeysLock.wait()
+        defer { modelKeysLock.signal() }
         
-        JSONKeyLock.wait()
-        defer { JSONKeyLock.signal() }
-        if let key = JSONKeys[propertyName] { return key }
+        modelKeys.removeAll()
+    }
+    
+    func JSONKey(from propertyName: String,
+                 _ createdKey: @autoclosure () -> String) -> String {
+        if let key = jsonKeys[propertyName] { return key }
+        
+        jsonKeysLock.wait()
+        defer { jsonKeysLock.signal() }
+        if let key = jsonKeys[propertyName] { return key }
         
         let resultKey = createdKey()
-        JSONKeys[propertyName] = resultKey
+        jsonKeys[propertyName] = resultKey
         return resultKey
+    }
+    
+    func clearJSONKeys() {
+        jsonKeysLock.wait()
+        defer { jsonKeysLock.signal() }
+
+        jsonKeys.removeAll()
     }
 }

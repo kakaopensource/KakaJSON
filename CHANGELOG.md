@@ -2,6 +2,9 @@
 
 ---
 
+## [1.1.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.0) (2019-08-15)
+- Add global config
+
 ## [1.0.4](https://github.com/kakaopensource/KakaJSON/releases/tag/1.0.4) (2019-08-15)
 - Fix a bug in release mode
 

@@ -64,20 +64,28 @@ public protocol Convertible {
 
 public extension Convertible {
     func kk_modelKey(from property: Property) -> ModelPropertyKey {
-        return property.name
+        return ConvertibleConfig.modelKey(Self.self, property: property)
     }
     func kk_modelValue(from jsonValue: Any?,
-                       property: Property) -> Any? { return jsonValue }
+                       property: Property) -> Any? {
+        return ConvertibleConfig.modelValue(Self.self,
+                                            jsonValue: jsonValue,
+                                            property: property)
+    }
     func kk_modelType(from jsonValue: Any?,
                       property: Property) -> Convertible.Type? { return nil }
     func kk_willConvertToModel(from json: JSONObject) {}
     func kk_didConvertToModel(from json: JSONObject) {}
     
     func kk_JSONKey(from property: Property) -> JSONPropertyKey {
-        return property.name
+        return ConvertibleConfig.JSONKey(Self.self, property: property)
     }
     func kk_JSONValue(from modelValue: Any?,
-                      property: Property) -> Any? { return modelValue }
+                      property: Property) -> Any? {
+        return ConvertibleConfig.JSONValue(Self.self,
+                                           modelValue: modelValue,
+                                           property: property)
+    }
     func kk_willConvertToJSON() {}
     func kk_didConvertToJSON(json: JSONObject?) {}
 }
@@ -255,7 +263,7 @@ extension Convertible {
             guard let v = Converter.JSONValue(from: value)~! else { continue }
             
             // key filter
-            json[mt.JSONPropertyKey(from: property.name,
+            json[mt.JSONKey(from: property.name,
                             kk_JSONKey(from: property))] = v
         }
         
