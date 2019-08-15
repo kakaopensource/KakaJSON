@@ -13,7 +13,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var mostFavoriteNumber: Int = 0
             var birthday: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 // `nickName` -> `nick_name`
                 return property.name.kk.underlineCased()
             }
@@ -41,7 +41,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var most_favorite_number: Int = 0
             var birthday: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 // `nick_name` -> `nickName`
                 return property.name.kk.camelCased()
             }
@@ -68,7 +68,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "name" ? "_name_" : property.name
             }
         }
@@ -95,7 +95,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "name" ? "_name_" : property.name
             }
         }
@@ -103,7 +103,7 @@ class JTM_04_KeyMapping: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_modelKey(from property: Property) -> ModelKey {
+            override func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "score"
                     ? "_score_"
                     : super.kk_modelKey(from: property)
@@ -128,7 +128,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "name" ? "_name_" : property.name
             }
         }
@@ -136,7 +136,7 @@ class JTM_04_KeyMapping: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_modelKey(from property: Property) -> ModelKey {
+            override func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "score" ? "_score_" : property.name
             }
         }
@@ -166,7 +166,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var nickName: String?
             var toy: Toy?
             
-            func kk_modelKey(from property: Property) -> ModelKey {
+            func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 switch property.name {
                 case "toy": return "dog.toy"
                 case "name": return "data.1.dog.name"

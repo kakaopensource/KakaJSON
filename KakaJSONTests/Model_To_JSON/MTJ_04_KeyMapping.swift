@@ -11,7 +11,7 @@ class MTJ_04_KeyMapping: XCTestCase {
         var nickName: String = "Wang"
         var price: Double = 100.6
         
-        func kk_JSONKey(from property: Property) -> JSONKey {
+        func kk_JSONKey(from property: Property) -> JSONPropertyKey {
             switch property.name {
             case "nickName": return "_nick_name_"
             default: return property.name
