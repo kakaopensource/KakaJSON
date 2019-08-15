@@ -55,8 +55,7 @@ extension UnsafeMutableRawPointer {
 
 private extension TypeProxy {
     static func _set(_ value: Any, _ ptr: UnsafeMutableRawPointer) {
-        guard let v = value as? Self else { return }
-        (ptr ~> self).pointee = v
+        (value as? Self).flatMap { (ptr ~> self).pointee = $0 }
     }
     
     static func _get(_ ptr: UnsafeMutableRawPointer) -> Any {

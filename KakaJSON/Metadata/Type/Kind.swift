@@ -59,22 +59,22 @@ public enum Kind {
         let kind = (type ~>> UnsafePointer<UInt>.self).pointee
         
         switch kind {
-        case 0 | Self.nonHeap, 1: self = .struct
-        case 1 | Self.nonHeap, 2: self = .enum
-        case 2 | Self.nonHeap, 3: self = .optional
-        case 3 | Self.nonHeap: self = .foreignClass
+        case 0 | Kind.nonHeap, 1: self = .struct
+        case 1 | Kind.nonHeap, 2: self = .enum
+        case 2 | Kind.nonHeap, 3: self = .optional
+        case 3 | Kind.nonHeap: self = .foreignClass
             
-        case 0 | Self.runtimePrivate_nonHeap, 8: self = .opaque
-        case 1 | Self.runtimePrivate_nonHeap, 9: self = .tuple
-        case 2 | Self.runtimePrivate_nonHeap, 10: self = .function
-        case 3 | Self.runtimePrivate_nonHeap, 12: self = .existential
-        case 4 | Self.runtimePrivate_nonHeap, 13: self = .metatype
-        case 5 | Self.runtimePrivate_nonHeap, 14: self = .objCClassWrapper
-        case 6 | Self.runtimePrivate_nonHeap, 15: self = .existentialMetatype
+        case 0 | Kind.runtimePrivate_nonHeap, 8: self = .opaque
+        case 1 | Kind.runtimePrivate_nonHeap, 9: self = .tuple
+        case 2 | Kind.runtimePrivate_nonHeap, 10: self = .function
+        case 3 | Kind.runtimePrivate_nonHeap, 12: self = .existential
+        case 4 | Kind.runtimePrivate_nonHeap, 13: self = .metatype
+        case 5 | Kind.runtimePrivate_nonHeap, 14: self = .objCClassWrapper
+        case 6 | Kind.runtimePrivate_nonHeap, 15: self = .existentialMetatype
             
-        case 0 | Self.nonType, 64: self = .heapLocalVariable
-        case 0 | Self.runtimePrivate_nonType: self = .heapGenericLocalVariable
-        case 1 | Self.runtimePrivate_nonType: self = .errorObject
+        case 0 | Kind.nonType, 64: self = .heapLocalVariable
+        case 0 | Kind.runtimePrivate_nonType: self = .heapGenericLocalVariable
+        case 1 | Kind.runtimePrivate_nonType: self = .errorObject
             
         case 65: self = .heapArray
             

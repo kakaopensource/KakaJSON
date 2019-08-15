@@ -212,6 +212,7 @@ class JTM_01_Basic: XCTestCase {
             var height5: Float = 0.0
             var height6: Float = 0.0
             var height7: Float = 0.0
+            var height8: Float = 0.0
         }
         
         let json: [String: Any] = [
@@ -221,7 +222,8 @@ class JTM_01_Basic: XCTestCase {
             "height4": Decimal(string: longFloatString) as Any,
             "height5": 666,
             "height6": true,
-            "height7": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "height8": CGFloat(longFloat)
         ]
         
         let student = json.kk.model(Student.self)
@@ -232,6 +234,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.height5 == 666.0)
         XCTAssert(student?.height6 == 1.0)
         XCTAssert(student?.height7 == 0.0)
+        XCTAssert(student?.height8 == longFloat)
     }
     
     // MARK: - Double Type
@@ -244,6 +247,7 @@ class JTM_01_Basic: XCTestCase {
             var height5: Double = 0.0
             var height6: Double = 0.0
             var height7: Double = 0.0
+            var height8: Double = 0.0
         }
         
         let json: [String: Any] = [
@@ -253,7 +257,8 @@ class JTM_01_Basic: XCTestCase {
             "height4": Decimal(string: longDoubleString) as Any,
             "height5": 666,
             "height6": true,
-            "height7": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "height8": CGFloat(longDouble)
         ]
         
         let student = json.kk.model(Student.self)
@@ -264,6 +269,42 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.height5 == 666.0)
         XCTAssert(student?.height6 == 1.0)
         XCTAssert(student?.height7 == 0.0)
+        XCTAssert(student?.height8 == longDouble)
+    }
+    
+    // MARK: - CGFloat Type
+    func testCGFloat() {
+        struct Student: Convertible {
+            var height1: CGFloat = 0.0
+            var height2: CGFloat = 0.0
+            var height3: CGFloat = 0.0
+            var height4: CGFloat = 0.0
+            var height5: CGFloat = 0.0
+            var height6: CGFloat = 0.0
+            var height7: CGFloat = 0.0
+            var height8: CGFloat = 0.0
+        }
+        
+        let json: [String: Any] = [
+            "height1": "6.66suan8fa8",
+            "height2": longDoubleString,
+            "height3": NSDecimalNumber(string: longDoubleString),
+            "height4": Decimal(string: longDoubleString) as Any,
+            "height5": 666,
+            "height6": true,
+            "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "height8": longDouble
+        ]
+        
+        let student = json.kk.model(Student.self)
+        XCTAssert(student?.height1 == 6.66)
+        XCTAssert(student?.height2 == CGFloat(longDouble))
+        XCTAssert(student?.height3 == CGFloat(longDouble))
+        XCTAssert(student?.height4 == CGFloat(longDouble))
+        XCTAssert(student?.height5 == 666.0)
+        XCTAssert(student?.height6 == 1.0)
+        XCTAssert(student?.height7 == 0.0)
+        XCTAssert(student?.height8 == CGFloat(longDouble))
     }
     
     // MARK: - Bool Type
@@ -275,6 +316,7 @@ class JTM_01_Basic: XCTestCase {
             var rich4: Bool = false
             var rich5: Bool = false
             var rich6: Bool = false
+            var rich7: Bool = false
         }
         
         // 0 -> false , other -> true
@@ -284,7 +326,8 @@ class JTM_01_Basic: XCTestCase {
             "rich3": "1",
             "rich4": NSNumber(value: 0.666),
             "rich5": "true",
-            "rich6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "rich6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "rich7": CGFloat(6.666),
         ]
         
         let student = json.kk.model(Student.self)
@@ -294,6 +337,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.rich4 == true)
         XCTAssert(student?.rich5 == true)
         XCTAssert(student?.rich6 == false)
+        XCTAssert(student?.rich7 == true)
     }
     
     // MARK: - String Type
@@ -340,6 +384,7 @@ class JTM_01_Basic: XCTestCase {
             var money4: Decimal = 0
             var money5: Decimal = 0
             var money6: Decimal = 0
+            var money7: Decimal = 0
         }
         
         let json: [String: Any] = [
@@ -348,7 +393,8 @@ class JTM_01_Basic: XCTestCase {
             "money3": longDecimalNumber,
             "money4": longDecimalString,
             "money5": 666,
-            "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money7": CGFloat(longDouble)
         ]
         
         let student = json.kk.model(Student.self)
@@ -358,6 +404,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.money4 == Decimal(string: longDecimalString))
         XCTAssert(student?.money5 == 666)
         XCTAssert(student?.money6 == 0)
+        XCTAssert(student?.money7 == Decimal(string: longDoubleString))
     }
         
     // MARK: - Decimal Number Type
@@ -369,6 +416,7 @@ class JTM_01_Basic: XCTestCase {
             var money4: NSDecimalNumber = 0
             var money5: NSDecimalNumber = 0
             var money6: NSDecimalNumber = 0
+            var money7: NSDecimalNumber = 0
         }
         
         let json: [String: Any] = [
@@ -377,7 +425,8 @@ class JTM_01_Basic: XCTestCase {
             "money3": longDecimal,
             "money4": longDecimalString,
             "money5": 666.0,
-            "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money7": CGFloat(longDouble)
         ]
         
         let student = json.kk.model(Student.self)
@@ -389,6 +438,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.money5 == 666)
         XCTAssert(student?.money6 == false)
         XCTAssert(student?.money6 == 0)
+        XCTAssert(student?.money7 == NSDecimalNumber(string: longDoubleString))
     }
     
     // MARK: - Number Type
@@ -400,6 +450,7 @@ class JTM_01_Basic: XCTestCase {
             var money4: NSNumber = 0
             var money5: NSNumber = 0
             var money6: NSNumber = 0
+            var money7: NSNumber = 0
         }
         
         let json: [String: Any] = [
@@ -408,7 +459,8 @@ class JTM_01_Basic: XCTestCase {
             "money3": Decimal(string: longDoubleString) as Any,
             "money4": longDoubleString,
             "money5": 666.0,
-            "money6": "NO" // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
+            "money7": CGFloat(longDouble)
         ]
         
         let student = json.kk.model(Student.self)
@@ -423,6 +475,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.money6 == false)
         XCTAssert(student?.money6 == 0)
         XCTAssert(student?.money6 == 0.0)
+        XCTAssert(student?.money7 == NSNumber(value: longDouble))
     }
     
     // MARK: - Optional Type
@@ -571,15 +624,15 @@ class JTM_01_Basic: XCTestCase {
     // MARK: - Array Type
     func testArray() {
         struct Person: Convertible {
-            var array1: [Int]?
+            var array1: [CGFloat]?
             var array2: NSArray?
             var array3: NSMutableArray?
-            var array4: [Int]?
+            var array4: [CGFloat]?
             var array5: NSArray?
             var array6: NSMutableArray?
         }
         
-        let array = [1, 2, 3]
+        let array: [CGFloat] = [5.55, 6.66, 7.77]
         
         let json: [String: Any] = [
             "array1": NSMutableArray(array: array),

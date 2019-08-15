@@ -52,12 +52,6 @@ public struct Instance {
     }
 }
 
-extension NSObject {
-    static func new() -> NSObject {
-        return self.init()
-    }
-}
-
 @_silgen_name("swift_allocObject")
 private func _swift_allocObject(
     _ metadata: UnsafeRawPointer?,

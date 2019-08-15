@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KK.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
 		2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */; };
 		2D5875CC2301C49D001A809B /* MTJ_04_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
+		2D5253AD2305461300F854D9 /* NSObject+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KK.swift"; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
 		2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_04_KeyMapping.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				2D92DDBC2301279E00A96858 /* JSONSerialization+KK.swift */,
 				2DCEB38C230175AC0030701B /* Array+KK.swift */,
 				2D645BA42302B75C00075A9E /* Set+KK.swift */,
+				2D5253AD2305461300F854D9 /* NSObject+KK.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */,
 				2D92DDE32301279E00A96858 /* Converter.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
+				2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */,
 				2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */,
 				2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */,
 				2D645BA12302995100075A9E /* TypeProxy.swift in Sources */,
@@ -642,6 +646,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KakaJSON/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -667,6 +672,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KakaJSON/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -687,6 +693,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = KakaJSONTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -708,6 +715,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = KakaJSONTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -69,7 +69,7 @@ class JTM_04_KeyMapping: XCTestCase {
             required init() {}
             
             func kk_modelKey(from property: Property) -> ModelKey {
-                property.name == "name" ? "_name_" : property.name
+                return property.name == "name" ? "_name_" : property.name
             }
         }
         
@@ -96,7 +96,7 @@ class JTM_04_KeyMapping: XCTestCase {
             required init() {}
             
             func kk_modelKey(from property: Property) -> ModelKey {
-                property.name == "name" ? "_name_" : property.name
+                return property.name == "name" ? "_name_" : property.name
             }
         }
         
@@ -104,7 +104,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var score: Int = 0
             
             override func kk_modelKey(from property: Property) -> ModelKey {
-                property.name == "score"
+                return property.name == "score"
                     ? "_score_"
                     : super.kk_modelKey(from: property)
             }
@@ -129,7 +129,7 @@ class JTM_04_KeyMapping: XCTestCase {
             required init() {}
             
             func kk_modelKey(from property: Property) -> ModelKey {
-                property.name == "name" ? "_name_" : property.name
+                return property.name == "name" ? "_name_" : property.name
             }
         }
         
@@ -137,7 +137,7 @@ class JTM_04_KeyMapping: XCTestCase {
             var score: Int = 0
             
             override func kk_modelKey(from property: Property) -> ModelKey {
-                property.name == "score" ? "_score_" : property.name
+                return property.name == "score" ? "_score_" : property.name
             }
         }
         

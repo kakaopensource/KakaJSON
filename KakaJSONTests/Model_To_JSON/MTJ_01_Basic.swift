@@ -19,12 +19,14 @@ class MTJ_01_Basic: XCTestCase {
             var price: NSDecimalNumber = longDecimalNumber
             var minSpeed: Double = 66.66
             var maxSpeed: NSNumber = 77.77
+            var capacity: CGFloat = 88.88
         }
         
         let jsonString = Car().kk.JSONString()
         XCTAssert(jsonString?.contains("true") == true)
         XCTAssert(jsonString?.contains("66.66") == true)
         XCTAssert(jsonString?.contains("77.77") == true)
+        XCTAssert(jsonString?.contains("88.88") == true)
         XCTAssert(jsonString?.contains(longDoubleString) == true)
         XCTAssert(jsonString?.contains(longDecimalString) == true)
         
@@ -40,9 +42,9 @@ class MTJ_01_Basic: XCTestCase {
             var op3: Float??? = 77.77
             var op4: String???? = "Jack"
             var op5: Bool????? = true
-            // NSArray\Set<Double>\NSSet
+            // NSArray\Set<CGFloat>\NSSet
             // NSMutableArray\NSMutableSet
-            var op6: [Double]?????? = [44.44, 55.55]
+            var op6: [CGFloat]?????? = [44.44, 55.55]
         }
         
         let jsonString = Student().kk.JSONString()

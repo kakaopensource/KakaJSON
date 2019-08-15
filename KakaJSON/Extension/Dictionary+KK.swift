@@ -49,8 +49,13 @@ public extension KK where Base: NSDictionary {
 
 extension Dictionary where Key == String {
     func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
-        var model = type.init()
-        model.kk_convert(from: self)
+        var model: Convertible?
+        if let ns = type as? NSObject.Type {
+            model = ns.newConvertible()
+        } else {
+            model = type.init()
+        }
+        model?.kk_convert(from: self)
         return model
     }
     

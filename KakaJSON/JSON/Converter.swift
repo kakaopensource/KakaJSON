@@ -207,6 +207,7 @@ protocol DigitValue: NumberValue {
 protocol FloatValue: DigitValue { }
 extension Double: FloatValue {}
 extension Float: FloatValue {}
+extension CGFloat: FloatValue {}
 
 extension Bool: DigitValue {}
 
