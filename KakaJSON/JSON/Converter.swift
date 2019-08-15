@@ -6,6 +6,12 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+import UIKit
+#else
+import Cocoa
+#endif
+
 struct Converter {
     static func modelValue(from jsonValue: Any?,
                            _ propertyType: Any.Type) -> Any? {
@@ -207,9 +213,7 @@ protocol DigitValue: NumberValue {
 protocol FloatValue: DigitValue { }
 extension Double: FloatValue {}
 extension Float: FloatValue {}
-#if !os(watchOS)
 extension CGFloat: FloatValue {}
-#endif
 
 extension Bool: DigitValue {}
 
