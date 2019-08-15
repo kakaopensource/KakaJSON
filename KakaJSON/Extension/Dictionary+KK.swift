@@ -58,7 +58,7 @@ extension Dictionary where Key == String {
         var dict: JSONObject = [:]
         for (key, element) in self {
             let value = element~!
-            if let v = ValueParser.JSONValue(from: value) {
+            if let v = Converter.JSONValue(from: value) {
                 dict[key] = v
             } else if let cv = value as? CollectionValue,
                 let v = cv.kk_JSONValue() {

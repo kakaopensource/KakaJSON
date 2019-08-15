@@ -14,9 +14,7 @@ public protocol ConvertibleEnum {
 
 public extension RawRepresentable where Self: ConvertibleEnum {
     static func kk_convert(from value: Any?) -> Self? {
-        guard let v = value else { return nil }
-        guard let rv = v as? RawValue else { return nil }
-        return Self.init(rawValue: rv)
+        return (value as? RawValue).flatMap { Self.init(rawValue: $0) }
     }
     var kk_value: Any { return rawValue }
     static var kk_valueType: Any.Type { return RawValue.self }

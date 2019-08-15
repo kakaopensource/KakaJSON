@@ -63,7 +63,7 @@ extension Array {
         var arr: [Any] = []
         for element in self {
             let value = element~!
-            if let v = ValueParser.JSONValue(from: value) {
+            if let v = Converter.JSONValue(from: value) {
                 arr.append(v)
             } else if let cv = value as? CollectionValue,
                 let v = cv.kk_JSONValue() {

@@ -28,7 +28,7 @@
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
 		2D92DDE02301279E00A96858 /* KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KK.swift */; };
 		2D92DDE12301279E00A96858 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB32301279E00A96858 /* Instance.swift */; };
-		2D92DDE32301279E00A96858 /* ValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB52301279E00A96858 /* ValueParser.swift */; };
+		2D92DDE32301279E00A96858 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB52301279E00A96858 /* Converter.swift */; };
 		2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* KakaJSON.swift */; };
 		2D92DDE52301279E00A96858 /* Pointer+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KK.swift */; };
 		2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KK.swift */; };
@@ -79,7 +79,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D0EAA0E2303C0EB000691AC /* NamingConvention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamingConvention.h; sourceTree = "<group>"; };
+		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
 		2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_04_KeyMapping.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		2D92DDB22301279E00A96858 /* KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KK.swift; sourceTree = "<group>"; };
 		2D92DDB32301279E00A96858 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
-		2D92DDB52301279E00A96858 /* ValueParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueParser.swift; sourceTree = "<group>"; };
+		2D92DDB52301279E00A96858 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		2D92DDB62301279E00A96858 /* KakaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaJSON.swift; sourceTree = "<group>"; };
 		2D92DDB82301279E00A96858 /* Pointer+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KK.swift"; sourceTree = "<group>"; };
 		2D92DDB92301279E00A96858 /* Dictionary+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KK.swift"; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				2D92DDBD2301279E00A96858 /* Metadata */,
 				2D92DDB62301279E00A96858 /* KakaJSON.swift */,
 				2D92DD1C2301262500A96858 /* KakaJSON.h */,
-				2D0EAA0E2303C0EB000691AC /* NamingConvention.h */,
+				2D0EAA0E2303C0EB000691AC /* DevGuidline.h */,
 				2D92DD1D2301262500A96858 /* Info.plist */,
 			);
 			path = KakaJSON;
@@ -237,11 +237,11 @@
 			isa = PBXGroup;
 			children = (
 				2D92DDB02301279E00A96858 /* Logger.swift */,
+				2D92DDB52301279E00A96858 /* Converter.swift */,
 				2D92DDB12301279E00A96858 /* Convertible.swift */,
 				2D645BA223029A0400075A9E /* ConvertibleEnum.swift */,
 				2D92DDB22301279E00A96858 /* KK.swift */,
 				2D92DDB32301279E00A96858 /* Instance.swift */,
-				2D92DDB52301279E00A96858 /* ValueParser.swift */,
 				2D645BA02302995100075A9E /* TypeProxy.swift */,
 			);
 			path = JSON;
@@ -454,7 +454,7 @@
 				2D92DDFE2301279E00A96858 /* OptionalType.swift in Sources */,
 				2D92DDFC2301279E00A96858 /* MetaType.swift in Sources */,
 				2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */,
-				2D92DDE32301279E00A96858 /* ValueParser.swift in Sources */,
+				2D92DDE32301279E00A96858 /* Converter.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
 				2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */,
 				2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */,

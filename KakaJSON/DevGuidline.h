@@ -1,11 +1,14 @@
 //
-//  NamingConvention.h
+//  DevGuidline.h
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/14.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+1. Please make all test cases right before pushing your code
+
+2. NamingConvention
 ① public extension for system types、model types
 - obj.kk.member
 - e.g. "123".kk.numberCount, model.kk.JSON()

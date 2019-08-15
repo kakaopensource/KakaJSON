@@ -1,12 +1,12 @@
 //
-//  ValueParser.swift
+//  Converter.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/4.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-struct ValueParser {
+struct Converter {
     static func modelValue(from jsonValue: Any?,
                            _ propertyType: Any.Type) -> Any? {
         let mt = Metadata.type(propertyType)
@@ -16,22 +16,40 @@ struct ValueParser {
             // e.g. JSONObject\NSDictionry\NSMutableDictionry
             // model contains model
             return json.kk.model(anyType: propertyType)
-        } else if propertyType is SwiftArrayValue.Type,
-            let json = jsonValue as? [Any],
-            let type = (mt as? NominalType)?.genericTypes?.first,
-            let modelType = type~! as? Convertible.Type {
-            // model contains model array
-            return json.kk.modelArray(anyType: modelType)
-        } else if propertyType is SwiftDictionaryValue.Type,
+        } else if propertyType is ArrayValue.Type {
+            guard let json = _anyArray(jsonValue) else { return nil }
+            
+            if let type = (mt as? NominalType)?.genericTypes?.first,
+                let modelType = type~! as? Convertible.Type {
+                // model contains model array
+                return json.kk.modelArray(anyType: modelType)
+            }
+            
+            return propertyType is NSMutableArray.Type
+                ? NSMutableArray(array: json) : json
+        } else if propertyType is SetValue.Type {
+            guard let json = _anyArray(jsonValue) else { return nil }
+            
+            return propertyType is NSMutableSet.Type
+                ? NSMutableSet(array: json) : NSSet(array: json)
+        } else if propertyType is DictionaryValue.Type,
+            let dict = jsonValue as? JSONObject {
+            // dict contains model
+            if propertyType is SwiftDictionaryValue.Type,
             let json = jsonValue as? [String: JSONObject?],
             let type = (mt as? NominalType)?.genericTypes?.last,
             let modelType = type~! as? Convertible.Type {
-            var modelDict = JSONObject()
-            for (k, v) in json {
-                guard let m = v?.kk.model(anyType: modelType) else { continue }
-                modelDict[k] = m
+                var modelDict = JSONObject()
+                for (k, v) in json {
+                    guard let m = v?.kk.model(anyType: modelType) else { continue }
+                    modelDict[k] = m
+                }
+                return modelDict.isEmpty ? nil : modelDict
             }
-            return modelDict.isEmpty ? nil : modelDict
+            
+            // normal dict
+            return propertyType is NSMutableDictionary.Type
+                ? NSMutableDictionary(dictionary: dict) : dict
         } else if propertyType is StringValue.Type {
             return _string(jsonValue, propertyType)
         } else if propertyType is NumberValue.Type {
@@ -41,8 +59,7 @@ struct ValueParser {
         } else if propertyType is DataValue.Type {
             return _data(jsonValue, propertyType)
         } else if let enumType = propertyType as? ConvertibleEnum.Type {
-            let v = ValueParser.modelValue(from: jsonValue,
-                                           enumType.kk_valueType)
+            let v = modelValue(from: jsonValue, enumType.kk_valueType)
             return enumType.kk_convert(from: v)
         }
         return jsonValue
@@ -75,6 +92,17 @@ struct ValueParser {
             return v
         }
         return modelValue as? NSCoding
+    }
+    
+    private static func _anyArray(_ value: Any?) -> [Any]? {
+        var json: [Any]?
+        if let array = value as? [Any] {
+            json = array
+        } else if let set = value as? NSSet {
+            json = [Any]()
+            json!.append(contentsOf: set)
+        }
+        return json
     }
     
     private static func _data(_ value: Any?, _ type: Any.Type) -> DataValue? {

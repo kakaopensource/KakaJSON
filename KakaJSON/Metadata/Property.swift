@@ -10,7 +10,7 @@
 public class Property: CustomStringConvertible {
     public let name: String
     public let type: Any.Type
-    public internal(set) var dataType: Any.Type = Any.self
+    public private(set) var dataType: Any.Type = Any.self
     public let isVar: Bool
     public let offset: Int
     public let ownerType: Any.Type

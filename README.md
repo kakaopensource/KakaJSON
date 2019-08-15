@@ -9,7 +9,7 @@ Fast conversion between JSON and model in Swift.
 ## Integration
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.0.1' 
+pod 'KakaJSON', '~> 1.0.2' 
 ```
 
 ## Usages

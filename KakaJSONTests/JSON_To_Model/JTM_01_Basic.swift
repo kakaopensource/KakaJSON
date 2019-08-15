@@ -25,6 +25,7 @@ class JTM_01_Basic: XCTestCase {
         let name = "Miaomiao"
         let weight = 6.66
         
+        // json can be NSDictionary\NSMutableDictionary
         let json: [String: Any] = [
             "weight": weight,
             "name": name
@@ -565,5 +566,96 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student?.grade2 == .good)
         XCTAssert(student?.grade3 == .great)
         XCTAssert(student?.grade4 == .perfect)
+    }
+    
+    // MARK: - Array Type
+    func testArray() {
+        struct Person: Convertible {
+            var array1: [Int]?
+            var array2: NSArray?
+            var array3: NSMutableArray?
+            var array4: [Int]?
+            var array5: NSArray?
+            var array6: NSMutableArray?
+        }
+        
+        let array = [1, 2, 3]
+        
+        let json: [String: Any] = [
+            "array1": NSMutableArray(array: array),
+            "array2": array,
+            "array3": array,
+            "array4": NSMutableSet(array: array),
+            "array5": NSSet(array: array),
+            "array6": Set(array),
+        ]
+        
+        let person = json.kk.model(Person.self)
+        XCTAssert(person?.array1 == array)
+        XCTAssert(person?.array2 == array as NSArray)
+        XCTAssert(person?.array3 == NSMutableArray(array: array))
+        
+        for i in array {
+            XCTAssert(person?.array4?.contains(i) == true)
+            XCTAssert(person?.array5?.contains(i) == true)
+            XCTAssert(person?.array6?.contains(i) == true)
+        }
+    }
+    
+    // MARK: - Set Type
+    func testSet() {
+        struct Person: Convertible {
+            var set1: Set<Int>?
+            var set2: NSSet?
+            var set3: NSMutableSet?
+            var set4: Set<Int>?
+            var set5: NSSet?
+            var set6: NSMutableSet?
+        }
+        
+        let array = [1, 2, 3]
+        
+        let json: [String: Any] = [
+            "set1": NSMutableSet(array: array),
+            "set2": Set(array),
+            "set3": Set(array),
+            "set4": NSMutableArray(array: array),
+            "set5": array,
+            "set6": array
+        ]
+        
+        let person = json.kk.model(Person.self)
+        for i in array {
+            XCTAssert(person?.set1?.contains(i) == true)
+            XCTAssert(person?.set2?.contains(i) == true)
+            XCTAssert(person?.set3?.contains(i) == true)
+            XCTAssert(person?.set4?.contains(i) == true)
+            XCTAssert(person?.set5?.contains(i) == true)
+            XCTAssert(person?.set6?.contains(i) == true)
+        }
+    }
+    
+    // MARK: - Dictionary Type
+    func testDictionary() {
+        struct Person: Convertible {
+            var dict1: [String: Any]?
+            var dict2: NSDictionary?
+            var dict3: NSMutableDictionary?
+        }
+        
+        let dict = ["no1": 100, "no2": 200]
+        
+        let json: [String: Any] = [
+            "dict1": NSMutableDictionary(dictionary: dict),
+            "dict2": dict,
+            "dict3": dict
+        ]
+        
+        let person = json.kk.model(Person.self)
+        for (k, v) in dict {
+            XCTAssert(person?.dict1?[k] as? Int == v)
+            XCTAssert(person?.dict2?[k] as? Int == v)
+            XCTAssert(person?.dict3?[k] as? Int == v)
+        }
     }
 }

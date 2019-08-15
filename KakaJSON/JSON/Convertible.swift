@@ -185,8 +185,8 @@ extension Convertible {
                 continue
             }
             
-            guard let value = ValueParser.modelValue(from: newValue,
-                                                     propertyType)~! else { continue }
+            guard let value = Converter.modelValue(from: newValue,
+                                                   propertyType)~! else { continue }
             
             property.set(value, for: model)
         }
@@ -252,7 +252,7 @@ extension Convertible {
                 from: property.get(from: ptr)~!,
                 property: property)~! else { continue }
             
-            guard let v = ValueParser.JSONValue(from: value)~! else { continue }
+            guard let v = Converter.JSONValue(from: value)~! else { continue }
             
             // key filter
             json[mt.JSONKey(from: property.name,
