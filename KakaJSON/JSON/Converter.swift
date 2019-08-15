@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import CoreGraphics
+
 struct Converter {
     static func modelValue(from jsonValue: Any?,
                            _ propertyType: Any.Type) -> Any? {
