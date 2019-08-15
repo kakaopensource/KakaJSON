@@ -23,7 +23,8 @@ public extension KK where Base: ExpressibleByStringLiteral {
             }
             
             if upper, newStr.count > 0 {
-                newStr += c.uppercased()
+                //todo: vesion:1.0.2
+                newStr.append(c.uppercased())
             } else {
                 newStr.append(c)
             }
