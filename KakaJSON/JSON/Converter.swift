@@ -207,7 +207,9 @@ protocol DigitValue: NumberValue {
 protocol FloatValue: DigitValue { }
 extension Double: FloatValue {}
 extension Float: FloatValue {}
+#if !os(watchOS)
 extension CGFloat: FloatValue {}
+#endif
 
 extension Bool: DigitValue {}
 
