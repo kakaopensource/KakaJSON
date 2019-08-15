@@ -39,7 +39,8 @@ struct FieldRecord {
     let flags: Int32
     var _mangledTypeName: RelativeDirectPointer<UInt8>
     var _fieldName: RelativeDirectPointer<UInt8>
-    var isVar: Bool { (flags & 0x2) == 0x2 }
+    //todo : vesion:1.0.2 修改 返回值问题 
+    var isVar: Bool { get { return (flags & 0x2) == 0x2 } }
     mutating func fieldName() -> String { String(cString: _fieldName.advanced()) }
     mutating func mangledTypeName() -> String { String(cString: _mangledTypeName.advanced()) }
     
