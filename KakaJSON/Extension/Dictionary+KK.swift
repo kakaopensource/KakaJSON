@@ -97,7 +97,7 @@ extension Dictionary where Key == String {
                 if value == nil { return nil }
             } else if let array = value as? [Any] {
                 guard let index = Int(subKey),
-                    index >= 0, index < array.count else { return nil }
+                    array.indices ~= index else { return nil }
                 value = array[index]
             }
         }
