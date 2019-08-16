@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */; };
 		2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KK.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
 		2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */; };
@@ -21,11 +22,11 @@
 		2D92DD2A2301262500A96858 /* KakaJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D92DD1C2301262500A96858 /* KakaJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D92DDA8230126BD00A96858 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DD9F230126BD00A96858 /* Common.swift */; };
 		2D92DDA9230126BD00A96858 /* MTJ_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA1230126BD00A96858 /* MTJ_01_Basic.swift */; };
-		2D92DDAA230126BD00A96858 /* JTM_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA3230126BD00A96858 /* JTM_03_ModelArray.swift */; };
-		2D92DDAB230126BD00A96858 /* JTM_04_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA4230126BD00A96858 /* JTM_04_KeyMapping.swift */; };
+		2D92DDAA230126BD00A96858 /* JTM_04_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA3230126BD00A96858 /* JTM_04_ModelArray.swift */; };
+		2D92DDAB230126BD00A96858 /* JTM_05_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA4230126BD00A96858 /* JTM_05_KeyMapping.swift */; };
 		2D92DDAC230126BD00A96858 /* JTM_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA5230126BD00A96858 /* JTM_01_Basic.swift */; };
-		2D92DDAD230126BD00A96858 /* JTM_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA6230126BD00A96858 /* JTM_02_NestedModel.swift */; };
-		2D92DDAE230126BD00A96858 /* JTM_05_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA7230126BD00A96858 /* JTM_05_CustomValue.swift */; };
+		2D92DDAD230126BD00A96858 /* JTM_03_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA6230126BD00A96858 /* JTM_03_NestedModel.swift */; };
+		2D92DDAE230126BD00A96858 /* JTM_06_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA7230126BD00A96858 /* JTM_06_CustomValue.swift */; };
 		2D92DDDE2301279E00A96858 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB02301279E00A96858 /* Logger.swift */; };
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
 		2D92DDE02301279E00A96858 /* KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KK.swift */; };
@@ -66,7 +67,7 @@
 		2D92DE042301279E00A96858 /* FieldDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDDB2301279E00A96858 /* FieldDescriptor.swift */; };
 		2D92DE052301279E00A96858 /* EnumDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDDC2301279E00A96858 /* EnumDescriptor.swift */; };
 		2D92DE062301279E00A96858 /* StructDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDDD2301279E00A96858 /* StructDescriptor.swift */; };
-		2D9BB49523012CEA00E04DB9 /* JTM_06_DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BB49423012CEA00E04DB9 /* JTM_06_DynamicModel.swift */; };
+		2D9BB49523012CEA00E04DB9 /* JTM_07_DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BB49423012CEA00E04DB9 /* JTM_07_DynamicModel.swift */; };
 		2DCEB38D230175AC0030701B /* Array+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEB38C230175AC0030701B /* Array+KK.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
 		2D5253AD2305461300F854D9 /* NSObject+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KK.swift"; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
@@ -100,11 +102,11 @@
 		2D92DD9C230126A100A96858 /* KakaJSONTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaJSONTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D92DD9F230126BD00A96858 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		2D92DDA1230126BD00A96858 /* MTJ_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_01_Basic.swift; sourceTree = "<group>"; };
-		2D92DDA3230126BD00A96858 /* JTM_03_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_03_ModelArray.swift; sourceTree = "<group>"; };
-		2D92DDA4230126BD00A96858 /* JTM_04_KeyMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_04_KeyMapping.swift; sourceTree = "<group>"; };
+		2D92DDA3230126BD00A96858 /* JTM_04_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_04_ModelArray.swift; sourceTree = "<group>"; };
+		2D92DDA4230126BD00A96858 /* JTM_05_KeyMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_05_KeyMapping.swift; sourceTree = "<group>"; };
 		2D92DDA5230126BD00A96858 /* JTM_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_01_Basic.swift; sourceTree = "<group>"; };
-		2D92DDA6230126BD00A96858 /* JTM_02_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_02_NestedModel.swift; sourceTree = "<group>"; };
-		2D92DDA7230126BD00A96858 /* JTM_05_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_05_CustomValue.swift; sourceTree = "<group>"; };
+		2D92DDA6230126BD00A96858 /* JTM_03_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_03_NestedModel.swift; sourceTree = "<group>"; };
+		2D92DDA7230126BD00A96858 /* JTM_06_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_06_CustomValue.swift; sourceTree = "<group>"; };
 		2D92DDB02301279E00A96858 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		2D92DDB22301279E00A96858 /* KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KK.swift; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 		2D92DDDB2301279E00A96858 /* FieldDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldDescriptor.swift; sourceTree = "<group>"; };
 		2D92DDDC2301279E00A96858 /* EnumDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumDescriptor.swift; sourceTree = "<group>"; };
 		2D92DDDD2301279E00A96858 /* StructDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructDescriptor.swift; sourceTree = "<group>"; };
-		2D9BB49423012CEA00E04DB9 /* JTM_06_DynamicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_06_DynamicModel.swift; sourceTree = "<group>"; };
+		2D9BB49423012CEA00E04DB9 /* JTM_07_DynamicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_07_DynamicModel.swift; sourceTree = "<group>"; };
 		2DCEB38C230175AC0030701B /* Array+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+KK.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,11 +230,12 @@
 			isa = PBXGroup;
 			children = (
 				2D92DDA5230126BD00A96858 /* JTM_01_Basic.swift */,
-				2D92DDA6230126BD00A96858 /* JTM_02_NestedModel.swift */,
-				2D92DDA3230126BD00A96858 /* JTM_03_ModelArray.swift */,
-				2D92DDA4230126BD00A96858 /* JTM_04_KeyMapping.swift */,
-				2D92DDA7230126BD00A96858 /* JTM_05_CustomValue.swift */,
-				2D9BB49423012CEA00E04DB9 /* JTM_06_DynamicModel.swift */,
+				2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */,
+				2D92DDA6230126BD00A96858 /* JTM_03_NestedModel.swift */,
+				2D92DDA3230126BD00A96858 /* JTM_04_ModelArray.swift */,
+				2D92DDA4230126BD00A96858 /* JTM_05_KeyMapping.swift */,
+				2D92DDA7230126BD00A96858 /* JTM_06_CustomValue.swift */,
+				2D9BB49423012CEA00E04DB9 /* JTM_07_DynamicModel.swift */,
 			);
 			path = JSON_To_Model;
 			sourceTree = "<group>";
@@ -494,17 +497,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */,
-				2D92DDAB230126BD00A96858 /* JTM_04_KeyMapping.swift in Sources */,
+				2D92DDAB230126BD00A96858 /* JTM_05_KeyMapping.swift in Sources */,
+				2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */,
 				2D92DDAC230126BD00A96858 /* JTM_01_Basic.swift in Sources */,
-				2D92DDAD230126BD00A96858 /* JTM_02_NestedModel.swift in Sources */,
+				2D92DDAD230126BD00A96858 /* JTM_03_NestedModel.swift in Sources */,
 				2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */,
-				2D92DDAE230126BD00A96858 /* JTM_05_CustomValue.swift in Sources */,
+				2D92DDAE230126BD00A96858 /* JTM_06_CustomValue.swift in Sources */,
 				2D92DDA8230126BD00A96858 /* Common.swift in Sources */,
 				2D92DDA9230126BD00A96858 /* MTJ_01_Basic.swift in Sources */,
 				2D5875CC2301C49D001A809B /* MTJ_04_KeyMapping.swift in Sources */,
 				2D5875CE2301CFEF001A809B /* MTJ_05_CustomValue.swift in Sources */,
-				2D92DDAA230126BD00A96858 /* JTM_03_ModelArray.swift in Sources */,
-				2D9BB49523012CEA00E04DB9 /* JTM_06_DynamicModel.swift in Sources */,
+				2D92DDAA230126BD00A96858 /* JTM_04_ModelArray.swift in Sources */,
+				2D9BB49523012CEA00E04DB9 /* JTM_07_DynamicModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

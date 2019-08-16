@@ -28,6 +28,18 @@ public class ConvertibleConfig {
     private static let global: Item = Item()
     private static var items: [TypeKey: Item] = [:]
     
+    public static func modelKey(property: Property) -> ModelPropertyKey {
+        lock.wait()
+        defer { lock.signal() }
+        guard let fn = global.modelKey else { return property.name }
+        return fn(property)
+    }
+    
+    public static func modelKey(_ model: Convertible,
+                                property: Property) -> ModelPropertyKey {
+        return modelKey(type(of: model), property: property)
+    }
+    
     public static func modelKey(_ type: Convertible.Type,
                                 property: Property) -> ModelPropertyKey {
         lock.wait()
@@ -47,8 +59,22 @@ public class ConvertibleConfig {
             }
         }
         
-        if let fn = global.modelKey { return fn(property) }
-        return property.name
+        guard let fn = global.modelKey else { return property.name }
+        return fn(property)
+    }
+    
+    public static func modelValue(jsonValue: Any?,
+                                  property: Property) -> Any? {
+        lock.wait()
+        defer { lock.signal() }
+        guard let fn = global.modelValue else { return jsonValue }
+        return fn(jsonValue, property)
+    }
+    
+    public static func modelValue(_ model: Convertible,
+                                  jsonValue: Any?,
+                                  property: Property) -> Any? {
+        return modelValue(type(of: model), jsonValue: jsonValue, property: property)
     }
     
     public static func modelValue(_ type: Convertible.Type,
@@ -71,8 +97,21 @@ public class ConvertibleConfig {
             }
         }
         
-        if let fn = global.modelValue { return fn(jsonValue, property) }
-        return jsonValue
+        guard let fn = global.modelValue else { return jsonValue }
+        return fn(jsonValue, property)
+    }
+    
+    public static func JSONKey(property: Property) -> JSONPropertyKey {
+        lock.wait()
+        defer { lock.signal() }
+        
+        guard let fn = global.jsonKey else { return property.name }
+        return fn(property)
+    }
+    
+    public static func JSONKey(_ model: Convertible,
+                               property: Property) -> JSONPropertyKey {
+        return JSONKey(type(of: model), property: property)
     }
     
     public static func JSONKey(_ type: Convertible.Type,
@@ -94,8 +133,23 @@ public class ConvertibleConfig {
             }
         }
         
-        if let fn = global.jsonKey { return fn(property) }
-        return property.name
+        guard let fn = global.jsonKey else { return property.name }
+        return fn(property)
+    }
+    
+    public static func JSONValue(modelValue: Any?,
+                                 property: Property) -> Any? {
+        lock.wait()
+        defer { lock.signal() }
+        
+        guard let fn = global.modelValue else { return modelValue }
+        return fn(modelValue, property)
+    }
+    
+    public static func JSONValue(_ model: Convertible,
+                                 modelValue: Any?,
+                                 property: Property) -> Any? {
+        return JSONValue(type(of: model), modelValue: modelValue, property: property)
     }
     
     public static func JSONValue(_ type: Convertible.Type,
@@ -118,8 +172,13 @@ public class ConvertibleConfig {
             }
         }
         
-        if let fn = global.modelValue { return fn(modelValue, property) }
-        return modelValue
+        guard let fn = global.modelValue else { return modelValue }
+        return fn(modelValue, property)
+    }
+    
+    public static func setModelKey(for type: Convertible.Type,
+                                   _ modelKey: @escaping ModelKeyConfig) {
+        setModelKey(for: [type], modelKey)
     }
     
     public static func setModelKey(for types: [Convertible.Type] = [],
@@ -135,14 +194,19 @@ public class ConvertibleConfig {
             return
         }
         
-        for type in types {
-            let key = typeKey(type)
+        types.forEach {
+            let key = typeKey($0)
             if let item = items[key] {
                 item.modelKey = modelKey
-                continue
+                return
             }
             items[key] = Item(modelKey: modelKey)
         }
+    }
+    
+    public static func setModelValue(for type: Convertible.Type,
+                                     modelValue: @escaping ModelValueConfig) {
+        setModelValue(for: [type], modelValue: modelValue)
     }
     
     public static func setModelValue(for types: [Convertible.Type] = [],
@@ -155,14 +219,19 @@ public class ConvertibleConfig {
             return
         }
         
-        for type in types {
-            let key = typeKey(type)
+        types.forEach {
+            let key = typeKey($0)
             if let item = items[key] {
                 item.modelValue = modelValue
-                continue
+                return
             }
             items[key] = Item(modelValue: modelValue)
         }
+    }
+    
+    public static func setJSONKey(for type: Convertible.Type,
+                                  jsonKey: @escaping JSONKeyConfig) {
+        setJSONKey(for: [type], jsonKey: jsonKey)
     }
     
     public static func setJSONKey(for types: [Convertible.Type] = [],
@@ -178,14 +247,19 @@ public class ConvertibleConfig {
             return
         }
         
-        for type in types {
-            let key = typeKey(type)
+        types.forEach {
+            let key = typeKey($0)
             if let item = items[key] {
                 item.jsonKey = jsonKey
-                continue
+                return
             }
             items[key] = Item(jsonKey: jsonKey)
         }
+    }
+    
+    public static func setJSONValue(for type: Convertible.Type,
+                                    jsonValue: @escaping JSONValueConfig) {
+        setJSONValue(for: [type], jsonValue: jsonValue)
     }
     
     public static func setJSONValue(for types: [Convertible.Type] = [],
@@ -198,11 +272,11 @@ public class ConvertibleConfig {
             return
         }
         
-        for type in types {
-            let key = typeKey(type)
+        types.forEach {
+            let key = typeKey($0)
             if let item = items[key] {
                 item.jsonValue = jsonValue
-                continue
+                return
             }
             items[key] = Item(jsonValue: jsonValue)
         }

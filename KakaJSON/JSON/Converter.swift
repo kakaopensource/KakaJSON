@@ -207,7 +207,10 @@ protocol DigitValue: NumberValue {
 protocol FloatValue: DigitValue { }
 extension Double: FloatValue {}
 extension Float: FloatValue {}
+#if canImport(CoreGraphics)
+import CoreGraphics
 extension CGFloat: FloatValue {}
+#endif
 
 extension Bool: DigitValue {}
 

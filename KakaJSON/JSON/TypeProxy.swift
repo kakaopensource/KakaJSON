@@ -6,7 +6,7 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-protocol TypeProxy {}
+protocol TypeProxy: Convertible {}
 
 extension TypeProxy {
     static func `is`(_ value: Any) -> Bool {

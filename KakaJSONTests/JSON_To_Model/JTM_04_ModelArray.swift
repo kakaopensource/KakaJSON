@@ -1,12 +1,12 @@
 //
-//  JTM_03_ModelArray.swift
+//  JTM_04_ModelArray.swift
 //  KakaJSONTests
 //
 //  Created by MJ Lee on 2019/8/10.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-class JTM_03_ModelArray: XCTestCase {
+class JTM_04_ModelArray: XCTestCase {
     let tuples = [
         (name: "BMW", price: 100.0),
         (name: "Audi", price: 70.0),

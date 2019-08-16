@@ -1,5 +1,5 @@
 //
-//  JTM_05_CustomValue.swift
+//  JTM_06_CustomValue.swift
 //  KakaJSONTests
 //
 //  Created by MJ Lee on 2019/8/10.
@@ -18,7 +18,7 @@ private let date2Fmt: DateFormatter = {
     return fmt
 }()
 
-class JTM_05_CustomValue: XCTestCase {
+class JTM_06_CustomValue: XCTestCase {
     // MARK: - Date
     func testDate() {
         struct Student: Convertible {

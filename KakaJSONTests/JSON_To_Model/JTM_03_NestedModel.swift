@@ -1,12 +1,12 @@
 //
-//  JTM_02_NestedModel.swift
+//  JTM_03_NestedModel.swift
 //  KakaJSONTests
 //
 //  Created by MJ Lee on 2019/8/10.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-class JTM_02_NestedModel: XCTestCase {
+class JTM_03_NestedModel: XCTestCase {
     func test() {
         struct Book: Convertible {
             var name: String = ""

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
 
 //! Project version number for KakaJSON.
 FOUNDATION_EXPORT double KakaJSONVersionNumber;

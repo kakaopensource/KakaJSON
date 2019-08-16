@@ -1,12 +1,12 @@
 //
-//  JTM_06_DynamicModel.swift
+//  JTM_07_DynamicModel.swift
 //  KakaJSONTests
 //
 //  Created by MJ Lee on 2019/8/12.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-class JTM_06_DynamicModel: XCTestCase {
+class JTM_07_DynamicModel: XCTestCase {
     class Book: Convertible {
         var name: String = ""
         var price: Double = 0.0

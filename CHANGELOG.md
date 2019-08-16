@@ -2,6 +2,10 @@
 
 ---
 
+## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-08-15)
+- Add more test cases
+- Add more interfaces for global config
+
 ## [1.1.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.0) (2019-08-15)
 - Add global config
 
