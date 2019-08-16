@@ -22,7 +22,7 @@ public protocol Convertible {
     
     /// Get a key from propertyName when converting from JSON to model
     ///
-    /// Only call once for every property of every type
+    /// Only call once for every property in every type
     func kk_modelKey(from property: Property) -> ModelPropertyKey
     
     /// Get a model modelValue from jsonValue when converting from JSON to model
@@ -45,7 +45,7 @@ public protocol Convertible {
     
     /// Get a key from propertyName when converting from model to JSON
     ///
-    /// Only call once for every property of every type
+    /// Only call once for every property in every type
     func kk_JSONKey(from property: Property) -> JSONPropertyKey
     
     /// Get a JSONValue from modelValue when converting from JSON to model
@@ -101,7 +101,7 @@ public extension Convertible {
         set {}
     }
     
-    /// mutable version
+    /// mutable version of kk
     var kk_m: ConvertibleKK_M<Self> {
         mutating get { return ConvertibleKK_M(&self) }
         set {}
@@ -222,7 +222,7 @@ extension Convertible {
                     guard let m = v?.kk.model(anyType: modelType) else { continue }
                     modelDict[k] = m
                 }
-                guard modelDict.count > 0 else { return nil }
+                guard modelDict.count > 0 else { return jsonValue }
                 
                 return propertyType is NSMutableDictionary.Type
                     ? NSMutableDictionary(dictionary: modelDict)
@@ -231,8 +231,7 @@ extension Convertible {
                 return json.kk.model(anyType: modelType)
             }
         }
-        // return nil when in other case
-        return nil
+        return jsonValue
     }
 }
 

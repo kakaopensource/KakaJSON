@@ -8,16 +8,12 @@
 
 extension NSSet {
     func kk_JSONValue() -> Any? {
-        var arr: [Any] = []
-        arr.append(contentsOf: self)
-        return arr.kk_JSONValue()
+        return [Any](self).kk_JSONValue()
     }
 }
 
 extension Set {
     func kk_JSONValue() -> Any? {
-        var arr: [Any] = []
-        arr.append(contentsOf: self as NSSet)
-        return arr.kk_JSONValue()
+        return [Any](self as NSSet).kk_JSONValue()
     }
 }

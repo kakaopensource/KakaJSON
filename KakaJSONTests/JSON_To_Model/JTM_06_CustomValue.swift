@@ -14,7 +14,7 @@ private let date1Fmt: DateFormatter = {
 
 private let date2Fmt: DateFormatter = {
     let fmt = DateFormatter()
-    fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    fmt.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
     return fmt
 }()
 
@@ -29,6 +29,7 @@ class JTM_06_CustomValue: XCTestCase {
                                property: Property) -> Any? {
                 switch property.name {
                 case "date1": return (jsonValue as? String).flatMap(date1Fmt.date)
+                    
                 // Date to NSDate is a bridging conversion
                 case "date2": return (jsonValue as? String).flatMap(date2Fmt.date)
                 default: return jsonValue
@@ -37,7 +38,7 @@ class JTM_06_CustomValue: XCTestCase {
         }
         
         let date1 = "2008-09-09"
-        let date2 = "2011-11-12 14:20:30"
+        let date2 = "2011-11-12 14:20:30.888"
         
         let json: [String: Any] = [
             "date1": date1,

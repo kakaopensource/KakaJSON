@@ -20,6 +20,7 @@ class MTJ_01_Basic: XCTestCase {
             var minSpeed: Double = 66.66
             var maxSpeed: NSNumber = 77.77
             var capacity: CGFloat = 88.88
+            var birthday: Date = Date(timeIntervalSince1970: 1565922866)
         }
         
         let jsonString = Car().kk.JSONString()
@@ -27,6 +28,7 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(jsonString?.contains("66.66") == true)
         XCTAssert(jsonString?.contains("77.77") == true)
         XCTAssert(jsonString?.contains("88.88") == true)
+        XCTAssert(jsonString?.contains("1565922866") == true)
         XCTAssert(jsonString?.contains(longDoubleString) == true)
         XCTAssert(jsonString?.contains(longDecimalString) == true)
         

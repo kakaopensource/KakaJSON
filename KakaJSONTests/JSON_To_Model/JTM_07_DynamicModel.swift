@@ -19,7 +19,7 @@ class JTM_07_DynamicModel: XCTestCase {
         required init() {}
     }
     
-    class SPig: Convertible {
+    class Pig: Convertible {
         var name: String = ""
         var height: Double = 0.0
         required init() {}
@@ -47,7 +47,7 @@ class JTM_07_DynamicModel: XCTestCase {
             case "pet":
                 if let pet = jsonValue as? [String: Any],
                     let _ = pet["height"] {
-                    return SPig.self
+                    return Pig.self
                 }
                 return Dog.self
             case "toys": return Car.self
@@ -90,7 +90,7 @@ class JTM_07_DynamicModel: XCTestCase {
         if let pet = person?.pet as? Dog {
             XCTAssert(pet.name == dog.name)
             XCTAssert(pet.weight == dog.weight)
-        } else if let pet = person?.pet as? SPig {
+        } else if let pet = person?.pet as? Pig {
             XCTAssert(pet.name == pig.name)
             XCTAssert(pet.height == pig.height)
         }

@@ -2,7 +2,12 @@
 
 ---
 
-## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-08-15)
+## [1.1.2](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-08-17)
+- Support conversion from Double to Date
+- Merged pull requests
+	- [Use range to judge index #8](https://github.com/kakaopensource/KakaJSON/pull/8)
+
+## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-08-16)
 - Add more test cases
 - Add more interfaces for global config
 

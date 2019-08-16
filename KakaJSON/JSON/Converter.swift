@@ -17,7 +17,7 @@ struct Converter {
             // model contains model
             return json.kk.model(anyType: propertyType)
         } else if propertyType is ArrayValue.Type {
-            guard let json = _anyArray(jsonValue) else { return nil }
+            guard let json = _anyArray(jsonValue) else { return jsonValue }
             
             if let type = (mt as? NominalType)?.genericTypes?.first,
                 let modelType = type~! as? Convertible.Type {
@@ -28,7 +28,7 @@ struct Converter {
             return propertyType is NSMutableArray.Type
                 ? NSMutableArray(array: json) : json
         } else if propertyType is SetValue.Type {
-            guard let json = _anyArray(jsonValue) else { return nil }
+            guard let json = _anyArray(jsonValue) else { return jsonValue }
             
             return propertyType is NSMutableSet.Type
                 ? NSMutableSet(array: json) : NSSet(array: json)
@@ -44,7 +44,7 @@ struct Converter {
                     guard let m = v?.kk.model(anyType: modelType) else { continue }
                     modelDict[k] = m
                 }
-                return modelDict.isEmpty ? nil : modelDict
+                return modelDict.isEmpty ? jsonValue : modelDict
             }
             
             // normal dict
@@ -55,9 +55,11 @@ struct Converter {
         } else if propertyType is NumberValue.Type {
             return _number(jsonValue, propertyType)
         } else if propertyType is URLValue.Type {
-            return _url(jsonValue, propertyType)
+            return _url(jsonValue)
         } else if propertyType is DataValue.Type {
-            return _data(jsonValue, propertyType)
+            return _data(jsonValue)
+        } else if propertyType is DateValue.Type {
+            return _date(jsonValue)
         } else if let enumType = propertyType as? ConvertibleEnum.Type {
             let v = modelValue(from: jsonValue, enumType.kk_valueType)
             return enumType.kk_convert(from: v)
@@ -90,41 +92,34 @@ struct Converter {
         } else if let c = modelValue as? CollectionValue,
             let v = c.kk_JSONValue() {
             return v
+        } else if let v = modelValue as? Date {
+            return v.timeIntervalSince1970
         }
         return modelValue as? NSCoding
     }
     
     private static func _anyArray(_ value: Any?) -> [Any]? {
-        var json: [Any]?
-        if let array = value as? [Any] {
-            json = array
-        } else if let set = value as? NSSet {
-            json = [Any]()
-            json!.append(contentsOf: set)
-        }
-        return json
+        guard let set = value as? NSSet else { return value as? [Any] }
+        return [Any](set)
     }
     
-    private static func _data(_ value: Any?, _ type: Any.Type) -> DataValue? {
+    private static func _date(_ value: Any?) -> DateValue? {
         guard let vv = value.kk_value else { return nil }
-        var data = vv as? Data
-        if data == nil {
-            data = (vv as? String)?.data(using: String.Encoding.utf8)
-        }
-        guard let d = data else { return nil }
-        return type == Data.self ? d : NSData(data: d)
+        guard let time = Double("\(vv)") else { return vv as? Date }
+        return Date(timeIntervalSince1970: time)
     }
     
-    private static func _url(_ value: Any?, _ type: Any.Type) -> URLValue? {
+    private static func _data(_ value: Any?) -> DataValue? {
         guard let vv = value.kk_value else { return nil }
-        let urlType = type as! URLValue.Type
-        if let str = vv as? String, str.contains("://") {
-            return str.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                .flatMap { urlType.init(string: $0) }
-        } else if let url = vv as? URL {
-            return type == NSURL.self ? NSURL(string: url.absoluteString) : url
-        }
-        return nil
+        guard let str = vv as? String else { return vv as? Data }
+        return str.data(using: String.Encoding.utf8)
+    }
+    
+    private static func _url(_ value: Any?) -> URLValue? {
+        guard let vv = value.kk_value else { return nil }
+        guard let str = vv as? String, str.contains("://")
+            else { return vv as? URL }
+        return str.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed).flatMap { URL(string: $0) }
     }
     
     private static func _string(_ value: Any?, _ type: Any.Type) -> StringValue? {
@@ -162,7 +157,7 @@ struct Converter {
         }
         
         // number
-        return Double("\(decimal)").map { NSNumber(value: $0) }
+        return Double("\(decimal)").flatMap { NSNumber(value: $0) }
     }
 }
 
@@ -236,6 +231,10 @@ extension URL: URLValue {}
 protocol DataValue {}
 extension NSData: DataValue {}
 extension Data: DataValue {}
+
+protocol DateValue {}
+extension NSDate: DateValue {}
+extension Date: DateValue {}
 
 // MARK: - operators
 postfix operator ~!

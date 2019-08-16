@@ -414,6 +414,42 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(String(data: (student?.data4)!, encoding: utf8) == str)
     }
     
+    // MARK: - Date Type
+    func testDate() {
+        struct Student: Convertible {
+            var date1: NSDate?
+            var date2: NSDate?
+            var date3: Date?
+            var date4: Date?
+            var date5: Date?
+            var date6: Date?
+            var date7: Date?
+        }
+        
+        let milliseconds: TimeInterval = 1565922866
+        let date = Date(timeIntervalSince1970: milliseconds)
+        let nsDate = NSDate(timeIntervalSince1970: milliseconds)
+        
+        let json: [String: Any] = [
+            "date1": milliseconds,
+            "date2": date,
+            "date3": milliseconds,
+            "date4": nsDate,
+            "date5": "\(milliseconds)",
+            "date6": NSDecimalNumber(string: "\(milliseconds)"),
+            "date7": Decimal(string: "\(milliseconds)") as Any
+        ]
+        
+        let student = json.kk.model(Student.self)
+        XCTAssert(student?.date1?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date2?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date3?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date4?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date5?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date6?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date7?.timeIntervalSince1970 == milliseconds)
+    }
+    
     // MARK: - Enum Type
     func testEnum1() {
         enum Grade: String, ConvertibleEnum {
