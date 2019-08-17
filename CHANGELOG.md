@@ -3,7 +3,8 @@
 ---
 
 ## [1.1.3](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.3) (2019-08-17)
-- Support conversion from Double to Date
+- Support conversion from Date to Number
+- Refactor code
 
 ## [1.1.2](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.2) (2019-08-17)
 - Support conversion from Double to Date
