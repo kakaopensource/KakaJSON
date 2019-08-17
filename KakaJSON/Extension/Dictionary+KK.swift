@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 extension NSDictionary: KKCompatible {}
 extension Dictionary: KKGenericCompatible {
     public typealias T = Value
@@ -59,20 +61,6 @@ extension Dictionary where Key == String {
         return model
     }
     
-    func kk_JSONValue() -> Any? {
-        var dict: JSONObject = [:]
-        for (key, element) in self {
-            let value = element~!
-            if let v = Converter.JSONValue(from: value) {
-                dict[key] = v
-            } else if let cv = value as? CollectionValue,
-                let v = cv.kk_JSONValue() {
-                dict[key] = v
-            }
-        }
-        return dict.isEmpty ? nil : dict
-    }
-    
     func kk_value(for modelPropertyKey: ModelPropertyKey) -> Any? {
         if let key = modelPropertyKey as? String {
             return _value(stringKey: key)
@@ -102,19 +90,5 @@ extension Dictionary where Key == String {
             }
         }
         return value
-    }
-}
-
-extension NSDictionary {
-    func kk_JSONValue() -> Any? {
-        return (self as? JSONObject)?.kk_JSONValue()
-    }
-    
-    func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
-        return (self as? JSONObject)?.kk_fastModel(type)
-    }
-    
-    func kk_value(for modelKey: ModelPropertyKey) -> Any? {
-        return (self as? JSONObject)?.kk_value(for: modelKey)
     }
 }

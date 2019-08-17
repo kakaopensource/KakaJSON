@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 extension JSONSerialization {
     static func kk_JSON<T>(_ string: String?, _ type: T.Type) -> T? {
         guard let str = string,

@@ -20,6 +20,7 @@ class JTM_02_DataType: XCTestCase {
             var age8: UInt64 = 0
             var age9: UInt = 0
             var age10: Int = 0
+            var age11: Int = 0
         }
         
         let json: [String: Any] = [
@@ -32,7 +33,8 @@ class JTM_02_DataType: XCTestCase {
             "age7": true,
             "age8": "FALSE", // true\false\yes\no\TRUE\FALSE\YES\NO
             "age9": Decimal(6.66),
-            "age10": NSDecimalNumber(value: 6.66)
+            "age10": NSDecimalNumber(value: 6.66),
+            "age11": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -46,6 +48,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.age8 == 0)
         XCTAssert(student?.age9 == 6)
         XCTAssert(student?.age10 == 6)
+        XCTAssert(student?.age11 == timeIntevalInt)
     }
     
     // MARK: - Float Type
@@ -59,6 +62,7 @@ class JTM_02_DataType: XCTestCase {
             var height6: Float = 0.0
             var height7: Float = 0.0
             var height8: Float = 0.0
+            var height9: Float = 0.0
         }
         
         let json: [String: Any] = [
@@ -69,7 +73,8 @@ class JTM_02_DataType: XCTestCase {
             "height5": 666,
             "height6": true,
             "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "height8": CGFloat(longFloat)
+            "height8": CGFloat(longFloat),
+            "height9": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -81,6 +86,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.height6 == 1.0)
         XCTAssert(student?.height7 == 0.0)
         XCTAssert(student?.height8 == longFloat)
+        XCTAssert(student?.height9 == timeIntevalFloat)
     }
     
     // MARK: - Double Type
@@ -94,6 +100,7 @@ class JTM_02_DataType: XCTestCase {
             var height6: Double = 0.0
             var height7: Double = 0.0
             var height8: Double = 0.0
+            var height9: Double = 0.0
         }
         
         let json: [String: Any] = [
@@ -104,7 +111,8 @@ class JTM_02_DataType: XCTestCase {
             "height5": 666,
             "height6": true,
             "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "height8": CGFloat(longDouble)
+            "height8": CGFloat(longDouble),
+            "height9": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -116,6 +124,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.height6 == 1.0)
         XCTAssert(student?.height7 == 0.0)
         XCTAssert(student?.height8 == longDouble)
+        XCTAssert(student?.height9 == timeInteval)
     }
     
     // MARK: - CGFloat Type
@@ -129,6 +138,7 @@ class JTM_02_DataType: XCTestCase {
             var height6: CGFloat = 0.0
             var height7: CGFloat = 0.0
             var height8: CGFloat = 0.0
+            var height9: CGFloat = 0.0
         }
         
         let json: [String: Any] = [
@@ -139,7 +149,8 @@ class JTM_02_DataType: XCTestCase {
             "height5": 666,
             "height6": true,
             "height7": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "height8": longDouble
+            "height8": longDouble,
+            "height9": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -151,6 +162,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.height6 == 1.0)
         XCTAssert(student?.height7 == 0.0)
         XCTAssert(student?.height8 == CGFloat(longDouble))
+        XCTAssert(student?.height9 == CGFloat(timeInteval))
     }
     
     // MARK: - Bool Type
@@ -197,6 +209,7 @@ class JTM_02_DataType: XCTestCase {
             var name6: NSMutableString = ""
             var name7: String = ""
             var name8: String = ""
+            var name9: String = ""
         }
         
         let json: [String: Any] = [
@@ -207,7 +220,8 @@ class JTM_02_DataType: XCTestCase {
             "name5": 6.66,
             "name6": false,
             "name7": NSURL(fileURLWithPath: "/users/mj/desktop"),
-            "name8": URL(string: "http://www.520suanfa.com") as Any
+            "name8": URL(string: "http://www.520suanfa.com") as Any,
+            "name9": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -219,6 +233,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.name6 == "false")
         XCTAssert(student?.name7 == "file:///users/mj/desktop")
         XCTAssert(student?.name8 == "http://www.520suanfa.com")
+        XCTAssert(student?.name9 == timeIntevalString)
     }
     
     // MARK: - Decimal Type
@@ -231,6 +246,7 @@ class JTM_02_DataType: XCTestCase {
             var money5: Decimal = 0
             var money6: Decimal = 0
             var money7: Decimal = 0
+            var money8: Decimal = 0
         }
         
         let json: [String: Any] = [
@@ -240,7 +256,8 @@ class JTM_02_DataType: XCTestCase {
             "money4": longDecimalString,
             "money5": 666,
             "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "money7": CGFloat(longDouble)
+            "money7": CGFloat(longDouble),
+            "money8": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -251,6 +268,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.money5 == 666)
         XCTAssert(student?.money6 == 0)
         XCTAssert(student?.money7 == Decimal(string: longDoubleString))
+        XCTAssert(student?.money8 == Decimal(string: timeIntevalString))
     }
     
     // MARK: - Decimal Number Type
@@ -263,6 +281,7 @@ class JTM_02_DataType: XCTestCase {
             var money5: NSDecimalNumber = 0
             var money6: NSDecimalNumber = 0
             var money7: NSDecimalNumber = 0
+            var money8: NSDecimalNumber = 0
         }
         
         let json: [String: Any] = [
@@ -272,7 +291,8 @@ class JTM_02_DataType: XCTestCase {
             "money4": longDecimalString,
             "money5": 666.0,
             "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "money7": CGFloat(longDouble)
+            "money7": CGFloat(longDouble),
+            "money8": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -285,6 +305,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.money6 == false)
         XCTAssert(student?.money6 == 0)
         XCTAssert(student?.money7 == NSDecimalNumber(string: longDoubleString))
+        XCTAssert(student?.money8 == NSDecimalNumber(string: timeIntevalString))
     }
     
     // MARK: - Number Type
@@ -297,6 +318,7 @@ class JTM_02_DataType: XCTestCase {
             var money5: NSNumber = 0
             var money6: NSNumber = 0
             var money7: NSNumber = 0
+            var money8: NSNumber = 0
         }
         
         let json: [String: Any] = [
@@ -306,7 +328,8 @@ class JTM_02_DataType: XCTestCase {
             "money4": longDoubleString,
             "money5": 666.0,
             "money6": "NO", // true\false\yes\no\TRUE\FALSE\YES\NO
-            "money7": CGFloat(longDouble)
+            "money7": CGFloat(longDouble),
+            "money8": time
         ]
         
         let student = json.kk.model(Student.self)
@@ -322,6 +345,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student?.money6 == 0)
         XCTAssert(student?.money6 == 0.0)
         XCTAssert(student?.money7 == NSNumber(value: longDouble))
+        XCTAssert(student?.money8 == NSNumber(value: timeInteval))
     }
     
     // MARK: - Optional Type
@@ -394,6 +418,8 @@ class JTM_02_DataType: XCTestCase {
             var data2: NSData?
             var data3: Data?
             var data4: Data?
+            var data5: NSMutableData?
+            var data6: NSMutableData?
         }
         
         let utf8 = String.Encoding.utf8
@@ -404,7 +430,9 @@ class JTM_02_DataType: XCTestCase {
             "data1": str,
             "data2": data,
             "data3": str,
-            "data4": NSData(data: data)
+            "data4": NSMutableData(data: data),
+            "data5": str,
+            "data6": data
         ]
         
         let student = json.kk.model(Student.self)
@@ -412,6 +440,8 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
         XCTAssert(String(data: (student?.data4)!, encoding: utf8) == str)
+        XCTAssert(String(data: (student?.data5)! as Data, encoding: utf8) == str)
+        XCTAssert(String(data: (student?.data6)! as Data, encoding: utf8) == str)
     }
     
     // MARK: - Date Type
@@ -426,28 +456,24 @@ class JTM_02_DataType: XCTestCase {
             var date7: Date?
         }
         
-        let milliseconds: TimeInterval = 1565922866
-        let date = Date(timeIntervalSince1970: milliseconds)
-        let nsDate = NSDate(timeIntervalSince1970: milliseconds)
-        
         let json: [String: Any] = [
-            "date1": milliseconds,
-            "date2": date,
-            "date3": milliseconds,
-            "date4": nsDate,
-            "date5": "\(milliseconds)",
-            "date6": NSDecimalNumber(string: "\(milliseconds)"),
-            "date7": Decimal(string: "\(milliseconds)") as Any
+            "date1": timeInteval,
+            "date2": Date(timeIntervalSince1970: timeInteval),
+            "date3": timeInteval,
+            "date4": NSDate(timeIntervalSince1970: timeInteval),
+            "date5": timeIntevalString,
+            "date6": NSDecimalNumber(string: timeIntevalString),
+            "date7": Decimal(string: timeIntevalString) as Any
         ]
         
         let student = json.kk.model(Student.self)
-        XCTAssert(student?.date1?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date2?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date3?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date4?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date5?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date6?.timeIntervalSince1970 == milliseconds)
-        XCTAssert(student?.date7?.timeIntervalSince1970 == milliseconds)
+        XCTAssert(student?.date1?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date2?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date3?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date4?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date5?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date6?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student?.date7?.timeIntervalSince1970 == timeInteval)
     }
     
     // MARK: - Enum Type

@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 public typealias ModelKeyConfig = (Property) -> ModelPropertyKey
 public typealias ModelValueConfig = (Any?, Property) -> Any?
 public typealias JSONKeyConfig = (Property) -> JSONPropertyKey

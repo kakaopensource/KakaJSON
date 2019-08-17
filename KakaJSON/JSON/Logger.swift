@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 struct Logger {
     private static func _log<T>(_ title: String, _ msg: T, _ file: NSString,
                                _ fn: String, _ line: Int) {

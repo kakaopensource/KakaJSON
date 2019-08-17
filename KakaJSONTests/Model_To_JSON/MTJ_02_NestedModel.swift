@@ -40,18 +40,51 @@ class MTJ_02_NestedModel: XCTestCase {
             ]
         }
         
+        let jsonString = Person().kk.JSONString(prettyPrinted: true)
+        /*
+         {
+             "dogs" : {
+                 "dog0" : {
+                     "name" : "Wang",
+                     "age" : 5
+                 },
+                 "dog1" : {
+                     "name" : "ErHa",
+                     "age" : 3
+                 }
+             },
+             "books" : [
+                 {
+                     "price" : 666.6,
+                     "name" : "Fast C++"
+                 },
+                 {
+                     "name" : "Data Structure And Algorithm",
+                     "price" : 666.6
+                 }
+             ],
+             "name" : "Jack",
+             "car" : {
+                 "price" : 106.666,
+                 "name" : "Bently"
+             }
+         }
+         */
+        
+        XCTAssert(jsonString?.contains("106.666") == true)
+        XCTAssert(jsonString?.contains("666.6") == true)
+        XCTAssert(jsonString?.contains("Data Structure And Algorithm") == true)
+        
         checkModelToJSon(Person.self)
     }
     
     func testAny() {
-        // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct Book: Convertible, Equatable {
+        struct Book: Convertible {
             var name: String = ""
             var price: Double = 0.0
         }
         
-        // Equatable is only for test cases, is not necessary for Model-To-JSON.
-        struct Dog: Convertible, Equatable {
+        struct Dog: Convertible {
             var name: String = ""
             var age: Int = 0
         }
@@ -60,7 +93,7 @@ class MTJ_02_NestedModel: XCTestCase {
             // NSArray\NSMutableArray
             var books: [Any]? = [
                 Book(name: "Fast C++", price: 666.6),
-                Book(name: "Data Structure And Algorithm", price: 666.6),
+                Book(name: "Data Structure And Algorithm", price: 1666.6),
             ]
             
             // NSDictionary\NSMutableDictionary
@@ -70,18 +103,33 @@ class MTJ_02_NestedModel: XCTestCase {
             ]
         }
         
-        let person = Person()
-        guard let json = person.kk.JSON() else { fatalError() }
-        
-        let books0 = (json["books"] as? [Any])?.kk.modelArray(Book.self)
-        let books1 = person.books as? [Book]
-        XCTAssert(books0 == books1)
-        
-        let dogs = json["dogs"] as? [String: Any]
-        let dog0 = (dogs?["dog0"] as? [String: Any])?.kk.model(Dog.self)
-        XCTAssert(dog0 == person.dogs?["dog0"] as? Dog)
-        
-        let dog1 = (dogs?["dog1"] as? [String: Any])?.kk.model(Dog.self)
-        XCTAssert(dog1 == person.dogs?["dog1"] as? Dog)
+        let jsonString = Person().kk.JSONString(prettyPrinted: true)
+        /*
+         {
+             "dogs" : {
+                 "dog1" : {
+                     "age" : 3,
+                     "name" : "ErHa"
+                 },
+                 "dog0" : {
+                     "age" : 5,
+                     "name" : "Wang"
+                 }
+             },
+             "books" : [
+                 {
+                     "name" : "Fast C++",
+                     "price" : 666.6
+                 },
+                 {
+                     "price" : 1666.6,
+                     "name" : "Data Structure And Algorithm"
+                 }
+             ]
+         }
+         */
+        XCTAssert(jsonString?.contains("1666.6") == true)
+        XCTAssert(jsonString?.contains("666.6") == true)
+        XCTAssert(jsonString?.contains("Fast C++") == true)
     }
 }

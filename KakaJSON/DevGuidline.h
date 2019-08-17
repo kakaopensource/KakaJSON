@@ -22,7 +22,7 @@
 - e.g. "123"._numberCount, model._JSON()
 
 ④ Name of method or tpye must be `JSON`
-- not `json`, not `Json`, not `jSON`
+- not `json`, not `Json`
 - name of variable can be `json`
 
 /**********************************************************/
@@ -43,5 +43,5 @@
 - 比如 "123"._numberCount, model._JSON()
 
 ④ 类型名、方法名必须是大写的`JSON`
-- 不要写`json`, 也不要写`Json`, 更不要写`jSON`
+- 不要写`json`, 也不要写`Json`
 - 如果是变量名、常量名、参数名，可以用小写`json`

@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 public struct Instance {
     public static func new<T>(_ type: T.Type) -> T? {
         let mt = Metadata.type(type)

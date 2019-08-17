@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 extension NSArray: KKCompatible {}
 extension Array: KKCompatible {}
 extension Set: KKCompatible {}
@@ -36,10 +38,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     
     // MARK: - Model -> JSON
     func JSON() -> JSONArray? {
-        let arr = base.compactMap { element in
-            (element~! as? Convertible)?.kk_JSON()
-        }
-        return arr.isEmpty ? nil : arr
+        return base~?.kk_JSON() as? JSONArray
     }
     
     func JSONString(prettyPrinted: Bool = false) -> String? {
@@ -49,27 +48,5 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
         }
         Logger.error("Failed to get JSONString from JSON.")
         return nil
-    }
-}
-
-extension NSArray {
-    func kk_JSONValue() -> Any? {
-        return (self as? [Any])?.kk_JSONValue()
-    }
-}
-
-extension Array {
-    func kk_JSONValue() -> Any? {
-        var arr: [Any] = []
-        for element in self {
-            let value = element~!
-            if let v = Converter.JSONValue(from: value) {
-                arr.append(v)
-            } else if let cv = value as? CollectionValue,
-                let v = cv.kk_JSONValue() {
-                arr.append(v)
-            }
-        }
-        return arr.isEmpty ? nil : arr
     }
 }

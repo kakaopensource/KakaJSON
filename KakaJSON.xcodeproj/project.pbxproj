@@ -16,8 +16,8 @@
 		2D645B9F23026E8E00075A9E /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D645B9E23026E8E00075A9E /* ModelType.swift */; };
 		2D645BA12302995100075A9E /* TypeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D645BA02302995100075A9E /* TypeProxy.swift */; };
 		2D645BA323029A0400075A9E /* ConvertibleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D645BA223029A0400075A9E /* ConvertibleEnum.swift */; };
-		2D645BA52302B75C00075A9E /* Set+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D645BA42302B75C00075A9E /* Set+KK.swift */; };
 		2D645D3F23058B2500046636 /* ConvertibleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D645D3E23058B2500046636 /* ConvertibleConfig.swift */; };
+		2D7B8DE2230825D000DEC901 /* Set+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B8DE1230825D000DEC901 /* Set+KK.swift */; };
 		2D92DD232301262500A96858 /* KakaJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D92DD192301262500A96858 /* KakaJSON.framework */; };
 		2D92DD2A2301262500A96858 /* KakaJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D92DD1C2301262500A96858 /* KakaJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D92DDA8230126BD00A96858 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DD9F230126BD00A96858 /* Common.swift */; };
@@ -31,7 +31,6 @@
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
 		2D92DDE02301279E00A96858 /* KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KK.swift */; };
 		2D92DDE12301279E00A96858 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB32301279E00A96858 /* Instance.swift */; };
-		2D92DDE32301279E00A96858 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB52301279E00A96858 /* Converter.swift */; };
 		2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* KakaJSON.swift */; };
 		2D92DDE52301279E00A96858 /* Pointer+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KK.swift */; };
 		2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KK.swift */; };
@@ -92,8 +91,8 @@
 		2D645B9E23026E8E00075A9E /* ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		2D645BA02302995100075A9E /* TypeProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeProxy.swift; sourceTree = "<group>"; };
 		2D645BA223029A0400075A9E /* ConvertibleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleEnum.swift; sourceTree = "<group>"; };
-		2D645BA42302B75C00075A9E /* Set+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+KK.swift"; sourceTree = "<group>"; };
 		2D645D3E23058B2500046636 /* ConvertibleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleConfig.swift; sourceTree = "<group>"; };
+		2D7B8DE1230825D000DEC901 /* Set+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+KK.swift"; sourceTree = "<group>"; };
 		2D92DD192301262500A96858 /* KakaJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D92DD1C2301262500A96858 /* KakaJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaJSON.h; sourceTree = "<group>"; };
 		2D92DD1D2301262500A96858 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,7 +110,6 @@
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		2D92DDB22301279E00A96858 /* KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KK.swift; sourceTree = "<group>"; };
 		2D92DDB32301279E00A96858 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
-		2D92DDB52301279E00A96858 /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		2D92DDB62301279E00A96858 /* KakaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaJSON.swift; sourceTree = "<group>"; };
 		2D92DDB82301279E00A96858 /* Pointer+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KK.swift"; sourceTree = "<group>"; };
 		2D92DDB92301279E00A96858 /* Dictionary+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KK.swift"; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				2D92DDB02301279E00A96858 /* Logger.swift */,
-				2D92DDB52301279E00A96858 /* Converter.swift */,
 				2D92DDB12301279E00A96858 /* Convertible.swift */,
 				2D645D3E23058B2500046636 /* ConvertibleConfig.swift */,
 				2D645BA223029A0400075A9E /* ConvertibleEnum.swift */,
@@ -264,8 +261,8 @@
 				2D92DDBB2301279E00A96858 /* Optional+KK.swift */,
 				2D92DDBC2301279E00A96858 /* JSONSerialization+KK.swift */,
 				2DCEB38C230175AC0030701B /* Array+KK.swift */,
-				2D645BA42302B75C00075A9E /* Set+KK.swift */,
 				2D5253AD2305461300F854D9 /* NSObject+KK.swift */,
+				2D7B8DE1230825D000DEC901 /* Set+KK.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -450,9 +447,9 @@
 				2D92DDF22301279E00A96858 /* EnumLayout.swift in Sources */,
 				2D92DE012301279E00A96858 /* ObjCClassType.swift in Sources */,
 				2D92DDFB2301279E00A96858 /* StructType.swift in Sources */,
-				2D645BA52302B75C00075A9E /* Set+KK.swift in Sources */,
 				2D92DDEB2301279E00A96858 /* Property.swift in Sources */,
 				2D92DDE92301279E00A96858 /* JSONSerialization+KK.swift in Sources */,
+				2D7B8DE2230825D000DEC901 /* Set+KK.swift in Sources */,
 				2D92DDF52301279E00A96858 /* TupleType.swift in Sources */,
 				2D92DE032301279E00A96858 /* Descriptor.swift in Sources */,
 				2D92DDDE2301279E00A96858 /* Logger.swift in Sources */,
@@ -463,7 +460,6 @@
 				2D92DDFE2301279E00A96858 /* OptionalType.swift in Sources */,
 				2D92DDFC2301279E00A96858 /* MetaType.swift in Sources */,
 				2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */,
-				2D92DDE32301279E00A96858 /* Converter.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
 				2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */,
 				2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */,

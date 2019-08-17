@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 public class ModelType: BaseType {
     public internal(set) var properties: [Property]?
     public internal(set) var genericTypes: [Any.Type]?

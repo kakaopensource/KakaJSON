@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 public struct Metadata {
     // MARK: - Type
     private static let typeLock = NSRecursiveLock()

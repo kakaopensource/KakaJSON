@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - Types
 public typealias JSONObject = [String: Any]
 public typealias JSONArray = [[String: Any]]
@@ -193,8 +195,11 @@ extension Convertible {
                 continue
             }
             
-            guard let value = Converter.modelValue(from: newValue,
-                                                   propertyType)~! else { continue }
+            // try to convert newValue to propertyType
+            guard let value = newValue~!.kk_value(propertyType) else {
+                property.set(newValue, for: model)
+                continue
+            }
             
             property.set(value, for: model)
         }
@@ -259,7 +264,7 @@ extension Convertible {
                 from: property.get(from: ptr)~!,
                 property: property)~! else { continue }
             
-            guard let v = Converter.JSONValue(from: value)~! else { continue }
+            guard let v = value~?.kk_JSON() else { continue }
             
             // key filter
             json[mt.JSONKey(from: property.name,

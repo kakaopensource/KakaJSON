@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 extension NSObject {
     static func new() -> Self {
         return self.init()

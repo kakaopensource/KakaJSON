@@ -113,6 +113,11 @@ class Common: XCTestCase {
     }
 }
 
+let timeIntevalInt: Int = 1565922866
+let timeIntevalFloat = Float(timeIntevalInt)
+let timeInteval = Double(timeIntevalInt)
+let timeIntevalString = "\(timeIntevalInt)"
+let time = Date(timeIntervalSince1970: timeInteval)
 // 16 decimals
 let longDoubleString = "0.1234567890123456"
 let longDouble: Double = 0.1234567890123456

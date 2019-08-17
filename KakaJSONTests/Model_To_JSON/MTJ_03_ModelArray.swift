@@ -7,13 +7,13 @@
 //
 
 class MTJ_03_ModelArray: XCTestCase {
-    // Equatable is only for test cases, is not necessary for Model-To-JSON.
-    struct Car: Convertible, Equatable, Hashable {
-        var name: String = ""
-        var price: Double = 0.0
-    }
 
     func testArray() {
+        struct Car: Convertible {
+            var name: String = ""
+            var price: Double = 0.0
+        }
+        
         // NSArray\NSMutableArray
         let models = [
             Car(name: "BMW", price: 100.0),
@@ -21,19 +21,65 @@ class MTJ_03_ModelArray: XCTestCase {
             Car(name: "Bently", price: 300.0)
         ]
         
-        XCTAssert(models.kk.JSON()?.kk.modelArray(Car.self) == models)
-        XCTAssert(models.kk.JSONString()?.kk.modelArray(Car.self) == models)
+        let jsonString = models.kk.JSONString(prettyPrinted: true)
+        /*
+         [
+             {
+                 "name" : "BMW",
+                 "price" : 100
+             },
+             {
+                 "price" : 70,
+                 "name" : "Audi"
+             },
+             {
+                 "price" : 300,
+                 "name" : "Bently"
+             }
+         ]
+         */
+        XCTAssert(jsonString?.contains("BMW") == true)
+        XCTAssert(jsonString?.contains("100") == true)
+        XCTAssert(jsonString?.contains("Audi") == true)
+        XCTAssert(jsonString?.contains("70") == true)
+        XCTAssert(jsonString?.contains("Bently") == true)
+        XCTAssert(jsonString?.contains("300") == true)
     }
     
     func testSet() {
+        struct Car: Convertible, Hashable {
+            var name: String = ""
+            var price: Double = 0.0
+        }
+        
         let models: Set<Car> = [
-            Car(name: "BMW", price: 100.0)
+            Car(name: "BMW", price: 100.0),
+            Car(name: "Audi", price: 70.0),
+            Car(name: "Bently", price: 300.0)
         ]
         
-        var cars: [Car] = []
-        cars.append(contentsOf: models)
-        
-        XCTAssert(models.kk.JSON()?.kk.modelArray(Car.self) == cars)
-        XCTAssert(models.kk.JSONString()?.kk.modelArray(Car.self) == cars)
+        let jsonString = models.kk.JSONString(prettyPrinted: true)
+        /*
+         [
+             {
+                 "price" : 70,
+                 "name" : "Audi"
+             },
+             {
+                 "price" : 300,
+                 "name" : "Bently"
+             },
+             {
+                 "name" : "BMW",
+                 "price" : 100
+             }
+         ]
+         */
+        XCTAssert(jsonString?.contains("BMW") == true)
+        XCTAssert(jsonString?.contains("100") == true)
+        XCTAssert(jsonString?.contains("Audi") == true)
+        XCTAssert(jsonString?.contains("70") == true)
+        XCTAssert(jsonString?.contains("Bently") == true)
+        XCTAssert(jsonString?.contains("300") == true)
     }
 }

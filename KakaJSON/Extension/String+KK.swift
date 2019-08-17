@@ -6,6 +6,8 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+import Foundation
+
 extension String: KKCompatible {}
 
 public extension KK where Base: ExpressibleByStringLiteral {

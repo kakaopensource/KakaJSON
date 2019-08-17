@@ -7,7 +7,7 @@
 //
 
 class JTM_03_NestedModel: XCTestCase {
-    func test() {
+    func testNormal() {
         struct Book: Convertible {
             var name: String = ""
             var price: Double = 0.0
@@ -127,5 +127,36 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(person?.dogs?["dog0"]????.age == dogs[0].age)
         XCTAssert(person?.dogs?["dog1"]????.name == dogs[1].name)
         XCTAssert(person?.dogs?["dog1"]????.age == dogs[1].age)
+    }
+    
+    func testSet() {
+        struct Book: Convertible, Hashable {
+            var name: String = ""
+            var price: Double = 0.0
+        }
+        
+        struct Person: Convertible {
+            var name: String = ""
+            var books: Set<Book>?
+        }
+        
+        let name = "Jack"
+        let bookName = "Fast C++"
+        let bookPrice = 666.6
+        
+        let json: [String: Any] = [
+            "name": name,
+            "books": [
+                ["name": bookName, "price": bookPrice]
+            ]
+        ]
+        
+        let person = json.kk.model(Person.self)
+        XCTAssert(person?.name == name)
+        
+        XCTAssert(person?.books?.count == 1)
+        let book = person?.books?.randomElement()
+        XCTAssert(book?.name == bookName)
+        XCTAssert(book?.price == bookPrice)
     }
 }
