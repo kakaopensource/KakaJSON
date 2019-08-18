@@ -158,11 +158,11 @@ class JTM_01_Basic: XCTestCase {
             var name: String = ""
             var age: Int = 0
             
-            mutating func kk_willConvertToModel(from json: JSONObject) {
+            mutating func kk_willConvertToModel(from json: [String: Any]) {
                 print("Car - kk_willConvertToModel")
             }
             
-            mutating func kk_didConvertToModel(from json: JSONObject) {
+            mutating func kk_didConvertToModel(from json: [String: Any]) {
                 print("Car - kk_didConvertToModel")
             }
         }
@@ -182,11 +182,11 @@ class JTM_01_Basic: XCTestCase {
             var age: Int = 0
             required init() {}
             
-            func kk_willConvertToModel(from json: JSONObject) {
+            func kk_willConvertToModel(from json: [String: Any]) {
                 print("Person - kk_willConvertToModel")
             }
             
-            func kk_didConvertToModel(from json: JSONObject) {
+            func kk_didConvertToModel(from json: [String: Any]) {
                 print("Person - kk_didConvertToModel")
             }
         }
@@ -194,14 +194,14 @@ class JTM_01_Basic: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_willConvertToModel(from json: JSONObject) {
+            override func kk_willConvertToModel(from json: [String: Any]) {
                 // call super's implementation if necessary
                 super.kk_willConvertToModel(from: json)
                 
                 print("Student - kk_willConvertToModel")
             }
             
-            override func kk_didConvertToModel(from json: JSONObject) {
+            override func kk_didConvertToModel(from json: [String: Any]) {
                 // call super's implementation if necessary
                 super.kk_didConvertToModel(from: json)
                 

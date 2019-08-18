@@ -134,9 +134,9 @@ extension Optional {
         guard let v = kk_value else { return nil }
         
         switch v {
-        case let model as Convertible: return model.kk_JSON()
+        case let model as Convertible: return model.kk_JSONObject()
         case let array as [Any]: return _JSON(from: array)
-        case let dict as JSONObject: return _JSON(from: dict)
+        case let dict as [String: Any]: return _JSON(from: dict)
         case let set as SetValue: return _JSON(from: set)
         case let num as NumberValue: return _JSON(from: num)
         case let url as URL: return url.absoluteString
@@ -144,6 +144,15 @@ extension Optional {
         case let `enum` as ConvertibleEnum: return `enum`.kk_value~?.kk_JSON()
         default: return v as? NSCoding
         }
+    }
+    
+    func kk_JSONString(prettyPrinted: Bool = false) -> String? {
+        if let str = JSONSerialization.kk_string(kk_JSON(),
+                                                 prettyPrinted: prettyPrinted) {
+            return str
+        }
+        Logger.error("Failed to get JSONString from JSON.")
+        return nil
     }
 }
 
@@ -159,7 +168,7 @@ private extension Optional {
     }
     
     func _model(_ value: Any, _ type: Any.Type) -> Any? {
-        guard let json = value as? JSONObject else { return nil }
+        guard let json = value as? [String: Any] else { return nil }
         return json.kk.model(anyType: type)
     }
     
@@ -190,14 +199,14 @@ private extension Optional {
     }
     
     func _dictionary(_ value: Any, _ type: Any.Type) -> DictionaryValue? {
-        guard let dict = value as? JSONObject else { return nil }
+        guard let dict = value as? [String: Any] else { return nil }
         
         let mt = Metadata.type(type)
         if type is SwiftDictionaryValue.Type,
-            let json = value as? [String: JSONObject?],
+            let json = value as? [String: [String: Any]?],
             let type = (mt as? NominalType)?.genericTypes?.last,
             let modelType = type~! as? Convertible.Type {
-            var modelDict = JSONObject()
+            var modelDict = [String: Any]()
             for (k, v) in json {
                 guard let m = v?.kk.model(anyType: modelType) else { continue }
                 modelDict[k] = m
@@ -278,7 +287,7 @@ private extension Optional {
         return newArray.isEmpty ? nil : newArray
     }
     
-    func _JSON(from dict: JSONObject) -> Any? {
+    func _JSON(from dict: [String: Any]) -> Any? {
         let newDict = dict.compactMapValues {
             $0~?.kk_JSON()
         }
@@ -286,9 +295,9 @@ private extension Optional {
     }
     
     func _JSON(from modelDict: [String: Convertible?]) -> Any? {
-        var jsonDict = JSONObject()
+        var jsonDict = [String: Any]()
         for (k, model) in modelDict {
-            guard let json = model?.kk_JSON() else { continue }
+            guard let json = model?.kk_JSONObject() else { continue }
             jsonDict[k] = json
         }
         return jsonDict.isEmpty ? nil : jsonDict

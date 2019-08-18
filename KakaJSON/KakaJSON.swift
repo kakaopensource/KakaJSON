@@ -17,12 +17,12 @@
  */
 
 // MARK: - JSON -> Model
-public func model<M: Convertible>(from json: JSONObject?,
+public func model<M: Convertible>(from json: [String: Any]?,
                                   _ type: M.Type) -> M? {
     return json?.kk.model(type)
 }
 
-public func model(from json: JSONObject?,
+public func model(from json: [String: Any]?,
                   anyType: Any.Type) -> Any? {
     return json?.kk.model(anyType: anyType)
 }
@@ -58,20 +58,19 @@ public func modelArray(from jsonString: String?,
 }
 
 // MARK: Model -> JSON
-public func JSON<M: Convertible>(from model: M?) -> JSONObject? {
-    return model?.kk_JSON()
+public func JSONObject<M: Convertible>(from model: M?) -> [String: Any]? {
+    return model?.kk_JSONObject()
 }
 
-public func JSON(from models: [Any]?) -> JSONArray? {
-    return models?.kk.JSON()
+public func JSONObjectArray<M: Convertible>(from models: [M]?) -> [[String: Any]]? {
+    return models?.kk.JSONObjectArray()
 }
 
-public func JSONString<M: Convertible>(from model: M?,
-                                       prettyPrinted: Bool = false) -> String? {
-    return model?.kk_JSONString(prettyPrinted: prettyPrinted)
+public func JSON(from value: Any?) -> Any? {
+    return value.kk_JSON()
 }
 
-public func JSONString(from models: [Any]?,
+public func JSONString(from value: Any?,
                        prettyPrinted: Bool = false) -> String? {
-    return models?.kk.JSONString(prettyPrinted: prettyPrinted)
+    return value.kk_JSONString()
 }

@@ -6,10 +6,26 @@ Fast conversion between JSON and model in Swift.
 ## 中文教程
 - [KakaJSON手册](https://www.cnblogs.com/mjios/p/11352776.html)
 
+## vs Codable
+- JSON-To-Model for 10000 times in release mode
+    - KakaJSON took 0.084 seconds
+    - Codable too 0.117 seconds
+
+![Model](https://img2018.cnblogs.com/blog/497279/201908/497279-20190818113355045-41212639.png)
+![Codable](https://img2018.cnblogs.com/blog/497279/201908/497279-20190818113404897-1905468755.png)
+![KakaJson](https://img2018.cnblogs.com/blog/497279/201908/497279-20190818113415672-1866782244.png)
+
 ## Integration
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.1.3' 
+pod 'KakaJSON', '~> 1.2.0' 
+```
+
+### Swift Package Manager
+```json
+dependencies: [
+    .package(url: "https://github.com/kakaopensource/KakaJSON.git", from: "1.2.0")
+]
 ```
 
 ## Usages
@@ -43,9 +59,9 @@ struct Car: Convertible {
 }
 
 let car = Car()
-let json = car.kk.JSON()
+let json = car.kk.JSONObject()
 let jsonString = car.kk.JSONString()
-// let json = JSON(from: car)
+// let json = JSONObject(from: car)
 // let jsonString = JSONString(from: car)
 ```
 ## More documentation will be coming out soon....

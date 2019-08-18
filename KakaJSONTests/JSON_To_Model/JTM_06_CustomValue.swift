@@ -166,7 +166,7 @@ class JTM_06_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            mutating func kk_didConvertToModel(from json: JSONObject) {
+            mutating func kk_didConvertToModel(from json: [String: Any]) {
                 age += 5
                 name = "kk_" + name
             }

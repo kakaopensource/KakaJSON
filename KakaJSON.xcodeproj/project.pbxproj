@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0575832308F41400810526 /* CompareWithCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0575822308F41400810526 /* CompareWithCodable.swift */; };
 		2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */; };
 		2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KK.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0575822308F41400810526 /* CompareWithCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareWithCodable.swift; sourceTree = "<group>"; };
 		2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
 		2D5253AD2305461300F854D9 /* NSObject+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KK.swift"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				2D92DDA2230126BD00A96858 /* JSON_To_Model */,
 				2D92DDA0230126BD00A96858 /* Model_To_JSON */,
 				2D92DD9F230126BD00A96858 /* Common.swift */,
+				2D0575822308F41400810526 /* CompareWithCodable.swift */,
 				2D92DD292301262500A96858 /* Info.plist */,
 				2D92DD9C230126A100A96858 /* KakaJSONTests-Bridging-Header.h */,
 			);
@@ -500,6 +503,7 @@
 				2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */,
 				2D92DDAE230126BD00A96858 /* JTM_06_CustomValue.swift in Sources */,
 				2D92DDA8230126BD00A96858 /* Common.swift in Sources */,
+				2D0575832308F41400810526 /* CompareWithCodable.swift in Sources */,
 				2D92DDA9230126BD00A96858 /* MTJ_01_Basic.swift in Sources */,
 				2D5875CC2301C49D001A809B /* MTJ_04_KeyMapping.swift in Sources */,
 				2D5875CE2301CFEF001A809B /* MTJ_05_CustomValue.swift in Sources */,

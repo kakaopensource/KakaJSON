@@ -46,7 +46,7 @@ class Common: XCTestCase {
     func testModel_To_JSON() {
         let cat = Cat(age: 26, name: "Miaomiao")
         
-        let json = JSON(from: cat)
+        let json = JSONObject(from: cat)
         XCTAssert(json?["name"] as? String == cat.name)
         XCTAssert(json?["age"] as? Int == cat.age)
         
@@ -98,7 +98,7 @@ class Common: XCTestCase {
         let cat = Cat(age: 26, name: "Miaomiao")
         let cats = [cat, cat]
         
-        let json = JSON(from: cats)
+        let json = JSONObjectArray(from: cats)
         XCTAssert(json?[0]["name"] as? String == cat.name)
         XCTAssert(json?[0]["age"] as? Int == cat.age)
         XCTAssert(json?[1]["name"] as? String == cat.name)
@@ -133,7 +133,7 @@ func checkModelToJSon<M: Equatable & Convertible>(_ type: M.Type) {
     // create model
     let model = type.init()
     // get JSON from model
-    let json = model.kk.JSON()
+    let json = model.kk.JSONObject()
     // get JSONString from model
     let jsonString = model.kk.JSONString()
     

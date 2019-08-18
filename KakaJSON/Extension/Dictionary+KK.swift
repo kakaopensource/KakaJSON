@@ -35,17 +35,17 @@ public extension KKGeneric where Base == [NSString: T] {
     }
     
     func model(anyType: Any.Type) -> Any? {
-        return (base as JSONObject).kk.model(anyType: anyType)
+        return (base as [String: Any]).kk.model(anyType: anyType)
     }
 }
 
 public extension KK where Base: NSDictionary {
     func model<M: Convertible>(_ type: M.Type) -> M? {
-        return (base as? JSONObject)?.kk.model(type)
+        return (base as? [String: Any])?.kk.model(type)
     }
     
     func model(anyType: Any.Type) -> Any? {
-        return (base as? JSONObject)?.kk.model(anyType: anyType)
+        return (base as? [String: Any])?.kk.model(anyType: anyType)
     }
 }
 
@@ -79,7 +79,7 @@ extension Dictionary where Key == String {
         let subkeys = stringKey.split(separator: ".")
         var value: Any? = self
         for subKey in subkeys {
-            if let dict = value as? JSONObject {
+            if let dict = value as? [String: Any] {
                 value = dict[String(subKey)]
                 // when nil, end the for-loop
                 if value == nil { return nil }

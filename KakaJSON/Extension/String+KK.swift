@@ -57,7 +57,7 @@ public extension KK where Base: ExpressibleByStringLiteral {
     }
     
     func model(anyType: Any.Type) -> Any? {
-        if let json = JSONSerialization.kk_JSON(base as? String, JSONObject.self) {
+        if let json = JSONSerialization.kk_JSON(base as? String, [String: Any].self) {
             return json.kk.model(anyType: anyType)
         }
         Logger.error("Failed to get JSON from JSONString.")
@@ -79,7 +79,7 @@ public extension KK where Base: ExpressibleByStringLiteral {
 
 extension String {
     func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
-        if let json = JSONSerialization.kk_JSON(self, JSONObject.self) {
+        if let json = JSONSerialization.kk_JSON(self, [String: Any].self) {
             return json.kk_fastModel(type)
         }
         Logger.error("Failed to get JSON from JSONString.")

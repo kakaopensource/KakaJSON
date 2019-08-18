@@ -28,15 +28,15 @@ class MTJ_01_Basic: XCTestCase {
                 print("Car - kk_willConvertToJSON")
             }
             
-            func kk_didConvertToJSON(json: JSONObject?) {
+            func kk_didConvertToJSON(json: [String: Any]?) {
                 print("Car - kk_didConvertToJSON", json as Any)
             }
         }
         
         let car = Car()
         
-        let json = car.kk.JSON()
-//        let json = JSON(from: car)
+        let json = car.kk.JSONObject()
+//        let json = JSONObject(from: car)
         XCTAssert(json?["new"].kk.bool == true)
         XCTAssert(json?["age"].kk.int == 10)
         XCTAssert(json?["area"].kk.float == longFloat)

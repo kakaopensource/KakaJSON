@@ -17,10 +17,10 @@ extension JSONSerialization {
                                options: .allowFragments) as? T
     }
     
-    static func kk_string(_ jsonObject: Any?,
+    static func kk_string(_ json: Any?,
                           prettyPrinted: Bool = false) -> String? {
-        guard let json = jsonObject,
-            let data = try? data(withJSONObject: json,
+        guard let value = json,
+            let data = try? data(withJSONObject: value,
                                  options: prettyPrinted ? [.prettyPrinted] : [])
             else { return nil }
         return String(data: data, encoding: String.Encoding.utf8)
