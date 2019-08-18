@@ -1,5 +1,7 @@
 # KakaJSON
-![pod](https://img.shields.io/cocoapods/v/KakaJSON.svg) ![platforms](https://img.shields.io/badge/platforms-iOS%208.0%20%7C%20macOS%2010.9%20%7C%20tvOS%209.0%20%7C%20watchOS%202.0-F28D00.svg)
+![pod](https://img.shields.io/cocoapods/v/KakaJSON.svg) 
+[![SwftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+![platforms](https://img.shields.io/badge/platforms-iOS%208.0%20%7C%20macOS%2010.9%20%7C%20tvOS%209.0%20%7C%20watchOS%202.0-F28D00.svg)
 
 Fast conversion between JSON and model in Swift.
 
