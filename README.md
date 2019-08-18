@@ -22,7 +22,7 @@ pod 'KakaJSON', '~> 1.2.0'
 ```
 
 ### Swift Package Manager
-```json
+```
 dependencies: [
     .package(url: "https://github.com/kakaopensource/KakaJSON.git", from: "1.2.0")
 ]
