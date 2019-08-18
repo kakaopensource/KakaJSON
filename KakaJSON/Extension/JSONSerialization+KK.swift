@@ -10,10 +10,12 @@ import Foundation
 
 extension JSONSerialization {
     static func kk_JSON<T>(_ string: String?, _ type: T.Type) -> T? {
-        guard let str = string,
-            let data = str.data(using: String.Encoding.utf8)
-            else { return nil }
-        return try? jsonObject(with: data,
+        return kk_JSON(string?.data(using: .utf8), type)
+    }
+    
+    static func kk_JSON<T>(_ data: Data?, _ type: T.Type) -> T? {
+        guard let value = data else { return nil }
+        return try? jsonObject(with: value,
                                options: .allowFragments) as? T
     }
     
@@ -23,6 +25,6 @@ extension JSONSerialization {
             let data = try? data(withJSONObject: value,
                                  options: prettyPrinted ? [.prettyPrinted] : [])
             else { return nil }
-        return String(data: data, encoding: String.Encoding.utf8)
+        return String(data: data, encoding: .utf8)
     }
 }

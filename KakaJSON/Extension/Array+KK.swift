@@ -26,10 +26,12 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
             else { return nil }
         let arr = base.compactMap { element -> Any? in
             var model: Any?
-            if let string = element as? String {
-                model = string.kk_fastModel(t)
-            } else if let dict = element as? [String: Any] {
+            if let dict = element as? [String: Any] {
                 model = dict.kk_fastModel(t)
+            } else if let data = element as? Data {
+                model = data.kk_fastModel(t)
+            } else if let string = element as? String {
+                model = string.kk_fastModel(t)
             }
             return model
         }
@@ -37,7 +39,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     }
     
     // MARK: - Model -> JSON
-    func JSON() -> [Any]? {
+    func JSONArray() -> [Any]? {
         return base~?.kk_JSON() as? [Any]
     }
     
@@ -49,7 +51,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
     }
     
     func JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kk_string(JSON(),
+        if let str = JSONSerialization.kk_string(JSONArray(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }

@@ -16,6 +16,8 @@
  5. https://github.com/apple/swift/blob/master/include/swift/Reflection/Records.h
  */
 
+import Foundation
+
 // MARK: - JSON -> Model
 public func model<M: Convertible>(from json: [String: Any]?,
                                   _ type: M.Type) -> M? {
@@ -23,6 +25,16 @@ public func model<M: Convertible>(from json: [String: Any]?,
 }
 
 public func model(from json: [String: Any]?,
+                  anyType: Any.Type) -> Any? {
+    return json?.kk.model(anyType: anyType)
+}
+
+public func model<M: Convertible>(from json: NSDictionary?,
+                                  _ type: M.Type) -> M? {
+    return json?.kk.model(type)
+}
+
+public func model(from json: NSDictionary?,
                   anyType: Any.Type) -> Any? {
     return json?.kk.model(anyType: anyType)
 }
@@ -37,12 +49,52 @@ public func model(from jsonString: String?,
     return jsonString?.kk.model(anyType: anyType)
 }
 
+public func model<M: Convertible>(from jsonString: NSString?,
+                                  _ type: M.Type) -> M? {
+    return jsonString?.kk.model(type)
+}
+
+public func model(from jsonString: NSString?,
+                  anyType: Any.Type) -> Any? {
+    return jsonString?.kk.model(anyType: anyType)
+}
+
+public func model<M: Convertible>(from data: Data?,
+                                  _ type: M.Type) -> M? {
+    return data?.kk.model(type)
+}
+
+public func model(from data: Data?,
+                  anyType: Any.Type) -> Any? {
+    return data?.kk.model(anyType: anyType)
+}
+
+public func model<M: Convertible>(from data: NSData?,
+                                  _ type: M.Type) -> M? {
+    return data?.kk.model(type)
+}
+
+public func model(from data: NSData?,
+                  anyType: Any.Type) -> Any? {
+    return data?.kk.model(anyType: anyType)
+}
+
 public func modelArray<M: Convertible>(from json: [Any]?,
                                        _ type: M.Type) -> [M]? {
     return json?.kk.modelArray(type)
 }
 
 public func modelArray(from json: [Any]?,
+                       anyType: Any.Type) -> [Any?]? {
+    return json?.kk.modelArray(anyType: anyType)
+}
+
+public func modelArray<M: Convertible>(from json: NSArray?,
+                                       _ type: M.Type) -> [M]? {
+    return json?.kk.modelArray(type)
+}
+
+public func modelArray(from json: NSArray?,
                        anyType: Any.Type) -> [Any?]? {
     return json?.kk.modelArray(anyType: anyType)
 }
@@ -55,6 +107,36 @@ public func modelArray<M: Convertible>(from jsonString: String?,
 public func modelArray(from jsonString: String?,
                        anyType: Any.Type) -> [Any]? {
     return jsonString?.kk.modelArray(anyType: anyType)
+}
+
+public func modelArray<M: Convertible>(from jsonString: NSString?,
+                                       _ type: M.Type) -> [M]? {
+    return jsonString?.kk.modelArray(type)
+}
+
+public func modelArray(from jsonString: NSString?,
+                       anyType: Any.Type) -> [Any]? {
+    return jsonString?.kk.modelArray(anyType: anyType)
+}
+
+public func modelArray<M: Convertible>(from data: Data?,
+                                       _ type: M.Type) -> [M]? {
+    return data?.kk.modelArray(type)
+}
+
+public func modelArray(from data: Data?,
+                       anyType: Any.Type) -> [Any]? {
+    return data?.kk.modelArray(anyType: anyType)
+}
+
+public func modelArray<M: Convertible>(from data: NSData?,
+                                       _ type: M.Type) -> [M]? {
+    return data?.kk.modelArray(type)
+}
+
+public func modelArray(from data: NSData?,
+                       anyType: Any.Type) -> [Any]? {
+    return data?.kk.modelArray(anyType: anyType)
 }
 
 // MARK: Model -> JSON

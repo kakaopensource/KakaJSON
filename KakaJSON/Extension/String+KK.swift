@@ -9,6 +9,7 @@
 import Foundation
 
 extension String: KKCompatible {}
+extension NSString: KKCompatible {}
 
 public extension KK where Base: ExpressibleByStringLiteral {
     /// from underline-cased to camel-cased

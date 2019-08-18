@@ -2,9 +2,14 @@
 
 ---
 
+## [1.2.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.2.1) (2019-08-18)
+- Add interfaces for `Data\NSData`
+
 ## [1.2.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.2.0) (2019-08-18)
 - Add `JSONObject`、`JSONObjectArray`
 - Compare with codable
+- Merged pull requests
+	- [Support swift package manage #9](https://github.com/kakaopensource/KakaJSON/pull/9)
 
 ## [1.1.3](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.3) (2019-08-17)
 - Support conversion from Date to Number

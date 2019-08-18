@@ -422,9 +422,8 @@ class JTM_02_DataType: XCTestCase {
             var data6: NSMutableData?
         }
         
-        let utf8 = String.Encoding.utf8
         let str = "RedBlackTree"
-        let data = str.data(using: utf8)!
+        let data = str.data(using: .utf8)!
         
         let json: [String: Any] = [
             "data1": str,
@@ -436,12 +435,12 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kk.model(Student.self)
-        XCTAssert(String(data: (student?.data1)! as Data, encoding: utf8) == str)
-        XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
-        XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
-        XCTAssert(String(data: (student?.data4)!, encoding: utf8) == str)
-        XCTAssert(String(data: (student?.data5)! as Data, encoding: utf8) == str)
-        XCTAssert(String(data: (student?.data6)! as Data, encoding: utf8) == str)
+        XCTAssert(String(data: (student?.data1)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student?.data2)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student?.data3)!, encoding: .utf8) == str)
+        XCTAssert(String(data: (student?.data4)!, encoding: .utf8) == str)
+        XCTAssert(String(data: (student?.data5)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student?.data6)! as Data, encoding: .utf8) == str)
     }
     
     // MARK: - Date Type

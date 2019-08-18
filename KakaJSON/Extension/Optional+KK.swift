@@ -233,7 +233,7 @@ private extension Optional {
     func _data(_ value: Any, _ type: Any.Type) -> DataValue? {
         var data: Data?
         if let str = value as? String {
-            data = str.data(using: String.Encoding.utf8)
+            data = str.data(using: .utf8)
         } else {
             data = value as? Data
         }
