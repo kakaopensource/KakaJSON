@@ -13,11 +13,14 @@ pod 'KakaJSON', '~> 1.2.0'
 ```
 
 ### Swift Package Manager
-```
-dependencies: [
-    .package(url: "https://github.com/kakaopensource/KakaJSON.git", from: "1.2.0")
-]
-```
+
+KakaJSON support [Swift Package Manager](https://swift.org/package-manager/) from version 1.2.0. To use Swift Package Manager, you should update to Xcode 11.
+* Open your project.
+* Click File tab
+* Select Swift Packages 
+* Add Package Dependency, enter [KakaJSON repo's URL](https://github.com/kakaopensource/KakaJSON.git)
+
+Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 
 ## Usages
 ### JSON To Model
