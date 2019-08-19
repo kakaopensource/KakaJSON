@@ -59,24 +59,24 @@ public func model(from jsonString: NSString?,
     return jsonString?.kk.model(anyType: anyType)
 }
 
-public func model<M: Convertible>(from data: Data?,
+public func model<M: Convertible>(from jsonData: Data?,
                                   _ type: M.Type) -> M? {
-    return data?.kk.model(type)
+    return jsonData?.kk.model(type)
 }
 
-public func model(from data: Data?,
+public func model(from jsonData: Data?,
                   anyType: Any.Type) -> Any? {
-    return data?.kk.model(anyType: anyType)
+    return jsonData?.kk.model(anyType: anyType)
 }
 
-public func model<M: Convertible>(from data: NSData?,
+public func model<M: Convertible>(from jsonData: NSData?,
                                   _ type: M.Type) -> M? {
-    return data?.kk.model(type)
+    return jsonData?.kk.model(type)
 }
 
-public func model(from data: NSData?,
+public func model(from jsonData: NSData?,
                   anyType: Any.Type) -> Any? {
-    return data?.kk.model(anyType: anyType)
+    return jsonData?.kk.model(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from json: [Any]?,
@@ -119,24 +119,24 @@ public func modelArray(from jsonString: NSString?,
     return jsonString?.kk.modelArray(anyType: anyType)
 }
 
-public func modelArray<M: Convertible>(from data: Data?,
+public func modelArray<M: Convertible>(from jsonData: Data?,
                                        _ type: M.Type) -> [M]? {
-    return data?.kk.modelArray(type)
+    return jsonData?.kk.modelArray(type)
 }
 
-public func modelArray(from data: Data?,
+public func modelArray(from jsonData: Data?,
                        anyType: Any.Type) -> [Any]? {
-    return data?.kk.modelArray(anyType: anyType)
+    return jsonData?.kk.modelArray(anyType: anyType)
 }
 
-public func modelArray<M: Convertible>(from data: NSData?,
+public func modelArray<M: Convertible>(from jsonData: NSData?,
                                        _ type: M.Type) -> [M]? {
-    return data?.kk.modelArray(type)
+    return jsonData?.kk.modelArray(type)
 }
 
-public func modelArray(from data: NSData?,
+public func modelArray(from jsonData: NSData?,
                        anyType: Any.Type) -> [Any]? {
-    return data?.kk.modelArray(anyType: anyType)
+    return jsonData?.kk.modelArray(anyType: anyType)
 }
 
 // MARK: Model -> JSON

@@ -25,6 +25,7 @@ class Common: XCTestCase {
             "age": \(age)
         }
         """
+        let jsonData = jsonString.data(using: .utf8)
         
         let cat1 = model(from: json, Cat.self)
         XCTAssert(cat1?.name == name)
@@ -41,6 +42,14 @@ class Common: XCTestCase {
         let cat4 = model(from: jsonString, anyType: Cat.self) as? Cat
         XCTAssert(cat4?.name == name)
         XCTAssert(cat4?.age == age)
+        
+        let cat5 = model(from: jsonData, Cat.self)
+        XCTAssert(cat5?.name == name)
+        XCTAssert(cat5?.age == age)
+        
+        let cat6 = model(from: jsonData, anyType: Cat.self) as? Cat
+        XCTAssert(cat6?.name == name)
+        XCTAssert(cat6?.age == age)
     }
     
     func testModel_To_JSON() {

@@ -11,12 +11,12 @@ Fast conversion between JSON and model in Swift.
 ## Integration
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.2.2' 
+pod 'KakaJSON', '~> 1.0.0' 
 ```
 
 ### Swift Package Manager
 
-KakaJSON support [Swift Package Manager](https://swift.org/package-manager/) from version 1.2.0. To use Swift Package Manager, you should update to Xcode 11.
+To use Swift Package Manager, you should update to Xcode 11.
 * Open your project.
 * Click File tab
 * Select Swift Packages 

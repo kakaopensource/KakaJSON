@@ -17,7 +17,7 @@ class JTM_01_Basic: XCTestCase {
         let name = "Miaomiao"
         let weight = 6.66
         
-        // json can be NSDictionary\NSMutableDictionary
+        // json can also be NSDictionary\NSMutableDictionary
         let json: [String: Any] = [
             "weight": weight,
             "name": name
@@ -49,15 +49,33 @@ class JTM_01_Basic: XCTestCase {
         let name = "Miaomiao"
         let weight = 6.66
         
-        // NSString\NSMutableString
-        let JSONString: String = """
+        // jsonString can also be NSString\NSMutableString
+        let jsonString: String = """
         {
             "name": "\(name)",
             "weight": \(weight)
         }
         """
         
-        let cat = JSONString.kk.model(Cat.self)
+        let cat = jsonString.kk.model(Cat.self)
+        XCTAssert(cat?.name == name)
+        XCTAssert(cat?.weight == weight)
+    }
+    
+    // MARK: - json data
+    func testJSONData() {
+        let name = "Miaomiao"
+        let weight = 6.66
+        
+        // jsonData can also be NSData\NSMutableData
+        let jsonData = """
+        {
+        "name": "\(name)",
+        "weight": \(weight)
+        }
+        """.data(using: .utf8)!
+        
+        let cat = jsonData.kk.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }

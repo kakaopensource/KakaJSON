@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D0575832308F41400810526 /* CompareWithCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0575822308F41400810526 /* CompareWithCodable.swift */; };
-		2D0AC2B523099A4B00992F29 /* Data+Kaka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AC2B423099A4B00992F29 /* Data+Kaka.swift */; };
+		2D0AC2B523099A4B00992F29 /* Data+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AC2B423099A4B00992F29 /* Data+KK.swift */; };
 		2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */; };
 		2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KK.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		2D0575822308F41400810526 /* CompareWithCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareWithCodable.swift; sourceTree = "<group>"; };
-		2D0AC2B423099A4B00992F29 /* Data+Kaka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Kaka.swift"; sourceTree = "<group>"; };
+		2D0AC2B423099A4B00992F29 /* Data+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+KK.swift"; sourceTree = "<group>"; };
 		2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
 		2D5253AD2305461300F854D9 /* NSObject+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KK.swift"; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 				2DCEB38C230175AC0030701B /* Array+KK.swift */,
 				2D5253AD2305461300F854D9 /* NSObject+KK.swift */,
 				2D7B8DE1230825D000DEC901 /* Set+KK.swift */,
-				2D0AC2B423099A4B00992F29 /* Data+Kaka.swift */,
+				2D0AC2B423099A4B00992F29 /* Data+KK.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -464,7 +464,7 @@
 				2D92DDFC2301279E00A96858 /* MetaType.swift in Sources */,
 				2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
-				2D0AC2B523099A4B00992F29 /* Data+Kaka.swift in Sources */,
+				2D0AC2B523099A4B00992F29 /* Data+KK.swift in Sources */,
 				2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */,
 				2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */,
 				2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */,

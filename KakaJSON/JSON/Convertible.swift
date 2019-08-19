@@ -108,12 +108,28 @@ public struct ConvertibleKK_M<T: Convertible> {
         self.basePtr = basePtr
     }
     
+    public func convert(from jsonData: Data?) {
+        basePtr.pointee.kk_convert(from: jsonData)
+    }
+    
+    public func convert(from jsonData: NSData?) {
+        basePtr.pointee.kk_convert(from: jsonData as Data?)
+    }
+    
     public func convert(from jsonString: String?) {
         basePtr.pointee.kk_convert(from: jsonString)
     }
     
+    public func convert(from jsonString: NSString?) {
+        basePtr.pointee.kk_convert(from: jsonString as String?)
+    }
+    
     public func convert(from json: [String: Any]?) {
         basePtr.pointee.kk_convert(from: json)
+    }
+    
+    public func convert(from json: NSDictionary?) {
+        basePtr.pointee.kk_convert(from: json as? [String: Any])
     }
 }
 
@@ -143,6 +159,14 @@ private extension Convertible {
 
 // MARK: - JSON -> Model
 extension Convertible {
+    mutating func kk_convert(from jsonData: Data?) {
+        if let json = JSONSerialization.kk_JSON(jsonData, [String: Any].self) {
+            kk_convert(from: json)
+            return
+        }
+        Logger.error("Failed to get JSON from JSONData.")
+    }
+    
     mutating func kk_convert(from jsonString: String?) {
         if let json = JSONSerialization.kk_JSON(jsonString, [String: Any].self) {
             kk_convert(from: json)

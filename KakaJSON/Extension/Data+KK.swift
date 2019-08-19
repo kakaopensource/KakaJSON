@@ -1,5 +1,5 @@
 //
-//  Data+Kaka.swift
+//  Data+KK.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/18.
@@ -21,7 +21,7 @@ public extension KK where Base == Data {
         if let json = JSONSerialization.kk_JSON(base, [String: Any].self) {
             return json.kk.model(anyType: anyType)
         }
-        Logger.error("Failed to get JSON from Data.")
+        Logger.error("Failed to get JSON from JSONData.")
         return nil
     }
     
@@ -33,7 +33,7 @@ public extension KK where Base == Data {
         if let json = JSONSerialization.kk_JSON(base, [Any].self) {
             return json.kk.modelArray(anyType: anyType)
         }
-        Logger.error("Failed to get JSON from Data.")
+        Logger.error("Failed to get JSON from JSONData.")
         return nil
     }
 }
@@ -62,7 +62,7 @@ extension Data {
         if let json = JSONSerialization.kk_JSON(self, [String: Any].self) {
             return json.kk_fastModel(type)
         }
-        Logger.error("Failed to get JSON from Data.")
+        Logger.error("Failed to get JSON from JSONData.")
         return nil
     }
 }
