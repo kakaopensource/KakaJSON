@@ -26,7 +26,7 @@ class JTM_06_CustomValue: XCTestCase {
             var date2: NSDate?
             
             func kk_modelValue(from jsonValue: Any?,
-                               property: Property) -> Any? {
+                               _ property: Property) -> Any? {
                 switch property.name {
                 case "date1": return (jsonValue as? String).flatMap(date1Fmt.date)
                     
@@ -63,7 +63,7 @@ class JTM_06_CustomValue: XCTestCase {
             // AnyObject、Convertible
             var pet: Any?
             func kk_modelValue(from jsonValue: Any?,
-                               property: Property) -> Any? {
+                               _ property: Property) -> Any? {
                 if property.name != "pet" { return jsonValue }
                 return (jsonValue as? [String: Any])?.kk.model(Dog.self)
             }
@@ -99,7 +99,7 @@ class JTM_06_CustomValue: XCTestCase {
             var books: [Any]?
             
             func kk_modelValue(from jsonValue: Any?,
-                               property: Property) -> Any? {
+                               _ property: Property) -> Any? {
                 if property.name != "books" { return jsonValue }
                 // if books is `NSMutableArray`, neet convert `Array` to `NSMutableArray`
                 // because `Array` to `NSMutableArray` is not a bridging conversion
@@ -142,7 +142,7 @@ class JTM_06_CustomValue: XCTestCase {
             var name: String = ""
             
             func kk_modelValue(from jsonValue: Any?,
-                               property: Property) -> Any? {
+                               _ property: Property) -> Any? {
                 switch property.name {
                 case "age": return (jsonValue as? Int).flatMap { $0 + 5 }
                 case "name": return (jsonValue as? String).flatMap { "kk_" + $0 }

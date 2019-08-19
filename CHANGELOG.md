@@ -2,6 +2,9 @@
 
 ---
 
+## [1.2.2](https://github.com/kakaopensource/KakaJSON/releases/tag/1.2.2) (2019-08-19)
+- Small adjustment
+
 ## [1.2.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.2.1) (2019-08-18)
 - Add interfaces for `Data\NSData`
 

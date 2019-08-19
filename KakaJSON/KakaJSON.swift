@@ -148,6 +148,10 @@ public func JSONObjectArray<M: Convertible>(from models: [M]?) -> [[String: Any]
     return models?.kk.JSONObjectArray()
 }
 
+public func JSONArray(from value: [Any]?) -> [Any]? {
+    return value.kk_JSON() as? [Any]
+}
+
 public func JSON(from value: Any?) -> Any? {
     return value.kk_JSON()
 }

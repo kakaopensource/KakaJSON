@@ -30,20 +30,20 @@ public class ConvertibleConfig {
     private static let global: Item = Item()
     private static var items: [TypeKey: Item] = [:]
     
-    public static func modelKey(property: Property) -> ModelPropertyKey {
+    public static func modelKey(from property: Property) -> ModelPropertyKey {
         lock.wait()
         defer { lock.signal() }
         guard let fn = global.modelKey else { return property.name }
         return fn(property)
     }
     
-    public static func modelKey(_ model: Convertible,
-                                property: Property) -> ModelPropertyKey {
-        return modelKey(type(of: model), property: property)
+    public static func modelKey(from property: Property,
+                                _ model: Convertible) -> ModelPropertyKey {
+        return modelKey(from: property, type(of: model))
     }
     
-    public static func modelKey(_ type: Convertible.Type,
-                                property: Property) -> ModelPropertyKey {
+    public static func modelKey(from property: Property,
+                                _ type: Convertible.Type) -> ModelPropertyKey {
         lock.wait()
         defer { lock.signal() }
         
@@ -65,23 +65,23 @@ public class ConvertibleConfig {
         return fn(property)
     }
     
-    public static func modelValue(jsonValue: Any?,
-                                  property: Property) -> Any? {
+    public static func modelValue(from jsonValue: Any?,
+                                  _ property: Property) -> Any? {
         lock.wait()
         defer { lock.signal() }
         guard let fn = global.modelValue else { return jsonValue }
         return fn(jsonValue, property)
     }
     
-    public static func modelValue(_ model: Convertible,
-                                  jsonValue: Any?,
-                                  property: Property) -> Any? {
-        return modelValue(type(of: model), jsonValue: jsonValue, property: property)
+    public static func modelValue(from jsonValue: Any?,
+                                  _ property: Property,
+                                  _ model: Convertible) -> Any? {
+        return modelValue(from: jsonValue, property, type(of: model))
     }
     
-    public static func modelValue(_ type: Convertible.Type,
-                                  jsonValue: Any?,
-                                  property: Property) -> Any? {
+    public static func modelValue(from jsonValue: Any?,
+                                  _ property: Property,
+                                  _ type: Convertible.Type) -> Any? {
         lock.wait()
         defer { lock.signal() }
         
@@ -103,7 +103,7 @@ public class ConvertibleConfig {
         return fn(jsonValue, property)
     }
     
-    public static func JSONKey(property: Property) -> JSONPropertyKey {
+    public static func JSONKey(from property: Property) -> JSONPropertyKey {
         lock.wait()
         defer { lock.signal() }
         
@@ -111,13 +111,13 @@ public class ConvertibleConfig {
         return fn(property)
     }
     
-    public static func JSONKey(_ model: Convertible,
-                               property: Property) -> JSONPropertyKey {
-        return JSONKey(type(of: model), property: property)
+    public static func JSONKey(from property: Property,
+                               _ model: Convertible) -> JSONPropertyKey {
+        return JSONKey(from: property, type(of: model))
     }
     
-    public static func JSONKey(_ type: Convertible.Type,
-                               property: Property) -> JSONPropertyKey {
+    public static func JSONKey(from property: Property,
+                               _ type: Convertible.Type) -> JSONPropertyKey {
         lock.wait()
         defer { lock.signal() }
         
@@ -139,8 +139,8 @@ public class ConvertibleConfig {
         return fn(property)
     }
     
-    public static func JSONValue(modelValue: Any?,
-                                 property: Property) -> Any? {
+    public static func JSONValue(from modelValue: Any?,
+                                 _ property: Property) -> Any? {
         lock.wait()
         defer { lock.signal() }
         
@@ -148,15 +148,15 @@ public class ConvertibleConfig {
         return fn(modelValue, property)
     }
     
-    public static func JSONValue(_ model: Convertible,
-                                 modelValue: Any?,
-                                 property: Property) -> Any? {
-        return JSONValue(type(of: model), modelValue: modelValue, property: property)
+    public static func JSONValue(from modelValue: Any?,
+                                 _ property: Property,
+                                 _ model: Convertible) -> Any? {
+        return JSONValue(from: modelValue, property, type(of: model))
     }
     
-    public static func JSONValue(_ type: Convertible.Type,
-                                 modelValue: Any?,
-                                 property: Property) -> Any? {
+    public static func JSONValue(from modelValue: Any?,
+                                 _ property: Property,
+                                 _ type: Convertible.Type) -> Any? {
         lock.wait()
         defer { lock.signal() }
         

@@ -19,7 +19,7 @@ class MTJ_05_CustomValue: XCTestCase {
             var birthday: Date?
             
             func kk_JSONValue(from modelValue: Any?,
-                              property: Property) -> Any? {
+                              _ property: Property) -> Any? {
                 if property.name != "birthday" { return modelValue }
                 return birthday.flatMap(dateFmt.string)
             }

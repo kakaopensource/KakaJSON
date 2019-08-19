@@ -42,7 +42,7 @@ class JTM_07_DynamicModel: XCTestCase {
         var foods: [String: Any]?
         
         func kk_modelType(from jsonValue: Any?,
-                          property: Property) -> Convertible.Type? {
+                          _ property: Property) -> Convertible.Type? {
             switch property.name {
             case "pet":
                 if let pet = jsonValue as? [String: Any],

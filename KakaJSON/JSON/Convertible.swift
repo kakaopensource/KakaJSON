@@ -8,10 +8,6 @@
 
 import Foundation
 
-// MARK: - Types
-//public typealias [String: Any] = [String: Any]
-//public typealias JSONArray = [[String: Any]]
-
 // MARK: - Convertible Interface
 public protocol ModelPropertyKey {}
 extension String: ModelPropertyKey {}
@@ -33,11 +29,11 @@ public protocol Convertible {
     /// use the initial value instead.
     /// return `JSONValue` indicates do nothing
     func kk_modelValue(from jsonValue: Any?,
-                       property: Property) -> Any?
+                       _ property: Property) -> Any?
     
     /// model type for Any、AnyObject、Convertible...
     func kk_modelType(from jsonValue: Any?,
-                      property: Property) -> Convertible.Type?
+                      _ property: Property) -> Convertible.Type?
     
     /// call when will begin to convert from JSON to model
     mutating func kk_willConvertToModel(from json: [String: Any])
@@ -55,7 +51,7 @@ public protocol Convertible {
     /// - Returns: return `nil` indicates ignore the JSONValue.
     /// return `modelValue` indicates do nothing
     func kk_JSONValue(from modelValue: Any?,
-                      property: Property) -> Any?
+                      _ property: Property) -> Any?
     
     /// call when will begin to convert from model to JSON
     func kk_willConvertToJSON()
@@ -66,27 +62,23 @@ public protocol Convertible {
 
 public extension Convertible {
     func kk_modelKey(from property: Property) -> ModelPropertyKey {
-        return ConvertibleConfig.modelKey(Self.self, property: property)
+        return ConvertibleConfig.modelKey(from: property, Self.self)
     }
     func kk_modelValue(from jsonValue: Any?,
-                       property: Property) -> Any? {
-        return ConvertibleConfig.modelValue(Self.self,
-                                            jsonValue: jsonValue,
-                                            property: property)
+                       _ property: Property) -> Any? {
+        return ConvertibleConfig.modelValue(from: jsonValue, property, Self.self)
     }
     func kk_modelType(from jsonValue: Any?,
-                      property: Property) -> Convertible.Type? { return nil }
+                      _ property: Property) -> Convertible.Type? { return nil }
     func kk_willConvertToModel(from json: [String: Any]) {}
     func kk_didConvertToModel(from json: [String: Any]) {}
     
     func kk_JSONKey(from property: Property) -> JSONPropertyKey {
-        return ConvertibleConfig.JSONKey(Self.self, property: property)
+        return ConvertibleConfig.JSONKey(from: property, Self.self)
     }
     func kk_JSONValue(from modelValue: Any?,
-                      property: Property) -> Any? {
-        return ConvertibleConfig.JSONValue(Self.self,
-                                           modelValue: modelValue,
-                                           property: property)
+                      _ property: Property) -> Any? {
+        return ConvertibleConfig.JSONValue(from: modelValue, property, Self.self)
     }
     func kk_willConvertToJSON() {}
     func kk_didConvertToJSON(json: [String: Any]?) {}
@@ -177,8 +169,8 @@ extension Convertible {
             
             // value filter
             guard let newValue = kk_modelValue(
-                from: dict.kk_value(for: key)~!,
-                property: property)~! else { continue }
+                from: dict.kk_value(for: key),
+                property)~! else { continue }
             
             let propertyType = property.dataType
             // if they are the same type, set value directly
@@ -189,8 +181,8 @@ extension Convertible {
             
             // Model Type have priority
             // it can return subclass object to match superclass type
-            if let modelType = kk_modelType(from: newValue, property: property),
-                let value = _modelTypeValue(newValue, modelType, property.dataType) {
+            if let modelType = kk_modelType(from: newValue, property),
+                let value = _modelTypeValue(newValue, modelType, propertyType) {
                 property.set(value, for: model)
                 continue
             }
@@ -262,7 +254,7 @@ extension Convertible {
             // value filter
             guard let value = kk_JSONValue(
                 from: property.get(from: ptr)~!,
-                property: property)~! else { continue }
+                property)~! else { continue }
             
             guard let v = value~?.kk_JSON() else { continue }
             

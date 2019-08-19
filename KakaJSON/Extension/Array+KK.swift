@@ -25,15 +25,12 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
             let _ = mt.properties
             else { return nil }
         let arr = base.compactMap { element -> Any? in
-            var model: Any?
-            if let dict = element as? [String: Any] {
-                model = dict.kk_fastModel(t)
-            } else if let data = element as? Data {
-                model = data.kk_fastModel(t)
-            } else if let string = element as? String {
-                model = string.kk_fastModel(t)
+            switch element {
+            case let dict as [String: Any]: return dict.kk_fastModel(t)
+            case let dict as Data: return dict.kk_fastModel(t)
+            case let dict as String: return dict.kk_fastModel(t)
+            default: return nil
             }
-            return model
         }
         return arr.isEmpty ? nil : arr
     }

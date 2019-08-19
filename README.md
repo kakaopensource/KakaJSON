@@ -11,7 +11,7 @@ Fast conversion between JSON and model in Swift.
 ## Integration
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.2.1' 
+pod 'KakaJSON', '~> 1.2.2' 
 ```
 
 ### Swift Package Manager

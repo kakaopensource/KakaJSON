@@ -403,7 +403,7 @@ extension Date: DateValue {}
 postfix operator ~!
 postfix operator ~?
 
-public postfix func ~? (_ value: Any) -> Any? {
+postfix func ~? (_ value: Any) -> Any? {
     return Optional.some(value)
 }
 
@@ -411,7 +411,7 @@ public postfix func ~? (_ value: Any) -> Any? {
 ///
 ///     var type: Any.Type = Int???.self
 ///     print(type~!) // Int
-public postfix func ~! (_ type: Any.Type) -> Any.Type {
+postfix func ~! (_ type: Any.Type) -> Any.Type {
     guard let ot = Metadata.type(type) as? OptionalType else { return type }
     return ot.wrapType
 }
@@ -423,11 +423,11 @@ public postfix func ~! (_ type: Any.Type) -> Any.Type {
 ///     var data: Int???? = 10
 ///     var value: Any = data as Any
 ///     print(value~!) // Optional(10)
-public postfix func ~! (_ value: Any) -> Any? {
+postfix func ~! (_ value: Any) -> Any? {
     guard let ov = value as? OptionalValue else { return value }
     return ov.kk_value
 }
 
-public postfix func ~! (_ value: Any?) -> Any? {
+postfix func ~! (_ value: Any?) -> Any? {
     return (value as OptionalValue).kk_value
 }

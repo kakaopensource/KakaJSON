@@ -32,7 +32,6 @@
 		2D92DDDE2301279E00A96858 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB02301279E00A96858 /* Logger.swift */; };
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
 		2D92DDE02301279E00A96858 /* KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KK.swift */; };
-		2D92DDE12301279E00A96858 /* Instance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB32301279E00A96858 /* Instance.swift */; };
 		2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* KakaJSON.swift */; };
 		2D92DDE52301279E00A96858 /* Pointer+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KK.swift */; };
 		2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KK.swift */; };
@@ -113,7 +112,6 @@
 		2D92DDB02301279E00A96858 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		2D92DDB22301279E00A96858 /* KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KK.swift; sourceTree = "<group>"; };
-		2D92DDB32301279E00A96858 /* Instance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instance.swift; sourceTree = "<group>"; };
 		2D92DDB62301279E00A96858 /* KakaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaJSON.swift; sourceTree = "<group>"; };
 		2D92DDB82301279E00A96858 /* Pointer+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KK.swift"; sourceTree = "<group>"; };
 		2D92DDB92301279E00A96858 /* Dictionary+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KK.swift"; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 				2D645D3E23058B2500046636 /* ConvertibleConfig.swift */,
 				2D645BA223029A0400075A9E /* ConvertibleEnum.swift */,
 				2D92DDB22301279E00A96858 /* KK.swift */,
-				2D92DDB32301279E00A96858 /* Instance.swift */,
 				2D645BA02302995100075A9E /* TypeProxy.swift */,
 			);
 			path = JSON;
@@ -480,7 +477,6 @@
 				2D92DDF72301279E00A96858 /* FunctionType.swift in Sources */,
 				2D92DE002301279E00A96858 /* EnumType.swift in Sources */,
 				2D92DDFF2301279E00A96858 /* BaseType.swift in Sources */,
-				2D92DDE12301279E00A96858 /* Instance.swift in Sources */,
 				2D92DDE72301279E00A96858 /* String+KK.swift in Sources */,
 				2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */,
 				2D92DDF92301279E00A96858 /* ProtocolType.swift in Sources */,

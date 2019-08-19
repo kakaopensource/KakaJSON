@@ -388,7 +388,7 @@ class JTM_05_KeyMapping: XCTestCase {
             func kk_modelKey(from property: Property) -> ModelPropertyKey {
                 // Use ConvertibleConfig to get config of Person
                 // `name` -> `_name_`
-                return ConvertibleConfig.modelKey(Person.self, property: property)
+                return ConvertibleConfig.modelKey(from: property, Person.self)
             }
         }
         
@@ -409,7 +409,7 @@ class JTM_05_KeyMapping: XCTestCase {
                 // Use ConvertibleConfig to get global config
                 // `maxSpeed` -> `max_speed`
                 // `name` -> `name`
-                return ConvertibleConfig.modelKey(property: property)
+                return ConvertibleConfig.modelKey(from: property)
             }
         }
         
