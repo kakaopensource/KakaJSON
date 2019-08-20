@@ -33,8 +33,8 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 		- [let](#let)
 		- [JSONString](#jsonstring)
 		- [JSONData](#jsondata)
-		- [Nested Model 1](##nested-model-1)
-		- [Nested Model 2](##nested-model-2)
+		- [Nested Model 1](#nested-model-1)
+		- [Nested Model 2](#nested-model-2)
 		- [Model Array](#model-array)
 		- [Convert](#convert)
 		- [Listen](#listen)
@@ -57,7 +57,7 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 		- [Set](#set)
 		- [Dictionary](#dictionary)
 	- [Key Mapping](#key-mapping)
-		- [Basic Usage](##basic-usage-1)
+		- [Basic Usage](#basic-usage-1)
 		- [Camel -> Underline](#camel---underline)
 		- [Underline -> Camel](#underline---camel)
 		- [Inheritance](#inheritance-1)
@@ -1156,8 +1156,6 @@ XCTAssert(student?.birthday == birthday)
 
 #### Inheritance
 ```swift
-// 子类可以继承父类的实现
- 
 class Person: Convertible {
     var nickName: String = ""
     required init() {}
@@ -1187,8 +1185,6 @@ XCTAssert(student?.mathScore == math_score)
 
 #### Override 1
 ```swift
-// 子类可以重写父类的kk_modelKey方法，在父类实现的基础上加一些自己的需求
- 
 class Person: Convertible {
     var name: String = ""
     required init() {}
@@ -1236,7 +1232,7 @@ class Student: Person {
     var score: Int = 0
     
     override func kk_modelKey(from property: Property) -> ModelPropertyKey {
-        // 因此`score` -> `_score_`，`name` -> `name`
+        // `score` -> `_score_`，`name` -> `name`
         return property.name == "score" ? "_score_" : property.name
     }
 }

@@ -2,6 +2,9 @@
 
 ---
 
+## new
+- Add documentation
+
 ## [1.0.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.0.0) (2019-08-20)
 - First public release
 - Add interfaces for `Data\NSData`
