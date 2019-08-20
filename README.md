@@ -24,6 +24,68 @@ To use Swift Package Manager, you should update to Xcode 11.
 
 Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 
+## Usages
+- [JSON To Model](#json-to-model)
+	- [Basic Usage](#basic-usage)
+		- [Simple Model](#simple-model)
+		- [Class Type](#class-type)
+		- [Inheritance](#inheritance)
+		- [let](#let)
+		- [JSONString](#jsonstring)
+		- [JSONData](#jsondata)
+		- [Nested Model 1](##nested-model-1)
+		- [Nested Model 2](##nested-model-2)
+		- [Model Array](#model-array)
+		- [Convert](#convert)
+		- [Listen](#listen)
+	- [Data Type](#data-type)
+		- [Int](#int)
+		- [Float](#float)
+		- [Double](#double)
+		- [CGFloat](#cgfloat)
+		- [Bool](#bool)
+		- [String](#string)
+		- [Decimal](#decimal)
+		- [NSDecimalNumber](#nsdecimalnumber)
+		- [NSNumber](#nsnumber)
+		- [Optional](#optional)
+		- [URL](#url)
+		- [Data](#data)
+		- [Date](#date)
+		- [Enum](#enum)
+		- [Array](#array)
+		- [Set](#set)
+		- [Dictionary](#dictionary)
+	- [Key Mapping](#key-mapping)
+		- [Basic Usage](##basic-usage-1)
+		- [Camel -> Underline](#camel---underline)
+		- [Underline -> Camel](#underline---camel)
+		- [Inheritance](#inheritance-1)
+		- [Override 1](#override-1)
+		- [Override 2](#override-2)
+		- [Global Config](#global-config)
+		- [Local Config](#local-config)
+		- [Config Example 1](#config-example-1)
+		- [Config Example 2](#config-example-2)
+		- [Complex](#complex)
+	- [Custom Value](#custom-value)
+		- [Date](#date-1)
+		- [Unspecific Type](#unspecific-type)
+		- [Example](#example)
+		- [Other Ways](#other-ways)
+	- [Dynamic Model](#dynamic-model)
+- [Model To JSON](#model-to-json)
+	- [JSON and JSONString](#json-and-jsonstring)
+	- [Optional](#optional-1)
+	- [Enum](#enum-1)
+	- [Nested Model](#nested-model)
+	- [Any](#any)
+	- [Model Array](#model-array-1)
+	- [Model Set](#model-set)
+	- [Key Mapping](#key-mapping-1)
+	- [Custom Value](#custom-value-1)
+	- [Listen](#listen)
+
 ## JSON To Model
 ### Basic Usage
 #### Simple Model
@@ -1460,7 +1522,7 @@ XCTAssert(dog?.toy?.name == toy.name)
 XCTAssert(dog?.toy?.price == toy.price)
 ```
 
-### Custome Value
+### Custom Value
 #### Date
 ```swift
 private let date1Fmt: DateFormatter = {
