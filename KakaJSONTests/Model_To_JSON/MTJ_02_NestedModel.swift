@@ -40,7 +40,7 @@ class MTJ_02_NestedModel: XCTestCase {
             ]
         }
         
-        let jsonString = Person().kk.JSONString(prettyPrinted: true)
+        let jsonString = Person().kj.JSONString()
         /*
          {
              "dogs" : {
@@ -103,7 +103,7 @@ class MTJ_02_NestedModel: XCTestCase {
             ]
         }
         
-        let jsonString = Person().kk.JSONString(prettyPrinted: true)
+        let jsonString = Person().kj.JSONString()
         /*
          {
              "dogs" : {

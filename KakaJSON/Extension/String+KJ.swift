@@ -1,5 +1,5 @@
 //
-//  String+KK.swift
+//  String+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/5.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension String: KKCompatible {}
-extension NSString: KKCompatible {}
+extension String: KJCompatible {}
+extension NSString: KJCompatible {}
 
-public extension KK where Base: ExpressibleByStringLiteral {
+public extension KJ where Base: ExpressibleByStringLiteral {
     /// from underline-cased to camel-cased
     ///
     /// e.g. from `my_test_name` to `myTestName`
@@ -59,8 +59,8 @@ public extension KK where Base: ExpressibleByStringLiteral {
     
     /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
-        if let json = JSONSerialization.kk_JSON(base as? String, [String: Any].self) {
-            return json.kk.model(anyType: anyType)
+        if let json = JSONSerialization.kj_JSON(base as? String, [String: Any].self) {
+            return json.kj.model(anyType: anyType)
         }
         Logger.error("Failed to get JSON from JSONString.")
         return nil
@@ -73,8 +73,8 @@ public extension KK where Base: ExpressibleByStringLiteral {
     
     /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
-        if let json = JSONSerialization.kk_JSON(base as? String, [Any].self) {
-            return json.kk.modelArray(anyType: anyType)
+        if let json = JSONSerialization.kj_JSON(base as? String, [Any].self) {
+            return json.kj.modelArray(anyType: anyType)
         }
         Logger.error("Failed to get JSON from JSONString.")
         return nil
@@ -82,9 +82,9 @@ public extension KK where Base: ExpressibleByStringLiteral {
 }
 
 extension String {
-    func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
-        if let json = JSONSerialization.kk_JSON(self, [String: Any].self) {
-            return json.kk_fastModel(type)
+    func kj_fastModel(_ type: Convertible.Type) -> Convertible? {
+        if let json = JSONSerialization.kj_JSON(self, [String: Any].self) {
+            return json.kj_fastModel(type)
         }
         Logger.error("Failed to get JSON from JSONString.")
         return nil

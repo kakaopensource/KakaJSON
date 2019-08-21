@@ -25,7 +25,7 @@ class JTM_04_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         ]
         
-        let cars = json.kk.modelArray(Car.self)
+        let cars = json.kj.modelArray(Car.self)
         check(cars)
     }
     
@@ -36,7 +36,7 @@ class JTM_04_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = json.kk.modelArray(Car.self)
+        let cars = json.kj.modelArray(Car.self)
         check(cars)
     }
     
@@ -47,7 +47,7 @@ class JTM_04_ModelArray: XCTestCase {
             ["name": tuples[2].name, "price": tuples[2].price]
         )
         
-        let cars = json.kk.modelArray(Car.self)
+        let cars = json.kj.modelArray(Car.self)
         check(cars)
     }
     
@@ -57,7 +57,7 @@ class JTM_04_ModelArray: XCTestCase {
             ["name": tuples[0].name, "price": tuples[0].price]
         ]
         
-        let cars = json.kk.modelArray(Car.self)
+        let cars = json.kj.modelArray(Car.self)
         XCTAssert(cars?[0].name == tuples[0].name)
         XCTAssert(cars?[0].price == tuples[0].price)
     }
@@ -71,7 +71,7 @@ class JTM_04_ModelArray: XCTestCase {
         ]
         """
         
-        let cars = JSONString.kk.modelArray(Car.self)
+        let cars = JSONString.kj.modelArray(Car.self)
         check(cars)
     }
     

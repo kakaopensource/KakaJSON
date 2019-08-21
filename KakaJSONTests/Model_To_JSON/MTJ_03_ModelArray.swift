@@ -21,7 +21,7 @@ class MTJ_03_ModelArray: XCTestCase {
             Car(name: "Bently", price: 300.0)
         ]
         
-        let jsonString = models.kk.JSONString(prettyPrinted: true)
+        let jsonString = models.kj.JSONString()
         /*
          [
              {
@@ -58,7 +58,7 @@ class MTJ_03_ModelArray: XCTestCase {
             Car(name: "Bently", price: 300.0)
         ]
         
-        let jsonString = models.kk.JSONString(prettyPrinted: true)
+        let jsonString = models.kj.JSONString()
         /*
          [
              {

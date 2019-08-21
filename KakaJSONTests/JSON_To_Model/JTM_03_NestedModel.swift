@@ -54,7 +54,7 @@ class JTM_03_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.car?.name == car.name)
@@ -113,7 +113,7 @@ class JTM_03_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)
@@ -151,7 +151,7 @@ class JTM_03_NestedModel: XCTestCase {
             ]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == 1)

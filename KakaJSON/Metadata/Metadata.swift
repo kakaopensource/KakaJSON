@@ -9,7 +9,6 @@
 import Foundation
 
 public struct Metadata {
-    // MARK: - Type
     private static let typeLock = NSRecursiveLock()
     private static var types = [TypeKey: BaseType]()
     // type conform to Convertible

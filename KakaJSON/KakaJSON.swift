@@ -21,142 +21,142 @@ import Foundation
 // MARK: - JSON -> Model
 public func model<M: Convertible>(from json: [String: Any]?,
                                   _ type: M.Type) -> M? {
-    return json?.kk.model(type)
+    return json?.kj.model(type)
 }
 
 public func model(from json: [String: Any]?,
                   anyType: Any.Type) -> Any? {
-    return json?.kk.model(anyType: anyType)
+    return json?.kj.model(anyType: anyType)
 }
 
 public func model<M: Convertible>(from json: NSDictionary?,
                                   _ type: M.Type) -> M? {
-    return json?.kk.model(type)
+    return json?.kj.model(type)
 }
 
 public func model(from json: NSDictionary?,
                   anyType: Any.Type) -> Any? {
-    return json?.kk.model(anyType: anyType)
+    return json?.kj.model(anyType: anyType)
 }
 
 public func model<M: Convertible>(from jsonString: String?,
                                   _ type: M.Type) -> M? {
-    return jsonString?.kk.model(type)
+    return jsonString?.kj.model(type)
 }
 
 public func model(from jsonString: String?,
                   anyType: Any.Type) -> Any? {
-    return jsonString?.kk.model(anyType: anyType)
+    return jsonString?.kj.model(anyType: anyType)
 }
 
 public func model<M: Convertible>(from jsonString: NSString?,
                                   _ type: M.Type) -> M? {
-    return jsonString?.kk.model(type)
+    return jsonString?.kj.model(type)
 }
 
 public func model(from jsonString: NSString?,
                   anyType: Any.Type) -> Any? {
-    return jsonString?.kk.model(anyType: anyType)
+    return jsonString?.kj.model(anyType: anyType)
 }
 
 public func model<M: Convertible>(from jsonData: Data?,
                                   _ type: M.Type) -> M? {
-    return jsonData?.kk.model(type)
+    return jsonData?.kj.model(type)
 }
 
 public func model(from jsonData: Data?,
                   anyType: Any.Type) -> Any? {
-    return jsonData?.kk.model(anyType: anyType)
+    return jsonData?.kj.model(anyType: anyType)
 }
 
 public func model<M: Convertible>(from jsonData: NSData?,
                                   _ type: M.Type) -> M? {
-    return jsonData?.kk.model(type)
+    return jsonData?.kj.model(type)
 }
 
 public func model(from jsonData: NSData?,
                   anyType: Any.Type) -> Any? {
-    return jsonData?.kk.model(anyType: anyType)
+    return jsonData?.kj.model(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from json: [Any]?,
                                        _ type: M.Type) -> [M]? {
-    return json?.kk.modelArray(type)
+    return json?.kj.modelArray(type)
 }
 
 public func modelArray(from json: [Any]?,
                        anyType: Any.Type) -> [Any?]? {
-    return json?.kk.modelArray(anyType: anyType)
+    return json?.kj.modelArray(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from json: NSArray?,
                                        _ type: M.Type) -> [M]? {
-    return json?.kk.modelArray(type)
+    return json?.kj.modelArray(type)
 }
 
 public func modelArray(from json: NSArray?,
                        anyType: Any.Type) -> [Any?]? {
-    return json?.kk.modelArray(anyType: anyType)
+    return json?.kj.modelArray(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from jsonString: String?,
                                        _ type: M.Type) -> [M]? {
-    return jsonString?.kk.modelArray(type)
+    return jsonString?.kj.modelArray(type)
 }
 
 public func modelArray(from jsonString: String?,
                        anyType: Any.Type) -> [Any]? {
-    return jsonString?.kk.modelArray(anyType: anyType)
+    return jsonString?.kj.modelArray(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from jsonString: NSString?,
                                        _ type: M.Type) -> [M]? {
-    return jsonString?.kk.modelArray(type)
+    return jsonString?.kj.modelArray(type)
 }
 
 public func modelArray(from jsonString: NSString?,
                        anyType: Any.Type) -> [Any]? {
-    return jsonString?.kk.modelArray(anyType: anyType)
+    return jsonString?.kj.modelArray(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from jsonData: Data?,
                                        _ type: M.Type) -> [M]? {
-    return jsonData?.kk.modelArray(type)
+    return jsonData?.kj.modelArray(type)
 }
 
 public func modelArray(from jsonData: Data?,
                        anyType: Any.Type) -> [Any]? {
-    return jsonData?.kk.modelArray(anyType: anyType)
+    return jsonData?.kj.modelArray(anyType: anyType)
 }
 
 public func modelArray<M: Convertible>(from jsonData: NSData?,
                                        _ type: M.Type) -> [M]? {
-    return jsonData?.kk.modelArray(type)
+    return jsonData?.kj.modelArray(type)
 }
 
 public func modelArray(from jsonData: NSData?,
                        anyType: Any.Type) -> [Any]? {
-    return jsonData?.kk.modelArray(anyType: anyType)
+    return jsonData?.kj.modelArray(anyType: anyType)
 }
 
 // MARK: Model -> JSON
 public func JSONObject<M: Convertible>(from model: M?) -> [String: Any]? {
-    return model?.kk_JSONObject()
+    return model?.kj_JSONObject()
 }
 
 public func JSONObjectArray<M: Convertible>(from models: [M]?) -> [[String: Any]]? {
-    return models?.kk.JSONObjectArray()
+    return models?.kj.JSONObjectArray()
 }
 
 public func JSONArray(from value: [Any]?) -> [Any]? {
-    return value.kk_JSON() as? [Any]
+    return value.kj_JSON() as? [Any]
 }
 
 public func JSON(from value: Any?) -> Any? {
-    return value.kk_JSON()
+    return value.kj_JSON()
 }
 
 public func JSONString(from value: Any?,
                        prettyPrinted: Bool = false) -> String? {
-    return value.kk_JSONString()
+    return value.kj_JSONString()
 }

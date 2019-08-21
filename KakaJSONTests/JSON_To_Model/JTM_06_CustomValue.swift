@@ -25,7 +25,7 @@ class JTM_06_CustomValue: XCTestCase {
             var date1: Date?
             var date2: NSDate?
             
-            func kk_modelValue(from jsonValue: Any?,
+            func kj_modelValue(from jsonValue: Any?,
                                _ property: Property) -> Any? {
                 switch property.name {
                 case "date1": return (jsonValue as? String).flatMap(date1Fmt.date)
@@ -45,7 +45,7 @@ class JTM_06_CustomValue: XCTestCase {
             "date2": date2
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
         XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
     }
@@ -62,10 +62,10 @@ class JTM_06_CustomValue: XCTestCase {
             var name: String = ""
             // AnyObject、Convertible
             var pet: Any?
-            func kk_modelValue(from jsonValue: Any?,
+            func kj_modelValue(from jsonValue: Any?,
                                _ property: Property) -> Any? {
                 if property.name != "pet" { return jsonValue }
-                return (jsonValue as? [String: Any])?.kk.model(Dog.self)
+                return (jsonValue as? [String: Any])?.kj.model(Dog.self)
             }
         }
         
@@ -77,7 +77,7 @@ class JTM_06_CustomValue: XCTestCase {
             "pet": ["name": dog.name, "weight": dog.weight]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         let pet = person?.pet as? Dog
@@ -98,12 +98,12 @@ class JTM_06_CustomValue: XCTestCase {
             // [AnyObject]、[Convertible]、NSArray、NSMutableArray
             var books: [Any]?
             
-            func kk_modelValue(from jsonValue: Any?,
+            func kj_modelValue(from jsonValue: Any?,
                                _ property: Property) -> Any? {
                 if property.name != "books" { return jsonValue }
                 // if books is `NSMutableArray`, neet convert `Array` to `NSMutableArray`
                 // because `Array` to `NSMutableArray` is not a bridging conversion
-                return (jsonValue as? [Any])?.kk.modelArray(Book.self)
+                return (jsonValue as? [Any])?.kj.modelArray(Book.self)
             }
         }
         
@@ -121,7 +121,7 @@ class JTM_06_CustomValue: XCTestCase {
             ]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         XCTAssert(person?.books?.count == books.count)
@@ -141,11 +141,11 @@ class JTM_06_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            func kk_modelValue(from jsonValue: Any?,
+            func kj_modelValue(from jsonValue: Any?,
                                _ property: Property) -> Any? {
                 switch property.name {
                 case "age": return (jsonValue as? Int).flatMap { $0 + 5 }
-                case "name": return (jsonValue as? String).flatMap { "kk_" + $0 }
+                case "name": return (jsonValue as? String).flatMap { "kj_" + $0 }
                 default: return jsonValue
                 }
             }
@@ -156,9 +156,9 @@ class JTM_06_CustomValue: XCTestCase {
             "name": "Jack"
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.age == 15)
-        XCTAssert(student?.name == "kk_Jack")
+        XCTAssert(student?.name == "kj_Jack")
     }
     
     func testOther2() {
@@ -166,9 +166,9 @@ class JTM_06_CustomValue: XCTestCase {
             var age: Int = 0
             var name: String = ""
             
-            mutating func kk_didConvertToModel(from json: [String: Any]) {
+            mutating func kj_didConvertToModel(from json: [String: Any]) {
                 age += 5
-                name = "kk_" + name
+                name = "kj_" + name
             }
         }
         
@@ -177,8 +177,8 @@ class JTM_06_CustomValue: XCTestCase {
             "name": "Jack"
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.age == 15)
-        XCTAssert(student?.name == "kk_Jack")
+        XCTAssert(student?.name == "kj_Jack")
     }
 }

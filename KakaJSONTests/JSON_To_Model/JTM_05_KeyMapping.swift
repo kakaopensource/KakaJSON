@@ -13,7 +13,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var mostFavoriteNumber: Int = 0
             var birthday: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 switch property.name {
                 case "nickName": return "nick_name"
                 case "mostFavoriteNumber": return "most_favorite_number"
@@ -32,7 +32,7 @@ class JTM_05_KeyMapping: XCTestCase {
             "birthday": birthday
         ]
         
-        let student = json.kk.model(Person.self)
+        let student = json.kj.model(Person.self)
         XCTAssert(student?.nickName == nick_name)
         XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
         XCTAssert(student?.birthday == birthday)
@@ -44,9 +44,9 @@ class JTM_05_KeyMapping: XCTestCase {
             var mostFavoriteNumber: Int = 0
             var birthday: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 // `nickName` -> `nick_name`
-                return property.name.kk.underlineCased()
+                return property.name.kj.underlineCased()
             }
         }
         
@@ -60,7 +60,7 @@ class JTM_05_KeyMapping: XCTestCase {
             "birthday": birthday
         ]
         
-        let student = json.kk.model(Person.self)
+        let student = json.kj.model(Person.self)
         XCTAssert(student?.nickName == nick_name)
         XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
         XCTAssert(student?.birthday == birthday)
@@ -72,9 +72,9 @@ class JTM_05_KeyMapping: XCTestCase {
             var most_favorite_number: Int = 0
             var birthday: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 // `nick_name` -> `nickName`
-                return property.name.kk.camelCased()
+                return property.name.kj.camelCased()
             }
         }
         
@@ -88,7 +88,7 @@ class JTM_05_KeyMapping: XCTestCase {
             "birthday": birthday
         ]
         
-        let student = json.kk.model(Person.self)
+        let student = json.kj.model(Person.self)
         XCTAssert(student?.nick_name == nickName)
         XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
         XCTAssert(student?.birthday == birthday)
@@ -99,8 +99,8 @@ class JTM_05_KeyMapping: XCTestCase {
             var nickName: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
-                return property.name.kk.underlineCased()
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
+                return property.name.kj.underlineCased()
             }
         }
         
@@ -112,10 +112,10 @@ class JTM_05_KeyMapping: XCTestCase {
         let math_score = 96
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.nickName == nick_ame)
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.nickName == nick_ame)
         XCTAssert(student?.mathScore == math_score)
     }
@@ -125,7 +125,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "name" ? "_name_" : property.name
             }
         }
@@ -133,10 +133,10 @@ class JTM_05_KeyMapping: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            override func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "score"
                     ? "_score_"
-                    : super.kk_modelKey(from: property)
+                    : super.kj_modelKey(from: property)
             }
         }
         
@@ -144,10 +144,10 @@ class JTM_05_KeyMapping: XCTestCase {
         let score = 96
         let json: [String: Any] = ["_name_": name, "_score_": score]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.score == score)
     }
@@ -157,7 +157,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "name" ? "_name_" : property.name
             }
         }
@@ -165,19 +165,19 @@ class JTM_05_KeyMapping: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            override func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 return property.name == "score" ? "_score_" : property.name
             }
         }
         
         let personName = "Jack"
-        let person = ["_name_": personName].kk.model(Person.self)
+        let person = ["_name_": personName].kj.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
-                       "_score_": studentScore].kk.model(Student.self)
+                       "_score_": studentScore].kj.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
     }
@@ -194,7 +194,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var nickName: String?
             var toy: Toy?
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 switch property.name {
                 case "toy": return "dog.toy"
                 case "name": return "data.1.dog.name"
@@ -226,7 +226,7 @@ class JTM_05_KeyMapping: XCTestCase {
             ]
         ]
         
-        let dog = json.kk.model(Dog.self)
+        let dog = json.kj.model(Dog.self)
         XCTAssert(dog?.name == name)
         XCTAssert(dog?.age == age)
         XCTAssert(dog?.nickName == nickName1)
@@ -237,9 +237,9 @@ class JTM_05_KeyMapping: XCTestCase {
     func testConfig1() {
         // Global Config
         ConvertibleConfig.setModelKey { property in
-            property.name.kk.underlineCased()
+            property.name.kj.underlineCased()
         }
-        // ConvertibleConfig.setModelKey { $0.name.kk.underlineCased() }
+        // ConvertibleConfig.setModelKey { $0.name.kj.underlineCased() }
         
         class Person: Convertible {
             var nickName: String = ""
@@ -259,16 +259,16 @@ class JTM_05_KeyMapping: XCTestCase {
         let math_score = 96
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.nickName == nick_ame)
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.nickName == nick_ame)
         XCTAssert(student?.mathScore == math_score)
         
         let max_speed = 250.0
         let name = "Bently"
-        let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+        let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
         XCTAssert(car?.maxSpeed == max_speed)
         XCTAssert(car?.name == name)
     }
@@ -278,7 +278,7 @@ class JTM_05_KeyMapping: XCTestCase {
         // The config can be used on Student because Student extends Person
         ConvertibleConfig.setModelKey(for: [Person.self, Car.self]) {
             property in
-            property.name.kk.underlineCased()
+            property.name.kj.underlineCased()
         }
         
         class Person: Convertible {
@@ -299,16 +299,16 @@ class JTM_05_KeyMapping: XCTestCase {
         let math_score = 96
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.nickName == nick_ame)
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.nickName == nick_ame)
         XCTAssert(student?.mathScore == math_score)
         
         let max_speed = 250.0
         let name = "Bently"
-        let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+        let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
         XCTAssert(car?.maxSpeed == max_speed)
         XCTAssert(car?.name == name)
     }
@@ -316,7 +316,7 @@ class JTM_05_KeyMapping: XCTestCase {
     func testConfig3() {
         // Global Config
         ConvertibleConfig.setModelKey { property in
-            property.name.kk.underlineCased()
+            property.name.kj.underlineCased()
         }
         
         // Config of Person
@@ -346,19 +346,19 @@ class JTM_05_KeyMapping: XCTestCase {
         }
         
         let personName = "Jack"
-        let person = ["_name_": personName].kk.model(Person.self)
+        let person = ["_name_": personName].kj.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
-                       "_score_": studentScore].kk.model(Student.self)
+                       "_score_": studentScore].kj.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
         
         let max_speed = 250.0
         let name = "Bently"
-        let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+        let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
         XCTAssert(car?.maxSpeed == max_speed)
         XCTAssert(car?.name == name)
     }
@@ -366,7 +366,7 @@ class JTM_05_KeyMapping: XCTestCase {
     func testConfig4() {
         // Global Config
         ConvertibleConfig.setModelKey { property in
-            property.name.kk.underlineCased()
+            property.name.kj.underlineCased()
         }
         
         // Config of Person
@@ -385,7 +385,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var name: String = ""
             required init() {}
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 // Use ConvertibleConfig to get config of Person
                 // `name` -> `_name_`
                 return ConvertibleConfig.modelKey(from: property, Person.self)
@@ -395,7 +395,7 @@ class JTM_05_KeyMapping: XCTestCase {
         class Student: Person {
             var score: Int = 0
             
-            override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            override func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 // `score` -> `score`，`name` -> `name`
                 return property.name
             }
@@ -405,7 +405,7 @@ class JTM_05_KeyMapping: XCTestCase {
             var maxSpeed: Double = 0.0
             var name: String = ""
             
-            func kk_modelKey(from property: Property) -> ModelPropertyKey {
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
                 // Use ConvertibleConfig to get global config
                 // `maxSpeed` -> `max_speed`
                 // `name` -> `name`
@@ -415,7 +415,7 @@ class JTM_05_KeyMapping: XCTestCase {
         
         /*
          If there are many `modelKey`s，the rule is（e.g. Student）
-         ① Use kk_modelKey implementation of Student
+         ① Use kj_modelKey implementation of Student
          ② If ① doesn't exist，use ConvertibleConfig of Student
          ③ If ①② doesn't exist，use ConvertibleConfig of Student's superclass
          ④ If ①②③ doesn't exist，use ConvertibleConfig of Student's superclass's superclass....
@@ -423,19 +423,19 @@ class JTM_05_KeyMapping: XCTestCase {
          */
         
         let personName = "Jack"
-        let person = ["_name_": personName].kk.model(Person.self)
+        let person = ["_name_": personName].kj.model(Person.self)
         XCTAssert(person?.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
-                       "score": studentScore].kk.model(Student.self)
+                       "score": studentScore].kj.model(Student.self)
         XCTAssert(student?.name == studentName)
         XCTAssert(student?.score == studentScore)
         
         let max_speed = 250.0
         let name = "Bently"
-        let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+        let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
         XCTAssert(car?.maxSpeed == max_speed)
         XCTAssert(car?.name == name)
     }

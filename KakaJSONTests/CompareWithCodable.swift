@@ -7,12 +7,12 @@
 //
 
 class CompareWithCodable: XCTestCase {
-    struct Cat: Codable {
+    struct Cat: Convertible, Codable {
         var weight: Double = 0.0
         var name: String = ""
     }
     
-    func test() {
+    func testCodable() {
         let jsonData = """
         {
         "name": "Miaomiao",
@@ -22,5 +22,19 @@ class CompareWithCodable: XCTestCase {
         
         let cat = try! JSONDecoder().decode(Cat.self, from: jsonData)
         print(cat)
+    }
+    
+    func testKJ() {
+        let jsonData: [String: Any] =
+        [
+            "name": "Miaomiao",
+            "weight": 1.66
+        ]
+        
+        measure {
+            for _ in 0...1000 {
+                let _ = jsonData.kj.model(Cat.self)
+            }
+        }
     }
 }

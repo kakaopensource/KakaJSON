@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D0575832308F41400810526 /* CompareWithCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0575822308F41400810526 /* CompareWithCodable.swift */; };
-		2D0AC2B523099A4B00992F29 /* Data+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AC2B423099A4B00992F29 /* Data+KK.swift */; };
+		2D0AC2B523099A4B00992F29 /* Data+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AC2B423099A4B00992F29 /* Data+KJ.swift */; };
 		2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */; };
-		2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KK.swift */; };
+		2D5253AE2305461300F854D9 /* NSObject+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KJ.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
 		2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */; };
 		2D5875CC2301C49D001A809B /* MTJ_04_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */; };
@@ -30,13 +30,13 @@
 		2D92DDAE230126BD00A96858 /* JTM_06_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDA7230126BD00A96858 /* JTM_06_CustomValue.swift */; };
 		2D92DDDE2301279E00A96858 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB02301279E00A96858 /* Logger.swift */; };
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
-		2D92DDE02301279E00A96858 /* KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KK.swift */; };
+		2D92DDE02301279E00A96858 /* KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KJ.swift */; };
 		2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* KakaJSON.swift */; };
-		2D92DDE52301279E00A96858 /* Pointer+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KK.swift */; };
-		2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KK.swift */; };
-		2D92DDE72301279E00A96858 /* String+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBA2301279E00A96858 /* String+KK.swift */; };
-		2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBB2301279E00A96858 /* Optional+KK.swift */; };
-		2D92DDE92301279E00A96858 /* JSONSerialization+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBC2301279E00A96858 /* JSONSerialization+KK.swift */; };
+		2D92DDE52301279E00A96858 /* Pointer+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KJ.swift */; };
+		2D92DDE62301279E00A96858 /* Dictionary+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KJ.swift */; };
+		2D92DDE72301279E00A96858 /* String+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBA2301279E00A96858 /* String+KJ.swift */; };
+		2D92DDE82301279E00A96858 /* Optional+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBB2301279E00A96858 /* Optional+KJ.swift */; };
+		2D92DDE92301279E00A96858 /* JSONSerialization+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBC2301279E00A96858 /* JSONSerialization+KJ.swift */; };
 		2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBE2301279E00A96858 /* Metadata.swift */; };
 		2D92DDEB2301279E00A96858 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBF2301279E00A96858 /* Property.swift */; };
 		2D92DDEC2301279E00A96858 /* FieldList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDC12301279E00A96858 /* FieldList.swift */; };
@@ -67,7 +67,7 @@
 		2D92DE052301279E00A96858 /* EnumDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDDC2301279E00A96858 /* EnumDescriptor.swift */; };
 		2D92DE062301279E00A96858 /* StructDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDDD2301279E00A96858 /* StructDescriptor.swift */; };
 		2D9BB49523012CEA00E04DB9 /* JTM_07_DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BB49423012CEA00E04DB9 /* JTM_07_DynamicModel.swift */; };
-		2DCEB38D230175AC0030701B /* Array+KK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEB38C230175AC0030701B /* Array+KK.swift */; };
+		2DCEB38D230175AC0030701B /* Array+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCEB38C230175AC0030701B /* Array+KJ.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,10 +82,10 @@
 
 /* Begin PBXFileReference section */
 		2D0575822308F41400810526 /* CompareWithCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareWithCodable.swift; sourceTree = "<group>"; };
-		2D0AC2B423099A4B00992F29 /* Data+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+KK.swift"; sourceTree = "<group>"; };
+		2D0AC2B423099A4B00992F29 /* Data+KJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+KJ.swift"; sourceTree = "<group>"; };
 		2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
-		2D5253AD2305461300F854D9 /* NSObject+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KK.swift"; sourceTree = "<group>"; };
+		2D5253AD2305461300F854D9 /* NSObject+KJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KJ.swift"; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
 		2D5875CB2301C49D001A809B /* MTJ_04_KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_04_KeyMapping.swift; sourceTree = "<group>"; };
@@ -110,13 +110,13 @@
 		2D92DDA7230126BD00A96858 /* JTM_06_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_06_CustomValue.swift; sourceTree = "<group>"; };
 		2D92DDB02301279E00A96858 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
-		2D92DDB22301279E00A96858 /* KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KK.swift; sourceTree = "<group>"; };
+		2D92DDB22301279E00A96858 /* KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KJ.swift; sourceTree = "<group>"; };
 		2D92DDB62301279E00A96858 /* KakaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaJSON.swift; sourceTree = "<group>"; };
-		2D92DDB82301279E00A96858 /* Pointer+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KK.swift"; sourceTree = "<group>"; };
-		2D92DDB92301279E00A96858 /* Dictionary+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KK.swift"; sourceTree = "<group>"; };
-		2D92DDBA2301279E00A96858 /* String+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+KK.swift"; sourceTree = "<group>"; };
-		2D92DDBB2301279E00A96858 /* Optional+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+KK.swift"; sourceTree = "<group>"; };
-		2D92DDBC2301279E00A96858 /* JSONSerialization+KK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+KK.swift"; sourceTree = "<group>"; };
+		2D92DDB82301279E00A96858 /* Pointer+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KJ.swift"; sourceTree = "<group>"; };
+		2D92DDB92301279E00A96858 /* Dictionary+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KJ.swift"; sourceTree = "<group>"; };
+		2D92DDBA2301279E00A96858 /* String+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+KJ.swift"; sourceTree = "<group>"; };
+		2D92DDBB2301279E00A96858 /* Optional+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+KJ.swift"; sourceTree = "<group>"; };
+		2D92DDBC2301279E00A96858 /* JSONSerialization+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+KJ.swift"; sourceTree = "<group>"; };
 		2D92DDBE2301279E00A96858 /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2D92DDBF2301279E00A96858 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		2D92DDC12301279E00A96858 /* FieldList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldList.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		2D92DDDC2301279E00A96858 /* EnumDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumDescriptor.swift; sourceTree = "<group>"; };
 		2D92DDDD2301279E00A96858 /* StructDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructDescriptor.swift; sourceTree = "<group>"; };
 		2D9BB49423012CEA00E04DB9 /* JTM_07_DynamicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_07_DynamicModel.swift; sourceTree = "<group>"; };
-		2DCEB38C230175AC0030701B /* Array+KK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+KK.swift"; sourceTree = "<group>"; };
+		2DCEB38C230175AC0030701B /* Array+KJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+KJ.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +247,7 @@
 				2D92DDB12301279E00A96858 /* Convertible.swift */,
 				2D645D3E23058B2500046636 /* ConvertibleConfig.swift */,
 				2D645BA223029A0400075A9E /* ConvertibleEnum.swift */,
-				2D92DDB22301279E00A96858 /* KK.swift */,
+				2D92DDB22301279E00A96858 /* KJ.swift */,
 				2D645BA02302995100075A9E /* TypeProxy.swift */,
 			);
 			path = JSON;
@@ -256,14 +256,14 @@
 		2D92DDB72301279E00A96858 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				2D92DDB82301279E00A96858 /* Pointer+KK.swift */,
-				2D92DDB92301279E00A96858 /* Dictionary+KK.swift */,
-				2D92DDBA2301279E00A96858 /* String+KK.swift */,
-				2D92DDBB2301279E00A96858 /* Optional+KK.swift */,
-				2D92DDBC2301279E00A96858 /* JSONSerialization+KK.swift */,
-				2DCEB38C230175AC0030701B /* Array+KK.swift */,
-				2D5253AD2305461300F854D9 /* NSObject+KK.swift */,
-				2D0AC2B423099A4B00992F29 /* Data+KK.swift */,
+				2D92DDB82301279E00A96858 /* Pointer+KJ.swift */,
+				2D92DDB92301279E00A96858 /* Dictionary+KJ.swift */,
+				2D92DDBA2301279E00A96858 /* String+KJ.swift */,
+				2D92DDBB2301279E00A96858 /* Optional+KJ.swift */,
+				2D92DDBC2301279E00A96858 /* JSONSerialization+KJ.swift */,
+				2DCEB38C230175AC0030701B /* Array+KJ.swift */,
+				2D5253AD2305461300F854D9 /* NSObject+KJ.swift */,
+				2D0AC2B423099A4B00992F29 /* Data+KJ.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -450,21 +450,21 @@
 				2D92DE012301279E00A96858 /* ObjCClassType.swift in Sources */,
 				2D92DDFB2301279E00A96858 /* StructType.swift in Sources */,
 				2D92DDEB2301279E00A96858 /* Property.swift in Sources */,
-				2D92DDE92301279E00A96858 /* JSONSerialization+KK.swift in Sources */,
+				2D92DDE92301279E00A96858 /* JSONSerialization+KJ.swift in Sources */,
 				2D92DDF52301279E00A96858 /* TupleType.swift in Sources */,
 				2D92DE032301279E00A96858 /* Descriptor.swift in Sources */,
 				2D92DDDE2301279E00A96858 /* Logger.swift in Sources */,
-				2DCEB38D230175AC0030701B /* Array+KK.swift in Sources */,
+				2DCEB38D230175AC0030701B /* Array+KJ.swift in Sources */,
 				2D645BA323029A0400075A9E /* ConvertibleEnum.swift in Sources */,
 				2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */,
 				2D92DDFD2301279E00A96858 /* Kind.swift in Sources */,
 				2D92DDFE2301279E00A96858 /* OptionalType.swift in Sources */,
 				2D92DDFC2301279E00A96858 /* MetaType.swift in Sources */,
-				2D92DDE82301279E00A96858 /* Optional+KK.swift in Sources */,
+				2D92DDE82301279E00A96858 /* Optional+KJ.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
-				2D0AC2B523099A4B00992F29 /* Data+KK.swift in Sources */,
-				2D5253AE2305461300F854D9 /* NSObject+KK.swift in Sources */,
-				2D92DDE62301279E00A96858 /* Dictionary+KK.swift in Sources */,
+				2D0AC2B523099A4B00992F29 /* Data+KJ.swift in Sources */,
+				2D5253AE2305461300F854D9 /* NSObject+KJ.swift in Sources */,
+				2D92DDE62301279E00A96858 /* Dictionary+KJ.swift in Sources */,
 				2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */,
 				2D645D3F23058B2500046636 /* ConvertibleConfig.swift in Sources */,
 				2D645BA12302995100075A9E /* TypeProxy.swift in Sources */,
@@ -475,14 +475,14 @@
 				2D92DDF72301279E00A96858 /* FunctionType.swift in Sources */,
 				2D92DE002301279E00A96858 /* EnumType.swift in Sources */,
 				2D92DDFF2301279E00A96858 /* BaseType.swift in Sources */,
-				2D92DDE72301279E00A96858 /* String+KK.swift in Sources */,
+				2D92DDE72301279E00A96858 /* String+KJ.swift in Sources */,
 				2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */,
 				2D92DDF92301279E00A96858 /* ProtocolType.swift in Sources */,
-				2D92DDE02301279E00A96858 /* KK.swift in Sources */,
+				2D92DDE02301279E00A96858 /* KJ.swift in Sources */,
 				2D92DDEC2301279E00A96858 /* FieldList.swift in Sources */,
 				2D92DDF12301279E00A96858 /* Layout.swift in Sources */,
 				2D92DDFA2301279E00A96858 /* ClassType.swift in Sources */,
-				2D92DDE52301279E00A96858 /* Pointer+KK.swift in Sources */,
+				2D92DDE52301279E00A96858 /* Pointer+KJ.swift in Sources */,
 				2D92DE062301279E00A96858 /* StructDescriptor.swift in Sources */,
 				2D92DDF02301279E00A96858 /* TupleLayout.swift in Sources */,
 				2D92DDF82301279E00A96858 /* Type.swift in Sources */,

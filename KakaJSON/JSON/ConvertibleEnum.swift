@@ -7,15 +7,15 @@
 //
 
 public protocol ConvertibleEnum {
-    static func kk_convert(from value: Any?) -> Self?
-    var kk_value: Any { get }
-    static var kk_valueType: Any.Type { get }
+    static func kj_convert(from value: Any?) -> Self?
+    var kj_value: Any { get }
+    static var kj_valueType: Any.Type { get }
 }
 
 public extension RawRepresentable where Self: ConvertibleEnum {
-    static func kk_convert(from value: Any?) -> Self? {
+    static func kj_convert(from value: Any?) -> Self? {
         return (value as? RawValue).flatMap { Self.init(rawValue: $0) }
     }
-    var kk_value: Any { return rawValue }
-    static var kk_valueType: Any.Type { return RawValue.self }
+    var kj_value: Any { return rawValue }
+    static var kj_valueType: Any.Type { return RawValue.self }
 }

@@ -1,5 +1,5 @@
 //
-//  Dictionary+KK.swift
+//  Dictionary+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/7.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-extension NSDictionary: KKCompatible {}
-extension Dictionary: KKGenericCompatible {
+extension NSDictionary: KJCompatible {}
+extension Dictionary: KJGenericCompatible {
     public typealias T = Value
 }
 
-public extension KKGeneric where Base == [String: T] {
+public extension KJGeneric where Base == [String: T] {
     /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
@@ -25,11 +25,11 @@ public extension KKGeneric where Base == [String: T] {
             let mt = Metadata.type(anyType) as? ModelType,
             let _ = mt.properties
             else { return nil }
-        return base.kk_fastModel(t)
+        return base.kj_fastModel(t)
     }
 }
 
-public extension KKGeneric where Base == [NSString: T] {
+public extension KJGeneric where Base == [NSString: T] {
     /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
@@ -37,35 +37,35 @@ public extension KKGeneric where Base == [NSString: T] {
     
     /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
-        return (base as [String: Any]).kk.model(anyType: anyType)
+        return (base as [String: Any]).kj.model(anyType: anyType)
     }
 }
 
-public extension KK where Base: NSDictionary {
+public extension KJ where Base: NSDictionary {
     /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
-        return (base as? [String: Any])?.kk.model(type)
+        return (base as? [String: Any])?.kj.model(type)
     }
     
     /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
-        return (base as? [String: Any])?.kk.model(anyType: anyType)
+        return (base as? [String: Any])?.kj.model(anyType: anyType)
     }
 }
 
 extension Dictionary where Key == String {
-    func kk_fastModel(_ type: Convertible.Type) -> Convertible? {
+    func kj_fastModel(_ type: Convertible.Type) -> Convertible? {
         var model: Convertible?
         if let ns = type as? NSObject.Type {
             model = ns.newConvertible()
         } else {
             model = type.init()
         }
-        model?.kk_convert(from: self)
+        model?.kj_convert(from: self)
         return model
     }
     
-    func kk_value(for modelPropertyKey: ModelPropertyKey) -> Any? {
+    func kj_value(for modelPropertyKey: ModelPropertyKey) -> Any? {
         if let key = modelPropertyKey as? String {
             return _value(stringKey: key)
         }

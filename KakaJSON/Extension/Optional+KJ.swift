@@ -1,5 +1,5 @@
 //
-//  Optional+KK.swift
+//  Optional+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/5.
@@ -12,124 +12,124 @@ import CoreGraphics
 #endif
 
 protocol OptionalValue {
-    var kk_value: Any? { get }
+    var kj_value: Any? { get }
 }
 
 extension Optional: OptionalValue {
-    var kk_value: Any? {
+    var kj_value: Any? {
         guard self != nil else { return nil }
         let value = self!
         guard let ov = value as? OptionalValue else {
             return value
         }
-        return ov.kk_value
+        return ov.kj_value
     }
 }
 
-extension Optional: KKGenericCompatible {
+extension Optional: KJGenericCompatible {
     public typealias T = Wrapped
 }
 
-public extension KKGeneric where Base == Optional<T> {
+public extension KJGeneric where Base == Optional<T> {
     /// get the most inner value
-    var value: Any? { return base.kk_value }
+    var value: Any? { return base.kj_value }
     
     /// convert value to String
     var string: String? {
-        return base.kk_value(String.self) as? String
+        return base.kj_value(String.self) as? String
     }
     
     /// convert value to Bool
     var bool: Bool? {
-        return base.kk_value(Bool.self) as? Bool
+        return base.kj_value(Bool.self) as? Bool
     }
     
     /// convert value to Int
     var int: Int? {
-        return base.kk_value(Int.self) as? Int
+        return base.kj_value(Int.self) as? Int
     }
     
     /// convert value to Int8
     var int8: Int8? {
-        return base.kk_value(Int8.self) as? Int8
+        return base.kj_value(Int8.self) as? Int8
     }
     
     /// convert value to Int16
     var int16: Int16? {
-        return base.kk_value(Int16.self) as? Int16
+        return base.kj_value(Int16.self) as? Int16
     }
     
     /// convert value to Int32
     var int32: Int32? {
-        return base.kk_value(Int32.self) as? Int32
+        return base.kj_value(Int32.self) as? Int32
     }
     
     /// convert value to Int64
     var int64: Int64? {
-        return base.kk_value(Int64.self) as? Int64
+        return base.kj_value(Int64.self) as? Int64
     }
     
     /// convert value to UInt
     var uInt: UInt? {
-        return base.kk_value(UInt.self) as? UInt
+        return base.kj_value(UInt.self) as? UInt
     }
     
     /// convert value to UInt8
     var uInt8: UInt8? {
-        return base.kk_value(UInt8.self) as? UInt8
+        return base.kj_value(UInt8.self) as? UInt8
     }
     
     /// convert value to UInt16
     var uInt16: UInt16? {
-        return base.kk_value(UInt16.self) as? UInt16
+        return base.kj_value(UInt16.self) as? UInt16
     }
     
     /// convert value to UInt32
     var uInt32: UInt32? {
-        return base.kk_value(UInt32.self) as? UInt32
+        return base.kj_value(UInt32.self) as? UInt32
     }
     
     /// convert value to UInt64
     var uInt64: UInt64? {
-        return base.kk_value(UInt64.self) as? UInt64
+        return base.kj_value(UInt64.self) as? UInt64
     }
     
     /// convert value to Float
     var float: Float? {
-        return base.kk_value(Float.self) as? Float
+        return base.kj_value(Float.self) as? Float
     }
     
     /// convert value to Double
     var double: Double? {
-        return base.kk_value(Double.self) as? Double
+        return base.kj_value(Double.self) as? Double
     }
     
     #if canImport(CoreGraphics)
     /// convert value to CGFloat
     var cgFloat: CGFloat? {
-        return base.kk_value(CGFloat.self) as? CGFloat
+        return base.kj_value(CGFloat.self) as? CGFloat
     }
     #endif
     
     /// convert value to Decimal
     var decimal: Decimal? {
-        return base.kk_value(Decimal.self) as? Decimal
+        return base.kj_value(Decimal.self) as? Decimal
     }
     
     /// convert value to NSNumber
     var number: NSNumber? {
-        return base.kk_value(NSNumber.self) as? NSNumber
+        return base.kj_value(NSNumber.self) as? NSNumber
     }
     
     /// convert value to NSDecimalNumber
     var decimalNumber: NSDecimalNumber? {
-        return base.kk_value(NSDecimalNumber.self) as? NSDecimalNumber
+        return base.kj_value(NSDecimalNumber.self) as? NSDecimalNumber
     }
 }
 
 extension Optional {
-    func kk_value(_ type: Any.Type) -> Any? {
-        guard let v = kk_value else { return nil }
+    func kj_value(_ type: Any.Type) -> Any? {
+        guard let v = kj_value else { return nil }
         if Swift.type(of: v) == type { return v }
         
         switch type {
@@ -143,30 +143,30 @@ extension Optional {
         case is URLValue.Type: return _url(v)
         case is DateValue.Type: return _date(v)
         case let enumType as ConvertibleEnum.Type:
-            let v = kk_value(enumType.kk_valueType)
-            return enumType.kk_convert(from: v)
+            let v = kj_value(enumType.kj_valueType)
+            return enumType.kj_convert(from: v)
         default: return nil
         }
     }
     
-    func kk_JSON() -> Any? {
-        guard let v = kk_value else { return nil }
+    func kj_JSON() -> Any? {
+        guard let v = kj_value else { return nil }
         
         switch v {
-        case let model as Convertible: return model.kk_JSONObject()
+        case let model as Convertible: return model.kj_JSONObject()
         case let array as [Any]: return _JSON(from: array)
         case let dict as [String: Any]: return _JSON(from: dict)
         case let set as SetValue: return _JSON(from: set)
         case let num as NumberValue: return _JSON(from: num)
         case let url as URL: return url.absoluteString
         case let date as Date: return date.timeIntervalSince1970
-        case let `enum` as ConvertibleEnum: return `enum`.kk_value~?.kk_JSON()
+        case let `enum` as ConvertibleEnum: return `enum`.kj_value~?.kj_JSON()
         default: return v as? NSCoding
         }
     }
     
-    func kk_JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kk_string(kk_JSON(),
+    func kj_JSONString(prettyPrinted: Bool = false) -> String? {
+        if let str = JSONSerialization.kj_string(kj_JSON(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }
@@ -188,7 +188,7 @@ private extension Optional {
     
     func _model(_ value: Any, _ type: Any.Type) -> Any? {
         guard let json = value as? [String: Any] else { return nil }
-        return json.kk.model(anyType: type)
+        return json.kj.model(anyType: type)
     }
     
     func _anyArray(_ value: Any) -> [Any]? {
@@ -202,7 +202,7 @@ private extension Optional {
         let mt = Metadata.type(type)
         if let type = (mt as? NominalType)?.genericTypes?.first,
             let modelType = type~! as? Convertible.Type {
-            return json.kk.modelArray(anyType: modelType)
+            return json.kj.modelArray(anyType: modelType)
         }
         
         return type is NSMutableArray.Type
@@ -227,7 +227,7 @@ private extension Optional {
             let modelType = type~! as? Convertible.Type {
             var modelDict = [String: Any]()
             for (k, v) in json {
-                guard let m = v?.kk.model(anyType: modelType) else { continue }
+                guard let m = v?.kj.model(anyType: modelType) else { continue }
                 modelDict[k] = m
             }
             return modelDict.isEmpty ? nil : modelDict
@@ -296,23 +296,23 @@ private extension Optional {
     }
     
     func _JSON(from set: SetValue) -> Any? {
-        return _JSON(from: set.kk_array())
+        return _JSON(from: set.kj_array())
     }
     
     func _JSON(from array: [Any]) -> Any? {
-        let newArray = array.compactMap { $0~?.kk_JSON() }
+        let newArray = array.compactMap { $0~?.kj_JSON() }
         return newArray.isEmpty ? nil : newArray
     }
     
     func _JSON(from dict: [String: Any]) -> Any? {
-        let newDict = dict.compactMapValues { $0~?.kk_JSON() }
+        let newDict = dict.compactMapValues { $0~?.kj_JSON() }
         return newDict.isEmpty ? nil : newDict
     }
     
     func _JSON(from modelDict: [String: Convertible?]) -> Any? {
         var jsonDict = [String: Any]()
         for (k, model) in modelDict {
-            guard let json = model?.kk_JSONObject() else { continue }
+            guard let json = model?.kj_JSONObject() else { continue }
             jsonDict[k] = json
         }
         return jsonDict.isEmpty ? nil : jsonDict
@@ -340,10 +340,10 @@ protocol SwiftArrayValue: ArrayValue {}
 extension Array: SwiftArrayValue {}
 
 protocol SetValue: CollectionValue {
-    func kk_array() -> [Any]
+    func kj_array() -> [Any]
 }
 extension SetValue where Self: Sequence {
-    func kk_array() -> [Any] {
+    func kj_array() -> [Any] {
         return map { $0 }
     }
 }
@@ -424,9 +424,9 @@ postfix func ~! (_ type: Any.Type) -> Any.Type {
 ///     print(value~!) // Optional(10)
 postfix func ~! (_ value: Any) -> Any? {
     guard let ov = value as? OptionalValue else { return value }
-    return ov.kk_value
+    return ov.kj_value
 }
 
 postfix func ~! (_ value: Any?) -> Any? {
-    return (value as OptionalValue).kk_value
+    return (value as OptionalValue).kj_value
 }

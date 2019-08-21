@@ -1,5 +1,5 @@
 //
-//  Pointer+KK.swift
+//  Pointer+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/1.
@@ -7,26 +7,26 @@
 //
 
 extension UnsafePointer {
-    var kk_raw: UnsafeRawPointer {
+    var kj_raw: UnsafeRawPointer {
         return UnsafeRawPointer(self)
     }
-    var kk_mutable: UnsafeMutablePointer<Pointee> {
+    var kj_mutable: UnsafeMutablePointer<Pointee> {
         return UnsafeMutablePointer(mutating: self)
     }
 }
 
 extension UnsafeMutablePointer {
-    var kk_raw: UnsafeMutableRawPointer {
+    var kj_raw: UnsafeMutableRawPointer {
         return UnsafeMutableRawPointer(self)
     }
     
-    var kk_immutable: UnsafePointer<Pointee> {
+    var kj_immutable: UnsafePointer<Pointee> {
         return UnsafePointer(self)
     }
 }
 
 extension UnsafeRawPointer {
-    var kk_mutable: UnsafeMutableRawPointer {
+    var kj_mutable: UnsafeMutableRawPointer {
         return UnsafeMutableRawPointer(mutating: self)
     }
     
@@ -36,15 +36,15 @@ extension UnsafeRawPointer {
 }
 
 extension UnsafeMutableRawPointer {
-    var kk_immutable: UnsafeRawPointer {
+    var kj_immutable: UnsafeRawPointer {
         return UnsafeRawPointer(self)
     }
     
-    func kk_set(_ value: Any, _ type: Any.Type) {
+    func kj_set(_ value: Any, _ type: Any.Type) {
         return typeProxy(type)._set(value, self)
     }
     
-    func kk_get(_ type: Any.Type) -> Any {
+    func kj_get(_ type: Any.Type) -> Any {
         return typeProxy(type)._get(self)
     }
     

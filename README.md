@@ -101,7 +101,7 @@ let json: [String: Any] = [
     "weight": 6.66
 ]
 
-let cat1 = json.kk.model(Cat.self)
+let cat1 = json.kj.model(Cat.self)
 XCTAssert(cat1?.name == "Miaomiao")
 XCTAssert(cat1?.weight == 6.66)
 
@@ -110,7 +110,7 @@ let cat2 = model(from: json, Cat.self)
 
 // support type variable
 var type: Any.Type = Cat.self
-let cat3 = json.kk.model(anyType: type) as? Cat
+let cat3 = json.kj.model(anyType: type) as? Cat
 let cat4 = model(from: json, anyType: type) as? Cat
 ```
 
@@ -124,7 +124,7 @@ class Cat: Convertible {
     required init() {}
 }
 let json = ...
-let cat = json.kk.model(Cat.self)
+let cat = json.kj.model(Cat.self)
 
 // a class inherit from NSObject
 class Person: NSObject, Convertible {
@@ -133,7 +133,7 @@ class Person: NSObject, Convertible {
     // must add `override` because NSObject has `init`
     required override init() {}
 }
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 
 struct Dog: Convertible {
     var weight: Double = 0.0
@@ -172,7 +172,7 @@ let json: [String: Any] = [
     "no": "9527"
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 ```
 
 #### let
@@ -182,7 +182,7 @@ struct Cat: Convertible {
     let name: String = ""
 }
 let json = ...
-let cat = json.kk.model(Cat.self)
+let cat = json.kj.model(Cat.self)
 ```
 
 #### JSONString
@@ -195,11 +195,11 @@ let jsonString = """
 }
 """
  
-let cat1 = jsonString.kk.model(Cat.self)
+let cat1 = jsonString.kj.model(Cat.self)
 let cat2 = model(from: jsonString, Cat.self)
 
 var type: Any.Type = Cat.self
-let cat3 = jsonString.kk.model(anyType: type) as? Cat
+let cat3 = jsonString.kj.model(anyType: type) as? Cat
 let cat4 = model(from: jsonString, anyType: type) as? Cat
 ```
 
@@ -213,11 +213,11 @@ let jsonData = """
 }
 """.data(using: .utf8)!
  
-let cat1 = jsonData.kk.model(Cat.self)
+let cat1 = jsonData.kj.model(Cat.self)
 let cat2 = model(from: jsonData, Cat.self)
 
 var type: Any.Type = Cat.self
-let cat3 = jsonData.kk.model(anyType: type) as? Cat
+let cat3 = jsonData.kj.model(anyType: type) as? Cat
 let cat4 = model(from: jsonData, anyType: type) as? Cat
 ```
 
@@ -260,7 +260,7 @@ let json: [String: Any] = [
     ]
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.car?.name == "BMW7")
 XCTAssert(person?.books?[1].name == "Data Structure And Algorithm")
 XCTAssert(person?.dogs?["dog0"]?.name == "Larry")
@@ -285,7 +285,7 @@ let json: [String: Any] = [
     ]
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.name == "Jack")
  
 XCTAssert(person?.books?.count == 1)
@@ -309,20 +309,20 @@ let json: [[String: Any]] = [
 ]
  
  
-let cars1 = json.kk.modelArray(Car.self)
+let cars1 = json.kj.modelArray(Car.self)
 XCTAssert(cars1?[1].name == "Bently")
  
 let cars2 = modelArray(from: json, Car.self)
 
 var type: Any.Type = Car.self
-let cars3 = json.kk.modelArray(anyType: type) as? [Car]
+let cars3 = json.kj.modelArray(anyType: type) as? [Car]
 let cars4 = modelArray(from: json, anyType: type) as? [Car]
  
 // jsonString -> Model Array
 let jsonString = "...."
-let cars5 = jsonString.kk.modelArray(Car.self)
+let cars5 = jsonString.kj.modelArray(Car.self)
 let cars6 = modelArray(from: jsonString, Car.self)
-let cars7 = jsonString.kk.modelArray(anyType: type) as? [Car]
+let cars7 = jsonString.kj.modelArray(anyType: type) as? [Car]
 let cars8 = modelArray(from: jsonString, anyType: type) as? [Car]
 ```
 
@@ -340,8 +340,8 @@ let json: [String: Any] = [
  
 var cat = Cat()
 // fill a cat instance with json
-// .kk_m is a mutable version of .kk
-cat.kk_m.convert(json)
+// .kj_m is a mutable version of .kj
+cat.kj_m.convert(json)
 XCTAssert(cat.name == "Miaomiao"
 XCTAssert(cat.weight == 6.66)
 
@@ -354,21 +354,21 @@ struct Car: Convertible {
     var age: Int = 0
     
     // call when will begin to convert from json to model
-    mutating func kk_willConvertToModel(from json: JSONObject) {
-        print("Car - kk_willConvertToModel")
+    mutating func kj_willConvertToModel(from json: JSONObject) {
+        print("Car - kj_willConvertToModel")
     }
     
     // call when did finish converting from json to model
-    mutating func kk_didConvertToModel(from json: JSONObject) {
-        print("Car - kk_didConvertToModel")
+    mutating func kj_didConvertToModel(from json: JSONObject) {
+        print("Car - kj_didConvertToModel")
     }
 }
  
 let name = "Benz"
 let age = 100
-let car = ["name": name, "age": age].kk.model(Car.self)
-// Car - kk_willConvertToModel
-// Car - kk_didConvertToModel
+let car = ["name": name, "age": age].kj.model(Car.self)
+// Car - kj_willConvertToModel
+// Car - kj_didConvertToModel
 XCTAssert(car?.name == name)
 XCTAssert(car?.age == age)
  
@@ -379,41 +379,41 @@ class Person: Convertible {
     var age: Int = 0
     required init() {}
     
-    func kk_willConvertToModel(from json: JSONObject) {
-        print("Person - kk_willConvertToModel")
+    func kj_willConvertToModel(from json: JSONObject) {
+        print("Person - kj_willConvertToModel")
     }
     
-    func kk_didConvertToModel(from json: JSONObject) {
-        print("Person - kk_didConvertToModel")
+    func kj_didConvertToModel(from json: JSONObject) {
+        print("Person - kj_didConvertToModel")
     }
 }
  
 class Student: Person {
     var score: Int = 0
     
-    override func kk_willConvertToModel(from json: JSONObject) {
+    override func kj_willConvertToModel(from json: JSONObject) {
         // call super's implementation if necessary
-        super.kk_willConvertToModel(from: json)
+        super.kj_willConvertToModel(from: json)
         
-        print("Student - kk_willConvertToModel")
+        print("Student - kj_willConvertToModel")
     }
     
-    override func kk_didConvertToModel(from json: JSONObject) {
+    override func kj_didConvertToModel(from json: JSONObject) {
         // call super's implementation if necessary
-        super.kk_didConvertToModel(from: json)
+        super.kj_didConvertToModel(from: json)
         
-        print("Student - kk_didConvertToModel")
+        print("Student - kj_didConvertToModel")
     }
 }
  
 let name = "jack"
 let age = 10
 let score = 100
-let student = ["name": name, "age": age, "score": score].kk.model(Student.self)
-// Person - kk_willConvertToModel
-// Student - kk_willConvertToModel
-// Person - kk_didConvertToModel
-// Student - kk_didConvertToModel
+let student = ["name": name, "age": age, "score": score].kj.model(Student.self)
+// Person - kj_willConvertToModel
+// Student - kj_willConvertToModel
+// Person - kj_didConvertToModel
+// Student - kj_didConvertToModel
 XCTAssert(student?.name == name)
 XCTAssert(student?.age == age)
 XCTAssert(student?.score == score)
@@ -451,7 +451,7 @@ let json: [String: Any] = [
     "age11": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 // convert failed，keep defualt value
 XCTAssert(student?.age1 == 6) 
 XCTAssert(student?.age2 == 6) 
@@ -494,7 +494,7 @@ let json: [String: Any] = [
     "height9": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.height1 == 6.66)
 XCTAssert(student?.height2 == 0.12345678)
 XCTAssert(student?.height3 == 0.12345678)
@@ -534,7 +534,7 @@ let json: [String: Any] = [
     "height9": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.height1 == 6.66)
 XCTAssert(student?.height2 == 0.1234567890123456)
 XCTAssert(student?.height3 == 0.1234567890123456)
@@ -574,7 +574,7 @@ let json: [String: Any] = [
     "height9": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.height1 == 6.66)
 XCTAssert(student?.height2 == CGFloat(0.1234567890123456))
 XCTAssert(student?.height3 == CGFloat(0.1234567890123456))
@@ -606,7 +606,7 @@ let json: [String: Any] = [
     "rich6": "NO" 
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 // number 0 is false，not number 0 is true
 XCTAssert(student?.rich1 == true)
 XCTAssert(student?.rich2 == false)
@@ -647,7 +647,7 @@ let json: [String: Any] = [
     "name9": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.name1 == "666")
 XCTAssert(student?.name2 == "777")
 // call array's description
@@ -684,7 +684,7 @@ let json: [String: Any] = [
     "money8": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.money1 == Decimal(string: "0.1234567890123456"))
 XCTAssert(student?.money2 == 1)
 XCTAssert(student?.money3 == Decimal(string: "0.123456789012345678901234567890123456789"))
@@ -719,7 +719,7 @@ let json: [String: Any] = [
     "money8": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.money1 == NSDecimalNumber(string: "0.1234567890123456"))
 XCTAssert(student?.money2 == true)
 XCTAssert(student?.money2 == 1)
@@ -756,7 +756,7 @@ let json: [String: Any] = [
     "money8": Date(timeIntervalSince1970: 1565922866)
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.money1 == NSNumber(value: 0.1234567890123456))
 XCTAssert(student?.money2 == true)
 XCTAssert(student?.money2 == 1)
@@ -801,7 +801,7 @@ let json: [String: Any] = [
     "rich6": rich6
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.rich1 == true)
 XCTAssert(student?.rich2 == false)
 XCTAssert(student?.rich3 == false)
@@ -831,7 +831,7 @@ let json: [String: Any] = [
     "url4": NSURL(string: encodedUrl) as Any
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.url1?.absoluteString == encodedUrl)
 XCTAssert(student?.url2?.absoluteString == encodedUrl)
 XCTAssert(student?.url3?.absoluteString == encodedUrl)
@@ -864,7 +864,7 @@ let json: [String: Any] = [
     "data6": data
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(String(data: (student?.data1)! as Data, encoding: utf8) == str)
 XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
 XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
@@ -899,7 +899,7 @@ let json: [String: Any] = [
     "date7": Decimal(string: "\(milliseconds)") as Any
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.date1?.timeIntervalSince1970 == milliseconds)
 XCTAssert(student?.date2?.timeIntervalSince1970 == milliseconds)
 XCTAssert(student?.date3?.timeIntervalSince1970 == milliseconds)
@@ -931,7 +931,7 @@ let json: [String: Any] = [
     "grade2": "D"
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.grade1 == .good)
 XCTAssert(student?.grade2 == .bad)
  
@@ -957,7 +957,7 @@ let json2: [String: Any] = [
     "grade4": NSDecimalNumber(string: "8.88")
 ]
  
-let student2 = json2.kk.model(Student2.self)
+let student2 = json2.kj.model(Student2.self)
 XCTAssert(student2?.grade1 == .bad)
 XCTAssert(student2?.grade2 == .good)
 XCTAssert(student2?.grade3 == .great)
@@ -988,7 +988,7 @@ let json: [String: Any] = [
     "array6": Set(array),
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.array1 == array)
 XCTAssert(person?.array2 == array as NSArray)
 XCTAssert(person?.array3 == NSMutableArray(array: array))
@@ -1024,7 +1024,7 @@ let json: [String: Any] = [
     "set6": array
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 for i in array {
     XCTAssert(person?.set1?.contains(i) == true)
     XCTAssert(person?.set2?.contains(i) == true)
@@ -1053,7 +1053,7 @@ let json: [String: Any] = [
     "dict3": dict
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 for (k, v) in dict {
     XCTAssert(person?.dict1?[k] as? Int == v)
     XCTAssert(person?.dict2?[k] as? Int == v)
@@ -1069,7 +1069,7 @@ struct Person: Convertible {
     var mostFavoriteNumber: Int = 0
     var birthday: String = ""
  
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         switch property.name {
         // `nickName` -> `nick_name`
         case "nickName": return "nick_name"
@@ -1090,7 +1090,7 @@ let json: [String: Any] = [
     "birthday": birthday
 ]
  
-let student = json.kk.model(Person.self)
+let student = json.kj.model(Person.self)
 XCTAssert(student?.nickName == nick_name)
 XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
 XCTAssert(student?.birthday == birthday)
@@ -1103,9 +1103,9 @@ struct Person: Convertible {
     var mostFavoriteNumber: Int = 0
     var birthday: String = ""
  
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `nickName` -> `nick_name`
-        return property.name.kk.underlineCased()
+        return property.name.kj.underlineCased()
     }
 }
  
@@ -1119,7 +1119,7 @@ let json: [String: Any] = [
     "birthday": birthday
 ]
  
-let student = json.kk.model(Person.self)
+let student = json.kj.model(Person.self)
 XCTAssert(student?.nickName == nick_name)
 XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
 XCTAssert(student?.birthday == birthday)
@@ -1132,9 +1132,9 @@ struct Person: Convertible {
     var most_favorite_number: Int = 0
     var birthday: String = ""
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `nick_name` -> `nickName`
-        return property.name.kk.camelCased()
+        return property.name.kj.camelCased()
     }
 }
  
@@ -1148,7 +1148,7 @@ let json: [String: Any] = [
     "birthday": birthday
 ]
  
-let student = json.kk.model(Person.self)
+let student = json.kj.model(Person.self)
 XCTAssert(student?.nick_name == nickName)
 XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
 XCTAssert(student?.birthday == birthday)
@@ -1160,9 +1160,9 @@ class Person: Convertible {
     var nickName: String = ""
     required init() {}
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `nickName` -> `nick_ame`
-        return property.name.kk.underlineCased()
+        return property.name.kj.underlineCased()
     }
 }
  
@@ -1175,10 +1175,10 @@ let nick_ame = "Jack"
 let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.nickName == nick_ame)
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.nickName == nick_ame)
 XCTAssert(student?.mathScore == math_score)
 ```
@@ -1189,7 +1189,7 @@ class Person: Convertible {
     var name: String = ""
     required init() {}
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `name` -> `_name_`
         return property.name == "name" ? "_name_" : property.name
     }
@@ -1198,9 +1198,9 @@ class Person: Convertible {
 class Student: Person {
     var score: Int = 0
     
-    override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    override func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `score` -> `_score_`，`name` -> `_name_`
-        return property.name == "score" ? "_score_" : super.kk_modelKey(from: property)
+        return property.name == "score" ? "_score_" : super.kj_modelKey(from: property)
     }
 }
  
@@ -1208,10 +1208,10 @@ let name = "Jack"
 let score = 96
 let json: [String: Any] = ["_name_": name, "_score_": score]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.name == name)
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.name == name)
 XCTAssert(student?.score == score)
 ```
@@ -1222,7 +1222,7 @@ class Person: Convertible {
     var name: String = ""
     required init() {}
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `name` -> `_name_`
         return property.name == "name" ? "_name_" : property.name
     }
@@ -1231,20 +1231,20 @@ class Person: Convertible {
 class Student: Person {
     var score: Int = 0
     
-    override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    override func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `score` -> `_score_`，`name` -> `name`
         return property.name == "score" ? "_score_" : property.name
     }
 }
  
 let personName = "Jack"
-let person = ["_name_": personName].kk.model(Person.self)
+let person = ["_name_": personName].kj.model(Person.self)
 XCTAssert(person?.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
-               "_score_": studentScore].kk.model(Student.self)
+               "_score_": studentScore].kj.model(Student.self)
 XCTAssert(student?.name == studentName)
 XCTAssert(student?.score == studentScore)
 ```
@@ -1253,9 +1253,9 @@ XCTAssert(student?.score == studentScore)
 ```swift
 // Set global config once, effect on any type
 ConvertibleConfig.setModelKey { property in
-    property.name.kk.underlineCased()
+    property.name.kj.underlineCased()
 }
-// ConvertibleConfig.setModelKey { $0.name.kk.underlineCased() }
+// ConvertibleConfig.setModelKey { $0.name.kj.underlineCased() }
  
 class Person: Convertible {
     var nickName: String = ""
@@ -1275,16 +1275,16 @@ let nick_ame = "Jack"
 let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.nickName == nick_ame)
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.nickName == nick_ame)
 XCTAssert(student?.mathScore == math_score)
  
 let max_speed = 250.0
 let name = "Bently"
-let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
 XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
@@ -1295,7 +1295,7 @@ XCTAssert(car?.name == name)
 // It effects on Student because Person is Student's superclass
 ConvertibleConfig.setModelKey(for: [Person.self, Car.self]) {
     property in
-    property.name.kk.underlineCased()
+    property.name.kj.underlineCased()
 }
  
 class Person: Convertible {
@@ -1316,16 +1316,16 @@ let nick_ame = "Jack"
 let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.nickName == nick_ame)
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.nickName == nick_ame)
 XCTAssert(student?.mathScore == math_score)
  
 let max_speed = 250.0
 let name = "Bently"
-let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
 XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
@@ -1334,7 +1334,7 @@ XCTAssert(car?.name == name)
 ```swift
 // Global config
 ConvertibleConfig.setModelKey { property in
-    property.name.kk.underlineCased()
+    property.name.kj.underlineCased()
 }
  
 // Config of Person
@@ -1364,19 +1364,19 @@ struct Car: Convertible {
 }
  
 let personName = "Jack"
-let person = ["_name_": personName].kk.model(Person.self)
+let person = ["_name_": personName].kj.model(Person.self)
 XCTAssert(person?.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
-               "_score_": studentScore].kk.model(Student.self)
+               "_score_": studentScore].kj.model(Student.self)
 XCTAssert(student?.name == studentName)
 XCTAssert(student?.score == studentScore)
  
 let max_speed = 250.0
 let name = "Bently"
-let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
 XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
@@ -1385,7 +1385,7 @@ XCTAssert(car?.name == name)
 ```swift
 // Global config
 ConvertibleConfig.setModelKey { property in
-    property.name.kk.underlineCased()
+    property.name.kj.underlineCased()
 }
  
 // Config of Person
@@ -1404,7 +1404,7 @@ class Person: Convertible {
     var name: String = ""
     required init() {}
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // use ConvertibleConfig to get the config of Person
         // `name` -> `_name_`
         return ConvertibleConfig.modelKey(from: property, Person.self)
@@ -1414,7 +1414,7 @@ class Person: Convertible {
 class Student: Person {
     var score: Int = 0
     
-    override func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    override func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // `score` -> `score`，`name` -> `name`
         return property.name
     }
@@ -1424,7 +1424,7 @@ struct Car: Convertible {
     var maxSpeed: Double = 0.0
     var name: String = ""
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         // use ConvertibleConfig to get the global config
         // `maxSpeed` -> `max_speed`
         // `name` -> `name`
@@ -1434,29 +1434,29 @@ struct Car: Convertible {
  
 /*
  If there are many settings of modelKey, the rule is （e.g. Student）
- ① use Student's kk_modelKey firstly
+ ① use Student's kj_modelKey firstly
  ② if ① dosen't exist, use ConvertibleConfig of Student
  ③ if ①② dosen't exist, use ConvertibleConfig of Student's superclass
  ④ if ①②③ dosen't exist, use ConvertibleConfig of Student's superclass's superclass...
  ⑤  if ①②③④ dosen't exist, use gloabal ConvertibleConfig
  */
  
-// Person, Student, Car all have kk_modelKey, so use kk_modelKey firstly
+// Person, Student, Car all have kj_modelKey, so use kj_modelKey firstly
  
 let personName = "Jack"
-let person = ["_name_": personName].kk.model(Person.self)
+let person = ["_name_": personName].kj.model(Person.self)
 XCTAssert(person?.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
-               "score": studentScore].kk.model(Student.self)
+               "score": studentScore].kj.model(Student.self)
 XCTAssert(student?.name == studentName)
 XCTAssert(student?.score == studentScore)
  
 let max_speed = 250.0
 let name = "Bently"
-let car = ["max_speed": max_speed, "name": name].kk.model(Car.self)
+let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
 XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
@@ -1474,7 +1474,7 @@ struct Dog: Convertible {
     var nickName: String?
     var toy: Toy?
     
-    func kk_modelKey(from property: Property) -> ModelPropertyKey {
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
         switch property.name {
         // toy -> dog["toy"]
         case "toy": return "dog.toy"
@@ -1510,7 +1510,7 @@ let json: [String: Any] = [
     ]
 ]
  
-let dog = json.kk.model(Dog.self)
+let dog = json.kj.model(Dog.self)
 XCTAssert(dog?.name == name)
 XCTAssert(dog?.age == age)
 XCTAssert(dog?.nickName == nickName1)
@@ -1537,7 +1537,7 @@ struct Student: Convertible {
     var date1: Date?
     var date2: NSDate?
  
-    func kk_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
+    func kj_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
         switch property.name {
         case "date1": return (jsonValue as? String).flatMap(date1Fmt.date)
         
@@ -1556,7 +1556,7 @@ let json: [String: Any] = [
     "date2": date2
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
 XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
 ```
@@ -1567,9 +1567,9 @@ struct Person: Convertible {
     var name: String = ""
     var pet: Any?
  
-    func kk_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
+    func kj_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
         if property.name != "pet" { return jsonValue }
-        return (jsonValue as? [String: Any])?.kk.model(Dog.self)
+        return (jsonValue as? [String: Any])?.kj.model(Dog.self)
     }
 }
  
@@ -1583,7 +1583,7 @@ let json: [String: Any] = [
     "pet": ["name": "Wang", "weight": 109.5]
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.name == "Jack")
  
 let pet = person?.pet as? Dog
@@ -1597,11 +1597,11 @@ struct Student: Convertible {
     var age: Int = 0
     var name: String = ""
     
-    func kk_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
+    func kj_modelValue(from jsonValue: Any?, _ property: Property) -> Any? {
         switch property.name {
         case "age": return (jsonValue as? Int).flatMap { $0 + 5 }
  
-        case "name": return (jsonValue as? String).flatMap { "kk_" + $0 }
+        case "name": return (jsonValue as? String).flatMap { "kj_" + $0 }
  
         default: return jsonValue
         }
@@ -1613,9 +1613,9 @@ let json: [String: Any] = [
     "name": "Jack"
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.age == 15)
-XCTAssert(student?.name == "kk_Jack")
+XCTAssert(student?.name == "kj_Jack")
 ```
 
 ### Other Ways
@@ -1624,9 +1624,9 @@ struct Student: Convertible {
     var age: Int = 0
     var name: String = ""
  
-    mutating func kk_didConvertToModel(from json: JSONObject) {
+    mutating func kj_didConvertToModel(from json: JSONObject) {
         age += 5
-        name = "kk_" + name
+        name = "kj_" + name
     }
 }
  
@@ -1635,9 +1635,9 @@ let json: [String: Any] = [
     "name": "Jack"
 ]
  
-let student = json.kk.model(Student.self)
+let student = json.kj.model(Student.self)
 XCTAssert(student?.age == 15)
-XCTAssert(student?.name == "kk_Jack")
+XCTAssert(student?.name == "kj_Jack")
 ```
 
 ### Dynamic Model
@@ -1672,7 +1672,7 @@ struct Person: Convertible {
     // foods can also be NSDictionary, NSMutableDictionary
     var foods: [String: Any]?
     
-    func kk_modelType(from jsonValue: Any?, _ property: Property) -> Convertible.Type? {
+    func kj_modelType(from jsonValue: Any?, _ property: Property) -> Convertible.Type? {
         switch property.name {
         case "toys": return Car.self
         case "foods": return Book.self 
@@ -1713,7 +1713,7 @@ let json: [String: Any] = [
     ]
 ]
  
-let person = json.kk.model(Person.self)
+let person = json.kj.model(Person.self)
 XCTAssert(person?.name == name)
  
 if let pet = person?.pet as? Dog {
@@ -1761,18 +1761,22 @@ struct Car: Convertible {
  
 let car = Car()
 // car -> JSON
-let json1 = car.kk.JSONObject()
+let json1 = car.kj.JSONObject()
 // global function `JSONObject(from:)`
 let json2 = JSONObject(from: car)
  
 // car -> JSONString
-let jsonString1 = car.kk.JSONString()
+let jsonString1 = car.kj.JSONString()
 // global function  `JSONString(from:)`
 let jsonString2 = JSONString(from: car)
-/* {"birthday":1565922866,"new":true,"height":0.123456789012345678901234567890123456789,"weight":0.1234567890123456,"minSpeed":66.66,"price":0.123456789012345678901234567890123456789,"age":10,"name":"Bently","area":0.12345678,"maxSpeed":77.77,"capacity":88.88,"url":"http:\/\/520suanfa.com"} */
+/* {"birthday":1565922866,"new":true,"height":0.123456789012345678901234567890123456789,
+"weight":0.1234567890123456,"minSpeed":66.66,
+"price":0.123456789012345678901234567890123456789,"age":10,
+"name":"Bently","area":0.12345678,"maxSpeed":77.77,
+"capacity":88.88,"url":"http:\/\/520suanfa.com"} */
  
 // get prettyPrinted JSONString
-let jsonString3 = car.kk.JSONString(prettyPrinted: true)
+let jsonString3 = car.kj.JSONString(prettyPrinted: true)
 let jsonString4 = JSONString(from: car, prettyPrinted: true)
 /*
  {
@@ -1804,7 +1808,7 @@ struct Student: Convertible, Equatable {
     var op6: [CGFloat]?????? = [44.44, 55.55]
 }
  
-let jsonString = Student().kk.JSONString(prettyPrinted: true)
+let jsonString = Student().kj.JSONString()
 /*
 {
   "op1" : 10,
@@ -1836,7 +1840,7 @@ struct Student: Convertible {
 }
  
 // put rawValue into the jsonString
-let jsonString = Student().kk.JSONString()
+let jsonString = Student().kj.JSONString()
 /* {"grade2":"D","grade1":"B"} */
 ```
 
@@ -1870,7 +1874,7 @@ struct Person: Convertible {
     ]
 }
  
-let jsonString = Person().kk.JSONString(prettyPrinted: true)
+let jsonString = Person().kj.JSONString()
 /*
 {
   "dogs" : {
@@ -1927,7 +1931,8 @@ struct Person: Convertible {
         "dog1": Dog(name: "ErHa", age: 3),
     ]
 }
- 
+
+let jsonString = Person().kj.JSONString()
 /*
 {
   "dogs" : {
@@ -1968,9 +1973,9 @@ let models = [
     Car(name: "Bently", price: 300.0)
 ]
  
-let jsonString1 = models.kk.JSONString(prettyPrinted: true)
-// gloabal function `JSONString(from:prettyPrinted:)`
-let jsonString2 = JSONString(from: models, prettyPrinted: true)
+let jsonString1 = models.kj.JSONString()
+// gloabal function `JSONString(from:)`
+let jsonString2 = JSONString(from: models)
 /*
 [
   {
@@ -2002,7 +2007,7 @@ let models: Set<Car> = [
     Car(name: "Bently", price: 300.0)
 ]
  
-let jsonString = models.kk.JSONString(prettyPrinted: true)
+let jsonString = models.kj.JSONString()
 /*
 [
   {
@@ -2027,7 +2032,7 @@ struct Dog: Convertible {
     var nickName: String = "Wang"
     var price: Double = 100.6
     
-    func kk_JSONKey(from property: Property) -> JSONPropertyKey {
+    func kj_JSONKey(from property: Property) -> JSONPropertyKey {
         switch property.name {
         case "nickName": return "_nick_name_"
         default: return property.name
@@ -2035,11 +2040,11 @@ struct Dog: Convertible {
     }
 }
  
-let jsonString = Dog().kk.JSONString()
+let jsonString = Dog().kj.JSONString()
 /* {"price":100.6,"_nick_name_":"Wang"} */
 
-// kk_JSONKey support ConvertibleConfig.
-// It is similar to kk_modelKey.
+// kj_JSONKey support ConvertibleConfig.
+// It is similar to kj_modelKey.
 ```
 
 ### Custom Value
@@ -2053,7 +2058,7 @@ private let dateFmt: DateFormatter = {
 struct Student: Convertible {
     var birthday: Date?
     
-    func kk_JSONValue(from modelValue: Any?, _ property: Property) -> Any? {
+    func kj_JSONValue(from modelValue: Any?, _ property: Property) -> Any? {
         if property.name != "birthday" { return modelValue }
         return birthday.flatMap(dateFmt.string)
     }
@@ -2062,11 +2067,11 @@ struct Student: Convertible {
 let time = "2019-08-13 12:52:51"
 let date = dateFmt.date(from: time)
 let student = Student(birthday: date)
-let jsonString = student.kk.JSONString()
+let jsonString = student.kj.JSONString()
 /* {"birthday":"2019-08-13 12:52:51"} */
 
-// kk_JSONValue support ConvertibleConfig.
-// It is similar to kk_modelKey.
+// kj_JSONValue support ConvertibleConfig.
+// It is similar to kj_modelKey.
 ```
 
 ### Listen
@@ -2076,13 +2081,13 @@ struct Car: Convertible {
     var age: Int = 10
     
     // call when will begin to convert from model to json
-    func kk_willConvertToJSON() {
-        print("Car - kk_willConvertToJSON")
+    func kj_willConvertToJSON() {
+        print("Car - kj_willConvertToJSON")
     }
  
     // call when did finish converting from model to json
-    func kk_didConvertToJSON(json: [String: Any]?) {
-        print("Car - kk_didConvertToJSON", json as Any)
+    func kj_didConvertToJSON(json: [String: Any]?) {
+        print("Car - kj_didConvertToJSON", json as Any)
     }
 }
 ```

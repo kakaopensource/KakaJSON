@@ -142,10 +142,10 @@ func checkModelToJSon<M: Equatable & Convertible>(_ type: M.Type) {
     // create model
     let model = type.init()
     // get JSONString from model
-    let jsonString = model.kk.JSONString()
+    let jsonString = model.kj.JSONString()
     
     // check JSON and JSONString
-    let modelFromJsonString = jsonString?.kk.model(anyType: type) as? M
+    let modelFromJsonString = jsonString?.kj.model(anyType: type) as? M
     XCTAssert(model == modelFromJsonString)
     
     // prevent from 66.6499999999999998

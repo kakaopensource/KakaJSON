@@ -1,5 +1,5 @@
 //
-//  JSONSerialization+KK.swift
+//  JSONSerialization+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/2.
@@ -9,17 +9,17 @@
 import Foundation
 
 extension JSONSerialization {
-    static func kk_JSON<T>(_ string: String?, _ type: T.Type) -> T? {
-        return kk_JSON(string?.data(using: .utf8), type)
+    static func kj_JSON<T>(_ string: String?, _ type: T.Type) -> T? {
+        return kj_JSON(string?.data(using: .utf8), type)
     }
     
-    static func kk_JSON<T>(_ data: Data?, _ type: T.Type) -> T? {
+    static func kj_JSON<T>(_ data: Data?, _ type: T.Type) -> T? {
         guard let value = data else { return nil }
         return try? jsonObject(with: value,
                                options: .allowFragments) as? T
     }
     
-    static func kk_string(_ json: Any?,
+    static func kj_string(_ json: Any?,
                           prettyPrinted: Bool = false) -> String? {
         guard let value = json,
             let data = try? data(withJSONObject: value,

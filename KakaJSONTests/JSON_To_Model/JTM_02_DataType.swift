@@ -37,7 +37,7 @@ class JTM_02_DataType: XCTestCase {
             "age11": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.age1 == 6) // use default value
         XCTAssert(student?.age2 == 6)
         XCTAssert(student?.age3 == 6)
@@ -77,7 +77,7 @@ class JTM_02_DataType: XCTestCase {
             "height9": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.height1 == 6.66)
         XCTAssert(student?.height2 == longFloat)
         XCTAssert(student?.height3 == longFloat)
@@ -115,7 +115,7 @@ class JTM_02_DataType: XCTestCase {
             "height9": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.height1 == 6.66)
         XCTAssert(student?.height2 == longDouble)
         XCTAssert(student?.height3 == longDouble)
@@ -153,7 +153,7 @@ class JTM_02_DataType: XCTestCase {
             "height9": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.height1 == 6.66)
         XCTAssert(student?.height2 == CGFloat(longDouble))
         XCTAssert(student?.height3 == CGFloat(longDouble))
@@ -188,7 +188,7 @@ class JTM_02_DataType: XCTestCase {
             "rich7": CGFloat(6.666),
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == true)
@@ -224,7 +224,7 @@ class JTM_02_DataType: XCTestCase {
             "name9": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.name1 == "666")
         XCTAssert(student?.name2 == "777")
         XCTAssert(student?.name3 == "[1, [2, 3], \"4\"]")
@@ -260,7 +260,7 @@ class JTM_02_DataType: XCTestCase {
             "money8": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.money1 == Decimal(string: longDoubleString))
         XCTAssert(student?.money2 == 1)
         XCTAssert(student?.money3 == Decimal(string: longDecimalString))
@@ -295,7 +295,7 @@ class JTM_02_DataType: XCTestCase {
             "money8": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.money1 == NSDecimalNumber(string: longDoubleString))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -332,7 +332,7 @@ class JTM_02_DataType: XCTestCase {
             "money8": time
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.money1 == NSNumber(value: longDouble))
         XCTAssert(student?.money2 == true)
         XCTAssert(student?.money2 == 1)
@@ -376,7 +376,7 @@ class JTM_02_DataType: XCTestCase {
             "rich6": rich6
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.rich1 == true)
         XCTAssert(student?.rich2 == false)
         XCTAssert(student?.rich3 == false)
@@ -404,7 +404,7 @@ class JTM_02_DataType: XCTestCase {
             "url4": NSURL(string: encodedUrl) as Any
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.url1?.absoluteString == encodedUrl)
         XCTAssert(student?.url2?.absoluteString == encodedUrl)
         XCTAssert(student?.url3?.absoluteString == encodedUrl)
@@ -434,7 +434,7 @@ class JTM_02_DataType: XCTestCase {
             "data6": data
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(String(data: (student?.data1)! as Data, encoding: .utf8) == str)
         XCTAssert(String(data: (student?.data2)! as Data, encoding: .utf8) == str)
         XCTAssert(String(data: (student?.data3)!, encoding: .utf8) == str)
@@ -465,7 +465,7 @@ class JTM_02_DataType: XCTestCase {
             "date7": Decimal(string: timeIntevalString) as Any
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.date1?.timeIntervalSince1970 == timeInteval)
         XCTAssert(student?.date2?.timeIntervalSince1970 == timeInteval)
         XCTAssert(student?.date3?.timeIntervalSince1970 == timeInteval)
@@ -494,7 +494,7 @@ class JTM_02_DataType: XCTestCase {
             "grade2": "D"
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.grade1 == .good)
         XCTAssert(student?.grade2 == .bad)
     }
@@ -521,7 +521,7 @@ class JTM_02_DataType: XCTestCase {
             "grade4": NSDecimalNumber(string: "8.88")
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.grade1 == .bad)
         XCTAssert(student?.grade2 == .good)
         XCTAssert(student?.grade3 == .great)
@@ -550,7 +550,7 @@ class JTM_02_DataType: XCTestCase {
             "array6": Set(array),
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.array1 == array)
         XCTAssert(person?.array2 == array as NSArray)
         XCTAssert(person?.array3 == NSMutableArray(array: array))
@@ -584,7 +584,7 @@ class JTM_02_DataType: XCTestCase {
             "set6": array
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         for i in array {
             XCTAssert(person?.set1?.contains(i) == true)
             XCTAssert(person?.set2?.contains(i) == true)
@@ -611,7 +611,7 @@ class JTM_02_DataType: XCTestCase {
             "dict3": dict
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         for (k, v) in dict {
             XCTAssert(person?.dict1?[k] as? Int == v)
             XCTAssert(person?.dict2?[k] as? Int == v)

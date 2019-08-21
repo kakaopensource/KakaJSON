@@ -41,7 +41,7 @@ class JTM_07_DynamicModel: XCTestCase {
         // NSDictionary、NSMutableDictionary
         var foods: [String: Any]?
         
-        func kk_modelType(from jsonValue: Any?,
+        func kj_modelType(from jsonValue: Any?,
                           _ property: Property) -> Convertible.Type? {
             switch property.name {
             case "pet":
@@ -84,7 +84,7 @@ class JTM_07_DynamicModel: XCTestCase {
             ]
         ]
         
-        let person = json.kk.model(Person.self)
+        let person = json.kj.model(Person.self)
         XCTAssert(person?.name == name)
         
         if let pet = person?.pet as? Dog {

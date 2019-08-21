@@ -1,5 +1,5 @@
 //
-//  NSObject+KK.swift
+//  NSObject+KJ.swift
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/15.

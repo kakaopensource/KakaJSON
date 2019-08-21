@@ -10,12 +10,12 @@
 
 2. NamingConvention
 ① public extension for system types、model types
-- obj.kk.memberName
-- e.g. "123".kk.numberCount, model.kk.JSON()
+- obj.kj.memberName
+- e.g. "123".kj.numberCount, model.kj.JSON()
 
 ② internal extension for system types、model types
-- obj.kk_memberName
-- e.g. "123".kk_numberCount, model.kk_JSON()
+- obj.kj_memberName
+- e.g. "123".kj_numberCount, model.kj_JSON()
 
 ③ private\fileprivate
 - obj._memberName
@@ -31,12 +31,12 @@
 
 2. 命名规范
 ① 给模型类型、系统自带类型，扩展public的成员
-- obj.kk.成员名称
-- 比如 "123".kk.numberCount, model.kk.JSON()
+- obj.kj.成员名称
+- 比如 "123".kj.numberCount, model.kj.JSON()
 
 ② 给模型类型、系统自带类型，扩展internal的成员
-- obj.kk_成员名称
-- 比如 "123".kk_numberCount, model.kk_JSON()
+- obj.kj_成员名称
+- 比如 "123".kj_numberCount, model.kj_JSON()
 
 ③ private\fileprivate的成员
 - obj._成员名称

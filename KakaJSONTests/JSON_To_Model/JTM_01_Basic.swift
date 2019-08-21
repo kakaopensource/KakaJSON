@@ -23,7 +23,7 @@ class JTM_01_Basic: XCTestCase {
             "name": name
         ]
         
-        let cat = json.kk.model(Cat.self)
+        let cat = json.kj.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -39,7 +39,7 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         let type: Any.Type = Cat.self
-        let cat = json.kk.model(anyType: type) as? Cat
+        let cat = json.kj.model(anyType: type) as? Cat
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -57,7 +57,7 @@ class JTM_01_Basic: XCTestCase {
         }
         """
         
-        let cat = jsonString.kk.model(Cat.self)
+        let cat = jsonString.kj.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -75,7 +75,7 @@ class JTM_01_Basic: XCTestCase {
         }
         """.data(using: .utf8)!
         
-        let cat = jsonData.kk.model(Cat.self)
+        let cat = jsonData.kj.model(Cat.self)
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -105,7 +105,7 @@ class JTM_01_Basic: XCTestCase {
             "no": no
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -137,7 +137,7 @@ class JTM_01_Basic: XCTestCase {
             "no": no
         ]
         
-        let student = json.kk.model(Student.self)
+        let student = json.kj.model(Student.self)
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)
@@ -155,7 +155,7 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         var cat = Cat()
-        cat.kk_m.convert(from: json)
+        cat.kj_m.convert(from: json)
         XCTAssert(cat.name == name)
         XCTAssert(cat.weight == weight)
         
@@ -166,7 +166,7 @@ class JTM_01_Basic: XCTestCase {
         }
         """
         
-        cat.kk_m.convert(from: JSONString)
+        cat.kj_m.convert(from: JSONString)
         XCTAssert(cat.name == name)
         XCTAssert(cat.weight == weight)
     }
@@ -176,20 +176,20 @@ class JTM_01_Basic: XCTestCase {
             var name: String = ""
             var age: Int = 0
             
-            mutating func kk_willConvertToModel(from json: [String: Any]) {
-//                print("Car - kk_willConvertToModel")
+            mutating func kj_willConvertToModel(from json: [String: Any]) {
+//                print("Car - kj_willConvertToModel")
             }
             
-            mutating func kk_didConvertToModel(from json: [String: Any]) {
-//                print("Car - kk_didConvertToModel")
+            mutating func kj_didConvertToModel(from json: [String: Any]) {
+//                print("Car - kj_didConvertToModel")
             }
         }
         
         let name = "Benz"
         let age = 100
-        let car = ["name": name, "age": age].kk.model(Car.self)
-        // Car - kk_willConvertToModel
-        // Car - kk_didConvertToModel
+        let car = ["name": name, "age": age].kj.model(Car.self)
+        // Car - kj_willConvertToModel
+        // Car - kj_didConvertToModel
         XCTAssert(car?.name == name)
         XCTAssert(car?.age == age)
     }
@@ -200,41 +200,41 @@ class JTM_01_Basic: XCTestCase {
             var age: Int = 0
             required init() {}
             
-            func kk_willConvertToModel(from json: [String: Any]) {
-//                print("Person - kk_willConvertToModel")
+            func kj_willConvertToModel(from json: [String: Any]) {
+//                print("Person - kj_willConvertToModel")
             }
             
-            func kk_didConvertToModel(from json: [String: Any]) {
-//                print("Person - kk_didConvertToModel")
+            func kj_didConvertToModel(from json: [String: Any]) {
+//                print("Person - kj_didConvertToModel")
             }
         }
         
         class Student: Person {
             var score: Int = 0
             
-            override func kk_willConvertToModel(from json: [String: Any]) {
+            override func kj_willConvertToModel(from json: [String: Any]) {
                 // call super's implementation if necessary
-                super.kk_willConvertToModel(from: json)
+                super.kj_willConvertToModel(from: json)
                 
-//                print("Student - kk_willConvertToModel")
+//                print("Student - kj_willConvertToModel")
             }
             
-            override func kk_didConvertToModel(from json: [String: Any]) {
+            override func kj_didConvertToModel(from json: [String: Any]) {
                 // call super's implementation if necessary
-                super.kk_didConvertToModel(from: json)
+                super.kj_didConvertToModel(from: json)
                 
-//                print("Student - kk_didConvertToModel")
+//                print("Student - kj_didConvertToModel")
             }
         }
         
         let name = "jack"
         let age = 10
         let score = 100
-        let student = ["name": name, "age": age, "score": score].kk.model(Student.self)
-        // Person - kk_willConvertToModel
-        // Student - kk_willConvertToModel
-        // Person - kk_didConvertToModel
-        // Student - kk_didConvertToModel
+        let student = ["name": name, "age": age, "score": score].kj.model(Student.self)
+        // Person - kj_willConvertToModel
+        // Student - kj_willConvertToModel
+        // Person - kj_didConvertToModel
+        // Student - kj_didConvertToModel
         XCTAssert(student?.name == name)
         XCTAssert(student?.age == age)
         XCTAssert(student?.score == score)

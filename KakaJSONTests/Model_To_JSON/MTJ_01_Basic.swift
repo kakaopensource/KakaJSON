@@ -24,33 +24,33 @@ class MTJ_01_Basic: XCTestCase {
             var birthday: Date = time
             var url: URL? = URL(string: "http://520suanfa.com")
             
-            func kk_willConvertToJSON() {
-//                print("Car - kk_willConvertToJSON")
+            func kj_willConvertToJSON() {
+//                print("Car - kj_willConvertToJSON")
             }
             
-            func kk_didConvertToJSON(json: [String: Any]?) {
-//                print("Car - kk_didConvertToJSON", json as Any)
+            func kj_didConvertToJSON(json: [String: Any]?) {
+//                print("Car - kj_didConvertToJSON", json as Any)
             }
         }
         
         let car = Car()
         
-        let json = car.kk.JSONObject()
+        let json = car.kj.JSONObject()
 //        let json = JSONObject(from: car)
-        XCTAssert(json?["new"].kk.bool == true)
-        XCTAssert(json?["age"].kk.int == 10)
-        XCTAssert(json?["area"].kk.float == longFloat)
-        XCTAssert(json?["weight"].kk.double  == longDouble)
-        XCTAssert(json?["height"].kk.decimal == longDecimal)
-        XCTAssert(json?["name"].kk.string == "Bently")
-        XCTAssert(json?["price"].kk.decimalNumber == longDecimalNumber)
-        XCTAssert(json?["minSpeed"].kk.double == 66.66)
-        XCTAssert(json?["maxSpeed"].kk.number == 77.77)
-        XCTAssert(json?["capacity"].kk.cgFloat == 88.88)
-        XCTAssert(json?["birthday"].kk.double == timeInteval)
-        XCTAssert(json?["url"].kk.string == "http://520suanfa.com")
+        XCTAssert(json?["new"].kj.bool == true)
+        XCTAssert(json?["age"].kj.int == 10)
+        XCTAssert(json?["area"].kj.float == longFloat)
+        XCTAssert(json?["weight"].kj.double  == longDouble)
+        XCTAssert(json?["height"].kj.decimal == longDecimal)
+        XCTAssert(json?["name"].kj.string == "Bently")
+        XCTAssert(json?["price"].kj.decimalNumber == longDecimalNumber)
+        XCTAssert(json?["minSpeed"].kj.double == 66.66)
+        XCTAssert(json?["maxSpeed"].kj.number == 77.77)
+        XCTAssert(json?["capacity"].kj.cgFloat == 88.88)
+        XCTAssert(json?["birthday"].kj.double == timeInteval)
+        XCTAssert(json?["url"].kj.string == "http://520suanfa.com")
         
-        var jsonString = car.kk.JSONString()
+        var jsonString = car.kj.JSONString()
 //        var jsonString = JSONString(from: car)
         /* {"birthday":1565922866,"new":true,"height":0.123456789012345678901234567890123456789,"weight":0.1234567890123456,"minSpeed":66.66,"price":0.123456789012345678901234567890123456789,"age":10,"name":"Bently","area":0.12345678,"maxSpeed":77.77,"capacity":88.88,"url":"http:\/\/520suanfa.com"} */
         
@@ -66,7 +66,7 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(jsonString?.contains(timeIntevalString) == true)
         XCTAssert(jsonString?.contains("520suanfa.com") == true)
         
-        jsonString = car.kk.JSONString(prettyPrinted: false)
+        jsonString = car.kj.JSONString(prettyPrinted: true)
         /*
          {
              "height" : 0.123456789012345678901234567890123456789,
@@ -82,6 +82,9 @@ class MTJ_01_Basic: XCTestCase {
              "area" : 0.12345678
          }
          */
+        
+        // try? jsonString?.write(toFile: "/Users/mj/Desktop/car.json", atomically: true, encoding: .utf8)
+        
         checkModelToJSon(Car.self)
     }
     
@@ -99,7 +102,7 @@ class MTJ_01_Basic: XCTestCase {
             var op6: [CGFloat]?????? = [44.44, 55.55]
         }
         
-        let jsonString = Student().kk.JSONString(prettyPrinted: true)
+        let jsonString = Student().kj.JSONString()
         /*
          {
             "op1" : 10,
@@ -138,7 +141,7 @@ class MTJ_01_Basic: XCTestCase {
             var grade2: Grade = .bad
         }
         
-        let jsonString = Student().kk.JSONString()
+        let jsonString = Student().kj.JSONString()
         /* {"grade2":"D","grade1":"B"} */
         
         XCTAssert(jsonString?.contains("B") == true)
@@ -162,7 +165,7 @@ class MTJ_01_Basic: XCTestCase {
             var grade4: Grade = .bad
         }
         
-        let jsonString = Student().kk.JSONString()
+        let jsonString = Student().kj.JSONString()
         XCTAssert(jsonString?.contains("5.55") == true)
         XCTAssert(jsonString?.contains("6.66") == true)
         XCTAssert(jsonString?.contains("7.77") == true)
