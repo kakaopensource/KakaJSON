@@ -12,11 +12,12 @@ extension Data: KKCompatible {}
 extension NSData: KKCompatible {}
 
 public extension KK where Base == Data {
-    // MARK: - JSON -> Model
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         if let json = JSONSerialization.kk_JSON(base, [String: Any].self) {
             return json.kk.model(anyType: anyType)
@@ -25,10 +26,12 @@ public extension KK where Base == Data {
         return nil
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
         return modelArray(anyType: type) as? [M]
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
         if let json = JSONSerialization.kk_JSON(base, [Any].self) {
             return json.kk.modelArray(anyType: anyType)
@@ -39,19 +42,22 @@ public extension KK where Base == Data {
 }
 
 public extension KK where Base: NSData {
-    // MARK: - JSON -> Model
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         return (base as Data).kk.model(anyType: anyType)
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
         return modelArray(anyType: type) as? [M]
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
         return (base as Data).kk.modelArray(anyType: anyType)
     }

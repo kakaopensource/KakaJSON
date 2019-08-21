@@ -9,21 +9,33 @@
 import Foundation
 
 // MARK: - Convertible Interface
+
+/// return value type of kk_modelKey
 public protocol ModelPropertyKey {}
 extension String: ModelPropertyKey {}
 extension Array: ModelPropertyKey where Element == String {}
 
+/// return value type of kk_JSONKey
 public typealias JSONPropertyKey = String
 
+/// all the models who want to convert should conform to `Convertible`
 public protocol Convertible {
     init()
     
-    /// Get a key from propertyName when converting from JSON to model
+    /// Get a key from propertyName when converting JSON to model
     ///
     /// Only call once for every property in every type
+    ///
+    /// - Parameter property: A property of model
+    ///
+    /// - Returns: Return a key to get jsonValue for the property
     func kk_modelKey(from property: Property) -> ModelPropertyKey
     
-    /// Get a model modelValue from jsonValue when converting from JSON to model
+    /// Get a model modelValue from jsonValue when converting JSON to model
+    ///
+    /// - Parameters:
+    ///     - jsonValue: A jsonValue for the property
+    ///     - property: A property of model
     ///
     /// - Returns: return `nil` indicates ignore the property,
     /// use the initial value instead.
@@ -32,21 +44,38 @@ public protocol Convertible {
                        _ property: Property) -> Any?
     
     /// model type for Any、AnyObject、Convertible...
+    ///
+    /// - Parameters:
+    ///     - jsonValue: A jsonValue for the property
+    ///     - property: A property of model
     func kk_modelType(from jsonValue: Any?,
                       _ property: Property) -> Convertible.Type?
     
     /// call when will begin to convert from JSON to model
+    ///
+    /// - Parameters:
+    ///     - json: A json will be converted to model
     mutating func kk_willConvertToModel(from json: [String: Any])
     
     /// call when did finish converting from JSON to model
+    ///
+    /// - Parameters:
+    ///     - json: A json did be converted to model
     mutating func kk_didConvertToModel(from json: [String: Any])
     
     /// Get a key from propertyName when converting from model to JSON
     ///
     /// Only call once for every property in every type
+    ///
+    /// - Parameters:
+    ///     - property: A property of model
     func kk_JSONKey(from property: Property) -> JSONPropertyKey
     
     /// Get a JSONValue from modelValue when converting from JSON to model
+    ///
+    /// - Parameters:
+    ///     - modelValue: A modelValue for the property
+    ///     - property: A property of model
     ///
     /// - Returns: return `nil` indicates ignore the JSONValue.
     /// return `modelValue` indicates do nothing
@@ -57,9 +86,13 @@ public protocol Convertible {
     func kk_willConvertToJSON()
     
     /// call when did finish converting from model to JSON
+    ///
+    /// - Parameters:
+    ///     - json: A json did be converted from model
     func kk_didConvertToJSON(json: [String: Any]?)
 }
 
+/// default implementation
 public extension Convertible {
     func kk_modelKey(from property: Property) -> ModelPropertyKey {
         return ConvertibleConfig.modelKey(from: property, Self.self)
@@ -108,26 +141,32 @@ public struct ConvertibleKK_M<T: Convertible> {
         self.basePtr = basePtr
     }
     
+    /// JSONObject -> Model
     public func convert(from jsonData: Data?) {
         basePtr.pointee.kk_convert(from: jsonData)
     }
     
+    /// JSONObject -> Model
     public func convert(from jsonData: NSData?) {
         basePtr.pointee.kk_convert(from: jsonData as Data?)
     }
     
+    /// JSONObject -> Model
     public func convert(from jsonString: String?) {
         basePtr.pointee.kk_convert(from: jsonString)
     }
     
+    /// JSONObject -> Model
     public func convert(from jsonString: NSString?) {
         basePtr.pointee.kk_convert(from: jsonString as String?)
     }
     
+    /// JSONObject -> Model
     public func convert(from json: [String: Any]?) {
         basePtr.pointee.kk_convert(from: json)
     }
     
+    /// JSONObject -> Model 
     public func convert(from json: NSDictionary?) {
         basePtr.pointee.kk_convert(from: json as? [String: Any])
     }
@@ -139,10 +178,12 @@ public struct ConvertibleKK<T: Convertible> {
         self.base = base
     }
     
+    /// Model -> JSONObject
     public func JSONObject() -> [String: Any]? {
         return base.kk_JSONObject()
     }
     
+    /// Model -> JSONString
     public func JSONString(prettyPrinted: Bool = false) -> String? {
         return base.kk_JSONString(prettyPrinted: prettyPrinted)
     }

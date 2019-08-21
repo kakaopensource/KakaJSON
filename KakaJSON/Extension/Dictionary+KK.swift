@@ -14,11 +14,12 @@ extension Dictionary: KKGenericCompatible {
 }
 
 public extension KKGeneric where Base == [String: T] {
-    // MARK: JSON -> Model
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         guard let t = anyType as? Convertible.Type,
             let mt = Metadata.type(anyType) as? ModelType,
@@ -29,21 +30,24 @@ public extension KKGeneric where Base == [String: T] {
 }
 
 public extension KKGeneric where Base == [NSString: T] {
-    // MARK: JSON -> Model
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         return (base as [String: Any]).kk.model(anyType: anyType)
     }
 }
 
 public extension KK where Base: NSDictionary {
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return (base as? [String: Any])?.kk.model(type)
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         return (base as? [String: Any])?.kk.model(anyType: anyType)
     }

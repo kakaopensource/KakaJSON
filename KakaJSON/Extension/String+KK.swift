@@ -52,11 +52,12 @@ public extension KK where Base: ExpressibleByStringLiteral {
         return newStr
     }
     
-    // MARK: - JSON -> Model
+    /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
         return model(anyType: type) as? M
     }
     
+    /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
         if let json = JSONSerialization.kk_JSON(base as? String, [String: Any].self) {
             return json.kk.model(anyType: anyType)
@@ -65,10 +66,12 @@ public extension KK where Base: ExpressibleByStringLiteral {
         return nil
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
         return modelArray(anyType: type) as? [M]
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
         if let json = JSONSerialization.kk_JSON(base as? String, [Any].self) {
             return json.kk.modelArray(anyType: anyType)

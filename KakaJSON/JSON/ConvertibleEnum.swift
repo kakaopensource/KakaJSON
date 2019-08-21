@@ -12,7 +12,7 @@ public protocol ConvertibleEnum {
     static var kk_valueType: Any.Type { get }
 }
 
-public extension RawRepresentable where Self: ConvertibleEnum {
+extension RawRepresentable where Self: ConvertibleEnum {
     static func kk_convert(from value: Any?) -> Self? {
         return (value as? RawValue).flatMap { Self.init(rawValue: $0) }
     }

@@ -42,8 +42,6 @@ extension NominalType where Self: LayoutType, InnerLayout: NominalLayout {
     }
     
     func builtGenericTypes() -> [Any.Type]? {
-        if layout.pointee.genericTypeOffset == GenenicTypeOffset.wrong { return nil }
-        
         // generic judge
         let description = layout.pointee.description
         if !description.pointee.isGeneric { return nil }
@@ -51,6 +49,7 @@ extension NominalType where Self: LayoutType, InnerLayout: NominalLayout {
         if typesCount <= 0 { return nil }
         
         // pointer to generic types
+        if layout.pointee.genericTypeOffset == GenenicTypeOffset.wrong { return nil }
         let ptr = genenicTypesPtr()
         return (0..<typesCount).map { ptr.pointee.item($0) }
     }

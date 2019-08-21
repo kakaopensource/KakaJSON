@@ -14,11 +14,12 @@ extension Set: KKCompatible {}
 extension NSSet: KKCompatible {}
 
 public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
-    // MARK: - JSON -> Model
+    /// JSONObjectArray -> ModelArray
     func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
         return modelArray(anyType: type) as? [M]
     }
     
+    /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
         guard let t = anyType as? Convertible.Type,
             let mt = Metadata.type(anyType) as? ModelType,
@@ -35,11 +36,7 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
         return arr.isEmpty ? nil : arr
     }
     
-    // MARK: - Model -> JSON
-    func JSONArray() -> [Any]? {
-        return base~?.kk_JSON() as? [Any]
-    }
-    
+    /// ModelArray -> JSONObjectArray
     func JSONObjectArray() -> [[String: Any]]? {
         let arr = base.compactMap { element -> [String: Any]? in
             (element~! as? Convertible)?.kk_JSONObject()
@@ -47,6 +44,12 @@ public extension KK where Base: ExpressibleByArrayLiteral & Sequence {
         return arr.isEmpty ? nil : arr
     }
     
+    /// Array -> JSONArray
+    func JSONArray() -> [Any]? {
+        return base~?.kk_JSON() as? [Any]
+    }
+    
+    /// Array -> JSONArray
     func JSONString(prettyPrinted: Bool = false) -> String? {
         if let str = JSONSerialization.kk_string(JSONArray(),
                                                  prettyPrinted: prettyPrinted) {

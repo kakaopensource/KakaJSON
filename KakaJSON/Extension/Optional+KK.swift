@@ -31,78 +31,97 @@ extension Optional: KKGenericCompatible {
 }
 
 public extension KKGeneric where Base == Optional<T> {
+    /// get the most inner value
     var value: Any? { return base.kk_value }
     
+    /// convert value to String
     var string: String? {
         return base.kk_value(String.self) as? String
     }
     
+    /// convert value to Bool
     var bool: Bool? {
         return base.kk_value(Bool.self) as? Bool
     }
     
+    /// convert value to Int
     var int: Int? {
         return base.kk_value(Int.self) as? Int
     }
     
+    /// convert value to Int8
     var int8: Int8? {
         return base.kk_value(Int8.self) as? Int8
     }
     
+    /// convert value to Int16
     var int16: Int16? {
         return base.kk_value(Int16.self) as? Int16
     }
     
+    /// convert value to Int32
     var int32: Int32? {
         return base.kk_value(Int32.self) as? Int32
     }
     
+    /// convert value to Int64
     var int64: Int64? {
         return base.kk_value(Int64.self) as? Int64
     }
     
+    /// convert value to UInt
     var uInt: UInt? {
         return base.kk_value(UInt.self) as? UInt
     }
     
+    /// convert value to UInt8
     var uInt8: UInt8? {
         return base.kk_value(UInt8.self) as? UInt8
     }
     
+    /// convert value to UInt16
     var uInt16: UInt16? {
         return base.kk_value(UInt16.self) as? UInt16
     }
     
+    /// convert value to UInt32
     var uInt32: UInt32? {
         return base.kk_value(UInt32.self) as? UInt32
     }
     
+    /// convert value to UInt64
     var uInt64: UInt64? {
         return base.kk_value(UInt64.self) as? UInt64
     }
     
+    /// convert value to Float
     var float: Float? {
         return base.kk_value(Float.self) as? Float
     }
     
+    /// convert value to Double
     var double: Double? {
         return base.kk_value(Double.self) as? Double
     }
     
     #if canImport(CoreGraphics)
+    /// convert value to CGFloat
     var cgFloat: CGFloat? {
         return base.kk_value(CGFloat.self) as? CGFloat
     }
     #endif
     
+    /// convert value to Decimal
     var decimal: Decimal? {
         return base.kk_value(Decimal.self) as? Decimal
     }
     
+    /// convert value to NSNumber
     var number: NSNumber? {
         return base.kk_value(NSNumber.self) as? NSNumber
     }
     
+    /// convert value to NSDecimalNumber
     var decimalNumber: NSDecimalNumber? {
         return base.kk_value(NSDecimalNumber.self) as? NSDecimalNumber
     }
@@ -281,16 +300,12 @@ private extension Optional {
     }
     
     func _JSON(from array: [Any]) -> Any? {
-        let newArray = array.compactMap {
-            $0~?.kk_JSON()
-        }
+        let newArray = array.compactMap { $0~?.kk_JSON() }
         return newArray.isEmpty ? nil : newArray
     }
     
     func _JSON(from dict: [String: Any]) -> Any? {
-        let newDict = dict.compactMapValues {
-            $0~?.kk_JSON()
-        }
+        let newDict = dict.compactMapValues { $0~?.kk_JSON() }
         return newDict.isEmpty ? nil : newDict
     }
     
@@ -325,33 +340,17 @@ protocol SwiftArrayValue: ArrayValue {}
 extension Array: SwiftArrayValue {}
 
 protocol SetValue: CollectionValue {
-//    func kk_map<T>(_ transform: (Any) throws -> T) rethrows -> [T]
-//    func kk_compactMap<T>(_ transform: (Any) throws -> T?) rethrows -> [T]
     func kk_array() -> [Any]
 }
-extension NSSet: SetValue {
-//    func kk_map<T>(_ transform: (Any) throws -> T) rethrows -> [T] {
-//        return map { try! transform($0) }
-//    }
-//    func kk_compactMap<T>(_ transform: (Any) throws -> T?) rethrows -> [T] {
-//        return compactMap { try! transform($0) }
-//    }
-    func kk_array() -> [Any] {
-        return [Any](self)
-    }
-}
-protocol SwiftSetValue: SetValue {}
-extension Set: SwiftSetValue {
-//    func kk_map<T>(_ transform: (Any) throws -> T) rethrows -> [T] {
-//        return map { try! transform($0) }
-//    }
-//    func kk_compactMap<T>(_ transform: (Any) throws -> T?) rethrows -> [T] {
-//        return compactMap { try! transform($0) }
-//    }
+extension SetValue where Self: Sequence {
     func kk_array() -> [Any] {
         return map { $0 }
     }
 }
+
+extension NSSet: SetValue {}
+protocol SwiftSetValue: SetValue {}
+extension Set: SwiftSetValue {}
 
 protocol StringValue {}
 extension String: StringValue {}

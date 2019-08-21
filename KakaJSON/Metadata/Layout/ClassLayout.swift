@@ -56,7 +56,3 @@ struct ClassLayout: ModelLayout {
         return GenenicTypeOffset.wrong
     }
 }
-
-struct ClassROData {
-    let flags: UInt32
-}
