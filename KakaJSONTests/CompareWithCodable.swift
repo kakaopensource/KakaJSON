@@ -7,5 +7,20 @@
 //
 
 class CompareWithCodable: XCTestCase {
+    struct Cat: Codable {
+        var weight: Double = 0.0
+        var name: String = ""
+    }
     
+    func test() {
+        let jsonData = """
+        {
+        "name": "Miaomiao",
+        "weight": 1.66
+        }
+        """.data(using: .utf8)!
+        
+        let cat = try! JSONDecoder().decode(Cat.self, from: jsonData)
+        print(cat)
+    }
 }

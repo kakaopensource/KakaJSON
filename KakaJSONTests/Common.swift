@@ -141,20 +141,16 @@ var longDecimalNumber = NSDecimalNumber(string: longDecimalString)
 func checkModelToJSon<M: Equatable & Convertible>(_ type: M.Type) {
     // create model
     let model = type.init()
-    // get JSON from model
-    let json = model.kk.JSONObject()
     // get JSONString from model
     let jsonString = model.kk.JSONString()
     
     // check JSON and JSONString
-    let modelFromJson = json?.kk.model(anyType: type) as? M
     let modelFromJsonString = jsonString?.kk.model(anyType: type) as? M
-    XCTAssert(model == modelFromJson)
     XCTAssert(model == modelFromJsonString)
     
-    // prevent 66.6499999999999998
+    // prevent from 66.6499999999999998
     XCTAssert(jsonString?.contains("99999") == false)
-    // prevent 66.6600000000000001
+    // prevent from 66.6600000000000001
     XCTAssert(jsonString?.contains("00000") == false)
 }
 
