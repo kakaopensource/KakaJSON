@@ -25,11 +25,11 @@ class MTJ_01_Basic: XCTestCase {
             var url: URL? = URL(string: "http://520suanfa.com")
             
             func kk_willConvertToJSON() {
-                print("Car - kk_willConvertToJSON")
+//                print("Car - kk_willConvertToJSON")
             }
             
             func kk_didConvertToJSON(json: [String: Any]?) {
-                print("Car - kk_didConvertToJSON", json as Any)
+//                print("Car - kk_didConvertToJSON", json as Any)
             }
         }
         
@@ -51,7 +51,6 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(json?["url"].kk.string == "http://520suanfa.com")
         
         var jsonString = car.kk.JSONString()
-        print(jsonString!)
 //        var jsonString = JSONString(from: car)
         /* {"birthday":1565922866,"new":true,"height":0.123456789012345678901234567890123456789,"weight":0.1234567890123456,"minSpeed":66.66,"price":0.123456789012345678901234567890123456789,"age":10,"name":"Bently","area":0.12345678,"maxSpeed":77.77,"capacity":88.88,"url":"http:\/\/520suanfa.com"} */
         
@@ -68,7 +67,6 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(jsonString?.contains("520suanfa.com") == true)
         
         jsonString = car.kk.JSONString(prettyPrinted: false)
-        print(jsonString!)
         /*
          {
              "height" : 0.123456789012345678901234567890123456789,

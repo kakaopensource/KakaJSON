@@ -25,22 +25,6 @@ extension LayoutType {
     func builtLayout() -> UnsafeMutablePointer<InnerLayout> {
         return type ~>> UnsafeMutablePointer<InnerLayout>.self
     }
-    
-    var size: Int {
-        return valueWitnessTable.pointee.size
-    }
-    
-    var alignment: Int {
-        return (valueWitnessTable.pointee.flags & ValueWitnessFlags.alignmentMask) + 1
-    }
-    
-    var stride: Int {
-        return valueWitnessTable.pointee.stride
-    }
-    
-    private var valueWitnessTable: UnsafeMutablePointer<ValueWitnessTable> {
-        return ((layout.kk_raw - MemoryLayout<UnsafeRawPointer>.size) ~> UnsafeMutablePointer<ValueWitnessTable>.self).pointee
-    }
 }
 
 // MARK: - NominalType
@@ -97,29 +81,4 @@ extension PropertyType where Self: LayoutType, InnerLayout: ModelLayout {
                             ownerType: type)
         }
     }
-}
-
-// MARK: - ValueWitnessTable
-struct ValueWitnessTable {
-    var initializeBufferWithCopyOfBuffer: UnsafeRawPointer
-    var destroy: UnsafeRawPointer
-    var initializeWithCopy: UnsafeRawPointer
-    var assignWithCopy: UnsafeRawPointer
-    var initializeWithTake: UnsafeRawPointer
-    var assignWithTake: UnsafeRawPointer
-    var getEnumTagSinglePayload: UnsafeRawPointer
-    var storeEnumTagSinglePayload: UnsafeRawPointer
-    var size: Int
-    var stride: Int
-    var flags: Int
-}
-
-struct ValueWitnessFlags {
-    static let alignmentMask = 0x0000FFFF
-    static let isNonPOD = 0x00010000
-    static let isNonInline = 0x00020000
-    static let hasExtraInhabitants = 0x00040000
-    static let hasSpareBits = 0x00080000
-    static let isNonBitwiseTakable = 0x00100000
-    static let hasEnumWitnesses = 0x00200000
 }

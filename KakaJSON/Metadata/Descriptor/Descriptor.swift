@@ -53,17 +53,15 @@ extension ModelDescriptor {
 }
 
 // MARK: - Descriptor Inner Data Types
-struct ContextDescriptorFlags: CustomStringConvertible {
+struct ContextDescriptorFlags {
     let value: UInt32
-    var description: String { return "\(value)" }
 }
 
-struct RelativeContextPointer: CustomStringConvertible {
+struct RelativeContextPointer {
     let offset: Int32
-    var description: String { return "\(offset)" }
 }
 
-struct RelativeDirectPointer <Pointee>: CustomStringConvertible {
+struct RelativeDirectPointer <Pointee> {
     var relativeOffset: Int32
     
     mutating func advanced() -> UnsafeMutablePointer<Pointee> {
@@ -72,13 +70,10 @@ struct RelativeDirectPointer <Pointee>: CustomStringConvertible {
             ($0.kk_raw + Int(offset)) ~> Pointee.self
         }
     }
-    
-    var description: String { return "\(relativeOffset)" }
 }
 
-struct FieldOffsetPointer <Pointee: BinaryInteger>: CustomStringConvertible {
+struct FieldOffsetPointer <Pointee: BinaryInteger> {
     let offset: UInt32
-    var description: String { return "\(offset)" }
 }
 
 struct MetadataResponse {}
