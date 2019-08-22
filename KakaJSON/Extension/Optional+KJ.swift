@@ -7,9 +7,6 @@
 //
 
 import Foundation
-#if canImport(CoreGraphics)
-import CoreGraphics
-#endif
 
 protocol OptionalValue {
     var kj_value: Any? { get }
@@ -26,122 +23,21 @@ extension Optional: OptionalValue {
     }
 }
 
-extension Optional: KJGenericCompatible {
-    public typealias T = Wrapped
-}
-
-public extension KJGeneric where Base == Optional<T> {
-    /// get the most inner value
-    var value: Any? { return base.kj_value }
-    
-    /// convert value to String
-    var string: String? {
-        return base.kj_value(String.self) as? String
-    }
-    
-    /// convert value to Bool
-    var bool: Bool? {
-        return base.kj_value(Bool.self) as? Bool
-    }
-    
-    /// convert value to Int
-    var int: Int? {
-        return base.kj_value(Int.self) as? Int
-    }
-    
-    /// convert value to Int8
-    var int8: Int8? {
-        return base.kj_value(Int8.self) as? Int8
-    }
-    
-    /// convert value to Int16
-    var int16: Int16? {
-        return base.kj_value(Int16.self) as? Int16
-    }
-    
-    /// convert value to Int32
-    var int32: Int32? {
-        return base.kj_value(Int32.self) as? Int32
-    }
-    
-    /// convert value to Int64
-    var int64: Int64? {
-        return base.kj_value(Int64.self) as? Int64
-    }
-    
-    /// convert value to UInt
-    var uInt: UInt? {
-        return base.kj_value(UInt.self) as? UInt
-    }
-    
-    /// convert value to UInt8
-    var uInt8: UInt8? {
-        return base.kj_value(UInt8.self) as? UInt8
-    }
-    
-    /// convert value to UInt16
-    var uInt16: UInt16? {
-        return base.kj_value(UInt16.self) as? UInt16
-    }
-    
-    /// convert value to UInt32
-    var uInt32: UInt32? {
-        return base.kj_value(UInt32.self) as? UInt32
-    }
-    
-    /// convert value to UInt64
-    var uInt64: UInt64? {
-        return base.kj_value(UInt64.self) as? UInt64
-    }
-    
-    /// convert value to Float
-    var float: Float? {
-        return base.kj_value(Float.self) as? Float
-    }
-    
-    /// convert value to Double
-    var double: Double? {
-        return base.kj_value(Double.self) as? Double
-    }
-    
-    #if canImport(CoreGraphics)
-    /// convert value to CGFloat
-    var cgFloat: CGFloat? {
-        return base.kj_value(CGFloat.self) as? CGFloat
-    }
-    #endif
-    
-    /// convert value to Decimal
-    var decimal: Decimal? {
-        return base.kj_value(Decimal.self) as? Decimal
-    }
-    
-    /// convert value to NSNumber
-    var number: NSNumber? {
-        return base.kj_value(NSNumber.self) as? NSNumber
-    }
-    
-    /// convert value to NSDecimalNumber
-    var decimalNumber: NSDecimalNumber? {
-        return base.kj_value(NSDecimalNumber.self) as? NSDecimalNumber
-    }
-}
-
 extension Optional {
     func kj_value(_ type: Any.Type) -> Any? {
         guard let v = kj_value else { return nil }
         if Swift.type(of: v) == type { return v }
         
         switch type {
-        case is Convertible.Type: return _model(v, type)
-        case is ArrayValue.Type: return _array(v, type)
-        case is SetValue.Type: return _set(v, type)
-        case is DictionaryValue.Type: return _dictionary(v, type)
-        case is StringValue.Type: return _string(v, type)
-        case is DataValue.Type: return _data(v, type)
         case is NumberValue.Type: return _number(v, type)
-        case is URLValue.Type: return _url(v)
+        case is StringValue.Type: return _string(v, type)
+        case is Convertible.Type: return _model(v, type)
         case is DateValue.Type: return _date(v)
+        case is ArrayValue.Type: return _array(v, type)
+        case is DictionaryValue.Type: return _dictionary(v, type)
+        case is URLValue.Type: return _url(v)
+        case is DataValue.Type: return _data(v, type)
+        case is SetValue.Type: return _set(v, type)
         case let enumType as ConvertibleEnum.Type:
             let v = kj_value(enumType.kj_valueType)
             return enumType.kj_convert(from: v)
@@ -153,13 +49,13 @@ extension Optional {
         guard let v = kj_value else { return nil }
         
         switch v {
+        case let num as NumberValue: return _JSON(from: num)
         case let model as Convertible: return model.kj_JSONObject()
+        case let date as Date: return date.timeIntervalSince1970
         case let array as [Any]: return _JSON(from: array)
         case let dict as [String: Any]: return _JSON(from: dict)
-        case let set as SetValue: return _JSON(from: set)
-        case let num as NumberValue: return _JSON(from: num)
         case let url as URL: return url.absoluteString
-        case let date as Date: return date.timeIntervalSince1970
+        case let set as SetValue: return _JSON(from: set)
         case let `enum` as ConvertibleEnum: return `enum`.kj_value~?.kj_JSON()
         default: return v as? NSCoding
         }
@@ -192,8 +88,8 @@ private extension Optional {
     }
     
     func _anyArray(_ value: Any) -> [Any]? {
-        guard let set = value as? NSSet else { return value as? [Any] }
-        return [Any](set)
+        guard let set = value as? SetValue else { return value as? [Any] }
+        return set.kj_array()
     }
     
     func _array(_ value: Any, _ type: Any.Type) -> ArrayValue? {
@@ -225,6 +121,7 @@ private extension Optional {
             let json = value as? [String: [String: Any]?],
             let type = (mt as? NominalType)?.genericTypes?.last,
             let modelType = type~! as? Convertible.Type {
+            
             var modelDict = [String: Any]()
             for (k, v) in json {
                 guard let m = v?.kj.model(anyType: modelType) else { continue }
@@ -239,12 +136,10 @@ private extension Optional {
     
     func _string(_ value: Any, _ type: Any.Type) -> StringValue? {
         var str: String
-        if let url = value as? URL {
-            str = url.absoluteString
-        } else if let date = value as? Date {
-            str = "\(Int64(date.timeIntervalSince1970))"
-        } else {
-            str = "\(value)"
+        switch value {
+        case let url as URL: str = url.standardizedFileURL.absoluteString
+        case let date as Date: str = "\(Int64(date.timeIntervalSince1970))"
+        default: str = "\(value)"
         }
         return type is NSMutableString.Type ? NSMutableString(string: str) : str
     }
@@ -307,15 +202,6 @@ private extension Optional {
     func _JSON(from dict: [String: Any]) -> Any? {
         let newDict = dict.compactMapValues { $0~?.kj_JSON() }
         return newDict.isEmpty ? nil : newDict
-    }
-    
-    func _JSON(from modelDict: [String: Convertible?]) -> Any? {
-        var jsonDict = [String: Any]()
-        for (k, model) in modelDict {
-            guard let json = model?.kj_JSONObject() else { continue }
-            jsonDict[k] = json
-        }
-        return jsonDict.isEmpty ? nil : jsonDict
     }
     
     func _JSON(from num: NumberValue) -> Any? {

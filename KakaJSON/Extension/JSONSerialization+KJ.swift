@@ -21,9 +21,12 @@ extension JSONSerialization {
     
     static func kj_string(_ json: Any?,
                           prettyPrinted: Bool = false) -> String? {
-        guard let value = json,
-            let data = try? data(withJSONObject: value,
-                                 options: prettyPrinted ? [.prettyPrinted] : [])
+        guard let value = json else { return nil }
+        guard value is [Any] || value is [String: Any] else {
+            return "\(value)"
+        }
+        guard let data = try? data(withJSONObject: value,
+                                   options: prettyPrinted ? [.prettyPrinted] : [])
             else { return nil }
         return String(data: data, encoding: .utf8)
     }

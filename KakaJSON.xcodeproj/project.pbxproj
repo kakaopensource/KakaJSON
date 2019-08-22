@@ -10,6 +10,10 @@
 		2D0575832308F41400810526 /* CompareWithCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0575822308F41400810526 /* CompareWithCodable.swift */; };
 		2D0AC2B523099A4B00992F29 /* Data+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AC2B423099A4B00992F29 /* Data+KJ.swift */; };
 		2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */; };
+		2D49E3DB230E4F4100F57D8F /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49E3DA230E4F4100F57D8F /* Value.swift */; };
+		2D49E3DE230E4FB300F57D8F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49E3DD230E4FB300F57D8F /* Model.swift */; };
+		2D49E3E0230E52A200F57D8F /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49E3DF230E52A200F57D8F /* Coding.swift */; };
+		2D49E3E2230E545D00F57D8F /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49E3E1230E545D00F57D8F /* Coding.swift */; };
 		2D5253AE2305461300F854D9 /* NSObject+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5253AD2305461300F854D9 /* NSObject+KJ.swift */; };
 		2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */; };
 		2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */; };
@@ -31,7 +35,7 @@
 		2D92DDDE2301279E00A96858 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB02301279E00A96858 /* Logger.swift */; };
 		2D92DDDF2301279E00A96858 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB12301279E00A96858 /* Convertible.swift */; };
 		2D92DDE02301279E00A96858 /* KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB22301279E00A96858 /* KJ.swift */; };
-		2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* KakaJSON.swift */; };
+		2D92DDE42301279E00A96858 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB62301279E00A96858 /* JSON.swift */; };
 		2D92DDE52301279E00A96858 /* Pointer+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB82301279E00A96858 /* Pointer+KJ.swift */; };
 		2D92DDE62301279E00A96858 /* Dictionary+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDB92301279E00A96858 /* Dictionary+KJ.swift */; };
 		2D92DDE72301279E00A96858 /* String+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92DDBA2301279E00A96858 /* String+KJ.swift */; };
@@ -85,6 +89,10 @@
 		2D0AC2B423099A4B00992F29 /* Data+KJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+KJ.swift"; sourceTree = "<group>"; };
 		2D0DD8672306785E00937EF2 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D0EAA0E2303C0EB000691AC /* DevGuidline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevGuidline.h; sourceTree = "<group>"; };
+		2D49E3DA230E4F4100F57D8F /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		2D49E3DD230E4FB300F57D8F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2D49E3DF230E52A200F57D8F /* Coding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
+		2D49E3E1230E545D00F57D8F /* Coding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
 		2D5253AD2305461300F854D9 /* NSObject+KJ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+KJ.swift"; sourceTree = "<group>"; };
 		2D5875C72301B6E4001A809B /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D5875C92301C2C4001A809B /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
@@ -111,7 +119,7 @@
 		2D92DDB02301279E00A96858 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D92DDB12301279E00A96858 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		2D92DDB22301279E00A96858 /* KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KJ.swift; sourceTree = "<group>"; };
-		2D92DDB62301279E00A96858 /* KakaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaJSON.swift; sourceTree = "<group>"; };
+		2D92DDB62301279E00A96858 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		2D92DDB82301279E00A96858 /* Pointer+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KJ.swift"; sourceTree = "<group>"; };
 		2D92DDB92301279E00A96858 /* Dictionary+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KJ.swift"; sourceTree = "<group>"; };
 		2D92DDBA2301279E00A96858 /* String+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+KJ.swift"; sourceTree = "<group>"; };
@@ -169,6 +177,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D49E3DC230E4F4900F57D8F /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				2D92DDB62301279E00A96858 /* JSON.swift */,
+				2D49E3DA230E4F4100F57D8F /* Value.swift */,
+				2D49E3DD230E4FB300F57D8F /* Model.swift */,
+				2D49E3E1230E545D00F57D8F /* Coding.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		2D49E3E3230E556700F57D8F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2D0575822308F41400810526 /* CompareWithCodable.swift */,
+				2D49E3DF230E52A200F57D8F /* Coding.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		2D92DD0F2301262500A96858 = {
 			isa = PBXGroup;
 			children = (
@@ -190,10 +218,10 @@
 		2D92DD1B2301262500A96858 /* KakaJSON */ = {
 			isa = PBXGroup;
 			children = (
+				2D49E3DC230E4F4900F57D8F /* Global */,
 				2D92DDB72301279E00A96858 /* Extension */,
-				2D92DDAF2301279E00A96858 /* JSON */,
+				2D92DDAF2301279E00A96858 /* Convert */,
 				2D92DDBD2301279E00A96858 /* Metadata */,
-				2D92DDB62301279E00A96858 /* KakaJSON.swift */,
 				2D92DD1C2301262500A96858 /* KakaJSON.h */,
 				2D0EAA0E2303C0EB000691AC /* DevGuidline.h */,
 				2D92DD1D2301262500A96858 /* Info.plist */,
@@ -206,8 +234,8 @@
 			children = (
 				2D92DDA2230126BD00A96858 /* JSON_To_Model */,
 				2D92DDA0230126BD00A96858 /* Model_To_JSON */,
+				2D49E3E3230E556700F57D8F /* Other */,
 				2D92DD9F230126BD00A96858 /* Common.swift */,
-				2D0575822308F41400810526 /* CompareWithCodable.swift */,
 				2D92DD292301262500A96858 /* Info.plist */,
 				2D92DD9C230126A100A96858 /* KakaJSONTests-Bridging-Header.h */,
 			);
@@ -240,7 +268,7 @@
 			path = JSON_To_Model;
 			sourceTree = "<group>";
 		};
-		2D92DDAF2301279E00A96858 /* JSON */ = {
+		2D92DDAF2301279E00A96858 /* Convert */ = {
 			isa = PBXGroup;
 			children = (
 				2D92DDB02301279E00A96858 /* Logger.swift */,
@@ -250,7 +278,7 @@
 				2D92DDB22301279E00A96858 /* KJ.swift */,
 				2D645BA02302995100075A9E /* TypeProxy.swift */,
 			);
-			path = JSON;
+			path = Convert;
 			sourceTree = "<group>";
 		};
 		2D92DDB72301279E00A96858 /* Extension */ = {
@@ -444,6 +472,7 @@
 				2D92DDF32301279E00A96858 /* BaseLayout.swift in Sources */,
 				2D92DDEE2301279E00A96858 /* FunctionLayout.swift in Sources */,
 				2D92DDED2301279E00A96858 /* ClassLayout.swift in Sources */,
+				2D49E3DE230E4FB300F57D8F /* Model.swift in Sources */,
 				2D92DE052301279E00A96858 /* EnumDescriptor.swift in Sources */,
 				2D92DE022301279E00A96858 /* ClassDescriptor.swift in Sources */,
 				2D92DDF22301279E00A96858 /* EnumLayout.swift in Sources */,
@@ -462,10 +491,12 @@
 				2D92DDFC2301279E00A96858 /* MetaType.swift in Sources */,
 				2D92DDE82301279E00A96858 /* Optional+KJ.swift in Sources */,
 				2D92DDF42301279E00A96858 /* StructLayout.swift in Sources */,
+				2D49E3DB230E4F4100F57D8F /* Value.swift in Sources */,
 				2D0AC2B523099A4B00992F29 /* Data+KJ.swift in Sources */,
 				2D5253AE2305461300F854D9 /* NSObject+KJ.swift in Sources */,
 				2D92DDE62301279E00A96858 /* Dictionary+KJ.swift in Sources */,
 				2D92DDEA2301279E00A96858 /* Metadata.swift in Sources */,
+				2D49E3E2230E545D00F57D8F /* Coding.swift in Sources */,
 				2D645D3F23058B2500046636 /* ConvertibleConfig.swift in Sources */,
 				2D645BA12302995100075A9E /* TypeProxy.swift in Sources */,
 				2D92DDEF2301279E00A96858 /* ProtocolLayout.swift in Sources */,
@@ -476,7 +507,7 @@
 				2D92DE002301279E00A96858 /* EnumType.swift in Sources */,
 				2D92DDFF2301279E00A96858 /* BaseType.swift in Sources */,
 				2D92DDE72301279E00A96858 /* String+KJ.swift in Sources */,
-				2D92DDE42301279E00A96858 /* KakaJSON.swift in Sources */,
+				2D92DDE42301279E00A96858 /* JSON.swift in Sources */,
 				2D92DDF92301279E00A96858 /* ProtocolType.swift in Sources */,
 				2D92DDE02301279E00A96858 /* KJ.swift in Sources */,
 				2D92DDEC2301279E00A96858 /* FieldList.swift in Sources */,
@@ -496,6 +527,7 @@
 				2D5875CA2301C2C4001A809B /* MTJ_03_ModelArray.swift in Sources */,
 				2D92DDAB230126BD00A96858 /* JTM_05_KeyMapping.swift in Sources */,
 				2D0DD8682306785E00937EF2 /* JTM_02_DataType.swift in Sources */,
+				2D49E3E0230E52A200F57D8F /* Coding.swift in Sources */,
 				2D92DDAC230126BD00A96858 /* JTM_01_Basic.swift in Sources */,
 				2D92DDAD230126BD00A96858 /* JTM_03_NestedModel.swift in Sources */,
 				2D5875C82301B6E4001A809B /* MTJ_02_NestedModel.swift in Sources */,

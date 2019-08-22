@@ -3,12 +3,21 @@
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
 ![platforms](https://img.shields.io/badge/platforms-iOS%208.0%20%7C%20macOS%2010.9%20%7C%20tvOS%209.0%20%7C%20watchOS%202.0-F28D00.svg)
 
-Fast conversion between JSON and model in Swift.
+>  Fast conversion between JSON and model in Swift.
+
+- Convert model to JSON with one line of code.（一行代码Model转JSON）
+- Convert JSON to Model with one line of code.（一行代码JSON转Model）
+- Archive\Unarchive object with one line of code.（一行代码实现常见数据的归档\解档）
+
+
 
 ## 中文教程
 - [KakaJSON手册](https://www.cnblogs.com/mjios/p/11352776.html)
 
+
+
 ## Integration
+
 ### CocoaPods
 ```ruby
 pod 'KakaJSON', '~> 1.0.0' 
@@ -24,56 +33,58 @@ To use Swift Package Manager, you should update to Xcode 11.
 
 Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 
+
+
 ## Usages
-- [JSON To Model](#json-to-model)
-	- [Basic Usage](#basic-usage)
-		- [Simple Model](#simple-model)
-		- [Class Type](#class-type)
-		- [Inheritance](#inheritance)
-		- [let](#let)
-		- [JSONString](#jsonstring)
-		- [JSONData](#jsondata)
-		- [Nested Model 1](#nested-model-1)
-		- [Nested Model 2](#nested-model-2)
-		- [Model Array](#model-array)
-		- [Convert](#convert)
-		- [Listen](#listen)
-	- [Data Type](#data-type)
-		- [Int](#int)
-		- [Float](#float)
-		- [Double](#double)
-		- [CGFloat](#cgfloat)
-		- [Bool](#bool)
-		- [String](#string)
-		- [Decimal](#decimal)
-		- [NSDecimalNumber](#nsdecimalnumber)
-		- [NSNumber](#nsnumber)
-		- [Optional](#optional)
-		- [URL](#url)
-		- [Data](#data)
-		- [Date](#date)
-		- [Enum](#enum)
-		- [Array](#array)
-		- [Set](#set)
-		- [Dictionary](#dictionary)
-	- [Key Mapping](#key-mapping)
-		- [Basic Usage](#basic-usage-1)
-		- [Camel -> Underline](#camel---underline)
-		- [Underline -> Camel](#underline---camel)
-		- [Inheritance](#inheritance-1)
-		- [Override 1](#override-1)
-		- [Override 2](#override-2)
-		- [Global Config](#global-config)
-		- [Local Config](#local-config)
-		- [Config Example 1](#config-example-1)
-		- [Config Example 2](#config-example-2)
-		- [Complex](#complex)
-	- [Custom Value](#custom-value)
-		- [Date](#date-1)
-		- [Unspecific Type](#unspecific-type)
-		- [Example](#example)
-		- [Other Ways](#other-ways)
-	- [Dynamic Model](#dynamic-model)
+- [Coding](#coding)
+- [JSON To Model_01_Basic Usage](#json-to-model_01_basic-usage)
+  - [Simple Model](#simple-model)
+  - [Class Type](#class-type)
+  - [Inheritance](#inheritance)
+  - [let](#let)
+  - [JSONString](#jsonstring)
+  - [JSONData](#jsondata)
+  - [Nested Model 1](#nested-model-1)
+  - [Nested Model 2](#nested-model-2)
+  - [Model Array](#model-array)
+  - [Convert](#convert)
+  - [Listen](#listen)
+- [JSON To Model_02_Data Type](#json-to-model_02_data-type)
+  - [Int](#int)
+  - [Float](#float)
+  - [Double](#double)
+  - [CGFloat](#cgfloat)
+  - [Bool](#bool)
+  - [String](#string)
+  - [Decimal](#decimal)
+  - [NSDecimalNumber](#nsdecimalnumber)
+  - [NSNumber](#nsnumber)
+  - [Optional](#optional)
+  - [URL](#url)
+  - [Data](#data)
+  - [Date](#date)
+  - [Enum](#enum)
+	- [Array](#array)
+	- [Set](#set)
+	- [Dictionary](#dictionary)
+- [JSON To Model_03_Key Mapping](#json-to-model_03_key-mapping)
+  - [Basic Usage](#basic-usage-1)
+  - [Camel -> Underline](#camel---underline)
+  - [Underline -> Camel](#underline---camel)
+  - [Inheritance](#inheritance-1)
+  - [Override 1](#override-1)
+  - [Override 2](#override-2)
+  - [Global Config](#global-config)
+  - [Local Config](#local-config)
+  - [Config Example 1](#config-example-1)
+  - [Config Example 2](#config-example-2)
+  - [Complex](#complex)
+- [JSON To Model_04_Custom Value](#json-to-model_04_custom-value)
+  - [Date](#date-1)
+  - [Unspecific Type](#unspecific-type)
+  - [Example](#example)
+  - [Other Ways](#other-ways)
+- [JSON To Model_05_Dynamic Model](#json-to-model_05_dynamic-model)
 - [Model To JSON](#model-to-json)
 	- [JSON and JSONString](#json-and-jsonstring)
 	- [Optional](#optional-1)
@@ -86,9 +97,159 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 	- [Custom Value](#custom-value-1)
 	- [Listen](#listen)
 
-## JSON To Model
-### Basic Usage
-#### Simple Model
+
+
+## Coding
+
+```swift
+/****************** String ******************/
+let string1 = "123"
+// wrtite String to file
+write(string1, to: file)
+// read String from file
+let string2 = read(String.self, from: file)
+XCTAssert(string2 == string1)
+// read Int from file
+XCTAssert(read(Int.self, from: file) == 123)
+
+/****************** Date ******************/
+let date1 = Date(timeIntervalSince1970: 1565922866)
+// wrtite Date to file
+write(date1, to: file)
+ 
+// read Date from file
+let date2 = read(Date.self, from: file)
+XCTAssert(date2 == date1)
+ 
+// read Int from file
+XCTAssert(read(Int.self, from: file) == 1565922866)
+
+/****************** Array ******************/
+let array1 = ["Jack", "Rose"]
+// wrtite [String] to file
+write(array1, to: file)
+ 
+// read [String] from file
+let array2 = read([String].self, from: file)
+XCTAssert(array2 == array1)
+// Also support Set\Dictionary
+
+/****************** Model ******************/
+struct Book: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+ 
+struct Car: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+ 
+struct Dog: Convertible {
+    var name: String = ""
+    var age: Int = 0
+}
+ 
+struct Person: Convertible {
+    var name: String = "Jack"
+    var car: Car? = Car(name: "Bently", price: 106.666)
+    var books: [Book]? = [
+        Book(name: "Fast C++", price: 666.6),
+        Book(name: "Data Structure And Algorithm", price: 666.6),
+    ]
+    var dogs: [String: Dog]? = [
+        "dog0": Dog(name: "Wang", age: 5),
+        "dog1": Dog(name: "ErHa", age: 3),
+    ]
+}
+ 
+// wrtite Person to file
+write(Person(), to: file)
+ 
+// read Person from file
+let person = read(Person.self, from: file)
+ 
+XCTAssert(person?.name == "Jack")
+XCTAssert(person?.car?.name == "Bently")
+XCTAssert(person?.car?.price == 106.666)
+XCTAssert(person?.books?.count == 2)
+XCTAssert(person?.dogs?.count == 2)
+
+/****************** Model Array ******************/
+struct Car: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+ 
+let models1 = [
+    Car(name: "BMW", price: 100.0),
+    Car(name: "Audi", price: 70.0)
+]
+// wrtite [Car] to file
+write(models1, to: file)
+ 
+// read [Car] from file
+let models2 = read([Car].self, from: file)
+XCTAssert(models2?.count == models1.count)
+XCTAssert(models2?[0].name == "BMW")
+XCTAssert(models2?[0].price == 100.0)
+XCTAssert(models2?[1].name == "Audi")
+XCTAssert(models2?[1].price == 70.0)
+
+/****************** Model Set ******************/
+struct Car: Convertible, Hashable {
+    var name: String = ""
+    var price: Double = 0.0
+}
+ 
+let models1: Set<Car> = [
+    Car(name: "BMW", price: 100.0),
+    Car(name: "Audi", price: 70.0)
+]
+ 
+// wrtite Set<Car> to file
+write(models1, to: file)
+ 
+// read Set<Car> from file
+let models2 = read(Set<Car>.self, from: file)!
+XCTAssert(models2.count == models1.count)
+for car in models2 {
+    XCTAssert(["BMW", "Audi"].contains(car.name))
+    XCTAssert([100.0, 70.0].contains(car.price))
+}
+
+/****************** Model Dictionary ******************/
+struct Car: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+ 
+let models1 = [
+    "car0": Car(name: "BMW", price: 100.0),
+    "car1": Car(name: "Audi", price: 70.0)
+]
+ 
+// wrtite [String: Car] to file
+write(models1, to: file)
+ 
+// read [String: Car] from file
+let models2 = read([String: Car].self, from: file)
+XCTAssert(models2?.count == models1.count)
+ 
+let car0 = models2?["car0"]
+XCTAssert(car0?.name == "BMW")
+XCTAssert(car0?.price == 100.0)
+ 
+let car1 = models2?["car1"]
+XCTAssert(car1?.name == "Audi")
+XCTAssert(car1?.price == 70.0)
+```
+
+
+
+## JSON To Model_01_Basic Usage
+
+### Simple Model
 ```swift
 struct Cat: Convertible {
     var name: String = ""
@@ -114,7 +275,7 @@ let cat3 = json.kj.model(anyType: type) as? Cat
 let cat4 = model(from: json, anyType: type) as? Cat
 ```
 
-#### Class Type
+### Class Type
 ```swift
 class Cat: Convertible {
     var weight: Double = 0.0
@@ -152,7 +313,7 @@ struct Pig: Convertible {
 }
 ```
 
-#### Inheritance
+### Inheritance
 ```swift
 class Person: Convertible {
     var name: String = ""
@@ -175,7 +336,7 @@ let json: [String: Any] = [
 let student = json.kj.model(Student.self)
 ```
 
-#### let
+### let
 ```swift
 struct Cat: Convertible {
     let weight: Double = 0.0
@@ -185,7 +346,7 @@ let json = ...
 let cat = json.kj.model(Cat.self)
 ```
 
-#### JSONString
+### JSONString
 ```swift
 // jsonString can alse be NSString, NSMutableString
 let jsonString = """
@@ -203,7 +364,7 @@ let cat3 = jsonString.kj.model(anyType: type) as? Cat
 let cat4 = model(from: jsonString, anyType: type) as? Cat
 ```
 
-#### JSONData
+### JSONData
 ```swift
 // jsonData can alse be NSData, NSMutableData
 let jsonData = """
@@ -221,7 +382,7 @@ let cat3 = jsonData.kj.model(anyType: type) as? Cat
 let cat4 = model(from: jsonData, anyType: type) as? Cat
 ```
 
-#### Nested Model 1
+### Nested Model 1
 ```swift
 // let all the models comform to Convertible
 
@@ -266,7 +427,7 @@ XCTAssert(person?.books?[1].name == "Data Structure And Algorithm")
 XCTAssert(person?.dogs?["dog0"]?.name == "Larry")
 ```
 
-#### Nested Model2
+### Nested Model2
 ```swift
 struct Book: Convertible, Hashable {
     var name: String = ""
@@ -294,7 +455,7 @@ XCTAssert(book?.name == "Fast C++")
 XCTAssert(book?.price == 666.6)
 ```
 
-#### Model Array
+### Model Array
 ```swift
 struct Car: Convertible {
     var name: String = ""
@@ -326,7 +487,7 @@ let cars7 = jsonString.kj.modelArray(anyType: type) as? [Car]
 let cars8 = modelArray(from: jsonString, anyType: type) as? [Car]
 ```
 
-#### Convert
+### Convert
 ```swift
 struct Cat: Convertible {
     var name: String = ""
@@ -347,7 +508,7 @@ XCTAssert(cat.weight == 6.66)
 
 ```
 
-#### Listen
+### Listen
 ```swift
 struct Car: Convertible {
     var name: String = ""
@@ -420,8 +581,11 @@ XCTAssert(student?.score == score)
 
 ```
 
-### Data Type
-#### Int
+
+
+## JSON To Model_02_Data Type
+
+### Int
 ```swift
 struct Student: Convertible {
     var age1: Int8 = 6
@@ -468,7 +632,7 @@ XCTAssert(student?.age10 == 6)
 XCTAssert(student?.age11 == 1565922866)
 ```
 
-#### Float
+### Float
 ```swift
 struct Student: Convertible {
     var height1: Float = 0.0
@@ -508,7 +672,7 @@ XCTAssert(student?.height8 == 0.12345678)
 XCTAssert(student?.height9 == 1565922866)
 ```
 
-#### Double
+### Double
 ```swift
 struct Student: Convertible {
     var height1: Double = 0.0
@@ -548,7 +712,7 @@ XCTAssert(student?.height8 == 0.1234567890123456)
 XCTAssert(student?.height9 == 1565922866)
 ```
 
-#### CGFloat
+### CGFloat
 ```swift
 struct Student: Convertible {
     var height1: CGFloat = 0.0
@@ -586,7 +750,7 @@ XCTAssert(student?.height8 == CGFloat(0.1234567890123456))
 XCTAssert(student?.height9 == CGFloat(1565922866))
 ```
 
-#### Bool
+### Bool
 ```swift
 struct Student: Convertible {
     var rich1: Bool = false
@@ -619,7 +783,7 @@ XCTAssert(student?.rich5 == true)
 XCTAssert(student?.rich6 == false)
 ```
 
-#### String
+### String
 ```swift
 // Support String, NSString, NSMutableString
  
@@ -660,7 +824,7 @@ XCTAssert(student?.name8 == "http://www.520suanfa.com")
 XCTAssert(student?.name9 == "1565922866")
 ```
 
-#### Decimal
+### Decimal
 ```swift
 struct Student: Convertible {
     var money1: Decimal = 0
@@ -695,7 +859,7 @@ XCTAssert(student?.money7 == Decimal(string: "0.1234567890123456"))
 XCTAssert(student?.money8 == Decimal(string: "1565922866"))
 ```
 
-#### NSDecimalNumber
+### NSDecimalNumber
 ```swift
 struct Student: Convertible {
     var money1: NSDecimalNumber = 0
@@ -732,7 +896,7 @@ XCTAssert(student?.money7 == NSDecimalNumber(string: "0.1234567890123456"))
 XCTAssert(student?.money8 == NSDecimalNumber(string: "1565922866"))
 ```
 
-#### NSNumber
+### NSNumber
 ```swift
 struct Student: Convertible {
     var money1: NSNumber = 0
@@ -772,7 +936,7 @@ XCTAssert(student?.money7 == NSNumber(value: longDouble))
 XCTAssert(student?.money8 == NSNumber(value: 1565922866))
 ```
 
-#### Optional
+### Optional
 ```swift
 // Support any number of ?
  
@@ -810,7 +974,7 @@ XCTAssert(student?.rich5 == true)
 XCTAssert(student?.rich6 == false)
 ```
 
-#### URL
+### URL
 ```swift
 // Support URL, NSURL
  
@@ -838,7 +1002,7 @@ XCTAssert(student?.url3?.absoluteString == encodedUrl)
 XCTAssert(student?.url4?.absoluteString == encodedUrl)
 ```
 
-#### Data
+### Data
 ```swift
 // Support NSData, Data
  
@@ -873,7 +1037,7 @@ XCTAssert(String(data: (student?.data5)! as Data, encoding: utf8) == str)
 XCTAssert(String(data: (student?.data6)! as Data, encoding: utf8) == str)
 ```
 
-#### Date
+### Date
 ```swift
 // Support Date, NSDate
  
@@ -909,7 +1073,7 @@ XCTAssert(student?.date6?.timeIntervalSince1970 == milliseconds)
 XCTAssert(student?.date7?.timeIntervalSince1970 == milliseconds)
 ```
 
-#### Enum
+### Enum
 ```swift
 // let enum with rawValue conform to ConvertibleEnum
  
@@ -964,7 +1128,7 @@ XCTAssert(student2?.grade3 == .great)
 XCTAssert(student2?.grade4 == .perfect)
 ```
 
-#### Array
+### Array
 ```swift
 // Support conversion between Array\NSArray\NSMutableArray and Set\NSSet\NSMutableSet
  
@@ -1000,7 +1164,7 @@ for i in array {
 }
 ```
 
-#### Set
+### Set
 ```swift
 // Support conversion between Set\NSSet\NSMutableSet and Array\NSArray\NSMutableArray
  
@@ -1035,7 +1199,7 @@ for i in array {
 }
 ```
 
-#### Dictionary
+### Dictionary
 ```swift
 // Support conversion between Dictionary, NSDictionary and NSMutableDictionary
  
@@ -1061,8 +1225,11 @@ for (k, v) in dict {
 }
 ```
 
-### Key Mapping
-#### Basic Usage
+
+
+## JSON To Model_03_Key Mapping
+
+### Basic Usage
 ```swift
 struct Person: Convertible {
     var nickName: String = ""
@@ -1096,7 +1263,7 @@ XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
 XCTAssert(student?.birthday == birthday)
 ```
 
-#### Camel -> Underline
+### Camel -> Underline
 ```swift
 struct Person: Convertible {
     var nickName: String = ""
@@ -1125,7 +1292,7 @@ XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
 XCTAssert(student?.birthday == birthday)
 ```
 
-#### Underline -> Camel
+### Underline -> Camel
 ```swift
 struct Person: Convertible {
     var nick_name: String = ""
@@ -1154,7 +1321,7 @@ XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
 XCTAssert(student?.birthday == birthday)
 ```
 
-#### Inheritance
+### Inheritance
 ```swift
 class Person: Convertible {
     var nickName: String = ""
@@ -1183,7 +1350,7 @@ XCTAssert(student?.nickName == nick_ame)
 XCTAssert(student?.mathScore == math_score)
 ```
 
-#### Override 1
+### Override 1
 ```swift
 class Person: Convertible {
     var name: String = ""
@@ -1216,7 +1383,7 @@ XCTAssert(student?.name == name)
 XCTAssert(student?.score == score)
 ```
 
-#### Override 2
+### Override 2
 ```swift
 class Person: Convertible {
     var name: String = ""
@@ -1249,7 +1416,7 @@ XCTAssert(student?.name == studentName)
 XCTAssert(student?.score == studentScore)
 ```
 
-#### Global Config
+### Global Config
 ```swift
 // Set global config once, effect on any type
 ConvertibleConfig.setModelKey { property in
@@ -1289,7 +1456,7 @@ XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
 
-#### Local Config
+### Local Config
 ```swift
 // Set config for Person, Car
 // It effects on Student because Person is Student's superclass
@@ -1330,7 +1497,7 @@ XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
 
-#### Config Example 1
+### Config Example 1
 ```swift
 // Global config
 ConvertibleConfig.setModelKey { property in
@@ -1381,7 +1548,7 @@ XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
 
-#### Config Example 2
+### Config Example 2
 ```swift
 // Global config
 ConvertibleConfig.setModelKey { property in
@@ -1461,7 +1628,7 @@ XCTAssert(car?.maxSpeed == max_speed)
 XCTAssert(car?.name == name)
 ```
 
-#### Complex
+### Complex
 ```swift
 struct Toy: Convertible {
     var price: Double = 0.0
@@ -1518,8 +1685,11 @@ XCTAssert(dog?.toy?.name == toy.name)
 XCTAssert(dog?.toy?.price == toy.price)
 ```
 
-### Custom Value
-#### Date
+
+
+## JSON To Model_04_Custom Value
+
+### Date
 ```swift
 private let date1Fmt: DateFormatter = {
     let fmt = DateFormatter()
@@ -1561,7 +1731,7 @@ XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
 XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
 ```
 
-#### Unspecific Type
+### Unspecific Type
 ```swift
 struct Person: Convertible {
     var name: String = ""
@@ -1591,7 +1761,7 @@ XCTAssert(pet?.name == "Wang")
 XCTAssert(pet?.weight == 109.5)
 ```
 
-#### Example
+### Example
 ```swift
 struct Student: Convertible {
     var age: Int = 0
@@ -1640,7 +1810,10 @@ XCTAssert(student?.age == 15)
 XCTAssert(student?.name == "kj_Jack")
 ```
 
-### Dynamic Model
+
+
+## JSON To Model_05_Dynamic Model
+
 ```swift
 struct Book: Convertible {
     var name: String = ""
@@ -1741,7 +1914,10 @@ XCTAssert(food1?.name == books[1].name)
 XCTAssert(food1?.price == books[1].price)
 ```
 
+
+
 ## Model To JSON
+
 ### JSON and JSONString
 ```swift
 struct Car: Convertible {

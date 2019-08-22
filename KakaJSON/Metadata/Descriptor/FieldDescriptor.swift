@@ -19,13 +19,28 @@ struct FieldRecord {
     mutating func type(_ genericContext: UnsafeRawPointer?,
                        _ genericArguments: UnsafeRawPointer?) -> Any.Type {
         let name = _mangledTypeName.advanced()
-        let nameLength = UInt(strlen(name ~>> UnsafePointer<Int8>.self))
         return _getTypeByMangledNameInContext(
                     name,
-                    nameLength,
+                    nameLength(name),
                     genericContext,
                     genericArguments
                 )!
+    }
+    
+    func nameLength(_ begin: UnsafeRawPointer) -> UInt {
+        var end = begin
+        let size = MemoryLayout<Int>.size
+        while true {
+            let cur = end.load(as: UInt8.self)
+            if cur == 0 { break }
+            end += 1
+            if cur <= 0x17 {
+                end += 4
+            } else if cur <= 0x1F {
+                end += size
+            }
+        }
+        return UInt(end - begin)
     }
 }
 
