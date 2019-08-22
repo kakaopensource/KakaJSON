@@ -10,7 +10,7 @@
 public class Property: CustomStringConvertible {
     public let name: String
     public let type: Any.Type
-    public private(set) var dataType: Any.Type = Any.self
+    public private(set) lazy var dataType: Any.Type = type~!
     public let isVar: Bool
     public let offset: Int
     public let ownerType: Any.Type
@@ -23,7 +23,6 @@ public class Property: CustomStringConvertible {
         self.isVar = isVar
         self.offset = offset
         self.ownerType = ownerType
-        self.dataType = type~!
     }
     
     func set(_ value: Any, for model: UnsafeMutableRawPointer) {

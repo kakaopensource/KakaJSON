@@ -102,6 +102,9 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
 ## Coding
 
 ```swift
+// file path (can be String or URL)
+let file = "/Users/mj/Desktop/test.data"
+
 /****************** String ******************/
 let string1 = "123"
 // wrtite String to file

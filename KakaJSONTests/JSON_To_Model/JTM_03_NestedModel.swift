@@ -73,6 +73,22 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(person?.dogs?["dog1"]?.age == dogs[1].age)
     }
 
+    func testRecursive() {
+        class Person: Convertible {
+            var name: String = ""
+            var parent: Person?
+            required init() {}
+        }
+        
+        let json: [String: Any] = [
+            "name": "Jack",
+            "parent": ["name": "Jim"]
+        ]
+        
+        let person = json.kj.model(Person.self)
+        XCTAssert(person?.name == "Jack")
+        XCTAssert(person?.parent?.name == "Jim")
+    }
     
     func testOptional() {
         struct Book: Convertible {
