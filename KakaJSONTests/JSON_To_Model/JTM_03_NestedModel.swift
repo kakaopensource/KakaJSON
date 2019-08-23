@@ -90,6 +90,57 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(person?.parent?.name == "Jim")
     }
     
+    func testGeneric() {
+        struct User: Convertible {
+            let id: String = ""
+            let nickName: String = ""
+        }
+        
+        struct Goods: Convertible {
+            private(set) var price: CGFloat = 0.0
+            let name: String = ""
+        }
+        
+        struct NetResponse<Element>: Convertible {
+            let data: Element? = nil
+            let msg: String = ""
+            let code: Int = 0
+        }
+        
+        let json1 = """
+        {
+            "data": {"nickName": "KaKa", "id": 213234234},
+            "msg": "Success",
+            "code" : 200
+        }
+        """
+        let response1 = json1.kj.model(NetResponse<User>.self)
+        let user = response1?.data
+        XCTAssert(user?.nickName == "KaKa")
+        XCTAssert(user?.id == "213234234")
+        
+        let json2 = """
+        {
+            "data": [
+                {"price": "6199", "name": "iPhone XR"},
+                {"price": "8199", "name": "iPhone XS"},
+                {"price": "9099", "name": "iPhone Max"}
+            ],
+            "msg": "Success",
+            "code" : 200
+        }
+        """
+        let response2 = json2.kj.model(NetResponse<[Goods]>.self)
+        let goods = response2?.data
+        XCTAssert(goods?.count == 3)
+        XCTAssert(goods?[0].price == 6199)
+        XCTAssert(goods?[0].name == "iPhone XR")
+        XCTAssert(goods?[1].price == 8199)
+        XCTAssert(goods?[1].name == "iPhone XS")
+        XCTAssert(goods?[2].price == 9099)
+        XCTAssert(goods?[2].name == "iPhone Max")
+    }
+    
     func testOptional() {
         struct Book: Convertible {
             var name: String = ""

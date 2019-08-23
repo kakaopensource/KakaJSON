@@ -80,6 +80,26 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(cat?.weight == weight)
     }
     
+    func testLet() {
+        struct Cat: Convertible {
+            // let of integer type is very restricted in release mode
+            // please user `private(set) var` instead of `let`
+            private(set) var weight: Double = 0.0
+            let name: String = ""
+        }
+        let name: String = "Miaomiao"
+        let weight: Double = 6.66
+        
+        let json: [String: Any] = [
+            "weight": weight,
+            "name": name
+        ]
+        
+        let cat = json.kj.model(Cat.self)
+        XCTAssert(cat?.name == name)
+        XCTAssert(cat?.weight == weight)
+    }
+    
     // MARK: - Class Type
     func testClass() {
         class Person: Convertible {

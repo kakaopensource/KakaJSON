@@ -46,6 +46,8 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [JSONData](#jsondata)
   - [Nested Model 1](#nested-model-1)
   - [Nested Model 2](#nested-model-2)
+  - [Recursive](#recursive)
+  - [Generic](#generic)
   - [Model Array](#model-array)
   - [Convert](#convert)
   - [Listen](#listen)
@@ -342,7 +344,9 @@ let student = json.kj.model(Student.self)
 ### let
 ```swift
 struct Cat: Convertible {
-    let weight: Double = 0.0
+    // let of integer type is very restricted in release mode
+    // please user `private(set) var` instead of `let`
+    private(set) var weight: Double = 0.0
     let name: String = ""
 }
 let json = ...
@@ -456,6 +460,76 @@ XCTAssert(person?.books?.count == 1)
 let book = person?.books?.randomElement()
 XCTAssert(book?.name == "Fast C++")
 XCTAssert(book?.price == 666.6)
+```
+
+### Recursive
+```swift
+class Person: Convertible {
+    var name: String = ""
+    var parent: Person?
+    required init() {}
+}
+ 
+let json: [String: Any] = [
+    "name": "Jack",
+    "parent": ["name": "Jim"]
+]
+ 
+let person = json.kj.model(Person.self)
+XCTAssert(person?.name == "Jack")
+XCTAssert(person?.parent?.name == "Jim")
+```
+
+### Generic
+```swift
+struct NetResponse<Element>: Convertible {
+    let data: Element? = nil
+    let msg: String = ""
+    let code: Int = 0
+}
+ 
+struct User: Convertible {
+    let id: String = ""
+    let nickName: String = ""
+}
+ 
+struct Goods: Convertible {
+    private(set) var price: CGFloat = 0.0
+    let name: String = ""
+}
+ 
+let json1 = """
+{
+    "data": {"nickName": "KaKa", "id": 213234234},
+    "msg": "Success",
+    "code" : 200
+}
+"""
+let response1 = json1.kj.model(NetResponse<User>.self)
+let user = response1?.data
+XCTAssert(user?.nickName == "KaKa")
+XCTAssert(user?.id == "213234234")
+ 
+let json2 = """
+{
+    "data": [
+        {"price": "6199", "name": "iPhone XR"},
+        {"price": "8199", "name": "iPhone XS"},
+        {"price": "9099", "name": "iPhone Max"}
+    ],
+    "msg": "Success",
+    "code" : 200
+}
+"""
+let response2 = json2.kj.model(NetResponse<[Goods]>.self)
+let goods = response2?.data
+XCTAssert(goods?.count == 3)
+XCTAssert(goods?[0].price == 6199)
+XCTAssert(goods?[0].name == "iPhone XR")
+XCTAssert(goods?[1].price == 8199)
+XCTAssert(goods?[1].name == "iPhone XS")
+XCTAssert(goods?[2].price == 9099)
+XCTAssert(goods?[2].name == "iPhone Max")
 ```
 
 ### Model Array
