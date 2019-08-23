@@ -205,8 +205,10 @@ private extension Optional {
     }
     
     func _JSON(from num: NumberValue) -> Any? {
-        // stay Bool\Decimal
-        if num is Bool || num is Decimal { return num }
+        // stay Bool\IntegerValue
+        if num is Bool || num is IntegerValue { return num }
+        // return string for keeping precision
+        if num is DecimalValue { return "\(num)" }
         // return NSDecimalNumber for keeping precision
         return NSDecimalNumber(string: "\(num)")
     }
@@ -243,8 +245,10 @@ extension String: StringValue {}
 extension NSString: StringValue {}
 
 protocol NumberValue {}
+protocol DecimalValue {}
 extension NSNumber: NumberValue {}
-extension Decimal: NumberValue {}
+extension Decimal: NumberValue, DecimalValue {}
+extension NSDecimalNumber: DecimalValue {}
 
 protocol DigitValue: NumberValue {
     init?(truncating: NSNumber)

@@ -9,7 +9,7 @@
 public class ClassType: ModelType, PropertyType, LayoutType {
     private(set) var layout: UnsafeMutablePointer<ClassLayout>!
     public private(set) var `super`: ClassType?
-    public private(set) var isPureSwiftClass: Bool = false
+//    public private(set) var isPureSwiftClass: Bool = false
     
     override func build() {
         super.build()
@@ -25,7 +25,7 @@ public class ClassType: ModelType, PropertyType, LayoutType {
         }
         
         /// Not sure
-        isPureSwiftClass = (layout.pointee.rodata ~>> UnsafePointer<UInt8>.self).pointee > 0
+//        isPureSwiftClass = (layout.pointee.rodata ~>> UnsafePointer<UInt8>.self).pointee > 0
     }
     
     override public var description: String {

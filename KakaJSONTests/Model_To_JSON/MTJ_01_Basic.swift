@@ -23,18 +23,10 @@ class MTJ_01_Basic: XCTestCase {
             var capacity: CGFloat = 88.88
             var birthday: Date = time
             var url: URL? = URL(string: "http://520suanfa.com")
-            
-            func kj_willConvertToJSON() {
-//                print("Car - kj_willConvertToJSON")
-            }
-            
-            func kj_didConvertToJSON(json: [String: Any]?) {
-//                print("Car - kj_didConvertToJSON", json as Any)
-            }
         }
         
         let car = Car()
-        
+
         let json = car.kj.JSONObject()
 //        let json = JSONObject(from: car)
         XCTAssert(bool(json?["new"]) == true)
@@ -49,11 +41,11 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(cgFloat(json?["capacity"]) == 88.88)
         XCTAssert(double(json?["birthday"]) == timeInteval)
         XCTAssert(string(json?["url"]) == "http://520suanfa.com")
-        
+
         var jsonString = car.kj.JSONString()
 //        var jsonString = JSONString(from: car)
         /* {"birthday":1565922866,"new":true,"height":0.123456789012345678901234567890123456789,"weight":0.1234567890123456,"minSpeed":66.66,"price":0.123456789012345678901234567890123456789,"age":10,"name":"Bently","area":0.12345678,"maxSpeed":77.77,"capacity":88.88,"url":"http:\/\/520suanfa.com"} */
-        
+
         XCTAssert(jsonString?.contains("Bently") == true)
         XCTAssert(jsonString?.contains("true") == true)
         XCTAssert(jsonString?.contains("10") == true)
@@ -65,7 +57,7 @@ class MTJ_01_Basic: XCTestCase {
         XCTAssert(jsonString?.contains("88.88") == true)
         XCTAssert(jsonString?.contains(timeIntevalString) == true)
         XCTAssert(jsonString?.contains("520suanfa.com") == true)
-        
+
         jsonString = car.kj.JSONString(prettyPrinted: true)
         /*
          {

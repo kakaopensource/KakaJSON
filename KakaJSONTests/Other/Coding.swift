@@ -6,25 +6,13 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-class Coding: XCTestCase {
+class TestCoding: XCTestCase {
     // Please input your file path
-    var file = "/Users/mj/Desktop/kj_jsons/kj_test.json"
-    
-    func checkCoding<M: Convertible & Equatable>(_ type: M.Type) {
-        let obj1 = type.init()
-        // write to file
-        write(obj1, to: file)
-        
-        // read from file
-        let obj2 = read(type, from: file)
-        XCTAssert(obj1 == obj2)
-        
-        let objString = "\(obj2 as Any)"
-        // prevent from 66.6499999999999998
-        XCTAssert(!objString.contains("99999"))
-        // prevent from 66.6600000000000001
-        XCTAssert(!objString.contains("00000"))
-    }
+    var file: String = {
+        var str = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+        str.append("/kj_test.json")
+        return str
+    }()
     
     func testModel() {
         // Equatable is only for test cases, is not necessary for Coding.
@@ -241,5 +229,21 @@ class Coding: XCTestCase {
         let car1 = models2?["car1"]
         XCTAssert(car1?.name == "Audi")
         XCTAssert(car1?.price == 70.0)
+    }
+    
+    func checkCoding<M: Convertible & Equatable>(_ type: M.Type) {
+        let obj1 = type.init()
+        // write to file
+        write(obj1, to: file)
+        
+        // read from file
+        let obj2 = read(type, from: file)
+        XCTAssert(obj1 == obj2)
+        
+        let objString = "\(obj2 as Any)"
+        // prevent from 66.6499999999999998
+        XCTAssert(!objString.contains("99999"))
+        // prevent from 66.6600000000000001
+        XCTAssert(!objString.contains("00000"))
     }
 }
