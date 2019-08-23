@@ -217,8 +217,14 @@ extension Convertible {
     }
     
     mutating func kj_convert(from json: [String: Any]) {
-        guard let mt = Metadata.type(self) as? ModelType,
-            let properties = mt.properties else { return }
+        guard let mt = Metadata.type(self) as? ModelType else {
+            Logger.warnning("Not a class or struct instance.")
+            return
+        }
+        guard let properties = mt.properties else {
+            Logger.warnning("Don't have any property.")
+            return
+        }
         
         // get data address
         let model = _ptr()
@@ -299,9 +305,14 @@ extension Convertible {
 // MARK: - Model -> JSON
 extension Convertible {
     func kj_JSONObject() -> [String: Any]? {
-        guard let mt = Metadata.type(self) as? ModelType,
-            let properties = mt.properties
-            else { return nil }
+        guard let mt = Metadata.type(self) as? ModelType else {
+            Logger.warnning("Not a class or struct instance.")
+            return nil
+        }
+        guard let properties = mt.properties else {
+            Logger.warnning("Don't have any property.")
+            return nil
+        }
         
         kj_willConvertToJSON()
         

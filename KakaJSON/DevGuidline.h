@@ -6,6 +6,16 @@
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
+/*
+ Metadata Reference:
+ 0. https://github.com/apple/swift/blob/master/docs/ABI/TypeMetadata.rst
+ 1. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataKind.def
+ 2. https://github.com/apple/swift/blob/master/include/swift/ABI/Metadata.h
+ 3. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataValues.h
+ 4. https://github.com/apple/swift/blob/master/utils/dtrace/runtime.d
+ 5. https://github.com/apple/swift/blob/master/include/swift/Reflection/Records.h
+ */
+
 1. 提交代码之前，请务必先保证在真机、模拟器上通过所有的测试用例（Debug+Release模式）
 
 2. 命名规范

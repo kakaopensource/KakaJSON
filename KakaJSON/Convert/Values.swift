@@ -14,6 +14,8 @@ import CoreGraphics
 public struct Values {
     static func value(_ val: Any?, _ type: Any.Type) -> Any? {
         guard let v = val.kj_value else { return nil }
+        if v is NSNull { return v }
+        
         if Swift.type(of: v) == type { return v }
         
         switch type {
@@ -35,6 +37,7 @@ public struct Values {
     
     static func JSONValue(_ value: Any?) -> Any? {
         guard let v = value.kj_value else { return nil }
+        if v is NSNull { return nil }
         
         switch v {
         case let num as NumberValue: return _JSONValue(from: num)

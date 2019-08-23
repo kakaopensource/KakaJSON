@@ -80,6 +80,27 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(cat?.weight == weight)
     }
     
+    // MARK: - NSNull
+    func testNSNull() {
+        struct Cat: Convertible {
+            var weight: Double = 0.0
+            var name: String = "xx"
+            var data: NSNull?
+        }
+        
+        let json: [String: Any] = [
+            "name": NSNull(),
+            "weight": 6.6,
+            "data": NSNull()
+        ]
+        
+        let cat = json.kj.model(Cat.self)
+        // convert failed, keep default value
+        XCTAssert(cat?.name == "xx")
+        XCTAssert(cat?.weight == 6.6)
+        XCTAssert(cat?.data == NSNull())
+    }
+    
     // MARK: - let
     func testLet() {
         struct Cat: Convertible {

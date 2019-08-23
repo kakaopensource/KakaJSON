@@ -41,6 +41,7 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [Class Type](#class-type)
   - [Inheritance](#inheritance)
   - [let](#let)
+  - [NSNull](#nsnull)
   - [JSONString](#jsonstring)
   - [JSONData](#jsondata)
   - [Nested Model 1](#nested-model-1)
@@ -350,6 +351,27 @@ struct Cat: Convertible {
 }
 let json = ...
 let cat = json.kj.model(Cat.self)
+```
+
+### NSNull
+```swift
+struct Cat: Convertible {
+    var weight: Double = 0.0
+    var name: String = "xx"
+    var data: NSNull?
+}
+
+let json: [String: Any] = [
+    "name": NSNull(),
+    "weight": 6.6,
+    "data": NSNull()
+]
+
+let cat = json.kj.model(Cat.self)
+// convert failed, keep default value
+XCTAssert(cat?.name == "xx")
+XCTAssert(cat?.weight == 6.6)
+XCTAssert(cat?.data == NSNull())
 ```
 
 ### JSONString
