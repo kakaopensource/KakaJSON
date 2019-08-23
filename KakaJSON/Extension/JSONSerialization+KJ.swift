@@ -9,19 +9,18 @@
 import Foundation
 
 extension JSONSerialization {
-    static func kj_JSON<T>(_ string: String?, _ type: T.Type) -> T? {
-        return kj_JSON(string?.data(using: .utf8), type)
+    static func kj_JSON<T>(_ string: String, _ type: T.Type) -> T? {
+        return string.data(using: .utf8).flatMap { kj_JSON($0, type) }
     }
     
-    static func kj_JSON<T>(_ data: Data?, _ type: T.Type) -> T? {
-        guard let value = data else { return nil }
-        return try? jsonObject(with: value,
+    static func kj_JSON<T>(_ data: Data, _ type: T.Type) -> T? {
+        return try? jsonObject(with: data,
                                options: .allowFragments) as? T
     }
     
     static func kj_string(_ json: Any?,
                           prettyPrinted: Bool = false) -> String? {
-        guard let value = json else { return nil }
+        guard let value = json.kj_value else { return nil }
         guard value is [Any] || value is [String: Any] else {
             return "\(value)"
         }

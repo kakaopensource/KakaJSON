@@ -46,7 +46,7 @@ public extension KJ where Base: ExpressibleByArrayLiteral & Sequence {
     
     /// Array -> JSONArray
     func JSONArray() -> [Any]? {
-        return base~?.kj_JSON() as? [Any]
+        return Values.kj_JSON(base) as? [Any]
     }
     
     /// Array -> JSONArray

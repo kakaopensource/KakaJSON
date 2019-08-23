@@ -80,6 +80,7 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(cat?.weight == weight)
     }
     
+    // MARK: - let
     func testLet() {
         struct Cat: Convertible {
             // let of integer type is very restricted in release mode

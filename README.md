@@ -1,7 +1,6 @@
 # KakaJSON
 ![pod](https://img.shields.io/cocoapods/v/KakaJSON.svg) 
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
-![platforms](https://img.shields.io/badge/platforms-iOS%208.0%20%7C%20macOS%2010.9%20%7C%20tvOS%209.0%20%7C%20watchOS%202.0-F28D00.svg)
 
 >  Fast conversion between JSON and model in Swift.
 
@@ -485,7 +484,7 @@ XCTAssert(person?.parent?.name == "Jim")
 struct NetResponse<Element>: Convertible {
     let data: Element? = nil
     let msg: String = ""
-    let code: Int = 0
+    private(set) var code: Int = 0
 }
  
 struct User: Convertible {
@@ -506,10 +505,11 @@ let json1 = """
 }
 """
 let response1 = json1.kj.model(NetResponse<User>.self)
-let user = response1?.data
-XCTAssert(user?.nickName == "KaKa")
-XCTAssert(user?.id == "213234234")
- 
+XCTAssert(response1?.msg == "Success")
+XCTAssert(response1?.code == 200)
+XCTAssert(response1?.data?.nickName == "KaKa")
+XCTAssert(response1?.data?.id == "213234234")
+
 let json2 = """
 {
     "data": [
@@ -522,14 +522,15 @@ let json2 = """
 }
 """
 let response2 = json2.kj.model(NetResponse<[Goods]>.self)
-let goods = response2?.data
-XCTAssert(goods?.count == 3)
-XCTAssert(goods?[0].price == 6199)
-XCTAssert(goods?[0].name == "iPhone XR")
-XCTAssert(goods?[1].price == 8199)
-XCTAssert(goods?[1].name == "iPhone XS")
-XCTAssert(goods?[2].price == 9099)
-XCTAssert(goods?[2].name == "iPhone Max")
+XCTAssert(response2?.msg == "Success")
+XCTAssert(response2?.code == 200)
+XCTAssert(response2?.data?.count == 3)
+XCTAssert(response2?.data?[0].price == 6199)
+XCTAssert(response2?.data?[0].name == "iPhone XR")
+XCTAssert(response2?.data?[1].price == 8199)
+XCTAssert(response2?.data?[1].name == "iPhone XS")
+XCTAssert(response2?.data?[2].price == 9099)
+XCTAssert(response2?.data?[2].name == "iPhone Max")
 ```
 
 ### Model Array

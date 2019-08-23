@@ -17,23 +17,23 @@
  */
 
 // MARK: Model -> JSON
-public func JSONObject<M: Convertible>(from model: M?) -> [String: Any]? {
-    return model?.kj_JSONObject()
+public func JSONObject<M: Convertible>(from model: M) -> [String: Any]? {
+    return model.kj_JSONObject()
 }
 
-public func JSONObjectArray<M: Convertible>(from models: [M]?) -> [[String: Any]]? {
-    return models?.kj.JSONObjectArray()
+public func JSONObjectArray<M: Convertible>(from models: [M]) -> [[String: Any]]? {
+    return models.kj.JSONObjectArray()
 }
 
-public func JSONArray(from value: [Any]?) -> [Any]? {
-    return value.kj_JSON() as? [Any]
+public func JSONArray(from value: [Any]) -> [Any]? {
+    return Values.kj_JSON(value) as? [Any]
 }
 
-public func JSON(from value: Any?) -> Any? {
-    return value.kj_JSON()
+public func JSON(from value: Any) -> Any? {
+    return Values.kj_JSON(value)
 }
 
-public func JSONString(from value: Any?,
+public func JSONString(from value: Any,
                        prettyPrinted: Bool = false) -> String? {
-    return value.kj_JSONString()
+    return Values.kj_JSONString(value, prettyPrinted: prettyPrinted)
 }

@@ -12,6 +12,7 @@
 		2D3D2402230EE1DA00F4E491 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3D2400230EE1DA00F4E491 /* Main.storyboard */; };
 		2D3D2404230EE1DB00F4E491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D3D2403230EE1DB00F4E491 /* Assets.xcassets */; };
 		2D3D2407230EE1DB00F4E491 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D3D2405230EE1DB00F4E491 /* LaunchScreen.storyboard */; };
+		2D46A2CB230FCD370043F5BA /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46A2CA230FCD370043F5BA /* Values.swift */; };
 		2D90683D230F7B2A00243BB6 /* KakaJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D906834230F7B2A00243BB6 /* KakaJSON.framework */; };
 		2D906846230F7B2A00243BB6 /* KakaJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D906836230F7B2A00243BB6 /* KakaJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D906849230F7B2A00243BB6 /* KakaJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D906834230F7B2A00243BB6 /* KakaJSON.framework */; };
@@ -27,7 +28,6 @@
 		2D906893230F7B7E00243BB6 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D90685C230F7B7D00243BB6 /* Coding.swift */; };
 		2D906894230F7B7E00243BB6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D90685D230F7B7D00243BB6 /* Model.swift */; };
 		2D906895230F7B7E00243BB6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D90685E230F7B7D00243BB6 /* JSON.swift */; };
-		2D906896230F7B7E00243BB6 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D90685F230F7B7D00243BB6 /* Value.swift */; };
 		2D906897230F7B7E00243BB6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D906861230F7B7D00243BB6 /* Logger.swift */; };
 		2D906898230F7B7E00243BB6 /* ConvertibleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D906862230F7B7D00243BB6 /* ConvertibleEnum.swift */; };
 		2D906899230F7B7E00243BB6 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D906863230F7B7D00243BB6 /* Convertible.swift */; };
@@ -70,9 +70,8 @@
 		2D9068D4230F7C7600243BB6 /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C3230F7C7600243BB6 /* MTJ_02_NestedModel.swift */; };
 		2D9068D5230F7C7600243BB6 /* MTJ_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C4230F7C7600243BB6 /* MTJ_01_Basic.swift */; };
 		2D9068D6230F7C7600243BB6 /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C5230F7C7600243BB6 /* MTJ_03_ModelArray.swift */; };
-		2D9068D7230F7C7600243BB6 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C6230F7C7600243BB6 /* Common.swift */; };
+		2D9068D7230F7C7600243BB6 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C6230F7C7600243BB6 /* Global.swift */; };
 		2D9068D8230F7C7600243BB6 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C8230F7C7600243BB6 /* Coding.swift */; };
-		2D9068D9230F7C7600243BB6 /* CompareWithCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068C9230F7C7600243BB6 /* CompareWithCodable.swift */; };
 		2D9068DA230F7C7600243BB6 /* JTM_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068CB230F7C7600243BB6 /* JTM_01_Basic.swift */; };
 		2D9068DB230F7C7600243BB6 /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068CC230F7C7600243BB6 /* JTM_02_DataType.swift */; };
 		2D9068DC230F7C7600243BB6 /* JTM_06_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9068CD230F7C7600243BB6 /* JTM_06_CustomValue.swift */; };
@@ -129,6 +128,7 @@
 		2D3D2406230EE1DB00F4E491 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D3D2408230EE1DB00F4E491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D3D24A5230EE35300F4E491 /* KakaJSONDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaJSONDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D46A2CA230FCD370043F5BA /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		2D906834230F7B2A00243BB6 /* KakaJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D906836230F7B2A00243BB6 /* KakaJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KakaJSON.h; sourceTree = "<group>"; };
 		2D906837230F7B2A00243BB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +145,6 @@
 		2D90685C230F7B7D00243BB6 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
 		2D90685D230F7B7D00243BB6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2D90685E230F7B7D00243BB6 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		2D90685F230F7B7D00243BB6 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		2D906861230F7B7D00243BB6 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D906862230F7B7D00243BB6 /* ConvertibleEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertibleEnum.swift; sourceTree = "<group>"; };
 		2D906863230F7B7D00243BB6 /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
@@ -190,9 +189,8 @@
 		2D9068C3230F7C7600243BB6 /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
 		2D9068C4230F7C7600243BB6 /* MTJ_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_01_Basic.swift; sourceTree = "<group>"; };
 		2D9068C5230F7C7600243BB6 /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
-		2D9068C6230F7C7600243BB6 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		2D9068C6230F7C7600243BB6 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2D9068C8230F7C7600243BB6 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
-		2D9068C9230F7C7600243BB6 /* CompareWithCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareWithCodable.swift; sourceTree = "<group>"; };
 		2D9068CB230F7C7600243BB6 /* JTM_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_01_Basic.swift; sourceTree = "<group>"; };
 		2D9068CC230F7C7600243BB6 /* JTM_02_DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
 		2D9068CD230F7C7600243BB6 /* JTM_06_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_06_CustomValue.swift; sourceTree = "<group>"; };
@@ -318,7 +316,6 @@
 				2D90685C230F7B7D00243BB6 /* Coding.swift */,
 				2D90685D230F7B7D00243BB6 /* Model.swift */,
 				2D90685E230F7B7D00243BB6 /* JSON.swift */,
-				2D90685F230F7B7D00243BB6 /* Value.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -332,6 +329,7 @@
 				2D906864230F7B7D00243BB6 /* KJ.swift */,
 				2D906865230F7B7D00243BB6 /* ConvertibleConfig.swift */,
 				2D906866230F7B7D00243BB6 /* TypeProxy.swift */,
+				2D46A2CA230FCD370043F5BA /* Values.swift */,
 			);
 			path = Convert;
 			sourceTree = "<group>";
@@ -413,9 +411,8 @@
 		2D9068C7230F7C7600243BB6 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				2D9068C6230F7C7600243BB6 /* Common.swift */,
+				2D9068C6230F7C7600243BB6 /* Global.swift */,
 				2D9068C8230F7C7600243BB6 /* Coding.swift */,
-				2D9068C9230F7C7600243BB6 /* CompareWithCodable.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -618,6 +615,7 @@
 				2D90688B230F7B7E00243BB6 /* Pointer+KJ.swift in Sources */,
 				2D9068B5230F7B7E00243BB6 /* BaseType.swift in Sources */,
 				2D9068AE230F7B7E00243BB6 /* ProtocolType.swift in Sources */,
+				2D46A2CB230FCD370043F5BA /* Values.swift in Sources */,
 				2D9068A8230F7B7E00243BB6 /* BaseLayout.swift in Sources */,
 				2D9068AA230F7B7E00243BB6 /* TupleType.swift in Sources */,
 				2D90689E230F7B7E00243BB6 /* Metadata.swift in Sources */,
@@ -633,7 +631,6 @@
 				2D90688F230F7B7E00243BB6 /* Optional+KJ.swift in Sources */,
 				2D9068A1230F7B7E00243BB6 /* FieldList.swift in Sources */,
 				2D9068BB230F7B7E00243BB6 /* EnumDescriptor.swift in Sources */,
-				2D906896230F7B7E00243BB6 /* Value.swift in Sources */,
 				2D9068B0230F7B7E00243BB6 /* StructType.swift in Sources */,
 				2D9068B4230F7B7E00243BB6 /* OptionalType.swift in Sources */,
 				2D9068B3230F7B7E00243BB6 /* ModelType.swift in Sources */,
@@ -647,7 +644,6 @@
 			files = (
 				2D9068DC230F7C7600243BB6 /* JTM_06_CustomValue.swift in Sources */,
 				2D9068DE230F7C7600243BB6 /* JTM_07_DynamicModel.swift in Sources */,
-				2D9068D9230F7C7600243BB6 /* CompareWithCodable.swift in Sources */,
 				2D9068DB230F7C7600243BB6 /* JTM_02_DataType.swift in Sources */,
 				2D9068D8230F7C7600243BB6 /* Coding.swift in Sources */,
 				2D9068DF230F7C7600243BB6 /* JTM_04_ModelArray.swift in Sources */,
@@ -657,7 +653,7 @@
 				2D9068D5230F7C7600243BB6 /* MTJ_01_Basic.swift in Sources */,
 				2D9068D2230F7C7600243BB6 /* MTJ_04_KeyMapping.swift in Sources */,
 				2D9068E0230F7C7600243BB6 /* JTM_03_NestedModel.swift in Sources */,
-				2D9068D7230F7C7600243BB6 /* Common.swift in Sources */,
+				2D9068D7230F7C7600243BB6 /* Global.swift in Sources */,
 				2D9068D3230F7C7600243BB6 /* MTJ_05_CustomValue.swift in Sources */,
 				2D9068DA230F7C7600243BB6 /* JTM_01_Basic.swift in Sources */,
 			);

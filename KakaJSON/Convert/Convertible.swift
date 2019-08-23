@@ -142,33 +142,33 @@ public struct ConvertibleKJ_M<T: Convertible> {
     }
     
     /// JSONObject -> Model
-    public func convert(from jsonData: Data?) {
+    public func convert(from jsonData: Data) {
         basePtr.pointee.kj_convert(from: jsonData)
     }
     
     /// JSONObject -> Model
-    public func convert(from jsonData: NSData?) {
-        basePtr.pointee.kj_convert(from: jsonData as Data?)
+    public func convert(from jsonData: NSData) {
+        basePtr.pointee.kj_convert(from: jsonData as Data)
     }
     
     /// JSONObject -> Model
-    public func convert(from jsonString: String?) {
+    public func convert(from jsonString: String) {
         basePtr.pointee.kj_convert(from: jsonString)
     }
     
     /// JSONObject -> Model
-    public func convert(from jsonString: NSString?) {
-        basePtr.pointee.kj_convert(from: jsonString as String?)
+    public func convert(from jsonString: NSString) {
+        basePtr.pointee.kj_convert(from: jsonString as String)
     }
     
     /// JSONObject -> Model
-    public func convert(from json: [String: Any]?) {
+    public func convert(from json: [String: Any]) {
         basePtr.pointee.kj_convert(from: json)
     }
     
     /// JSONObject -> Model 
-    public func convert(from json: NSDictionary?) {
-        basePtr.pointee.kj_convert(from: json as? [String: Any])
+    public func convert(from json: NSDictionary) {
+        basePtr.pointee.kj_convert(from: json as! [String: Any])
     }
 }
 
@@ -200,7 +200,7 @@ private extension Convertible {
 
 // MARK: - JSON -> Model
 extension Convertible {
-    mutating func kj_convert(from jsonData: Data?) {
+    mutating func kj_convert(from jsonData: Data) {
         if let json = JSONSerialization.kj_JSON(jsonData, [String: Any].self) {
             kj_convert(from: json)
             return
@@ -208,7 +208,7 @@ extension Convertible {
         Logger.error("Failed to get JSON from JSONData.")
     }
     
-    mutating func kj_convert(from jsonString: String?) {
+    mutating func kj_convert(from jsonString: String) {
         if let json = JSONSerialization.kj_JSON(jsonString, [String: Any].self) {
             kj_convert(from: json)
             return
@@ -216,15 +216,14 @@ extension Convertible {
         Logger.error("Failed to get JSON from JSONString.")
     }
     
-    mutating func kj_convert(from json: [String: Any]?) {
-        guard let dict = json,
-            let mt = Metadata.type(self) as? ModelType,
+    mutating func kj_convert(from json: [String: Any]) {
+        guard let mt = Metadata.type(self) as? ModelType,
             let properties = mt.properties else { return }
         
         // get data address
         let model = _ptr()
         
-        kj_willConvertToModel(from: dict)
+        kj_willConvertToModel(from: json)
         
         // enumerate properties
         for property in properties {
@@ -234,7 +233,7 @@ extension Convertible {
             
             // value filter
             guard let newValue = kj_modelValue(
-                from: dict.kj_value(for: key),
+                from: json.kj_value(for: key),
                 property)~! else { continue }
             
             let propertyType = property.dataType
@@ -253,7 +252,7 @@ extension Convertible {
             }
             
             // try to convert newValue to propertyType
-            guard let value = newValue~?.kj_value(propertyType) else {
+            guard let value = Values.kj_value(newValue, propertyType) else {
                 property.set(newValue, for: model)
                 continue
             }
@@ -261,7 +260,7 @@ extension Convertible {
             property.set(value, for: model)
         }
         
-        kj_didConvertToModel(from: dict)
+        kj_didConvertToModel(from: json)
     }
     
     private mutating
@@ -321,7 +320,7 @@ extension Convertible {
                 from: property.get(from: ptr)~!,
                 property)~! else { continue }
             
-            guard let v = value~?.kj_JSON() else { continue }
+            guard let v = Values.kj_JSON(value) else { continue }
             
             // key filter
             json[mt.JSONKey(from: property.name,
@@ -334,7 +333,7 @@ extension Convertible {
     }
     
     func kj_JSONString(prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kj_string(kj_JSONObject(),
+        if let str = JSONSerialization.kj_string(kj_JSONObject() as Any,
                                                  prettyPrinted: prettyPrinted) {
             return str
         }

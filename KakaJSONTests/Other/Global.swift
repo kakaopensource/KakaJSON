@@ -1,15 +1,48 @@
 //
-//  Common.swift
+//  Global.swift
 //  KakaJSONTests
 //
 //  Created by MJ Lee on 2019/8/11.
 //  Copyright © 2019 MJ Lee. All rights reserved.
 //
 
-class Common: XCTestCase {
+class Global: XCTestCase {
     struct Cat: Convertible {
         var age: Int = 0
         var name: String = ""
+    }
+    
+    func testMetadata() {
+        struct Cat {
+            var age: Int = 0
+            let name: String = ""
+        }
+        
+        guard let type = Metadata.type(Cat.self) as? ModelType,
+            let properties = type.properties else { return }
+        
+        for property in properties {
+            print(property.name,
+                  property.type,
+                  property.isVar,
+                  property.ownerType,
+                  property.offset)
+            // age Int true Cat 0
+            // name String false Cat 8
+        }
+    }
+    
+    func testValue() {
+        let string1 = "1565922866"
+        XCTAssert(Values.int(string1) == 1565922866)
+        XCTAssert(Values.double(string1) == 1565922866)
+        XCTAssert(Values.cgFloat(string1) == 1565922866)
+        let date = Values.value(string1, Date.self)
+        XCTAssert(date?.timeIntervalSince1970 == 1565922866)
+        
+        let string2 = "true"
+        XCTAssert(Values.bool(string2) == true)
+        XCTAssert(Values.int(string2) == 1)
     }
     
     func testJSON_To_Model() {
@@ -25,7 +58,7 @@ class Common: XCTestCase {
             "age": \(age)
         }
         """
-        let jsonData = jsonString.data(using: .utf8)
+        let jsonData = jsonString.data(using: .utf8)!
         
         let cat1 = model(from: json, Cat.self)
         XCTAssert(cat1?.name == name)

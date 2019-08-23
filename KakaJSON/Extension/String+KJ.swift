@@ -59,7 +59,7 @@ public extension KJ where Base: ExpressibleByStringLiteral {
     
     /// JSONObject -> Model
     func model(anyType: Any.Type) -> Any? {
-        if let json = JSONSerialization.kj_JSON(base as? String, [String: Any].self) {
+        if let json = JSONSerialization.kj_JSON(base as! String, [String: Any].self) {
             return json.kj.model(anyType: anyType)
         }
         Logger.error("Failed to get JSON from JSONString.")
@@ -73,7 +73,7 @@ public extension KJ where Base: ExpressibleByStringLiteral {
     
     /// JSONObjectArray -> ModelArray
     func modelArray(anyType: Any.Type) -> [Any]? {
-        if let json = JSONSerialization.kj_JSON(base as? String, [Any].self) {
+        if let json = JSONSerialization.kj_JSON(base as! String, [Any].self) {
             return json.kj.modelArray(anyType: anyType)
         }
         Logger.error("Failed to get JSON from JSONString.")

@@ -8,7 +8,7 @@
 
 public class TupleType: BaseType, LayoutType {
     private(set) var layout: UnsafeMutablePointer<TupleLayout>!
-    public private(set) var properties: [Property]?
+    public private(set) var properties: [Property]!
     
     override func build() {
         super.build()

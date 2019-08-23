@@ -9,22 +9,20 @@
 import Foundation
 
 @discardableResult
-public func write(_ value: Any?,
-                  to file: String?,
+public func write(_ value: Any,
+                  to file: String,
                   atomically: Bool = true,
                   encoding: String.Encoding = .utf8) -> String? {
-    guard let path = file else { return nil }
-    return write(value, to: URL(fileURLWithPath: path), encoding: encoding)
+    return write(value, to: URL(fileURLWithPath: file), encoding: encoding)
 }
 
 @discardableResult
-public func write(_ value: Any?,
-                  to URL: URL?,
+public func write(_ value: Any,
+                  to URL: URL,
                   atomically: Bool = true,
                   encoding: String.Encoding = .utf8) -> String?  {
-    guard let url = URL else { return nil }
-    if url.isFileURL {
-        let dir = (url.path as NSString).deletingLastPathComponent
+    if URL.isFileURL {
+        let dir = (URL.path as NSString).deletingLastPathComponent
         let mgr = FileManager.default
         if !mgr.fileExists(atPath: dir) {
             try? mgr.createDirectory(atPath: dir,
@@ -32,31 +30,29 @@ public func write(_ value: Any?,
                                      attributes: nil)
         }
     }
-    let string = value.kj_JSONString()
-    try? string?.write(to: url,
+    let string = Values.kj_JSONString(value)
+    try? string?.write(to: URL,
                        atomically: atomically,
                        encoding: .utf8)
     return string
 }
 
 public func read<T>(_ type: T.Type,
-                    from file: String?,
+                    from file: String,
                     encoding: String.Encoding = .utf8) -> T? {
-    guard let path = file else { return nil }
     return read(type,
-                from: URL(fileURLWithPath: path),
+                from: URL(fileURLWithPath: file),
                 encoding: encoding)
 }
 
 public func read<T>(_ type: T.Type,
-                    from URL: URL?,
+                    from URL: URL,
                     encoding: String.Encoding = .utf8) -> T? {
-    guard let url = URL else { return nil }
-    guard let data = try? Data(contentsOf: url) else { return nil }
+    guard let data = try? Data(contentsOf: URL) else { return nil }
     
     var value = JSONSerialization.kj_JSON(data, Any.self)
     if value == nil {
         value = String(data: data, encoding: encoding)
     }
-    return value.kj_value(T.self) as? T
+    return Values.kj_value(value, T.self) as? T
 }
