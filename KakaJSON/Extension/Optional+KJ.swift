@@ -14,12 +14,8 @@ protocol OptionalValue {
 
 extension Optional: OptionalValue {
     var kj_value: Any? {
-        guard self != nil else { return nil }
-        let value = self!
-        guard let ov = value as? OptionalValue else {
-            return value
-        }
-        return ov.kj_value
+        guard let v = self else { return nil }
+        return (v as? OptionalValue)?.kj_value ?? v
     }
 }
 
