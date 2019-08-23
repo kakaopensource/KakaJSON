@@ -26,14 +26,14 @@ public func JSONObjectArray<M: Convertible>(from models: [M]) -> [[String: Any]]
 }
 
 public func JSONArray(from value: [Any]) -> [Any]? {
-    return Values.kj_JSON(value) as? [Any]
+    return Values.JSONValue(value) as? [Any]
 }
 
 public func JSON(from value: Any) -> Any? {
-    return Values.kj_JSON(value)
+    return Values.JSONValue(value)
 }
 
 public func JSONString(from value: Any,
                        prettyPrinted: Bool = false) -> String? {
-    return Values.kj_JSONString(value, prettyPrinted: prettyPrinted)
+    return Values.JSONString(value, prettyPrinted: prettyPrinted)
 }

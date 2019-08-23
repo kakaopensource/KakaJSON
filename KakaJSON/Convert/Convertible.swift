@@ -252,7 +252,7 @@ extension Convertible {
             }
             
             // try to convert newValue to propertyType
-            guard let value = Values.kj_value(newValue, propertyType) else {
+            guard let value = Values.value(newValue, propertyType) else {
                 property.set(newValue, for: model)
                 continue
             }
@@ -320,7 +320,7 @@ extension Convertible {
                 from: property.get(from: ptr)~!,
                 property)~! else { continue }
             
-            guard let v = Values.kj_JSON(value) else { continue }
+            guard let v = Values.JSONValue(value) else { continue }
             
             // key filter
             json[mt.JSONKey(from: property.name,

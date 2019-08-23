@@ -12,8 +12,8 @@ import CoreGraphics
 #endif
 
 public struct Values {
-    static func kj_value(_ value: Any?, _ type: Any.Type) -> Any? {
-        guard let v = value.kj_value else { return nil }
+    static func value(_ val: Any?, _ type: Any.Type) -> Any? {
+        guard let v = val.kj_value else { return nil }
         if Swift.type(of: v) == type { return v }
         
         switch type {
@@ -27,31 +27,31 @@ public struct Values {
         case is DataValue.Type: return _data(v, type)
         case is SetValue.Type: return _set(v, type)
         case let enumType as ConvertibleEnum.Type:
-            let vv = kj_value(v, enumType.kj_valueType)
+            let vv = value(v, enumType.kj_valueType)
             return enumType.kj_convert(from: vv as Any)
         default: return nil
         }
     }
     
-    static func kj_JSON(_ value: Any?) -> Any? {
+    static func JSONValue(_ value: Any?) -> Any? {
         guard let v = value.kj_value else { return nil }
         
         switch v {
-        case let num as NumberValue: return _JSON(from: num)
+        case let num as NumberValue: return _JSONValue(from: num)
         case let model as Convertible: return model.kj_JSONObject()
         case let date as Date: return date.timeIntervalSince1970
-        case let array as [Any]: return _JSON(from: array)
-        case let dict as [String: Any]: return _JSON(from: dict)
+        case let array as [Any]: return _JSONValue(from: array)
+        case let dict as [String: Any]: return _JSONValue(from: dict)
         case let url as URL: return url.absoluteString
-        case let set as SetValue: return _JSON(from: set)
-        case let `enum` as ConvertibleEnum: return kj_JSON(`enum`.kj_value)
+        case let set as SetValue: return _JSONValue(from: set)
+        case let `enum` as ConvertibleEnum: return JSONValue(`enum`.kj_value)
         default: return v as? NSCoding
         }
     }
     
-    static func kj_JSONString(_ value: Any?,
-                              prettyPrinted: Bool = false) -> String? {
-        if let str = JSONSerialization.kj_string(kj_JSON(value),
+    static func JSONString(_ value: Any?,
+                           prettyPrinted: Bool = false) -> String? {
+        if let str = JSONSerialization.kj_string(JSONValue(value),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }
@@ -179,21 +179,21 @@ private extension Values {
         return Double("\(decimal)").flatMap { NSNumber(value: $0) }
     }
     
-    static func _JSON(from set: SetValue) -> Any? {
-        return _JSON(from: set.kj_array())
+    static func _JSONValue(from set: SetValue) -> Any? {
+        return _JSONValue(from: set.kj_array())
     }
     
-    static func _JSON(from array: [Any]) -> Any? {
-        let newArray = array.compactMap { kj_JSON($0) }
+    static func _JSONValue(from array: [Any]) -> Any? {
+        let newArray = array.compactMap { JSONValue($0) }
         return newArray.isEmpty ? nil : newArray
     }
     
-    static func _JSON(from dict: [String: Any]) -> Any? {
-        let newDict = dict.compactMapValues { kj_JSON($0) }
+    static func _JSONValue(from dict: [String: Any]) -> Any? {
+        let newDict = dict.compactMapValues { JSONValue($0) }
         return newDict.isEmpty ? nil : newDict
     }
     
-    static func _JSON(from num: NumberValue) -> Any? {
+    static func _JSONValue(from num: NumberValue) -> Any? {
         // stay Bool\IntegerValue
         if num is Bool || num is IntegerValue { return num }
         // return string for keeping precision
@@ -205,100 +205,100 @@ private extension Values {
 
 public extension Values {
     /// get the most inner value
-    static func value<T>(_ val: Any?, _ type: T.Type)-> T? {
-        return kj_value(val, type) as? T
+    static func value<T>(_ val: Any?, of type: T.Type)-> T? {
+        return value(val, type) as? T
     }
     
     /// convert value to String
-    static func string(_ value: Any?)-> String? {
-        return kj_value(value, String.self) as? String
+    static func string(_ val: Any?)-> String? {
+        return value(val, String.self) as? String
     }
     
     /// convert value to Bool
-    static func bool(_ value: Any?)-> Bool? {
-        return kj_value(value, Bool.self) as? Bool
+    static func bool(_ val: Any?)-> Bool? {
+        return value(val, Bool.self) as? Bool
     }
     
     /// convert value to Int
-    static func int(_ value: Any?)-> Int? {
-        return kj_value(value, Int.self) as? Int
+    static func int(_ val: Any?)-> Int? {
+        return value(val, Int.self) as? Int
     }
     
     /// convert value to Int8
-    static func int8(_ value: Any?)-> Int8? {
-        return kj_value(value, Int8.self) as? Int8
+    static func int8(_ val: Any?)-> Int8? {
+        return value(val, Int8.self) as? Int8
     }
     
     /// convert value to Int16
-    static func int16(_ value: Any?)-> Int16? {
-        return kj_value(value, Int16.self) as? Int16
+    static func int16(_ val: Any?)-> Int16? {
+        return value(val, Int16.self) as? Int16
     }
     
     /// convert value to Int32
-    static func int32(_ value: Any?)-> Int32? {
-        return kj_value(value, Int32.self) as? Int32
+    static func int32(_ val: Any?)-> Int32? {
+        return value(val, Int32.self) as? Int32
     }
     
     /// convert value to Int64
-    static func int64(_ value: Any?)-> Int64? {
-        return kj_value(value, Int64.self) as? Int64
+    static func int64(_ val: Any?)-> Int64? {
+        return value(val, Int64.self) as? Int64
     }
     
     /// convert value to UInt
-    static func uInt(_ value: Any?)-> UInt? {
-        return kj_value(value, UInt.self) as? UInt
+    static func uInt(_ val: Any?)-> UInt? {
+        return value(val, UInt.self) as? UInt
     }
     
     /// convert value to UInt8
-    static func uInt8(_ value: Any?)-> UInt8? {
-        return kj_value(value, UInt8.self) as? UInt8
+    static func uInt8(_ val: Any?)-> UInt8? {
+        return value(val, UInt8.self) as? UInt8
     }
     
     /// convert value to UInt16
-    static func uInt16(_ value: Any?)-> UInt16? {
-        return kj_value(value, UInt16.self) as? UInt16
+    static func uInt16(_ val: Any?)-> UInt16? {
+        return value(val, UInt16.self) as? UInt16
     }
     
     /// convert value to UInt32
-    static func uInt32(_ value: Any?)-> UInt32? {
-        return kj_value(value, UInt32.self) as? UInt32
+    static func uInt32(_ val: Any?)-> UInt32? {
+        return value(val, UInt32.self) as? UInt32
     }
     
     /// convert value to UInt64
-    static func uInt64(_ value: Any?)-> UInt64? {
-        return kj_value(value, UInt64.self) as? UInt64
+    static func uInt64(_ val: Any?)-> UInt64? {
+        return value(val, UInt64.self) as? UInt64
     }
     
     /// convert value to Float
-    static func float(_ value: Any?)-> Float? {
-        return kj_value(value, Float.self) as? Float
+    static func float(_ val: Any?)-> Float? {
+        return value(val, Float.self) as? Float
     }
     
     /// convert value to Double
-    static func double(_ value: Any?)-> Double? {
-        return kj_value(value, Double.self) as? Double
+    static func double(_ val: Any?)-> Double? {
+        return value(val, Double.self) as? Double
     }
     
     #if canImport(CoreGraphics)
     /// convert value to CGFloat
-    static func cgFloat(_ value: Any?)-> CGFloat? {
-        return kj_value(value, CGFloat.self) as? CGFloat
+    static func cgFloat(_ val: Any?)-> CGFloat? {
+        return value(val, CGFloat.self) as? CGFloat
     }
     #endif
     
     /// convert value to Decimal
-    static func decimal(_ value: Any?)-> Decimal? {
-        return kj_value(value, Decimal.self) as? Decimal
+    static func decimal(_ val: Any?)-> Decimal? {
+        return value(val, Decimal.self) as? Decimal
     }
     
     /// convert value to NSNumber
-    static func number(_ value: Any?)-> NSNumber? {
-        return kj_value(value, NSNumber.self) as? NSNumber
+    static func number(_ val: Any?)-> NSNumber? {
+        return value(val, NSNumber.self) as? NSNumber
     }
     
     /// convert value to NSDecimalNumber
-    static func decimalNumber(_ value: Any?)-> NSDecimalNumber? {
-        return kj_value(value, NSDecimalNumber.self) as? NSDecimalNumber
+    static func decimalNumber(_ val: Any?)-> NSDecimalNumber? {
+        return value(val, NSDecimalNumber.self) as? NSDecimalNumber
     }
 }
 

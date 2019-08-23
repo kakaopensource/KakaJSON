@@ -37,7 +37,7 @@ class Global: XCTestCase {
         XCTAssert(Values.int(string1) == 1565922866)
         XCTAssert(Values.double(string1) == 1565922866)
         XCTAssert(Values.cgFloat(string1) == 1565922866)
-        let date = Values.value(string1, Date.self)
+        let date = Values.value(string1, of: Date.self)
         XCTAssert(date?.timeIntervalSince1970 == 1565922866)
         
         let string2 = "true"

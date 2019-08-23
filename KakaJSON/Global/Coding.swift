@@ -30,7 +30,7 @@ public func write(_ value: Any,
                                      attributes: nil)
         }
     }
-    let string = Values.kj_JSONString(value)
+    let string = Values.JSONString(value)
     try? string?.write(to: URL,
                        atomically: atomically,
                        encoding: .utf8)
@@ -54,5 +54,5 @@ public func read<T>(_ type: T.Type,
     if value == nil {
         value = String(data: data, encoding: encoding)
     }
-    return Values.kj_value(value, T.self) as? T
+    return Values.value(value, T.self) as? T
 }
