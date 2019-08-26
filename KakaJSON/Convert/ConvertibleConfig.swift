@@ -14,12 +14,11 @@ public typealias JSONKeyConfig = (Property) -> JSONPropertyKey
 public typealias JSONValueConfig = (Any?, Property) -> Any?
 
 /// Config for convertible
+///
+/// Suggest:
+/// 1. Set every config once for every type
+/// 2. Set config after app finish lauching
 public class ConvertibleConfig {
-    private static var lock = pthread_rwlock_t()
-    private static let initLock = {
-        pthread_rwlock_init(&lock, nil)
-    }()
-    
     private class Item {
         var modelKey: ModelKeyConfig?
         var modelValue: ModelValueConfig?
@@ -32,15 +31,11 @@ public class ConvertibleConfig {
         init(jsonValue: @escaping JSONValueConfig) { self.jsonValue = jsonValue }
     }
     
-    private static let global: Item = Item()
+    private static let global = Item()
     private static var items: [TypeKey: Item] = [:]
     
     /// get global config for modelKey
     public static func modelKey(from property: Property) -> ModelPropertyKey {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         guard let fn = global.modelKey else { return property.name }
         return fn(property)
     }
@@ -54,10 +49,6 @@ public class ConvertibleConfig {
     /// get type's config for modelKey
     public static func modelKey(from property: Property,
                                 _ type: Convertible.Type) -> ModelPropertyKey {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         if let fn = items[typeKey(type)]?.modelKey {
             return fn(property)
         }
@@ -72,17 +63,15 @@ public class ConvertibleConfig {
             }
         }
         
-        guard let fn = global.modelKey else { return property.name }
+        guard let fn = global.modelKey else {
+            return property.name
+        }
         return fn(property)
     }
     
     /// get global config for modelValue
     public static func modelValue(from jsonValue: Any?,
                                   _ property: Property) -> Any? {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         guard let fn = global.modelValue else { return jsonValue }
         return fn(jsonValue, property)
     }
@@ -98,11 +87,8 @@ public class ConvertibleConfig {
     public static func modelValue(from jsonValue: Any?,
                                   _ property: Property,
                                   _ type: Convertible.Type) -> Any? {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
-        if let fn = items[typeKey(type)]?.modelValue {
+        let key = typeKey(type)
+        if let fn = items[key]?.modelValue {
             return fn(jsonValue, property)
         }
         
@@ -110,22 +96,23 @@ public class ConvertibleConfig {
         if var classMt = mt as? ClassType {
             while let superMt = classMt.super {
                 if let fn = items[typeKey(superMt.type)]?.modelValue {
+                    items[key]?.modelValue = fn
                     return fn(jsonValue, property)
                 }
                 classMt = superMt
             }
         }
         
-        guard let fn = global.modelValue else { return jsonValue }
+        guard let fn = global.modelValue else {
+            items[key]?.modelValue = { v, _ in v }
+            return jsonValue
+        }
+        items[key]?.modelValue = fn
         return fn(jsonValue, property)
     }
     
     /// get global config for JSONKey
     public static func JSONKey(from property: Property) -> JSONPropertyKey {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         guard let fn = global.jsonKey else { return property.name }
         return fn(property)
     }
@@ -139,10 +126,6 @@ public class ConvertibleConfig {
     /// get type's config for JSONKey
     public static func JSONKey(from property: Property,
                                _ type: Convertible.Type) -> JSONPropertyKey {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         if let fn = items[typeKey(type)]?.jsonKey {
             return fn(property)
         }
@@ -157,17 +140,15 @@ public class ConvertibleConfig {
             }
         }
         
-        guard let fn = global.jsonKey else { return property.name }
+        guard let fn = global.jsonKey else {
+            return property.name
+        }
         return fn(property)
     }
     
     /// get global config for JSONValue
     public static func JSONValue(from modelValue: Any?,
                                  _ property: Property) -> Any? {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         guard let fn = global.modelValue else { return modelValue }
         return fn(modelValue, property)
     }
@@ -183,11 +164,8 @@ public class ConvertibleConfig {
     public static func JSONValue(from modelValue: Any?,
                                  _ property: Property,
                                  _ type: Convertible.Type) -> Any? {
-        let _ = initLock
-        pthread_rwlock_rdlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
-        if let fn = items[typeKey(type)]?.jsonValue {
+        let key = typeKey(type)
+        if let fn = items[key]?.jsonValue {
             return fn(modelValue, property)
         }
         
@@ -195,13 +173,18 @@ public class ConvertibleConfig {
         if var classMt = mt as? ClassType {
             while let superMt = classMt.super {
                 if let fn = items[typeKey(superMt.type)]?.jsonValue {
+                    items[key]?.jsonValue = fn
                     return fn(modelValue, property)
                 }
                 classMt = superMt
             }
         }
         
-        guard let fn = global.modelValue else { return modelValue }
+        guard let fn = global.modelValue else {
+            items[key]?.jsonValue = { v, _ in v}
+            return modelValue
+        }
+        items[key]?.jsonValue = fn
         return fn(modelValue, property)
     }
     
@@ -214,13 +197,6 @@ public class ConvertibleConfig {
     /// set types's config for modelKey
     public static func setModelKey(for types: [Convertible.Type] = [],
                                    _ modelKey: @escaping ModelKeyConfig) {
-        let _ = initLock
-        pthread_rwlock_wrlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
-        // clear model key cache
-        Metadata.modelTypes.forEach { $0.clearModelKeys() }
-        
         if types.count == 0 {
             global.modelKey = modelKey
             return
@@ -245,10 +221,6 @@ public class ConvertibleConfig {
     /// set types's config for modelValue
     public static func setModelValue(for types: [Convertible.Type] = [],
                                      modelValue: @escaping ModelValueConfig) {
-        let _ = initLock
-        pthread_rwlock_wrlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         if types.count == 0 {
             global.modelValue = modelValue
             return
@@ -273,13 +245,6 @@ public class ConvertibleConfig {
     /// set types's config for jsonKey
     public static func setJSONKey(for types: [Convertible.Type] = [],
                                   jsonKey: @escaping JSONKeyConfig) {
-        let _ = initLock
-        pthread_rwlock_wrlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
-        // clear JSON key cache
-        Metadata.modelTypes.forEach { $0.clearJSONKeys() }
-        
         if types.count == 0 {
             global.jsonKey = jsonKey
             return
@@ -304,10 +269,6 @@ public class ConvertibleConfig {
     /// set types's config for jsonValue
     public static func setJSONValue(for types: [Convertible.Type] = [],
                                     jsonValue: @escaping JSONValueConfig) {
-        let _ = initLock
-        pthread_rwlock_wrlock(&lock)
-        defer { pthread_rwlock_unlock(&lock) }
-        
         if types.count == 0 {
             global.jsonValue = jsonValue
             return

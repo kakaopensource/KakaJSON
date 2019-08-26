@@ -11,10 +11,10 @@ import Foundation
 public class ModelType: BaseType {
     public internal(set) var properties: [Property]?
     public internal(set) var genericTypes: [Any.Type]?
-    private lazy var modelKeysLock = DispatchSemaphore(value: 1)
-    private lazy var modelKeys: [String: ModelPropertyKey] = [:]
-    private lazy var jsonKeysLock = DispatchSemaphore(value: 1)
-    private lazy var jsonKeys: [String: String] = [:]
+    private var modelKeysLock = DispatchSemaphore(value: 1)
+    private var modelKeys: [String: ModelPropertyKey] = [:]
+    private var jsonKeysLock = DispatchSemaphore(value: 1)
+    private var jsonKeys: [String: String] = [:]
     
     func modelKey(from propertyName: String,
                   _ createdKey: @autoclosure () -> ModelPropertyKey) -> ModelPropertyKey {
@@ -29,13 +29,6 @@ public class ModelType: BaseType {
         return resultKey
     }
     
-    func clearModelKeys() {
-        modelKeysLock.wait()
-        defer { modelKeysLock.signal() }
-        
-        modelKeys.removeAll()
-    }
-    
     func JSONKey(from propertyName: String,
                  _ createdKey: @autoclosure () -> String) -> String {
         if let key = jsonKeys[propertyName] { return key }
@@ -47,12 +40,5 @@ public class ModelType: BaseType {
         let resultKey = createdKey()
         jsonKeys[propertyName] = resultKey
         return resultKey
-    }
-    
-    func clearJSONKeys() {
-        jsonKeysLock.wait()
-        defer { jsonKeysLock.signal() }
-
-        jsonKeys.removeAll()
     }
 }
