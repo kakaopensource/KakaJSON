@@ -323,11 +323,11 @@
 		2D906860230F7B7D00243BB6 /* Convert */ = {
 			isa = PBXGroup;
 			children = (
-				2D906861230F7B7D00243BB6 /* Logger.swift */,
-				2D906862230F7B7D00243BB6 /* ConvertibleEnum.swift */,
 				2D906863230F7B7D00243BB6 /* Convertible.swift */,
-				2D906864230F7B7D00243BB6 /* KJ.swift */,
 				2D906865230F7B7D00243BB6 /* ConvertibleConfig.swift */,
+				2D906862230F7B7D00243BB6 /* ConvertibleEnum.swift */,
+				2D906861230F7B7D00243BB6 /* Logger.swift */,
+				2D906864230F7B7D00243BB6 /* KJ.swift */,
 				2D906866230F7B7D00243BB6 /* TypeProxy.swift */,
 				2D46A2CA230FCD370043F5BA /* Values.swift */,
 			);

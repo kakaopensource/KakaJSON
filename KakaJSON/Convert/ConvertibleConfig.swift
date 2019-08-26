@@ -15,7 +15,11 @@ public typealias JSONValueConfig = (Any?, Property) -> Any?
 
 /// Config for convertible
 public class ConvertibleConfig {
-    private static let lock = DispatchSemaphore(value: 1)
+    private static var lock = pthread_rwlock_t()
+    private static let initLock = {
+        pthread_rwlock_init(&lock, nil)
+    }()
+    
     private class Item {
         var modelKey: ModelKeyConfig?
         var modelValue: ModelValueConfig?
@@ -33,8 +37,10 @@ public class ConvertibleConfig {
     
     /// get global config for modelKey
     public static func modelKey(from property: Property) -> ModelPropertyKey {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
+        
         guard let fn = global.modelKey else { return property.name }
         return fn(property)
     }
@@ -48,8 +54,9 @@ public class ConvertibleConfig {
     /// get type's config for modelKey
     public static func modelKey(from property: Property,
                                 _ type: Convertible.Type) -> ModelPropertyKey {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if let fn = items[typeKey(type)]?.modelKey {
             return fn(property)
@@ -72,8 +79,10 @@ public class ConvertibleConfig {
     /// get global config for modelValue
     public static func modelValue(from jsonValue: Any?,
                                   _ property: Property) -> Any? {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
+        
         guard let fn = global.modelValue else { return jsonValue }
         return fn(jsonValue, property)
     }
@@ -89,8 +98,9 @@ public class ConvertibleConfig {
     public static func modelValue(from jsonValue: Any?,
                                   _ property: Property,
                                   _ type: Convertible.Type) -> Any? {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if let fn = items[typeKey(type)]?.modelValue {
             return fn(jsonValue, property)
@@ -112,8 +122,9 @@ public class ConvertibleConfig {
     
     /// get global config for JSONKey
     public static func JSONKey(from property: Property) -> JSONPropertyKey {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         guard let fn = global.jsonKey else { return property.name }
         return fn(property)
@@ -128,8 +139,9 @@ public class ConvertibleConfig {
     /// get type's config for JSONKey
     public static func JSONKey(from property: Property,
                                _ type: Convertible.Type) -> JSONPropertyKey {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if let fn = items[typeKey(type)]?.jsonKey {
             return fn(property)
@@ -152,8 +164,9 @@ public class ConvertibleConfig {
     /// get global config for JSONValue
     public static func JSONValue(from modelValue: Any?,
                                  _ property: Property) -> Any? {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         guard let fn = global.modelValue else { return modelValue }
         return fn(modelValue, property)
@@ -170,8 +183,9 @@ public class ConvertibleConfig {
     public static func JSONValue(from modelValue: Any?,
                                  _ property: Property,
                                  _ type: Convertible.Type) -> Any? {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if let fn = items[typeKey(type)]?.jsonValue {
             return fn(modelValue, property)
@@ -200,8 +214,9 @@ public class ConvertibleConfig {
     /// set types's config for modelKey
     public static func setModelKey(for types: [Convertible.Type] = [],
                                    _ modelKey: @escaping ModelKeyConfig) {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         // clear model key cache
         Metadata.modelTypes.forEach { $0.clearModelKeys() }
@@ -230,8 +245,9 @@ public class ConvertibleConfig {
     /// set types's config for modelValue
     public static func setModelValue(for types: [Convertible.Type] = [],
                                      modelValue: @escaping ModelValueConfig) {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if types.count == 0 {
             global.modelValue = modelValue
@@ -257,8 +273,9 @@ public class ConvertibleConfig {
     /// set types's config for jsonKey
     public static func setJSONKey(for types: [Convertible.Type] = [],
                                   jsonKey: @escaping JSONKeyConfig) {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         // clear JSON key cache
         Metadata.modelTypes.forEach { $0.clearJSONKeys() }
@@ -287,8 +304,9 @@ public class ConvertibleConfig {
     /// set types's config for jsonValue
     public static func setJSONValue(for types: [Convertible.Type] = [],
                                     jsonValue: @escaping JSONValueConfig) {
-        lock.wait()
-        defer { lock.signal() }
+        let _ = initLock
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         
         if types.count == 0 {
             global.jsonValue = jsonValue
