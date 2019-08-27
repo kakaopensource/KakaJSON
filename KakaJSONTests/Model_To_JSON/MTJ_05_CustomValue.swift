@@ -30,6 +30,6 @@ class MTJ_05_CustomValue: XCTestCase {
         let student = Student(birthday: date)
         let jsonString = student.kj.JSONString()
         /* {"birthday":"2019-08-13 12:52:51"} */
-        XCTAssert(jsonString?.contains(time) == true)
+        XCTAssert(jsonString.contains(time) == true)
     }
 }

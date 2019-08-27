@@ -33,9 +33,9 @@ class JTM_05_KeyMapping: XCTestCase {
         ]
         
         let student = json.kj.model(Person.self)
-        XCTAssert(student?.nickName == nick_name)
-        XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
-        XCTAssert(student?.birthday == birthday)
+        XCTAssert(student.nickName == nick_name)
+        XCTAssert(student.mostFavoriteNumber == most_favorite_number)
+        XCTAssert(student.birthday == birthday)
     }
     
     func testCamelToUnderline() {
@@ -61,9 +61,9 @@ class JTM_05_KeyMapping: XCTestCase {
         ]
         
         let student = json.kj.model(Person.self)
-        XCTAssert(student?.nickName == nick_name)
-        XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
-        XCTAssert(student?.birthday == birthday)
+        XCTAssert(student.nickName == nick_name)
+        XCTAssert(student.mostFavoriteNumber == most_favorite_number)
+        XCTAssert(student.birthday == birthday)
     }
     
     func testUnderlineToCamel() {
@@ -89,9 +89,9 @@ class JTM_05_KeyMapping: XCTestCase {
         ]
         
         let student = json.kj.model(Person.self)
-        XCTAssert(student?.nick_name == nickName)
-        XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
-        XCTAssert(student?.birthday == birthday)
+        XCTAssert(student.nick_name == nickName)
+        XCTAssert(student.most_favorite_number == mostFavoriteNumber)
+        XCTAssert(student.birthday == birthday)
     }
     
     func testClass1() {
@@ -113,11 +113,11 @@ class JTM_05_KeyMapping: XCTestCase {
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.nickName == nick_ame)
+        XCTAssert(person.nickName == nick_ame)
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.nickName == nick_ame)
-        XCTAssert(student?.mathScore == math_score)
+        XCTAssert(student.nickName == nick_ame)
+        XCTAssert(student.mathScore == math_score)
     }
     
     func testClass2() {
@@ -145,11 +145,11 @@ class JTM_05_KeyMapping: XCTestCase {
         let json: [String: Any] = ["_name_": name, "_score_": score]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.name == name)
-        XCTAssert(student?.score == score)
+        XCTAssert(student.name == name)
+        XCTAssert(student.score == score)
     }
     
     func testClass3() {
@@ -172,14 +172,14 @@ class JTM_05_KeyMapping: XCTestCase {
         
         let personName = "Jack"
         let person = ["_name_": personName].kj.model(Person.self)
-        XCTAssert(person?.name == personName)
+        XCTAssert(person.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
                        "_score_": studentScore].kj.model(Student.self)
-        XCTAssert(student?.name == studentName)
-        XCTAssert(student?.score == studentScore)
+        XCTAssert(student.name == studentName)
+        XCTAssert(student.score == studentScore)
     }
     
     func testComplex() {
@@ -227,11 +227,11 @@ class JTM_05_KeyMapping: XCTestCase {
         ]
         
         let dog = json.kj.model(Dog.self)
-        XCTAssert(dog?.name == name)
-        XCTAssert(dog?.age == age)
-        XCTAssert(dog?.nickName == nickName1)
-        XCTAssert(dog?.toy?.name == toy.name)
-        XCTAssert(dog?.toy?.price == toy.price)
+        XCTAssert(dog.name == name)
+        XCTAssert(dog.age == age)
+        XCTAssert(dog.nickName == nickName1)
+        XCTAssert(dog.toy?.name == toy.name)
+        XCTAssert(dog.toy?.price == toy.price)
     }
     
     func testConfig1() {
@@ -260,17 +260,17 @@ class JTM_05_KeyMapping: XCTestCase {
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.nickName == nick_ame)
+        XCTAssert(person.nickName == nick_ame)
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.nickName == nick_ame)
-        XCTAssert(student?.mathScore == math_score)
+        XCTAssert(student.nickName == nick_ame)
+        XCTAssert(student.mathScore == math_score)
         
         let max_speed = 250.0
         let name = "Bently"
         let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-        XCTAssert(car?.maxSpeed == max_speed)
-        XCTAssert(car?.name == name)
+        XCTAssert(car.maxSpeed == max_speed)
+        XCTAssert(car.name == name)
     }
     
     func testConfig2() {
@@ -300,17 +300,17 @@ class JTM_05_KeyMapping: XCTestCase {
         let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.nickName == nick_ame)
+        XCTAssert(person.nickName == nick_ame)
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.nickName == nick_ame)
-        XCTAssert(student?.mathScore == math_score)
+        XCTAssert(student.nickName == nick_ame)
+        XCTAssert(student.mathScore == math_score)
         
         let max_speed = 250.0
         let name = "Bently"
         let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-        XCTAssert(car?.maxSpeed == max_speed)
-        XCTAssert(car?.name == name)
+        XCTAssert(car.maxSpeed == max_speed)
+        XCTAssert(car.name == name)
     }
     
     func testConfig3() {
@@ -347,20 +347,20 @@ class JTM_05_KeyMapping: XCTestCase {
         
         let personName = "Jack"
         let person = ["_name_": personName].kj.model(Person.self)
-        XCTAssert(person?.name == personName)
+        XCTAssert(person.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
                        "_score_": studentScore].kj.model(Student.self)
-        XCTAssert(student?.name == studentName)
-        XCTAssert(student?.score == studentScore)
+        XCTAssert(student.name == studentName)
+        XCTAssert(student.score == studentScore)
         
         let max_speed = 250.0
         let name = "Bently"
         let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-        XCTAssert(car?.maxSpeed == max_speed)
-        XCTAssert(car?.name == name)
+        XCTAssert(car.maxSpeed == max_speed)
+        XCTAssert(car.name == name)
     }
     
     func testConfig4() {
@@ -424,19 +424,19 @@ class JTM_05_KeyMapping: XCTestCase {
         
         let personName = "Jack"
         let person = ["_name_": personName].kj.model(Person.self)
-        XCTAssert(person?.name == personName)
+        XCTAssert(person.name == personName)
         
         let studentName = "Rose"
         let studentScore = 96
         let student = ["name": studentName,
                        "score": studentScore].kj.model(Student.self)
-        XCTAssert(student?.name == studentName)
-        XCTAssert(student?.score == studentScore)
+        XCTAssert(student.name == studentName)
+        XCTAssert(student.score == studentScore)
         
         let max_speed = 250.0
         let name = "Bently"
         let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-        XCTAssert(car?.maxSpeed == max_speed)
-        XCTAssert(car?.name == name)
+        XCTAssert(car.maxSpeed == max_speed)
+        XCTAssert(car.name == name)
     }
 }

@@ -58,8 +58,8 @@ class JTM_04_ModelArray: XCTestCase {
         ]
         
         let cars = json.kj.modelArray(Car.self)
-        XCTAssert(cars?[0].name == tuples[0].name)
-        XCTAssert(cars?[0].price == tuples[0].price)
+        XCTAssert(cars[0].name == tuples[0].name)
+        XCTAssert(cars[0].price == tuples[0].price)
     }
     
     func testJSONString() {
@@ -75,13 +75,13 @@ class JTM_04_ModelArray: XCTestCase {
         check(cars)
     }
     
-    func check(_ cars: [Car]?) {
-        XCTAssert(cars?.count == tuples.count)
-        XCTAssert(cars?[0].name == tuples[0].name)
-        XCTAssert(cars?[0].price == tuples[0].price)
-        XCTAssert(cars?[1].name == tuples[1].name)
-        XCTAssert(cars?[1].price == tuples[1].price)
-        XCTAssert(cars?[2].name == tuples[2].name)
-        XCTAssert(cars?[2].price == tuples[2].price)
+    func check(_ cars: [Car]) {
+        XCTAssert(cars.count == tuples.count)
+        XCTAssert(cars[0].name == tuples[0].name)
+        XCTAssert(cars[0].price == tuples[0].price)
+        XCTAssert(cars[1].name == tuples[1].name)
+        XCTAssert(cars[1].price == tuples[1].price)
+        XCTAssert(cars[2].name == tuples[2].name)
+        XCTAssert(cars[2].price == tuples[2].price)
     }
 }

@@ -19,7 +19,7 @@
 
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.0.0' 
+pod 'KakaJSON', '~> 1.1.0' 
 ```
 
 ### Swift Package Manager
@@ -174,11 +174,11 @@ write(Person(), to: file)
 // read Person from file
 let person = read(Person.self, from: file)
  
-XCTAssert(person?.name == "Jack")
-XCTAssert(person?.car?.name == "Bently")
-XCTAssert(person?.car?.price == 106.666)
-XCTAssert(person?.books?.count == 2)
-XCTAssert(person?.dogs?.count == 2)
+XCTAssert(person.name == "Jack")
+XCTAssert(person.car?.name == "Bently")
+XCTAssert(person.car?.price == 106.666)
+XCTAssert(person.books?.count == 2)
+XCTAssert(person.dogs?.count == 2)
 
 /****************** Model Array ******************/
 struct Car: Convertible {
@@ -268,16 +268,16 @@ let json: [String: Any] = [
 ]
 
 let cat1 = json.kj.model(Cat.self)
-XCTAssert(cat1?.name == "Miaomiao")
-XCTAssert(cat1?.weight == 6.66)
+XCTAssert(cat1.name == "Miaomiao")
+XCTAssert(cat1.weight == 6.66)
 
 // you can call global function `model`
 let cat2 = model(from: json, Cat.self)
 
 // support type variable
-var type: Any.Type = Cat.self
-let cat3 = json.kj.model(anyType: type) as? Cat
-let cat4 = model(from: json, anyType: type) as? Cat
+var type: Convertible.Type = Cat.self
+let cat3 = json.kj.model(type: type) as? Cat
+let cat4 = model(from: json, type: type) as? Cat
 ```
 
 ### Class Type
@@ -369,9 +369,9 @@ let json: [String: Any] = [
 
 let cat = json.kj.model(Cat.self)
 // convert failed, keep default value
-XCTAssert(cat?.name == "xx")
-XCTAssert(cat?.weight == 6.6)
-XCTAssert(cat?.data == NSNull())
+XCTAssert(cat.name == "xx")
+XCTAssert(cat.weight == 6.6)
+XCTAssert(cat.data == NSNull())
 ```
 
 ### JSONString
@@ -387,9 +387,9 @@ let jsonString = """
 let cat1 = jsonString.kj.model(Cat.self)
 let cat2 = model(from: jsonString, Cat.self)
 
-var type: Any.Type = Cat.self
-let cat3 = jsonString.kj.model(anyType: type) as? Cat
-let cat4 = model(from: jsonString, anyType: type) as? Cat
+var type: Convertible.Type = Cat.self
+let cat3 = jsonString.kj.model(type: type) as? Cat
+let cat4 = model(from: jsonString, type: type) as? Cat
 ```
 
 ### JSONData
@@ -405,9 +405,9 @@ let jsonData = """
 let cat1 = jsonData.kj.model(Cat.self)
 let cat2 = model(from: jsonData, Cat.self)
 
-var type: Any.Type = Cat.self
-let cat3 = jsonData.kj.model(anyType: type) as? Cat
-let cat4 = model(from: jsonData, anyType: type) as? Cat
+var type: Convertible.Type = Cat.self
+let cat3 = jsonData.kj.model(type: type) as? Cat
+let cat4 = model(from: jsonData, type: type) as? Cat
 ```
 
 ### Nested Model 1
@@ -450,9 +450,9 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.car?.name == "BMW7")
-XCTAssert(person?.books?[1].name == "Data Structure And Algorithm")
-XCTAssert(person?.dogs?["dog0"]?.name == "Larry")
+XCTAssert(person.car?.name == "BMW7")
+XCTAssert(person.books?[1].name == "Data Structure And Algorithm")
+XCTAssert(person.dogs?["dog0"]?.name == "Larry")
 ```
 
 ### Nested Model2
@@ -475,10 +475,10 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.name == "Jack")
+XCTAssert(person.name == "Jack")
  
-XCTAssert(person?.books?.count == 1)
-let book = person?.books?.randomElement()
+XCTAssert(person.books?.count == 1)
+let book = person.books?.randomElement()
 XCTAssert(book?.name == "Fast C++")
 XCTAssert(book?.price == 666.6)
 ```
@@ -497,8 +497,8 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.name == "Jack")
-XCTAssert(person?.parent?.name == "Jim")
+XCTAssert(person.name == "Jack")
+XCTAssert(person.parent?.name == "Jim")
 ```
 
 ### Generic
@@ -575,16 +575,16 @@ XCTAssert(cars1?[1].name == "Bently")
  
 let cars2 = modelArray(from: json, Car.self)
 
-var type: Any.Type = Car.self
-let cars3 = json.kj.modelArray(anyType: type) as? [Car]
-let cars4 = modelArray(from: json, anyType: type) as? [Car]
+var type: Convertible.Type = Car.self
+let cars3 = json.kj.modelArray(type: type) as? [Car]
+let cars4 = modelArray(from: json, type: type) as? [Car]
  
 // jsonString -> Model Array
 let jsonString = "...."
 let cars5 = jsonString.kj.modelArray(Car.self)
 let cars6 = modelArray(from: jsonString, Car.self)
-let cars7 = jsonString.kj.modelArray(anyType: type) as? [Car]
-let cars8 = modelArray(from: jsonString, anyType: type) as? [Car]
+let cars7 = jsonString.kj.modelArray(type: type) as? [Car]
+let cars8 = modelArray(from: jsonString, type: type) as? [Car]
 ```
 
 ### Convert
@@ -630,8 +630,8 @@ let age = 100
 let car = ["name": name, "age": age].kj.model(Car.self)
 // Car - kj_willConvertToModel
 // Car - kj_didConvertToModel
-XCTAssert(car?.name == name)
-XCTAssert(car?.age == age)
+XCTAssert(car.name == name)
+XCTAssert(car.age == age)
  
 /*************************************************************/
  
@@ -675,9 +675,9 @@ let student = ["name": name, "age": age, "score": score].kj.model(Student.self)
 // Student - kj_willConvertToModel
 // Person - kj_didConvertToModel
 // Student - kj_didConvertToModel
-XCTAssert(student?.name == name)
-XCTAssert(student?.age == age)
-XCTAssert(student?.score == score)
+XCTAssert(student.name == name)
+XCTAssert(student.age == age)
+XCTAssert(student.score == score)
 
 ```
 
@@ -717,19 +717,19 @@ let json: [String: Any] = [
  
 let student = json.kj.model(Student.self)
 // convert failed，keep defualt value
-XCTAssert(student?.age1 == 6) 
-XCTAssert(student?.age2 == 6) 
-XCTAssert(student?.age3 == 6)
-XCTAssert(student?.age4 == 6)
-XCTAssert(student?.age5 == 6)
-XCTAssert(student?.age6 == 6)
+XCTAssert(student.age1 == 6) 
+XCTAssert(student.age2 == 6) 
+XCTAssert(student.age3 == 6)
+XCTAssert(student.age4 == 6)
+XCTAssert(student.age5 == 6)
+XCTAssert(student.age6 == 6)
 // true is 1，false is 0
-XCTAssert(student?.age7 == 1) 
+XCTAssert(student.age7 == 1) 
 // "true"\"TRUE"\"YES"\"yes" is 1，"false"\"FALSE"\"NO"\"no" is 0
-XCTAssert(student?.age8 == 0) 
-XCTAssert(student?.age9 == 6)
-XCTAssert(student?.age10 == 6)
-XCTAssert(student?.age11 == 1565922866)
+XCTAssert(student.age8 == 0) 
+XCTAssert(student.age9 == 6)
+XCTAssert(student.age10 == 6)
+XCTAssert(student.age11 == 1565922866)
 ```
 
 ### Float
@@ -759,17 +759,17 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.height1 == 6.66)
-XCTAssert(student?.height2 == 0.12345678)
-XCTAssert(student?.height3 == 0.12345678)
-XCTAssert(student?.height4 == 0.12345678)
-XCTAssert(student?.height5 == 666.0)
+XCTAssert(student.height1 == 6.66)
+XCTAssert(student.height2 == 0.12345678)
+XCTAssert(student.height3 == 0.12345678)
+XCTAssert(student.height4 == 0.12345678)
+XCTAssert(student.height5 == 666.0)
 // true is 1.0，false is 0.0
-XCTAssert(student?.height6 == 1.0)
+XCTAssert(student.height6 == 1.0)
 // "true"\"TRUE"\"YES"\"yes" is 1.0，"false"\"FALSE"\"NO"\"no" is 0.0
-XCTAssert(student?.height7 == 0.0)
-XCTAssert(student?.height8 == 0.12345678)
-XCTAssert(student?.height9 == 1565922866)
+XCTAssert(student.height7 == 0.0)
+XCTAssert(student.height8 == 0.12345678)
+XCTAssert(student.height9 == 1565922866)
 ```
 
 ### Double
@@ -799,17 +799,17 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.height1 == 6.66)
-XCTAssert(student?.height2 == 0.1234567890123456)
-XCTAssert(student?.height3 == 0.1234567890123456)
-XCTAssert(student?.height4 == 0.1234567890123456)
-XCTAssert(student?.height5 == 666.0)
+XCTAssert(student.height1 == 6.66)
+XCTAssert(student.height2 == 0.1234567890123456)
+XCTAssert(student.height3 == 0.1234567890123456)
+XCTAssert(student.height4 == 0.1234567890123456)
+XCTAssert(student.height5 == 666.0)
 // true is 1.0，false is 0.0
-XCTAssert(student?.height6 == 1.0)
+XCTAssert(student.height6 == 1.0)
 // "true"\"TRUE"\"YES"\"yes" is 1.0，"false"\"FALSE"\"NO"\"no" is 0.0
-XCTAssert(student?.height7 == 0.0)
-XCTAssert(student?.height8 == 0.1234567890123456)
-XCTAssert(student?.height9 == 1565922866)
+XCTAssert(student.height7 == 0.0)
+XCTAssert(student.height8 == 0.1234567890123456)
+XCTAssert(student.height9 == 1565922866)
 ```
 
 ### CGFloat
@@ -839,15 +839,15 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.height1 == 6.66)
-XCTAssert(student?.height2 == CGFloat(0.1234567890123456))
-XCTAssert(student?.height3 == CGFloat(0.1234567890123456))
-XCTAssert(student?.height4 == CGFloat(0.1234567890123456))
-XCTAssert(student?.height5 == 666.0)
-XCTAssert(student?.height6 == 1.0)
-XCTAssert(student?.height7 == 0.0)
-XCTAssert(student?.height8 == CGFloat(0.1234567890123456))
-XCTAssert(student?.height9 == CGFloat(1565922866))
+XCTAssert(student.height1 == 6.66)
+XCTAssert(student.height2 == CGFloat(0.1234567890123456))
+XCTAssert(student.height3 == CGFloat(0.1234567890123456))
+XCTAssert(student.height4 == CGFloat(0.1234567890123456))
+XCTAssert(student.height5 == 666.0)
+XCTAssert(student.height6 == 1.0)
+XCTAssert(student.height7 == 0.0)
+XCTAssert(student.height8 == CGFloat(0.1234567890123456))
+XCTAssert(student.height9 == CGFloat(1565922866))
 ```
 
 ### Bool
@@ -872,15 +872,15 @@ let json: [String: Any] = [
  
 let student = json.kj.model(Student.self)
 // number 0 is false，not number 0 is true
-XCTAssert(student?.rich1 == true)
-XCTAssert(student?.rich2 == false)
-XCTAssert(student?.rich3 == true)
+XCTAssert(student.rich1 == true)
+XCTAssert(student.rich2 == false)
+XCTAssert(student.rich3 == true)
 // 0.666 isn't 0，so true
-XCTAssert(student?.rich4 == true)
+XCTAssert(student.rich4 == true)
 // "true"\"TRUE"\"YES"\"yes" is true
-XCTAssert(student?.rich5 == true)
+XCTAssert(student.rich5 == true)
 // "false"\"FALSE"\"NO"\"no" is false
-XCTAssert(student?.rich6 == false)
+XCTAssert(student.rich6 == false)
 ```
 
 ### String
@@ -912,16 +912,16 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.name1 == "666")
-XCTAssert(student?.name2 == "777")
+XCTAssert(student.name1 == "666")
+XCTAssert(student.name2 == "777")
 // call array's description
-XCTAssert(student?.name3 == "[1, [2, 3], \"4\"]")
-XCTAssert(student?.name4 == "0.123456789012345678901234567890123456789")
-XCTAssert(student?.name5 == "6.66")
-XCTAssert(student?.name6 == "false")
-XCTAssert(student?.name7 == "file:///users/mj/desktop")
-XCTAssert(student?.name8 == "http://www.520suanfa.com")
-XCTAssert(student?.name9 == "1565922866")
+XCTAssert(student.name3 == "[1, [2, 3], \"4\"]")
+XCTAssert(student.name4 == "0.123456789012345678901234567890123456789")
+XCTAssert(student.name5 == "6.66")
+XCTAssert(student.name6 == "false")
+XCTAssert(student.name7 == "file:///users/mj/desktop")
+XCTAssert(student.name8 == "http://www.520suanfa.com")
+XCTAssert(student.name9 == "1565922866")
 ```
 
 ### Decimal
@@ -949,14 +949,14 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.money1 == Decimal(string: "0.1234567890123456"))
-XCTAssert(student?.money2 == 1)
-XCTAssert(student?.money3 == Decimal(string: "0.123456789012345678901234567890123456789"))
-XCTAssert(student?.money4 == Decimal(string: "0.123456789012345678901234567890123456789"))
-XCTAssert(student?.money5 == 666)
-XCTAssert(student?.money6 == 0)
-XCTAssert(student?.money7 == Decimal(string: "0.1234567890123456"))
-XCTAssert(student?.money8 == Decimal(string: "1565922866"))
+XCTAssert(student.money1 == Decimal(string: "0.1234567890123456"))
+XCTAssert(student.money2 == 1)
+XCTAssert(student.money3 == Decimal(string: "0.123456789012345678901234567890123456789"))
+XCTAssert(student.money4 == Decimal(string: "0.123456789012345678901234567890123456789"))
+XCTAssert(student.money5 == 666)
+XCTAssert(student.money6 == 0)
+XCTAssert(student.money7 == Decimal(string: "0.1234567890123456"))
+XCTAssert(student.money8 == Decimal(string: "1565922866"))
 ```
 
 ### NSDecimalNumber
@@ -984,16 +984,16 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.money1 == NSDecimalNumber(string: "0.1234567890123456"))
-XCTAssert(student?.money2 == true)
-XCTAssert(student?.money2 == 1)
-XCTAssert(student?.money3 == NSDecimalNumber(string: "0.123456789012345678901234567890123456789"))
-XCTAssert(student?.money4 == NSDecimalNumber(string: "0.123456789012345678901234567890123456789"))
-XCTAssert(student?.money5 == 666)
-XCTAssert(student?.money6 == false)
-XCTAssert(student?.money6 == 0)
-XCTAssert(student?.money7 == NSDecimalNumber(string: "0.1234567890123456"))
-XCTAssert(student?.money8 == NSDecimalNumber(string: "1565922866"))
+XCTAssert(student.money1 == NSDecimalNumber(string: "0.1234567890123456"))
+XCTAssert(student.money2 == true)
+XCTAssert(student.money2 == 1)
+XCTAssert(student.money3 == NSDecimalNumber(string: "0.123456789012345678901234567890123456789"))
+XCTAssert(student.money4 == NSDecimalNumber(string: "0.123456789012345678901234567890123456789"))
+XCTAssert(student.money5 == 666)
+XCTAssert(student.money6 == false)
+XCTAssert(student.money6 == 0)
+XCTAssert(student.money7 == NSDecimalNumber(string: "0.1234567890123456"))
+XCTAssert(student.money8 == NSDecimalNumber(string: "1565922866"))
 ```
 
 ### NSNumber
@@ -1021,19 +1021,19 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.money1 == NSNumber(value: 0.1234567890123456))
-XCTAssert(student?.money2 == true)
-XCTAssert(student?.money2 == 1)
-XCTAssert(student?.money2 == 1.0)
-XCTAssert(student?.money3 == NSNumber(value: 0.1234567890123456))
-XCTAssert(student?.money4 == NSNumber(value: 0.1234567890123456))
-XCTAssert(student?.money5 == 666)
-XCTAssert(student?.money5 == 666.0)
-XCTAssert(student?.money6 == false)
-XCTAssert(student?.money6 == 0)
-XCTAssert(student?.money6 == 0.0)
-XCTAssert(student?.money7 == NSNumber(value: longDouble))
-XCTAssert(student?.money8 == NSNumber(value: 1565922866))
+XCTAssert(student.money1 == NSNumber(value: 0.1234567890123456))
+XCTAssert(student.money2 == true)
+XCTAssert(student.money2 == 1)
+XCTAssert(student.money2 == 1.0)
+XCTAssert(student.money3 == NSNumber(value: 0.1234567890123456))
+XCTAssert(student.money4 == NSNumber(value: 0.1234567890123456))
+XCTAssert(student.money5 == 666)
+XCTAssert(student.money5 == 666.0)
+XCTAssert(student.money6 == false)
+XCTAssert(student.money6 == 0)
+XCTAssert(student.money6 == 0.0)
+XCTAssert(student.money7 == NSNumber(value: longDouble))
+XCTAssert(student.money8 == NSNumber(value: 1565922866))
 ```
 
 ### Optional
@@ -1066,12 +1066,12 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.rich1 == true)
-XCTAssert(student?.rich2 == false)
-XCTAssert(student?.rich3 == false)
-XCTAssert(student?.rich4 == true)
-XCTAssert(student?.rich5 == true)
-XCTAssert(student?.rich6 == false)
+XCTAssert(student.rich1 == true)
+XCTAssert(student.rich2 == false)
+XCTAssert(student.rich3 == false)
+XCTAssert(student.rich4 == true)
+XCTAssert(student.rich5 == true)
+XCTAssert(student.rich6 == false)
 ```
 
 ### URL
@@ -1096,10 +1096,10 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.url1?.absoluteString == encodedUrl)
-XCTAssert(student?.url2?.absoluteString == encodedUrl)
-XCTAssert(student?.url3?.absoluteString == encodedUrl)
-XCTAssert(student?.url4?.absoluteString == encodedUrl)
+XCTAssert(student.url1?.absoluteString == encodedUrl)
+XCTAssert(student.url2?.absoluteString == encodedUrl)
+XCTAssert(student.url3?.absoluteString == encodedUrl)
+XCTAssert(student.url4?.absoluteString == encodedUrl)
 ```
 
 ### Data
@@ -1129,12 +1129,12 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(String(data: (student?.data1)! as Data, encoding: utf8) == str)
-XCTAssert(String(data: (student?.data2)! as Data, encoding: utf8) == str)
-XCTAssert(String(data: (student?.data3)!, encoding: utf8) == str)
-XCTAssert(String(data: (student?.data4)!, encoding: utf8) == str)
-XCTAssert(String(data: (student?.data5)! as Data, encoding: utf8) == str)
-XCTAssert(String(data: (student?.data6)! as Data, encoding: utf8) == str)
+XCTAssert(String(data: (student.data1)! as Data, encoding: utf8) == str)
+XCTAssert(String(data: (student.data2)! as Data, encoding: utf8) == str)
+XCTAssert(String(data: (student.data3)!, encoding: utf8) == str)
+XCTAssert(String(data: (student.data4)!, encoding: utf8) == str)
+XCTAssert(String(data: (student.data5)! as Data, encoding: utf8) == str)
+XCTAssert(String(data: (student.data6)! as Data, encoding: utf8) == str)
 ```
 
 ### Date
@@ -1164,13 +1164,13 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.date1?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date2?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date3?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date4?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date5?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date6?.timeIntervalSince1970 == milliseconds)
-XCTAssert(student?.date7?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date1?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date2?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date3?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date4?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date5?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date6?.timeIntervalSince1970 == milliseconds)
+XCTAssert(student.date7?.timeIntervalSince1970 == milliseconds)
 ```
 
 ### Enum
@@ -1196,8 +1196,8 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.grade1 == .good)
-XCTAssert(student?.grade2 == .bad)
+XCTAssert(student.grade1 == .good)
+XCTAssert(student.grade2 == .bad)
  
 // Double RawValue
 enum Grade2: Double, ConvertibleEnum {
@@ -1253,14 +1253,14 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.array1 == array)
-XCTAssert(person?.array2 == array as NSArray)
-XCTAssert(person?.array3 == NSMutableArray(array: array))
+XCTAssert(person.array1 == array)
+XCTAssert(person.array2 == array as NSArray)
+XCTAssert(person.array3 == NSMutableArray(array: array))
  
 for i in array {
-    XCTAssert(person?.array4?.contains(i) == true)
-    XCTAssert(person?.array5?.contains(i) == true)
-    XCTAssert(person?.array6?.contains(i) == true)
+    XCTAssert(person.array4?.contains(i) == true)
+    XCTAssert(person.array5?.contains(i) == true)
+    XCTAssert(person.array6?.contains(i) == true)
 }
 ```
 
@@ -1290,12 +1290,12 @@ let json: [String: Any] = [
  
 let person = json.kj.model(Person.self)
 for i in array {
-    XCTAssert(person?.set1?.contains(i) == true)
-    XCTAssert(person?.set2?.contains(i) == true)
-    XCTAssert(person?.set3?.contains(i) == true)
-    XCTAssert(person?.set4?.contains(i) == true)
-    XCTAssert(person?.set5?.contains(i) == true)
-    XCTAssert(person?.set6?.contains(i) == true)
+    XCTAssert(person.set1?.contains(i) == true)
+    XCTAssert(person.set2?.contains(i) == true)
+    XCTAssert(person.set3?.contains(i) == true)
+    XCTAssert(person.set4?.contains(i) == true)
+    XCTAssert(person.set5?.contains(i) == true)
+    XCTAssert(person.set6?.contains(i) == true)
 }
 ```
 
@@ -1319,9 +1319,9 @@ let json: [String: Any] = [
  
 let person = json.kj.model(Person.self)
 for (k, v) in dict {
-    XCTAssert(person?.dict1?[k] as? Int == v)
-    XCTAssert(person?.dict2?[k] as? Int == v)
-    XCTAssert(person?.dict3?[k] as? Int == v)
+    XCTAssert(person.dict1?[k] as? Int == v)
+    XCTAssert(person.dict2?[k] as? Int == v)
+    XCTAssert(person.dict3?[k] as? Int == v)
 }
 ```
 
@@ -1358,9 +1358,9 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Person.self)
-XCTAssert(student?.nickName == nick_name)
-XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
-XCTAssert(student?.birthday == birthday)
+XCTAssert(student.nickName == nick_name)
+XCTAssert(student.mostFavoriteNumber == most_favorite_number)
+XCTAssert(student.birthday == birthday)
 ```
 
 ### Camel -> Underline
@@ -1387,9 +1387,9 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Person.self)
-XCTAssert(student?.nickName == nick_name)
-XCTAssert(student?.mostFavoriteNumber == most_favorite_number)
-XCTAssert(student?.birthday == birthday)
+XCTAssert(student.nickName == nick_name)
+XCTAssert(student.mostFavoriteNumber == most_favorite_number)
+XCTAssert(student.birthday == birthday)
 ```
 
 ### Underline -> Camel
@@ -1416,9 +1416,9 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Person.self)
-XCTAssert(student?.nick_name == nickName)
-XCTAssert(student?.most_favorite_number == mostFavoriteNumber)
-XCTAssert(student?.birthday == birthday)
+XCTAssert(student.nick_name == nickName)
+XCTAssert(student.most_favorite_number == mostFavoriteNumber)
+XCTAssert(student.birthday == birthday)
 ```
 
 ### Inheritance
@@ -1443,11 +1443,11 @@ let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.nickName == nick_ame)
+XCTAssert(person.nickName == nick_ame)
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.nickName == nick_ame)
-XCTAssert(student?.mathScore == math_score)
+XCTAssert(student.nickName == nick_ame)
+XCTAssert(student.mathScore == math_score)
 ```
 
 ### Override 1
@@ -1476,11 +1476,11 @@ let score = 96
 let json: [String: Any] = ["_name_": name, "_score_": score]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.name == name)
+XCTAssert(person.name == name)
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.name == name)
-XCTAssert(student?.score == score)
+XCTAssert(student.name == name)
+XCTAssert(student.score == score)
 ```
 
 ### Override 2
@@ -1506,14 +1506,14 @@ class Student: Person {
  
 let personName = "Jack"
 let person = ["_name_": personName].kj.model(Person.self)
-XCTAssert(person?.name == personName)
+XCTAssert(person.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
                "_score_": studentScore].kj.model(Student.self)
-XCTAssert(student?.name == studentName)
-XCTAssert(student?.score == studentScore)
+XCTAssert(student.name == studentName)
+XCTAssert(student.score == studentScore)
 ```
 
 ### Global Config
@@ -1543,17 +1543,17 @@ let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.nickName == nick_ame)
+XCTAssert(person.nickName == nick_ame)
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.nickName == nick_ame)
-XCTAssert(student?.mathScore == math_score)
+XCTAssert(student.nickName == nick_ame)
+XCTAssert(student.mathScore == math_score)
  
 let max_speed = 250.0
 let name = "Bently"
 let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-XCTAssert(car?.maxSpeed == max_speed)
-XCTAssert(car?.name == name)
+XCTAssert(car.maxSpeed == max_speed)
+XCTAssert(car.name == name)
 ```
 
 ### Local Config
@@ -1584,17 +1584,17 @@ let math_score = 96
 let json: [String: Any] = ["nick_name": nick_ame, "math_score": math_score]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.nickName == nick_ame)
+XCTAssert(person.nickName == nick_ame)
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.nickName == nick_ame)
-XCTAssert(student?.mathScore == math_score)
+XCTAssert(student.nickName == nick_ame)
+XCTAssert(student.mathScore == math_score)
  
 let max_speed = 250.0
 let name = "Bently"
 let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-XCTAssert(car?.maxSpeed == max_speed)
-XCTAssert(car?.name == name)
+XCTAssert(car.maxSpeed == max_speed)
+XCTAssert(car.name == name)
 ```
 
 ### Config Example 1
@@ -1632,20 +1632,20 @@ struct Car: Convertible {
  
 let personName = "Jack"
 let person = ["_name_": personName].kj.model(Person.self)
-XCTAssert(person?.name == personName)
+XCTAssert(person.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
                "_score_": studentScore].kj.model(Student.self)
-XCTAssert(student?.name == studentName)
-XCTAssert(student?.score == studentScore)
+XCTAssert(student.name == studentName)
+XCTAssert(student.score == studentScore)
  
 let max_speed = 250.0
 let name = "Bently"
 let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-XCTAssert(car?.maxSpeed == max_speed)
-XCTAssert(car?.name == name)
+XCTAssert(car.maxSpeed == max_speed)
+XCTAssert(car.name == name)
 ```
 
 ### Config Example 2
@@ -1712,20 +1712,20 @@ struct Car: Convertible {
  
 let personName = "Jack"
 let person = ["_name_": personName].kj.model(Person.self)
-XCTAssert(person?.name == personName)
+XCTAssert(person.name == personName)
  
 let studentName = "Rose"
 let studentScore = 96
 let student = ["name": studentName,
                "score": studentScore].kj.model(Student.self)
-XCTAssert(student?.name == studentName)
-XCTAssert(student?.score == studentScore)
+XCTAssert(student.name == studentName)
+XCTAssert(student.score == studentScore)
  
 let max_speed = 250.0
 let name = "Bently"
 let car = ["max_speed": max_speed, "name": name].kj.model(Car.self)
-XCTAssert(car?.maxSpeed == max_speed)
-XCTAssert(car?.name == name)
+XCTAssert(car.maxSpeed == max_speed)
+XCTAssert(car.name == name)
 ```
 
 ### Complex
@@ -1778,11 +1778,11 @@ let json: [String: Any] = [
 ]
  
 let dog = json.kj.model(Dog.self)
-XCTAssert(dog?.name == name)
-XCTAssert(dog?.age == age)
-XCTAssert(dog?.nickName == nickName1)
-XCTAssert(dog?.toy?.name == toy.name)
-XCTAssert(dog?.toy?.price == toy.price)
+XCTAssert(dog.name == name)
+XCTAssert(dog.age == age)
+XCTAssert(dog.nickName == nickName1)
+XCTAssert(dog.toy?.name == toy.name)
+XCTAssert(dog.toy?.price == toy.price)
 ```
 
 
@@ -1827,8 +1827,8 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
-XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
+XCTAssert(student.date1.flatMap(date1Fmt.string) == date1)
+XCTAssert(student.date2.flatMap(date2Fmt.string) == date2)
 ```
 
 ### Unspecific Type
@@ -1854,9 +1854,9 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.name == "Jack")
+XCTAssert(person.name == "Jack")
  
-let pet = person?.pet as? Dog
+let pet = person.pet as? Dog
 XCTAssert(pet?.name == "Wang")
 XCTAssert(pet?.weight == 109.5)
 ```
@@ -1884,8 +1884,8 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.age == 15)
-XCTAssert(student?.name == "kj_Jack")
+XCTAssert(student.age == 15)
+XCTAssert(student.name == "kj_Jack")
 ```
 
 ### Other Ways
@@ -1906,8 +1906,8 @@ let json: [String: Any] = [
 ]
  
 let student = json.kj.model(Student.self)
-XCTAssert(student?.age == 15)
-XCTAssert(student?.name == "kj_Jack")
+XCTAssert(student.age == 15)
+XCTAssert(student.name == "kj_Jack")
 ```
 
 
@@ -1987,29 +1987,29 @@ let json: [String: Any] = [
 ]
  
 let person = json.kj.model(Person.self)
-XCTAssert(person?.name == name)
+XCTAssert(person.name == name)
  
-if let pet = person?.pet as? Dog {
+if let pet = person.pet as? Dog {
     XCTAssert(pet.name == dog.name)
     XCTAssert(pet.weight == dog.weight)
-} else if let pet = person?.pet as? Pig {
+} else if let pet = person.pet as? Pig {
     XCTAssert(pet.name == pig.name)
     XCTAssert(pet.height == pig.height)
 }
  
-let toy0 = person?.toys?[0] as? Car
+let toy0 = person.toys?[0] as? Car
 XCTAssert(toy0?.name == cars[0].name)
 XCTAssert(toy0?.price == cars[0].price)
  
-let toy1 = person?.toys?[1] as? Car
+let toy1 = person.toys?[1] as? Car
 XCTAssert(toy1?.name == cars[1].name)
 XCTAssert(toy1?.price == cars[1].price)
  
-let food0 = person?.foods?["food0"] as? Book
+let food0 = person.foods?["food0"] as? Book
 XCTAssert(food0?.name == books[0].name)
 XCTAssert(food0?.price == books[0].price)
  
-let food1 = person?.foods?["food1"] as? Book
+let food1 = person.foods?["food1"] as? Book
 XCTAssert(food1?.name == books[1].name)
 XCTAssert(food1?.price == books[1].price)
 ```
@@ -2362,8 +2362,8 @@ struct Car: Convertible {
     }
  
     // call when did finish converting from model to json
-    func kj_didConvertToJSON(json: [String: Any]?) {
-        print("Car - kj_didConvertToJSON", json as Any)
+    func kj_didConvertToJSON(json: [String: Any]) {
+        print("Car - kj_didConvertToJSON", json)
     }
 }
 ```

@@ -46,8 +46,8 @@ class JTM_06_CustomValue: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.date1.flatMap(date1Fmt.string) == date1)
-        XCTAssert(student?.date2.flatMap(date2Fmt.string) == date2)
+        XCTAssert(student.date1.flatMap(date1Fmt.string) == date1)
+        XCTAssert(student.date2.flatMap(date2Fmt.string) == date2)
     }
     
     // MARK: - Any
@@ -78,9 +78,9 @@ class JTM_06_CustomValue: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        let pet = person?.pet as? Dog
+        let pet = person.pet as? Dog
         XCTAssert(pet?.name == dog.name)
         XCTAssert(pet?.weight == dog.weight)
     }
@@ -122,15 +122,15 @@ class JTM_06_CustomValue: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        XCTAssert(person?.books?.count == books.count)
+        XCTAssert(person.books?.count == books.count)
         
-        let book0 = person?.books?[0] as? Book
+        let book0 = person.books?[0] as? Book
         XCTAssert(book0?.name == books[0].name)
         XCTAssert(book0?.price == Double(books[0].price))
         
-        let book1 = person?.books?[1] as? Book
+        let book1 = person.books?[1] as? Book
         XCTAssert(book1?.name == books[1].name)
         XCTAssert(book1?.price == Double(books[1].price))
     }
@@ -157,8 +157,8 @@ class JTM_06_CustomValue: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.age == 15)
-        XCTAssert(student?.name == "kj_Jack")
+        XCTAssert(student.age == 15)
+        XCTAssert(student.name == "kj_Jack")
     }
     
     func testOther2() {
@@ -178,7 +178,7 @@ class JTM_06_CustomValue: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.age == 15)
-        XCTAssert(student?.name == "kj_Jack")
+        XCTAssert(student.age == 15)
+        XCTAssert(student.name == "kj_Jack")
     }
 }

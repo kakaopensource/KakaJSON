@@ -54,30 +54,28 @@ public extension KJ where Base: ExpressibleByStringLiteral {
     
     /// JSONObject -> Model
     func model<M: Convertible>(_ type: M.Type) -> M? {
-        return model(anyType: type) as? M
+        return model(type: type) as? M
     }
     
     /// JSONObject -> Model
-    func model(anyType: Any.Type) -> Any? {
-        if let json = JSONSerialization.kj_JSON(base as! String, [String: Any].self) {
-            return json.kj.model(anyType: anyType)
-        }
-        Logger.error("Failed to get JSON from JSONString.")
-        return nil
+    func model(type: Convertible.Type) -> Convertible? {
+        guard let string = base as? String else { return nil }
+        return string.kj_fastModel(type)
     }
     
     /// JSONObjectArray -> ModelArray
-    func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
-        return modelArray(anyType: type) as? [M]
+    func modelArray<M: Convertible>(_ type: M.Type) -> [M] {
+        return modelArray(type: type) as! [M]
     }
     
     /// JSONObjectArray -> ModelArray
-    func modelArray(anyType: Any.Type) -> [Any]? {
-        if let json = JSONSerialization.kj_JSON(base as! String, [Any].self) {
-            return json.kj.modelArray(anyType: anyType)
+    func modelArray(type: Convertible.Type) -> [Convertible] {
+        guard let string = base as? String else { return [] }
+        if let json = JSONSerialization.kj_JSON(string, [Any].self) {
+            return json.kj.modelArray(type: type)
         }
         Logger.error("Failed to get JSON from JSONString.")
-        return nil
+        return []
     }
 }
 

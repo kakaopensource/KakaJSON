@@ -38,17 +38,17 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.age1 == 6) // use default value
-        XCTAssert(student?.age2 == 6)
-        XCTAssert(student?.age3 == 6)
-        XCTAssert(student?.age4 == 6)
-        XCTAssert(student?.age5 == 6)
-        XCTAssert(student?.age6 == 6)
-        XCTAssert(student?.age7 == 1)
-        XCTAssert(student?.age8 == 0)
-        XCTAssert(student?.age9 == 6)
-        XCTAssert(student?.age10 == 6)
-        XCTAssert(student?.age11 == timeIntevalInt)
+        XCTAssert(student.age1 == 6) // use default value
+        XCTAssert(student.age2 == 6)
+        XCTAssert(student.age3 == 6)
+        XCTAssert(student.age4 == 6)
+        XCTAssert(student.age5 == 6)
+        XCTAssert(student.age6 == 6)
+        XCTAssert(student.age7 == 1)
+        XCTAssert(student.age8 == 0)
+        XCTAssert(student.age9 == 6)
+        XCTAssert(student.age10 == 6)
+        XCTAssert(student.age11 == timeIntevalInt)
     }
     
     // MARK: - Float Type
@@ -78,15 +78,15 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.height1 == 6.66)
-        XCTAssert(student?.height2 == longFloat)
-        XCTAssert(student?.height3 == longFloat)
-        XCTAssert(student?.height4 == longFloat)
-        XCTAssert(student?.height5 == 666.0)
-        XCTAssert(student?.height6 == 1.0)
-        XCTAssert(student?.height7 == 0.0)
-        XCTAssert(student?.height8 == longFloat)
-        XCTAssert(student?.height9 == timeIntevalFloat)
+        XCTAssert(student.height1 == 6.66)
+        XCTAssert(student.height2 == longFloat)
+        XCTAssert(student.height3 == longFloat)
+        XCTAssert(student.height4 == longFloat)
+        XCTAssert(student.height5 == 666.0)
+        XCTAssert(student.height6 == 1.0)
+        XCTAssert(student.height7 == 0.0)
+        XCTAssert(student.height8 == longFloat)
+        XCTAssert(student.height9 == timeIntevalFloat)
     }
     
     // MARK: - Double Type
@@ -116,15 +116,15 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.height1 == 6.66)
-        XCTAssert(student?.height2 == longDouble)
-        XCTAssert(student?.height3 == longDouble)
-        XCTAssert(student?.height4 == longDouble)
-        XCTAssert(student?.height5 == 666.0)
-        XCTAssert(student?.height6 == 1.0)
-        XCTAssert(student?.height7 == 0.0)
-        XCTAssert(student?.height8 == longDouble)
-        XCTAssert(student?.height9 == timeInteval)
+        XCTAssert(student.height1 == 6.66)
+        XCTAssert(student.height2 == longDouble)
+        XCTAssert(student.height3 == longDouble)
+        XCTAssert(student.height4 == longDouble)
+        XCTAssert(student.height5 == 666.0)
+        XCTAssert(student.height6 == 1.0)
+        XCTAssert(student.height7 == 0.0)
+        XCTAssert(student.height8 == longDouble)
+        XCTAssert(student.height9 == timeInteval)
     }
     
     // MARK: - CGFloat Type
@@ -154,15 +154,15 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.height1 == 6.66)
-        XCTAssert(student?.height2 == CGFloat(longDouble))
-        XCTAssert(student?.height3 == CGFloat(longDouble))
-        XCTAssert(student?.height4 == CGFloat(longDouble))
-        XCTAssert(student?.height5 == 666.0)
-        XCTAssert(student?.height6 == 1.0)
-        XCTAssert(student?.height7 == 0.0)
-        XCTAssert(student?.height8 == CGFloat(longDouble))
-        XCTAssert(student?.height9 == CGFloat(timeInteval))
+        XCTAssert(student.height1 == 6.66)
+        XCTAssert(student.height2 == CGFloat(longDouble))
+        XCTAssert(student.height3 == CGFloat(longDouble))
+        XCTAssert(student.height4 == CGFloat(longDouble))
+        XCTAssert(student.height5 == 666.0)
+        XCTAssert(student.height6 == 1.0)
+        XCTAssert(student.height7 == 0.0)
+        XCTAssert(student.height8 == CGFloat(longDouble))
+        XCTAssert(student.height9 == CGFloat(timeInteval))
     }
     
     // MARK: - Bool Type
@@ -189,13 +189,13 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.rich1 == true)
-        XCTAssert(student?.rich2 == false)
-        XCTAssert(student?.rich3 == true)
-        XCTAssert(student?.rich4 == true)
-        XCTAssert(student?.rich5 == true)
-        XCTAssert(student?.rich6 == false)
-        XCTAssert(student?.rich7 == true)
+        XCTAssert(student.rich1 == true)
+        XCTAssert(student.rich2 == false)
+        XCTAssert(student.rich3 == true)
+        XCTAssert(student.rich4 == true)
+        XCTAssert(student.rich5 == true)
+        XCTAssert(student.rich6 == false)
+        XCTAssert(student.rich7 == true)
     }
     
     // MARK: - String Type
@@ -225,15 +225,15 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.name1 == "666")
-        XCTAssert(student?.name2 == "777")
-        XCTAssert(student?.name3 == "[1, [2, 3], \"4\"]")
-        XCTAssert(student?.name4 == longDecimalString as NSString)
-        XCTAssert(student?.name5 == "6.66")
-        XCTAssert(student?.name6 == "false")
-        XCTAssert(student?.name7 == "file:///users/mj/desktop")
-        XCTAssert(student?.name8 == "http://www.520suanfa.com")
-        XCTAssert(student?.name9 == timeIntevalString)
+        XCTAssert(student.name1 == "666")
+        XCTAssert(student.name2 == "777")
+        XCTAssert(student.name3 == "[1, [2, 3], \"4\"]")
+        XCTAssert(student.name4 == longDecimalString as NSString)
+        XCTAssert(student.name5 == "6.66")
+        XCTAssert(student.name6 == "false")
+        XCTAssert(student.name7 == "file:///users/mj/desktop")
+        XCTAssert(student.name8 == "http://www.520suanfa.com")
+        XCTAssert(student.name9 == timeIntevalString)
     }
     
     // MARK: - Decimal Type
@@ -261,14 +261,14 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.money1 == Decimal(string: longDoubleString))
-        XCTAssert(student?.money2 == 1)
-        XCTAssert(student?.money3 == Decimal(string: longDecimalString))
-        XCTAssert(student?.money4 == Decimal(string: longDecimalString))
-        XCTAssert(student?.money5 == 666)
-        XCTAssert(student?.money6 == 0)
-        XCTAssert(student?.money7 == Decimal(string: longDoubleString))
-        XCTAssert(student?.money8 == Decimal(string: timeIntevalString))
+        XCTAssert(student.money1 == Decimal(string: longDoubleString))
+        XCTAssert(student.money2 == 1)
+        XCTAssert(student.money3 == Decimal(string: longDecimalString))
+        XCTAssert(student.money4 == Decimal(string: longDecimalString))
+        XCTAssert(student.money5 == 666)
+        XCTAssert(student.money6 == 0)
+        XCTAssert(student.money7 == Decimal(string: longDoubleString))
+        XCTAssert(student.money8 == Decimal(string: timeIntevalString))
     }
     
     // MARK: - Decimal Number Type
@@ -296,16 +296,16 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.money1 == NSDecimalNumber(string: longDoubleString))
-        XCTAssert(student?.money2 == true)
-        XCTAssert(student?.money2 == 1)
-        XCTAssert(student?.money3 == longDecimalNumber)
-        XCTAssert(student?.money4 == longDecimalNumber)
-        XCTAssert(student?.money5 == 666)
-        XCTAssert(student?.money6 == false)
-        XCTAssert(student?.money6 == 0)
-        XCTAssert(student?.money7 == NSDecimalNumber(string: longDoubleString))
-        XCTAssert(student?.money8 == NSDecimalNumber(string: timeIntevalString))
+        XCTAssert(student.money1 == NSDecimalNumber(string: longDoubleString))
+        XCTAssert(student.money2 == true)
+        XCTAssert(student.money2 == 1)
+        XCTAssert(student.money3 == longDecimalNumber)
+        XCTAssert(student.money4 == longDecimalNumber)
+        XCTAssert(student.money5 == 666)
+        XCTAssert(student.money6 == false)
+        XCTAssert(student.money6 == 0)
+        XCTAssert(student.money7 == NSDecimalNumber(string: longDoubleString))
+        XCTAssert(student.money8 == NSDecimalNumber(string: timeIntevalString))
     }
     
     // MARK: - Number Type
@@ -333,19 +333,19 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.money1 == NSNumber(value: longDouble))
-        XCTAssert(student?.money2 == true)
-        XCTAssert(student?.money2 == 1)
-        XCTAssert(student?.money2 == 1.0)
-        XCTAssert(student?.money3 == NSNumber(value: longDouble))
-        XCTAssert(student?.money4 == NSNumber(value: longDouble))
-        XCTAssert(student?.money5 == 666)
-        XCTAssert(student?.money5 == 666.0)
-        XCTAssert(student?.money6 == false)
-        XCTAssert(student?.money6 == 0)
-        XCTAssert(student?.money6 == 0.0)
-        XCTAssert(student?.money7 == NSNumber(value: longDouble))
-        XCTAssert(student?.money8 == NSNumber(value: timeInteval))
+        XCTAssert(student.money1 == NSNumber(value: longDouble))
+        XCTAssert(student.money2 == true)
+        XCTAssert(student.money2 == 1)
+        XCTAssert(student.money2 == 1.0)
+        XCTAssert(student.money3 == NSNumber(value: longDouble))
+        XCTAssert(student.money4 == NSNumber(value: longDouble))
+        XCTAssert(student.money5 == 666)
+        XCTAssert(student.money5 == 666.0)
+        XCTAssert(student.money6 == false)
+        XCTAssert(student.money6 == 0)
+        XCTAssert(student.money6 == 0.0)
+        XCTAssert(student.money7 == NSNumber(value: longDouble))
+        XCTAssert(student.money8 == NSNumber(value: timeInteval))
     }
     
     // MARK: - Optional Type
@@ -377,12 +377,12 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.rich1 == true)
-        XCTAssert(student?.rich2 == false)
-        XCTAssert(student?.rich3 == false)
-        XCTAssert(student?.rich4 == true)
-        XCTAssert(student?.rich5 == true)
-        XCTAssert(student?.rich6 == false)
+        XCTAssert(student.rich1 == true)
+        XCTAssert(student.rich2 == false)
+        XCTAssert(student.rich3 == false)
+        XCTAssert(student.rich4 == true)
+        XCTAssert(student.rich5 == true)
+        XCTAssert(student.rich6 == false)
     }
     
     // MARK: - URL Type
@@ -405,10 +405,10 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.url1?.absoluteString == encodedUrl)
-        XCTAssert(student?.url2?.absoluteString == encodedUrl)
-        XCTAssert(student?.url3?.absoluteString == encodedUrl)
-        XCTAssert(student?.url4?.absoluteString == encodedUrl)
+        XCTAssert(student.url1?.absoluteString == encodedUrl)
+        XCTAssert(student.url2?.absoluteString == encodedUrl)
+        XCTAssert(student.url3?.absoluteString == encodedUrl)
+        XCTAssert(student.url4?.absoluteString == encodedUrl)
     }
     
     // MARK: - Data Type
@@ -435,12 +435,12 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(String(data: (student?.data1)! as Data, encoding: .utf8) == str)
-        XCTAssert(String(data: (student?.data2)! as Data, encoding: .utf8) == str)
-        XCTAssert(String(data: (student?.data3)!, encoding: .utf8) == str)
-        XCTAssert(String(data: (student?.data4)!, encoding: .utf8) == str)
-        XCTAssert(String(data: (student?.data5)! as Data, encoding: .utf8) == str)
-        XCTAssert(String(data: (student?.data6)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data1)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data2)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data3)!, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data4)!, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data5)! as Data, encoding: .utf8) == str)
+        XCTAssert(String(data: (student.data6)! as Data, encoding: .utf8) == str)
     }
     
     // MARK: - Date Type
@@ -466,13 +466,13 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.date1?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date2?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date3?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date4?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date5?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date6?.timeIntervalSince1970 == timeInteval)
-        XCTAssert(student?.date7?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date1?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date2?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date3?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date4?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date5?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date6?.timeIntervalSince1970 == timeInteval)
+        XCTAssert(student.date7?.timeIntervalSince1970 == timeInteval)
     }
     
     // MARK: - Enum Type
@@ -495,8 +495,8 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.grade1 == .good)
-        XCTAssert(student?.grade2 == .bad)
+        XCTAssert(student.grade1 == .good)
+        XCTAssert(student.grade2 == .bad)
     }
     
     func testEnum2() {
@@ -522,10 +522,10 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.grade1 == .bad)
-        XCTAssert(student?.grade2 == .good)
-        XCTAssert(student?.grade3 == .great)
-        XCTAssert(student?.grade4 == .perfect)
+        XCTAssert(student.grade1 == .bad)
+        XCTAssert(student.grade2 == .good)
+        XCTAssert(student.grade3 == .great)
+        XCTAssert(student.grade4 == .perfect)
     }
     
     // MARK: - Array Type
@@ -551,14 +551,14 @@ class JTM_02_DataType: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.array1 == array)
-        XCTAssert(person?.array2 == array as NSArray)
-        XCTAssert(person?.array3 == NSMutableArray(array: array))
+        XCTAssert(person.array1 == array)
+        XCTAssert(person.array2 == array as NSArray)
+        XCTAssert(person.array3 == NSMutableArray(array: array))
         
         for i in array {
-            XCTAssert(person?.array4?.contains(i) == true)
-            XCTAssert(person?.array5?.contains(i) == true)
-            XCTAssert(person?.array6?.contains(i) == true)
+            XCTAssert(person.array4?.contains(i) == true)
+            XCTAssert(person.array5?.contains(i) == true)
+            XCTAssert(person.array6?.contains(i) == true)
         }
     }
     
@@ -586,12 +586,12 @@ class JTM_02_DataType: XCTestCase {
         
         let person = json.kj.model(Person.self)
         for i in array {
-            XCTAssert(person?.set1?.contains(i) == true)
-            XCTAssert(person?.set2?.contains(i) == true)
-            XCTAssert(person?.set3?.contains(i) == true)
-            XCTAssert(person?.set4?.contains(i) == true)
-            XCTAssert(person?.set5?.contains(i) == true)
-            XCTAssert(person?.set6?.contains(i) == true)
+            XCTAssert(person.set1?.contains(i) == true)
+            XCTAssert(person.set2?.contains(i) == true)
+            XCTAssert(person.set3?.contains(i) == true)
+            XCTAssert(person.set4?.contains(i) == true)
+            XCTAssert(person.set5?.contains(i) == true)
+            XCTAssert(person.set6?.contains(i) == true)
         }
     }
     
@@ -613,9 +613,9 @@ class JTM_02_DataType: XCTestCase {
         
         let person = json.kj.model(Person.self)
         for (k, v) in dict {
-            XCTAssert(person?.dict1?[k] as? Int == v)
-            XCTAssert(person?.dict2?[k] as? Int == v)
-            XCTAssert(person?.dict3?[k] as? Int == v)
+            XCTAssert(person.dict1?[k] as? Int == v)
+            XCTAssert(person.dict2?[k] as? Int == v)
+            XCTAssert(person.dict3?[k] as? Int == v)
         }
     }
 }

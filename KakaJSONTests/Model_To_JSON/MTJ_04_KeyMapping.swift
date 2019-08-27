@@ -22,6 +22,6 @@ class MTJ_04_KeyMapping: XCTestCase {
     func test() {
         let jsonString = Dog().kj.JSONString()
         /* {"price":100.6,"_nick_name_":"Wang"} */
-        XCTAssert(jsonString?.contains("_nick_name_") == true)
+        XCTAssert(jsonString.contains("_nick_name_") == true)
     }
 }

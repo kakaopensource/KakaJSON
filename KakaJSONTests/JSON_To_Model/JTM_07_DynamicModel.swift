@@ -85,29 +85,29 @@ class JTM_07_DynamicModel: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        if let pet = person?.pet as? Dog {
+        if let pet = person.pet as? Dog {
             XCTAssert(pet.name == dog.name)
             XCTAssert(pet.weight == dog.weight)
-        } else if let pet = person?.pet as? Pig {
+        } else if let pet = person.pet as? Pig {
             XCTAssert(pet.name == pig.name)
             XCTAssert(pet.height == pig.height)
         }
         
-        let toy0 = person?.toys?[0] as? Car
+        let toy0 = person.toys?[0] as? Car
         XCTAssert(toy0?.name == cars[0].name)
         XCTAssert(toy0?.price == cars[0].price)
         
-        let toy1 = person?.toys?[1] as? Car
+        let toy1 = person.toys?[1] as? Car
         XCTAssert(toy1?.name == cars[1].name)
         XCTAssert(toy1?.price == cars[1].price)
         
-        let food0 = person?.foods?["food0"] as? Book
+        let food0 = person.foods?["food0"] as? Book
         XCTAssert(food0?.name == books[0].name)
         XCTAssert(food0?.price == books[0].price)
         
-        let food1 = person?.foods?["food1"] as? Book
+        let food1 = person.foods?["food1"] as? Book
         XCTAssert(food1?.name == books[1].name)
         XCTAssert(food1?.price == books[1].price)
     }

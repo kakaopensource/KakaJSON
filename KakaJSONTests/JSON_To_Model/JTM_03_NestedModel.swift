@@ -55,22 +55,22 @@ class JTM_03_NestedModel: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        XCTAssert(person?.car?.name == car.name)
-        XCTAssert(person?.car?.price == car.price)
+        XCTAssert(person.car?.name == car.name)
+        XCTAssert(person.car?.price == car.price)
         
-        XCTAssert(person?.books?.count == books.count)
-        XCTAssert(person?.books?[0].name == books[0].name)
-        XCTAssert(person?.books?[0].price == Double(books[0].price))
-        XCTAssert(person?.books?[1].name == books[1].name)
-        XCTAssert(person?.books?[1].price == Double(books[1].price))
+        XCTAssert(person.books?.count == books.count)
+        XCTAssert(person.books?[0].name == books[0].name)
+        XCTAssert(person.books?[0].price == Double(books[0].price))
+        XCTAssert(person.books?[1].name == books[1].name)
+        XCTAssert(person.books?[1].price == Double(books[1].price))
         
-        XCTAssert(person?.dogs?.count == dogs.count)
-        XCTAssert(person?.dogs?["dog0"]?.name == dogs[0].name)
-        XCTAssert(person?.dogs?["dog0"]?.age == dogs[0].age)
-        XCTAssert(person?.dogs?["dog1"]?.name == dogs[1].name)
-        XCTAssert(person?.dogs?["dog1"]?.age == dogs[1].age)
+        XCTAssert(person.dogs?.count == dogs.count)
+        XCTAssert(person.dogs?["dog0"]?.name == dogs[0].name)
+        XCTAssert(person.dogs?["dog0"]?.age == dogs[0].age)
+        XCTAssert(person.dogs?["dog1"]?.name == dogs[1].name)
+        XCTAssert(person.dogs?["dog1"]?.age == dogs[1].age)
     }
 
     func testRecursive() {
@@ -86,8 +86,8 @@ class JTM_03_NestedModel: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == "Jack")
-        XCTAssert(person?.parent?.name == "Jim")
+        XCTAssert(person.name == "Jack")
+        XCTAssert(person.parent?.name == "Jim")
     }
     
     func testGeneric() {
@@ -183,19 +183,19 @@ class JTM_03_NestedModel: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        XCTAssert(person?.books?.count == books.count)
-        XCTAssert(person?.books?[0]??.name == books[0].name)
-        XCTAssert(person?.books?[0]??.price == Double(books[0].price))
-        XCTAssert(person?.books?[1]??.name == books[1].name)
-        XCTAssert(person?.books?[1]??.price == Double(books[1].price))
+        XCTAssert(person.books?.count == books.count)
+        XCTAssert(person.books?[0]??.name == books[0].name)
+        XCTAssert(person.books?[0]??.price == Double(books[0].price))
+        XCTAssert(person.books?[1]??.name == books[1].name)
+        XCTAssert(person.books?[1]??.price == Double(books[1].price))
         
-        XCTAssert(person?.dogs?.count == dogs.count)
-        XCTAssert(person?.dogs?["dog0"]????.name == dogs[0].name)
-        XCTAssert(person?.dogs?["dog0"]????.age == dogs[0].age)
-        XCTAssert(person?.dogs?["dog1"]????.name == dogs[1].name)
-        XCTAssert(person?.dogs?["dog1"]????.age == dogs[1].age)
+        XCTAssert(person.dogs?.count == dogs.count)
+        XCTAssert(person.dogs?["dog0"]????.name == dogs[0].name)
+        XCTAssert(person.dogs?["dog0"]????.age == dogs[0].age)
+        XCTAssert(person.dogs?["dog1"]????.name == dogs[1].name)
+        XCTAssert(person.dogs?["dog1"]????.age == dogs[1].age)
     }
     
     func testSet() {
@@ -221,10 +221,10 @@ class JTM_03_NestedModel: XCTestCase {
         ]
         
         let person = json.kj.model(Person.self)
-        XCTAssert(person?.name == name)
+        XCTAssert(person.name == name)
         
-        XCTAssert(person?.books?.count == 1)
-        let book = person?.books?.randomElement()
+        XCTAssert(person.books?.count == 1)
+        let book = person.books?.randomElement()
         XCTAssert(book?.name == bookName)
         XCTAssert(book?.price == bookPrice)
     }

@@ -71,9 +71,9 @@ class MTJ_02_NestedModel: XCTestCase {
          }
          */
         
-        XCTAssert(jsonString?.contains("106.666") == true)
-        XCTAssert(jsonString?.contains("666.6") == true)
-        XCTAssert(jsonString?.contains("Data Structure And Algorithm") == true)
+        XCTAssert(jsonString.contains("106.666") == true)
+        XCTAssert(jsonString.contains("666.6") == true)
+        XCTAssert(jsonString.contains("Data Structure And Algorithm") == true)
         
         checkModelToJSon(Person.self)
     }
@@ -128,8 +128,8 @@ class MTJ_02_NestedModel: XCTestCase {
              ]
          }
          */
-        XCTAssert(jsonString?.contains("1666.6") == true)
-        XCTAssert(jsonString?.contains("666.6") == true)
-        XCTAssert(jsonString?.contains("Fast C++") == true)
+        XCTAssert(jsonString.contains("1666.6") == true)
+        XCTAssert(jsonString.contains("666.6") == true)
+        XCTAssert(jsonString.contains("Fast C++") == true)
     }
 }

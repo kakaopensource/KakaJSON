@@ -9,11 +9,7 @@
 import Foundation
 
 extension NSObject {
-    static func new() -> Self {
-        return self.init()
-    }
-    
-    static func newConvertible() -> Convertible? {
-        return self.init() as? Convertible
+    static func newConvertible() -> Convertible {
+        return self.init() as! Convertible
     }
 }

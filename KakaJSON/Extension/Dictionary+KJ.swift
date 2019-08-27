@@ -15,29 +15,25 @@ extension Dictionary: KJGenericCompatible {
 
 public extension KJGeneric where Base == [String: T] {
     /// JSONObject -> Model
-    func model<M: Convertible>(_ type: M.Type) -> M? {
-        return model(anyType: type) as? M
+    func model<M: Convertible>(_ type: M.Type) -> M {
+        return model(type: type) as! M
     }
     
     /// JSONObject -> Model
-    func model(anyType: Any.Type) -> Any? {
-        guard let t = anyType as? Convertible.Type,
-            let mt = Metadata.type(anyType) as? ModelType,
-            let _ = mt.properties
-            else { return nil }
-        return base.kj_fastModel(t)
+    func model(type: Convertible.Type) -> Convertible {
+        return base.kj_fastModel(type)
     }
 }
 
 public extension KJGeneric where Base == [NSString: T] {
     /// JSONObject -> Model
-    func model<M: Convertible>(_ type: M.Type) -> M? {
-        return model(anyType: type) as? M
+    func model<M: Convertible>(_ type: M.Type) -> M {
+        return (base as [String: Any]).kj.model(type)
     }
     
     /// JSONObject -> Model
-    func model(anyType: Any.Type) -> Any? {
-        return (base as [String: Any]).kj.model(anyType: anyType)
+    func model(type: Convertible.Type) -> Convertible {
+        return (base as [String: Any]).kj.model(type: type)
     }
 }
 
@@ -48,20 +44,20 @@ public extension KJ where Base: NSDictionary {
     }
     
     /// JSONObject -> Model
-    func model(anyType: Any.Type) -> Any? {
-        return (base as? [String: Any])?.kj.model(anyType: anyType)
+    func model(type: Convertible.Type) -> Convertible? {
+        return (base as? [String: Any])?.kj.model(type: type)
     }
 }
 
 extension Dictionary where Key == String {
-    func kj_fastModel(_ type: Convertible.Type) -> Convertible? {
-        var model: Convertible?
+    func kj_fastModel(_ type: Convertible.Type) -> Convertible {
+        var model: Convertible
         if let ns = type as? NSObject.Type {
             model = ns.newConvertible()
         } else {
             model = type.init()
         }
-        model?.kj_convert(from: self)
+        model.kj_convert(from: self)
         return model
     }
     

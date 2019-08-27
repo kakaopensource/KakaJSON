@@ -38,12 +38,12 @@ class MTJ_03_ModelArray: XCTestCase {
              }
          ]
          */
-        XCTAssert(jsonString?.contains("BMW") == true)
-        XCTAssert(jsonString?.contains("100") == true)
-        XCTAssert(jsonString?.contains("Audi") == true)
-        XCTAssert(jsonString?.contains("70") == true)
-        XCTAssert(jsonString?.contains("Bently") == true)
-        XCTAssert(jsonString?.contains("300") == true)
+        XCTAssert(jsonString.contains("BMW") == true)
+        XCTAssert(jsonString.contains("100") == true)
+        XCTAssert(jsonString.contains("Audi") == true)
+        XCTAssert(jsonString.contains("70") == true)
+        XCTAssert(jsonString.contains("Bently") == true)
+        XCTAssert(jsonString.contains("300") == true)
     }
     
     func testSet() {
@@ -75,11 +75,11 @@ class MTJ_03_ModelArray: XCTestCase {
              }
          ]
          */
-        XCTAssert(jsonString?.contains("BMW") == true)
-        XCTAssert(jsonString?.contains("100") == true)
-        XCTAssert(jsonString?.contains("Audi") == true)
-        XCTAssert(jsonString?.contains("70") == true)
-        XCTAssert(jsonString?.contains("Bently") == true)
-        XCTAssert(jsonString?.contains("300") == true)
+        XCTAssert(jsonString.contains("BMW") == true)
+        XCTAssert(jsonString.contains("100") == true)
+        XCTAssert(jsonString.contains("Audi") == true)
+        XCTAssert(jsonString.contains("70") == true)
+        XCTAssert(jsonString.contains("Bently") == true)
+        XCTAssert(jsonString.contains("300") == true)
     }
 }

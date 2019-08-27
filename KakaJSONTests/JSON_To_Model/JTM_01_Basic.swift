@@ -24,8 +24,8 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         let cat = json.kj.model(Cat.self)
-        XCTAssert(cat?.name == name)
-        XCTAssert(cat?.weight == weight)
+        XCTAssert(cat.name == name)
+        XCTAssert(cat.weight == weight)
     }
     
     // MARK: - Any.Type
@@ -38,8 +38,8 @@ class JTM_01_Basic: XCTestCase {
             "name": name
         ]
         
-        let type: Any.Type = Cat.self
-        let cat = json.kj.model(anyType: type) as? Cat
+        let type: Convertible.Type = Cat.self
+        let cat = json.kj.model(type: type) as? Cat
         XCTAssert(cat?.name == name)
         XCTAssert(cat?.weight == weight)
     }
@@ -96,9 +96,9 @@ class JTM_01_Basic: XCTestCase {
         
         let cat = json.kj.model(Cat.self)
         // convert failed, keep default value
-        XCTAssert(cat?.name == "xx")
-        XCTAssert(cat?.weight == 6.6)
-        XCTAssert(cat?.data == NSNull())
+        XCTAssert(cat.name == "xx")
+        XCTAssert(cat.weight == 6.6)
+        XCTAssert(cat.data == NSNull())
     }
     
     // MARK: - let
@@ -118,8 +118,8 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         let cat = json.kj.model(Cat.self)
-        XCTAssert(cat?.name == name)
-        XCTAssert(cat?.weight == weight)
+        XCTAssert(cat.name == name)
+        XCTAssert(cat.weight == weight)
     }
     
     // MARK: - Class Type
@@ -148,10 +148,10 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.name == name)
-        XCTAssert(student?.age == age)
-        XCTAssert(student?.score == score)
-        XCTAssert(student?.no == no)
+        XCTAssert(student.name == name)
+        XCTAssert(student.age == age)
+        XCTAssert(student.score == score)
+        XCTAssert(student.no == no)
     }
     
     // MARK: - NSObject Class Type
@@ -180,10 +180,10 @@ class JTM_01_Basic: XCTestCase {
         ]
         
         let student = json.kj.model(Student.self)
-        XCTAssert(student?.name == name)
-        XCTAssert(student?.age == age)
-        XCTAssert(student?.score == score)
-        XCTAssert(student?.no == no)
+        XCTAssert(student.name == name)
+        XCTAssert(student.age == age)
+        XCTAssert(student.score == score)
+        XCTAssert(student.no == no)
     }
     
     // MARK: - Convert
@@ -232,8 +232,8 @@ class JTM_01_Basic: XCTestCase {
         let car = ["name": name, "age": age].kj.model(Car.self)
         // Car - kj_willConvertToModel
         // Car - kj_didConvertToModel
-        XCTAssert(car?.name == name)
-        XCTAssert(car?.age == age)
+        XCTAssert(car.name == name)
+        XCTAssert(car.age == age)
     }
     
     func testCallback2() {
@@ -277,8 +277,8 @@ class JTM_01_Basic: XCTestCase {
         // Student - kj_willConvertToModel
         // Person - kj_didConvertToModel
         // Student - kj_didConvertToModel
-        XCTAssert(student?.name == name)
-        XCTAssert(student?.age == age)
-        XCTAssert(student?.score == score)
+        XCTAssert(student.name == name)
+        XCTAssert(student.age == age)
+        XCTAssert(student.score == score)
     }
 }

@@ -15,47 +15,44 @@ extension NSSet: KJCompatible {}
 
 public extension KJ where Base: ExpressibleByArrayLiteral & Sequence {
     /// JSONObjectArray -> ModelArray
-    func modelArray<M: Convertible>(_ type: M.Type) -> [M]? {
-        return modelArray(anyType: type) as? [M]
+    func modelArray<M: Convertible>(_ type: M.Type) -> [M] {
+        return modelArray(type: type) as! [M]
     }
     
     /// JSONObjectArray -> ModelArray
-    func modelArray(anyType: Any.Type) -> [Any]? {
-        guard let t = anyType as? Convertible.Type,
-            let mt = Metadata.type(anyType) as? ModelType,
+    func modelArray(type: Convertible.Type) -> [Convertible] {
+        guard let mt = Metadata.type(type) as? ModelType,
             let _ = mt.properties
-            else { return nil }
-        let arr = base.compactMap { element -> Any? in
-            switch element {
-            case let dict as [String: Any]: return dict.kj_fastModel(t)
-            case let dict as Data: return dict.kj_fastModel(t)
-            case let dict as String: return dict.kj_fastModel(t)
+            else { return [] }
+        return base.compactMap {
+            switch $0 {
+            case let dict as [String: Any]: return dict.kj_fastModel(type)
+            case let dict as Data: return dict.kj_fastModel(type)
+            case let dict as String: return dict.kj_fastModel(type)
             default: return nil
             }
         }
-        return arr.isEmpty ? nil : arr
     }
     
     /// ModelArray -> JSONObjectArray
-    func JSONObjectArray() -> [[String: Any]]? {
-        let arr = base.compactMap { element -> [String: Any]? in
-            (element~! as? Convertible)?.kj_JSONObject()
+    func JSONObjectArray() -> [[String: Any]] {
+        return base.compactMap {
+            ($0~! as? Convertible)?.kj_JSONObject()
         }
-        return arr.isEmpty ? nil : arr
     }
     
     /// Array -> JSONArray
-    func JSONArray() -> [Any]? {
-        return Values.JSONValue(base) as? [Any]
+    func JSONArray() -> [Any] {
+        return Values.JSONValue(base) as! [Any]
     }
     
-    /// Array -> JSONArray
-    func JSONString(prettyPrinted: Bool = false) -> String? {
+    /// Array -> JSONString
+    func JSONString(prettyPrinted: Bool = false) -> String {
         if let str = JSONSerialization.kj_string(JSONArray(),
                                                  prettyPrinted: prettyPrinted) {
             return str
         }
         Logger.error("Failed to get JSONString from JSON.")
-        return nil
+        return ""
     }
 }
