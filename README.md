@@ -174,11 +174,11 @@ write(Person(), to: file)
 // read Person from file
 let person = read(Person.self, from: file)
  
-XCTAssert(person.name == "Jack")
-XCTAssert(person.car?.name == "Bently")
-XCTAssert(person.car?.price == 106.666)
-XCTAssert(person.books?.count == 2)
-XCTAssert(person.dogs?.count == 2)
+XCTAssert(person?.name == "Jack")
+XCTAssert(person?.car?.name == "Bently")
+XCTAssert(person?.car?.price == 106.666)
+XCTAssert(person?.books?.count == 2)
+XCTAssert(person?.dogs?.count == 2)
 
 /****************** Model Array ******************/
 struct Car: Convertible {
@@ -571,7 +571,7 @@ let json: [[String: Any]] = [
  
  
 let cars1 = json.kj.modelArray(Car.self)
-XCTAssert(cars1?[1].name == "Bently")
+XCTAssert(cars1[1].name == "Bently")
  
 let cars2 = modelArray(from: json, Car.self)
 

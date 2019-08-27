@@ -2,7 +2,7 @@
 
 ---
 
-## [1.1.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.0.0) (2019-08-27)
+## [1.1.0](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.0) (2019-08-27)
 - Remove locks in ConvertibleConfig
 - Simplify apis
 - Merged pull requests

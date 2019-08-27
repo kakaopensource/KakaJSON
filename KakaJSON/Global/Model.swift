@@ -19,6 +19,16 @@ public func model(from json: [String: Any],
     return json.kj.model(type: type)
 }
 
+public func model<M: Convertible>(from json: [NSString: Any],
+                                  _ type: M.Type) -> M {
+    return json.kj.model(type)
+}
+
+public func model(from json: [NSString: Any],
+                  type: Convertible.Type) -> Convertible {
+    return json.kj.model(type: type)
+}
+
 public func model<M: Convertible>(from json: NSDictionary,
                                   _ type: M.Type) -> M? {
     return json.kj.model(type)

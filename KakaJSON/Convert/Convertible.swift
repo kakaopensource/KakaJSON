@@ -167,6 +167,11 @@ public struct ConvertibleKJ_M<T: Convertible> {
         basePtr.pointee.kj_convert(from: json)
     }
     
+    /// JSONObject -> Model
+    public func convert(from json: [NSString: Any]) {
+        basePtr.pointee.kj_convert(from: json as [String: Any])
+    }
+    
     /// JSONObject -> Model 
     public func convert(from json: NSDictionary) {
         basePtr.pointee.kj_convert(from: json as! [String: Any])
