@@ -1,6 +1,5 @@
 # KakaJSON
-![pod](https://img.shields.io/cocoapods/v/KakaJSON.svg) 
-[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![pod](https://img.shields.io/cocoapods/v/KakaJSON.svg)](https://github.com/CocoaPods/CocoaPods) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
 >  Fast conversion between JSON and model in Swift.
 
@@ -20,6 +19,11 @@
 ### CocoaPods
 ```ruby
 pod 'KakaJSON', '~> 1.1.0' 
+```
+
+### Carthage
+```ruby
+github "kakaopensource/KakaJSON" ~> 1.1.0
 ```
 
 ### Swift Package Manager
