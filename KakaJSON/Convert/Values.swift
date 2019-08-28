@@ -12,7 +12,9 @@ import CoreGraphics
 #endif
 
 public struct Values {
-    static func value(_ val: Any?, _ type: Any.Type) -> Any? {
+    static func value(_ val: Any?,
+                      _ type: Any.Type,
+                      _ defaultValue: @autoclosure () -> Any? = nil) -> Any? {
         guard let v = val.kj_value else { return nil }
         if Swift.type(of: v) == type { return v }
         if v is NSNull { return nil }
@@ -20,7 +22,7 @@ public struct Values {
         switch type {
         case is NumberValue.Type: return _number(v, type)
         case is StringValue.Type: return _string(v, type)
-        case let ct as Convertible.Type: return _model(v, ct)
+        case let ct as Convertible.Type: return _model(v, ct, defaultValue)
         case is DateValue.Type: return _date(v)
         case is ArrayValue.Type: return _array(v, type)
         case is DictionaryValue.Type: return _dictionary(v, type)
@@ -73,8 +75,14 @@ private extension Values {
         return lower
     }
     
-    static func _model(_ value: Any, _ type: Convertible.Type) -> Convertible? {
+    static func _model(_ value: Any,
+                       _ type: Convertible.Type,
+                       _ defaultValue: () -> Any?) -> Convertible? {
         guard let json = value as? [String: Any] else { return nil }
+        if var model = defaultValue().kj_value as? Convertible {
+            model.kj_convert(from: json)
+            return model
+        }
         return json.kj.model(type: type)
     }
     

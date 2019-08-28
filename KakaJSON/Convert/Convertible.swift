@@ -264,7 +264,9 @@ extension Convertible {
             }
             
             // try to convert newValue to propertyType
-            guard let value = Values.value(newValue, propertyType) else {
+            guard let value = Values.value(newValue,
+                                           propertyType,
+                                           property.get(from: model)) else {
                 property.set(newValue, for: model)
                 continue
             }

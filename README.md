@@ -50,6 +50,7 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [JSONData](#jsondata)
   - [Nested Model 1](#nested-model-1)
   - [Nested Model 2](#nested-model-2)
+  - [Nested Model 3](#nested-model-3)
   - [Recursive](#recursive)
   - [Generic](#generic)
   - [Model Array](#model-array)
@@ -485,6 +486,49 @@ XCTAssert(person.books?.count == 1)
 let book = person.books?.randomElement()
 XCTAssert(book?.name == "Fast C++")
 XCTAssert(book?.price == 666.6)
+```
+
+### Nested Model3
+```swift
+struct Car: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+
+class Dog: Convertible {
+    var name: String = ""
+    var age: Int = 0
+    required init() {}
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+struct Person: Convertible {
+    var name: String = ""
+    // KakaJSON will use your defaultValue instead of creating a new model
+    // KakaJSON will not creat a new model again if you already have a default model value
+    var car: Car = Car(name: "Bently", price: 106.5)
+    var dog: Dog = Dog(name: "Larry", age: 5)
+}
+
+let json: [String: Any] = [
+    "name": "Jake",
+    "car": ["price": 305.6],
+    "dog": ["name": "Wangwang"]
+]
+
+let person = json.kj.model(Person.self)
+XCTAssert(person.name == "Jake")
+// keep defaultValue
+XCTAssert(person.car.name == "Bently")
+// use value from json
+XCTAssert(person.car.price == 305.6)
+// use value from json
+XCTAssert(person.dog.name == "Wangwang")
+// keep defaultValue
+XCTAssert(person.dog.age == 5)
 ```
 
 ### Recursive

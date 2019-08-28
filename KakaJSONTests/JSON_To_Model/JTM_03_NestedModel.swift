@@ -72,6 +72,48 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(person.dogs?["dog1"]?.name == dogs[1].name)
         XCTAssert(person.dogs?["dog1"]?.age == dogs[1].age)
     }
+    
+    func testDefaultValue() {
+        struct Car: Convertible {
+            var name: String = ""
+            var price: Double = 0.0
+        }
+        
+        class Dog: Convertible {
+            var name: String = ""
+            var age: Int = 0
+            required init() {}
+            init(name: String, age: Int) {
+                self.name = name
+                self.age = age
+            }
+        }
+        
+        struct Person: Convertible {
+            var name: String = ""
+            // KakaJSON will use your defaultValue instead of creating a new model
+            // KakaJSON will not creat a new model again if you already have a default model value
+            var car: Car = Car(name: "Bently", price: 106.5)
+            var dog: Dog = Dog(name: "Larry", age: 5)
+        }
+        
+        let json: [String: Any] = [
+            "name": "Jake",
+            "car": ["price": 305.6],
+            "dog": ["name": "Wangwang"]
+        ]
+        
+        let person = json.kj.model(Person.self)
+        XCTAssert(person.name == "Jake")
+        // keep defaultValue
+        XCTAssert(person.car.name == "Bently")
+        // use value from json
+        XCTAssert(person.car.price == 305.6)
+        // use value from json
+        XCTAssert(person.dog.name == "Wangwang")
+        // keep defaultValue
+        XCTAssert(person.dog.age == 5)
+    }
 
     func testRecursive() {
         class Person: Convertible {
