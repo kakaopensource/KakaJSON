@@ -15,13 +15,13 @@ public func JSONObjectArray<M: Convertible>(from models: [M]) -> [[String: Any]]
     return models.kj.JSONObjectArray()
 }
 
-public func JSONArray(from value: [Any]) -> [Any] {
-    return value.kj.JSONArray()
-}
-
-public func JSON(from value: Any) -> Any? {
-    return Values.JSONValue(value)
-}
+//public func JSONArray(from value: [Any]) -> [Any] {
+//    return value.kj.JSONArray()
+//}
+//
+//public func JSON(from value: Any) -> Any? {
+//    return Values.JSONValue(value)
+//}
 
 public func JSONString(from value: Any,
                        prettyPrinted: Bool = false) -> String {
