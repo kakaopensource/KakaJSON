@@ -14,40 +14,21 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D3D23F8230EE1DA00F4E491"
-               BuildableName = "KakaJSONDemo.app"
-               BlueprintName = "KakaJSONDemo"
+               BlueprintIdentifier = "2D906833230F7B2A00243BB6"
+               BuildableName = "KakaJSON.framework"
+               BlueprintName = "KakaJSON"
                ReferencedContainer = "container:KakaJSONDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D90683B230F7B2A00243BB6"
-               BuildableName = "KakaJSONTests.xctest"
-               BlueprintName = "KakaJSONTests"
-               ReferencedContainer = "container:KakaJSONDemo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D3D23F8230EE1DA00F4E491"
-            BuildableName = "KakaJSONDemo.app"
-            BlueprintName = "KakaJSONDemo"
-            ReferencedContainer = "container:KakaJSONDemo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D3D23F8230EE1DA00F4E491"
-            BuildableName = "KakaJSONDemo.app"
-            BlueprintName = "KakaJSONDemo"
+            BlueprintIdentifier = "2D906833230F7B2A00243BB6"
+            BuildableName = "KakaJSON.framework"
+            BlueprintName = "KakaJSON"
             ReferencedContainer = "container:KakaJSONDemo.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D3D23F8230EE1DA00F4E491"
-            BuildableName = "KakaJSONDemo.app"
-            BlueprintName = "KakaJSONDemo"
+            BlueprintIdentifier = "2D906833230F7B2A00243BB6"
+            BuildableName = "KakaJSON.framework"
+            BlueprintName = "KakaJSON"
             ReferencedContainer = "container:KakaJSONDemo.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
