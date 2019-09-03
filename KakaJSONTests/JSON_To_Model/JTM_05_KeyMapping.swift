@@ -234,6 +234,31 @@ class JTM_05_KeyMapping: XCTestCase {
         XCTAssert(dog.toy?.price == toy.price)
     }
     
+    func testComplex_JSONKeyWithDot() {
+        struct Team: Convertible {
+            var name: String?
+            var captainName: String?
+            
+            func kj_modelKey(from property: Property) -> ModelPropertyKey {
+                switch property.name {
+                case "captainName":     return "captain.name"
+                default:                return property.name
+                }
+            }
+        }
+        
+        let teamName = "V"
+        let captainName = "Quentin"
+        
+        let json: [String: Any] = [
+            "name": teamName,
+            "captain.name": captainName,
+        ]
+        let team = json.kj.model(Team.self)
+        XCTAssert(team.name == teamName)
+        XCTAssert(team.captainName == captainName)
+    }
+    
     func testConfig1() {
         // Global Config
         ConvertibleConfig.setModelKey { property in

@@ -76,6 +76,10 @@ extension Dictionary where Key == String {
     }
     
     private func _value(stringKey: String) -> Any? {
+        if let value = self[stringKey] {
+            return value
+        }
+
         let subkeys = stringKey.split(separator: ".")
         var value: Any? = self
         for subKey in subkeys {
