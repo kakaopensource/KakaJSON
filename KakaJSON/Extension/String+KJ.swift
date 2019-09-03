@@ -42,7 +42,7 @@ public extension KJ where Base: ExpressibleByStringLiteral {
         guard let str = base as? String else { return "" }
         var newStr = ""
         for c in str {
-            if ("A"..."Z").contains(c) {
+            if c.isUppercase {
                 newStr += "_"
                 newStr += c.lowercased()
             } else {
