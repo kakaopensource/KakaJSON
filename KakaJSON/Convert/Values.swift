@@ -11,7 +11,7 @@ import Foundation
 import CoreGraphics
 #endif
 
-public struct Values {
+public enum Values {
     static func value(_ val: Any?,
                       _ type: Any.Type,
                       _ defaultValue: @autoclosure () -> Any? = nil) -> Any? {
