@@ -91,6 +91,8 @@ extension Dictionary where Key == String {
                 guard let index = Int(subKey),
                     case array.indices = index else { return nil }
                 value = array[index]
+            } else {
+                break
             }
         }
         return value
