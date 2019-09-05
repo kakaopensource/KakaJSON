@@ -169,6 +169,7 @@
 		627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_07_DynamicModel.swift; sourceTree = "<group>"; };
 		627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_04_ModelArray.swift; sourceTree = "<group>"; };
 		627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_03_NestedModel.swift; sourceTree = "<group>"; };
+		627B5E972320F08F0046E23D /* KakaJSON.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KakaJSON.podspec; sourceTree = "<group>"; };
 		"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KakaJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -330,6 +331,15 @@
 			path = JSON_To_Model;
 			sourceTree = "<group>";
 		};
+		627B5E962320F06E0046E23D /* Deployment */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E972320F08F0046E23D /* KakaJSON.podspec */,
+				OBJ_6 /* Package.swift */,
+			);
+			name = Deployment;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,15 +369,14 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				OBJ_6 /* Package.swift */,
+				627B5E962320F06E0046E23D /* Deployment */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
 				OBJ_14 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -457,7 +466,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
