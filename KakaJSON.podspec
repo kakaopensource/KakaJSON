@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = "9.0"
 
   s.source   = { :git => "https://github.com/kakaopensource/KakaJSON.git", :tag => s.version }
-  s.source_files = "KakaJSON/**/*.swift"
+  s.source_files = "Sources/KakaJSON/**/*.swift"
 end
