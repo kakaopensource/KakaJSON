@@ -170,6 +170,8 @@
 		627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_04_ModelArray.swift; sourceTree = "<group>"; };
 		627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_03_NestedModel.swift; sourceTree = "<group>"; };
 		627B5E972320F08F0046E23D /* KakaJSON.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KakaJSON.podspec; sourceTree = "<group>"; };
+		627B5E992320F2710046E23D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		627B5E9A2320F2D40046E23D /* DevGuideline.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DevGuideline.md; sourceTree = "<group>"; };
 		"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KakaJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -340,6 +342,15 @@
 			name = Deployment;
 			sourceTree = "<group>";
 		};
+		627B5E982320F2580046E23D /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E992320F2710046E23D /* CHANGELOG.md */,
+				627B5E9A2320F2D40046E23D /* DevGuideline.md */,
+			);
+			name = Development;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +383,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				627B5E982320F2580046E23D /* Development */,
 				627B5E962320F06E0046E23D /* Deployment */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
