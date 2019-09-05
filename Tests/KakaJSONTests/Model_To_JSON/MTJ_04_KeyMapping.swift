@@ -27,4 +27,8 @@ class MTJ_04_KeyMapping: XCTestCase {
         /* {"price":100.6,"_nick_name_":"Wang"} */
         XCTAssert(jsonString.contains("_nick_name_") == true)
     }
+    
+    static var allTests = [
+        "test": test
+    ]
 }

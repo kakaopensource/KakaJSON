@@ -184,4 +184,12 @@ class JTM_06_CustomValue: XCTestCase {
         XCTAssert(student.age == 15)
         XCTAssert(student.name == "kj_Jack")
     }
+    
+    static var allTests = [
+        "testDate": testDate,
+        "testAny": testAny,
+        "testAnyArray": testAnyArray,
+        "testOther1": testOther1,
+        "testOther2": testOther2
+    ]
 }

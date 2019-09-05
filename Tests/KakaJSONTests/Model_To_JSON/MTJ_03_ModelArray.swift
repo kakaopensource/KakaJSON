@@ -85,4 +85,9 @@ class MTJ_03_ModelArray: XCTestCase {
         XCTAssert(jsonString.contains("Bently") == true)
         XCTAssert(jsonString.contains("300") == true)
     }
+    
+    static var allTests = [
+        "testArray": testArray,
+        "testSet": testSet
+    ]
 }

@@ -35,4 +35,8 @@ class MTJ_05_CustomValue: XCTestCase {
         /* {"birthday":"2019-08-13 12:52:51"} */
         XCTAssert(jsonString.contains(time) == true)
     }
+    
+    static var allTests = [
+        "testDate": testDate
+    ]
 }

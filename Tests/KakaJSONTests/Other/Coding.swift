@@ -249,4 +249,17 @@ class TestCoding: XCTestCase {
         // prevent from 66.6600000000000001
         XCTAssert(!objString.contains("00000"))
     }
+    
+    static var allTests = [
+        "testModel": testModel,
+        "testOptional": testOptional,
+        "testNested": testNested,
+        "testAny": testAny,
+        "testDate": testDate,
+        "testString": testString,
+        "testArray": testArray,
+        "testModelArray": testModelArray,
+        "testModelSet": testModelSet,
+        "testModelDictionary": testModelDictionary
+    ]
 }

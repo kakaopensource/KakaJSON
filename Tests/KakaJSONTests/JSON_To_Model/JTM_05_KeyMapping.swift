@@ -492,4 +492,20 @@ class JTM_05_KeyMapping: XCTestCase {
         XCTAssert(car.maxSpeed == max_speed)
         XCTAssert(car.name == name)
     }
+    
+    static var allTests = [
+        "testSimple": testSimple,
+        "testCamelToUnderline": testCamelToUnderline,
+        "testUnderlineToCamel": testUnderlineToCamel,
+        "testClass1": testClass1,
+        "testClass2": testClass2,
+        "testClass3": testClass3,
+        "testComplex": testComplex,
+        "testComplex_JSONKeyWithDot": testComplex_JSONKeyWithDot,
+        "testComplex_JSONKeyWithDot_bestMatch": testComplex_JSONKeyWithDot_bestMatch,
+        "testConfig1": testConfig1,
+        "testConfig2": testConfig2,
+        "testConfig3": testConfig3,
+        "testConfig4": testConfig4
+    ]
 }

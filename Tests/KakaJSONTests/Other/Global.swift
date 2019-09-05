@@ -156,6 +156,15 @@ class Global: XCTestCase {
         XCTAssert(jsonString.contains("\"age\":\(cat.age)") == true)
         XCTAssert(jsonString.contains("\"name\":\"\(cat.name)\"") == true)
     }
+    
+    static var allTests = [
+        "testMetadata": testMetadata,
+        "testValue": testValue,
+        "testJSON_To_Model": testJSON_To_Model,
+        "testModel_To_JSON": testModel_To_JSON,
+        "testJSONArray_To_ModelArray": testJSONArray_To_ModelArray,
+        "testModelArray_To_JSONArray": testModelArray_To_JSONArray
+    ]
 }
 
 let timeIntevalInt: Int = 1565922866

@@ -273,4 +273,13 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(book?.name == bookName)
         XCTAssert(book?.price == bookPrice)
     }
+    
+    static var allTests = [
+        "testNormal": testNormal,
+        "testDefaultValue": testDefaultValue,
+        "testRecursive": testRecursive,
+        "testGeneric": testGeneric,
+        "testOptional": testOptional,
+        "testSet": testSet
+    ]
 }

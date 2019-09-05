@@ -284,4 +284,18 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student.age == age)
         XCTAssert(student.score == score)
     }
+    
+    static var allTests = [
+        "testGeneric": testGeneric,
+        "testAny": testAny,
+        "testJSONString": testJSONString,
+        "testJSONData": testJSONData,
+        "testNSNull": testNSNull,
+        "testLet": testLet,
+        "testClass": testClass,
+        "testNSObjectClass": testNSObjectClass,
+        "testConvert": testConvert,
+        "testCallback1": testCallback1,
+        "testCallback2": testCallback2
+    ]
 }

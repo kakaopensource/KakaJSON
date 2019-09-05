@@ -621,4 +621,25 @@ class JTM_02_DataType: XCTestCase {
             XCTAssert(person.dict3?[k] as? Int == v)
         }
     }
+    
+    static var allTests = [
+        "testInt": testInt,
+        "testFloat": testFloat,
+        "testDouble": testDouble,
+        "testCGFloat": testCGFloat,
+        "testBool": testBool,
+        "testString": testString,
+        "testDecimal": testDecimal,
+        "testDecimalNumber": testDecimalNumber,
+        "testNumber": testNumber,
+        "testOptional": testOptional,
+        "testURL": testURL,
+        "testData": testData,
+        "testDate": testDate,
+        "testEnum1": testEnum1,
+        "testEnum2": testEnum2,
+        "testArray": testArray,
+        "testSet": testSet,
+        "testDictionary": testDictionary
+    ]
 }

@@ -168,4 +168,11 @@ class MTJ_01_Basic: XCTestCase {
         
         checkModelToJSon(Student.self)
     }
+    
+    static var allTests = [
+        "testNormal": testNormal,
+        "testOptional": testOptional,
+        "testEnum1": testEnum1,
+        "testEnum2": testEnum2
+    ]
 }

@@ -87,4 +87,12 @@ class JTM_04_ModelArray: XCTestCase {
         XCTAssert(cars[2].name == tuples[2].name)
         XCTAssert(cars[2].price == tuples[2].price)
     }
+    
+    static var allTests = [
+        "testArray": testArray,
+        "testNSArray": testNSArray,
+        "testNSMutableArray": testNSMutableArray,
+        "testSet": testSet,
+        "testJSONString": testJSONString
+    ]
 }

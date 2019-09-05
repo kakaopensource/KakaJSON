@@ -135,4 +135,9 @@ class MTJ_02_NestedModel: XCTestCase {
         XCTAssert(jsonString.contains("666.6") == true)
         XCTAssert(jsonString.contains("Fast C++") == true)
     }
+    
+    static var allTests = [
+        "test": test,
+        "testAny": testAny
+    ]
 }

@@ -114,4 +114,8 @@ class JTM_07_DynamicModel: XCTestCase {
         XCTAssert(food1?.name == books[1].name)
         XCTAssert(food1?.price == books[1].price)
     }
+    
+    static var allTests = [
+        "test": test
+    ]
 }
