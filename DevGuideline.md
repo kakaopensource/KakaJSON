@@ -1,5 +1,5 @@
 //
-//  DevGuideline
+//  DevGuideline.md
 //  KakaJSON
 //
 //  Created by MJ Lee on 2019/8/14.
@@ -7,14 +7,14 @@
 //
 
 /*
-Metadata Reference:
-0. https://github.com/apple/swift/blob/master/docs/ABI/TypeMetadata.rst
-1. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataKind.def
-2. https://github.com/apple/swift/blob/master/include/swift/ABI/Metadata.h
-3. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataValues.h
-4. https://github.com/apple/swift/blob/master/utils/dtrace/runtime.d
-5. https://github.com/apple/swift/blob/master/include/swift/Reflection/Records.h
-*/
+ Metadata Reference:
+ 0. https://github.com/apple/swift/blob/master/docs/ABI/TypeMetadata.rst
+ 1. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataKind.def
+ 2. https://github.com/apple/swift/blob/master/include/swift/ABI/Metadata.h
+ 3. https://github.com/apple/swift/blob/master/include/swift/ABI/MetadataValues.h
+ 4. https://github.com/apple/swift/blob/master/utils/dtrace/runtime.d
+ 5. https://github.com/apple/swift/blob/master/include/swift/Reflection/Records.h
+ */
 
 1. 提交代码之前，请务必先保证在真机、模拟器上通过所有的测试用例（Debug+Release模式）
 
@@ -42,11 +42,11 @@ Metadata Reference:
 - include release\debug mode
 
 2. NamingConvention
-① public extension for system types, model types
+① public extension for system types、model types
 - obj.kj.memberName
 - e.g. "123".kj.numberCount, model.kj.JSON()
 
-② internal extension for system types, model types
+② internal extension for system types、model types
 - obj.kj_memberName
 - e.g. "123".kj_numberCount, model.kj_JSON()
 
