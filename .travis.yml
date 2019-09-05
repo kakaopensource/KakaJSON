@@ -24,10 +24,10 @@ matrix:
       env:
         - SDK="appletvsimulator12.0"
         - DESTINATION="OS=12.0,name=Apple TV 4K"
-    - os: linux
-      language: generic
-      dist: trusty
-      sudo: required
+    # - os: linux
+    #   language: generic
+    #   dist: trusty
+    #   sudo: required
 
 before_install:
   - echo $TRAVIS_OS_NAME
