@@ -301,11 +301,11 @@
 		627B5E762320EC760046E23D /* Model_To_JSON */ = {
 			isa = PBXGroup;
 			children = (
+				627B5E7A2320EC760046E23D /* MTJ_01_Basic.swift */,
+				627B5E792320EC760046E23D /* MTJ_02_NestedModel.swift */,
+				627B5E7B2320EC760046E23D /* MTJ_03_ModelArray.swift */,
 				627B5E772320EC760046E23D /* MTJ_04_KeyMapping.swift */,
 				627B5E782320EC760046E23D /* MTJ_05_CustomValue.swift */,
-				627B5E792320EC760046E23D /* MTJ_02_NestedModel.swift */,
-				627B5E7A2320EC760046E23D /* MTJ_01_Basic.swift */,
-				627B5E7B2320EC760046E23D /* MTJ_03_ModelArray.swift */,
 			);
 			path = Model_To_JSON;
 			sourceTree = "<group>";
@@ -324,11 +324,11 @@
 			children = (
 				627B5E802320EC760046E23D /* JTM_01_Basic.swift */,
 				627B5E812320EC760046E23D /* JTM_02_DataType.swift */,
-				627B5E822320EC760046E23D /* JTM_06_CustomValue.swift */,
-				627B5E832320EC760046E23D /* JTM_05_KeyMapping.swift */,
-				627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */,
-				627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */,
 				627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */,
+				627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */,
+				627B5E832320EC760046E23D /* JTM_05_KeyMapping.swift */,
+				627B5E822320EC760046E23D /* JTM_06_CustomValue.swift */,
+				627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */,
 			);
 			path = JSON_To_Model;
 			sourceTree = "<group>";
