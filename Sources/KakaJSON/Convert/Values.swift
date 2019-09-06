@@ -23,8 +23,8 @@ public enum Values {
         case is NumberValue.Type: return _number(v, type)
         case is StringValue.Type: return _string(v, type)
         case let ct as Convertible.Type: return _model(v, ct, defaultValue)
-        case is DateValue.Type: return _date(v)
         case is ArrayValue.Type: return _array(v, type)
+        case is DateValue.Type: return _date(v)
         case is DictionaryValue.Type: return _dictionary(v, type)
         case is URLValue.Type: return _url(v)
         case is DataValue.Type: return _data(v, type)
@@ -43,8 +43,8 @@ public enum Values {
         switch v {
         case let num as NumberValue: return _JSONValue(from: num)
         case let model as Convertible: return model.kj_JSONObject()
-        case let date as Date: return date.timeIntervalSince1970
         case let array as [Any]: return _JSONValue(from: array)
+        case let date as Date: return date.timeIntervalSince1970
         case let dict as [String: Any]: return _JSONValue(from: dict)
         case let url as URL: return url.absoluteString
         case let set as SetValue: return _JSONValue(from: set)
@@ -170,14 +170,11 @@ private extension Values {
         guard let str = _numberString(value) else { return nil }
         guard let decimal = Decimal(string: str) else { return nil }
         
-        // decimal
-        if type is Decimal.Type { return decimal }
-        
         // digit
         if let digitType = type as? DigitValue.Type {
-            guard let double = Double("\(decimal)") else { return nil }
-            let number = NSNumber(value: double)
-            return digitType.init(truncating: number)
+            return Double("\(decimal)")
+                .flatMap { NSNumber(value: $0) }
+                .flatMap { digitType.init(truncating: $0) }
         }
         
         // decimal number
@@ -185,7 +182,10 @@ private extension Values {
             return NSDecimalNumber(decimal: decimal)
         }
         
-        // number
+        // decimal
+        if type is Decimal.Type { return decimal }
+        
+        // other
         return Double("\(decimal)").flatMap { NSNumber(value: $0) }
     }
     
@@ -411,4 +411,3 @@ postfix func ~! (_ value: Any) -> Any? {
 postfix func ~! (_ value: Any?) -> Any? {
     return (value as OptionalValue).kj_value
 }
-

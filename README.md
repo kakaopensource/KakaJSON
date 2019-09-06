@@ -460,7 +460,7 @@ XCTAssert(person.books?[1].name == "Data Structure And Algorithm")
 XCTAssert(person.dogs?["dog0"]?.name == "Larry")
 ```
 
-### Nested Model2
+### Nested Model 2
 ```swift
 struct Book: Convertible, Hashable {
     var name: String = ""
@@ -488,7 +488,7 @@ XCTAssert(book?.name == "Fast C++")
 XCTAssert(book?.price == 666.6)
 ```
 
-### Nested Model3
+### Nested Model 3
 ```swift
 struct Car: Convertible {
     var name: String = ""

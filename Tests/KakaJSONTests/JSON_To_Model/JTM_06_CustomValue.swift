@@ -138,6 +138,45 @@ class JTM_06_CustomValue: XCTestCase {
         XCTAssert(book1?.price == Double(books[1].price))
     }
     
+    // MARK: - NestedArray
+    func testNestedArray() {
+        struct Dog: Convertible {
+            var name: String = ""
+            var weight: Double = 0.0
+        }
+        
+        struct Person: Convertible {
+            var name: String = ""
+            var pet: [[Dog]]?
+            func kj_modelValue(from jsonValue: Any?,
+                               _ property: Property) -> Any? {
+                if property.name != "pet" { return jsonValue }
+                return (jsonValue as? [[[String: Any]]])?.map {
+                    $0.kj.modelArray(Dog.self)
+                }
+            }
+        }
+        
+        let name = "Jack"
+        let dog = (name: "Wang", weight: 109.5)
+        
+        let json: [String: Any] = [
+            "name": name,
+            "pet": [
+                [["name": dog.name, "weight": dog.weight]],
+                [["name": dog.name, "weight": dog.weight]]
+            ]
+        ]
+        
+        let person = json.kj.model(Person.self)
+        XCTAssert(person.name == name)
+        
+        XCTAssert(person.pet?[0][0].name == dog.name)
+        XCTAssert(person.pet?[0][0].weight == dog.weight)
+        XCTAssert(person.pet?[1][0].name == dog.name)
+        XCTAssert(person.pet?[1][0].weight == dog.weight)
+    }
+    
     // MARK: - Other
     func testOther1() {
         struct Student: Convertible {
@@ -189,6 +228,7 @@ class JTM_06_CustomValue: XCTestCase {
         "testDate": testDate,
         "testAny": testAny,
         "testAnyArray": testAnyArray,
+        "testNestedArray": testNestedArray,
         "testOther1": testOther1,
         "testOther2": testOther2
     ]
