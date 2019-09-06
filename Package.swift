@@ -1,4 +1,6 @@
 // swift-tools-version:5.0
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
 import PackageDescription
 
 let package = Package(
@@ -10,13 +12,16 @@ let package = Package(
         .watchOS(.v2)
     ],
     products: [
-        .library(name: "KakaJSON",
-                 targets: ["KakaJSON"])
+        .library(
+            name: "KakaJSON",
+            targets: ["KakaJSON"]),
     ],
     targets: [
         .target(
             name: "KakaJSON",
-            path: "KakaJSON"
-        )
+            dependencies: []),
+        .testTarget(
+            name: "KakaJSONTests",
+            dependencies: ["KakaJSON"]),
     ]
 )

@@ -1,0 +1,47 @@
+env:
+  global: 
+    - PROJECT="KakaJSON.xcodeproj"
+    - SCHEME="KakaJSON-Package"
+    - SWIFT_VERSION=5.0
+
+matrix:
+  include:
+    - os: osx
+      language: swift
+      osx_image: xcode10.2
+      env:
+        - SDK="iphonesimulator12.2"
+        - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=12.2"
+    - os: osx
+      language: swift
+      osx_image: xcode10.2
+      env:
+        - SDK="macosx10.14"
+        - DESTINATION="arch=x86_64"
+    - os: osx
+      language: swift
+      osx_image: xcode10.2
+      env:
+        - SDK="appletvsimulator12.0"
+        - DESTINATION="OS=12.0,name=Apple TV 4K"
+    # - os: linux
+    #   language: generic
+    #   dist: trusty
+    #   sudo: required
+
+before_install:
+  - echo $TRAVIS_OS_NAME
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      gem install xcpretty;
+    fi
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+      eval "$(curl -sL https://swiftenv.fuller.li/install.sh)";
+    fi
+
+script:
+  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+      xcodebuild clean build test -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -enableCodeCoverage YES | xcpretty;
+    fi
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then
+      swift test;
+    fi

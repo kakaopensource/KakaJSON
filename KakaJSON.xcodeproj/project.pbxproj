@@ -1,0 +1,836 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"KakaJSON::KakaJSONPackageTests::ProductTarget" /* KakaJSONPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_31 /* Build configuration list for PBXAggregateTarget "KakaJSONPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_34 /* PBXTargetDependency */,
+			);
+			name = KakaJSONPackageTests;
+			productName = KakaJSONPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		627B5E462320EC490046E23D /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E0F2320EC480046E23D /* Metadata.swift */; };
+		627B5E472320EC490046E23D /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E102320EC480046E23D /* Property.swift */; };
+		627B5E482320EC490046E23D /* FieldList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E132320EC480046E23D /* FieldList.swift */; };
+		627B5E492320EC490046E23D /* ClassLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E142320EC480046E23D /* ClassLayout.swift */; };
+		627B5E4A2320EC490046E23D /* FunctionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E152320EC480046E23D /* FunctionLayout.swift */; };
+		627B5E4B2320EC490046E23D /* ProtocolLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E162320EC480046E23D /* ProtocolLayout.swift */; };
+		627B5E4C2320EC490046E23D /* TupleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E172320EC480046E23D /* TupleLayout.swift */; };
+		627B5E4D2320EC490046E23D /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E182320EC480046E23D /* Layout.swift */; };
+		627B5E4E2320EC490046E23D /* EnumLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E192320EC480046E23D /* EnumLayout.swift */; };
+		627B5E4F2320EC490046E23D /* BaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E1A2320EC480046E23D /* BaseLayout.swift */; };
+		627B5E502320EC490046E23D /* StructLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E1B2320EC480046E23D /* StructLayout.swift */; };
+		627B5E512320EC490046E23D /* TupleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E1D2320EC480046E23D /* TupleType.swift */; };
+		627B5E522320EC490046E23D /* ForeignClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E1E2320EC480046E23D /* ForeignClassType.swift */; };
+		627B5E532320EC490046E23D /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E1F2320EC480046E23D /* FunctionType.swift */; };
+		627B5E542320EC490046E23D /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E202320EC480046E23D /* Type.swift */; };
+		627B5E552320EC490046E23D /* ProtocolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E212320EC480046E23D /* ProtocolType.swift */; };
+		627B5E562320EC490046E23D /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E222320EC480046E23D /* ClassType.swift */; };
+		627B5E572320EC490046E23D /* StructType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E232320EC480046E23D /* StructType.swift */; };
+		627B5E582320EC490046E23D /* MetaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E242320EC480046E23D /* MetaType.swift */; };
+		627B5E592320EC490046E23D /* Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E252320EC480046E23D /* Kind.swift */; };
+		627B5E5A2320EC490046E23D /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E262320EC480046E23D /* ModelType.swift */; };
+		627B5E5B2320EC490046E23D /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E272320EC480046E23D /* OptionalType.swift */; };
+		627B5E5C2320EC490046E23D /* BaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E282320EC480046E23D /* BaseType.swift */; };
+		627B5E5D2320EC490046E23D /* EnumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E292320EC480046E23D /* EnumType.swift */; };
+		627B5E5E2320EC490046E23D /* ObjCClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E2A2320EC480046E23D /* ObjCClassType.swift */; };
+		627B5E5F2320EC490046E23D /* ClassDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E2C2320EC480046E23D /* ClassDescriptor.swift */; };
+		627B5E602320EC490046E23D /* Descriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E2D2320EC480046E23D /* Descriptor.swift */; };
+		627B5E612320EC490046E23D /* FieldDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E2E2320EC480046E23D /* FieldDescriptor.swift */; };
+		627B5E622320EC490046E23D /* EnumDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E2F2320EC480046E23D /* EnumDescriptor.swift */; };
+		627B5E632320EC490046E23D /* StructDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E302320EC480046E23D /* StructDescriptor.swift */; };
+		627B5E642320EC490046E23D /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E322320EC480046E23D /* Coding.swift */; };
+		627B5E652320EC490046E23D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E332320EC480046E23D /* Model.swift */; };
+		627B5E662320EC490046E23D /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E342320EC480046E23D /* JSON.swift */; };
+		627B5E672320EC490046E23D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E362320EC480046E23D /* Logger.swift */; };
+		627B5E682320EC490046E23D /* ConvertibleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E372320EC480046E23D /* ConvertibleEnum.swift */; };
+		627B5E692320EC490046E23D /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E382320EC480046E23D /* Convertible.swift */; };
+		627B5E6A2320EC490046E23D /* KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E392320EC480046E23D /* KJ.swift */; };
+		627B5E6B2320EC490046E23D /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E3A2320EC480046E23D /* Values.swift */; };
+		627B5E6C2320EC490046E23D /* ConvertibleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E3B2320EC480046E23D /* ConvertibleConfig.swift */; };
+		627B5E6D2320EC490046E23D /* TypeProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E3C2320EC480046E23D /* TypeProxy.swift */; };
+		627B5E6E2320EC490046E23D /* Pointer+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E3E2320EC480046E23D /* Pointer+KJ.swift */; };
+		627B5E6F2320EC490046E23D /* Array+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E3F2320EC480046E23D /* Array+KJ.swift */; };
+		627B5E702320EC490046E23D /* JSONSerialization+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E402320EC480046E23D /* JSONSerialization+KJ.swift */; };
+		627B5E712320EC490046E23D /* Dictionary+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E412320EC480046E23D /* Dictionary+KJ.swift */; };
+		627B5E722320EC490046E23D /* Optional+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E422320EC480046E23D /* Optional+KJ.swift */; };
+		627B5E732320EC490046E23D /* NSObject+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E432320EC480046E23D /* NSObject+KJ.swift */; };
+		627B5E742320EC490046E23D /* String+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E442320EC480046E23D /* String+KJ.swift */; };
+		627B5E752320EC490046E23D /* Data+KJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E452320EC480046E23D /* Data+KJ.swift */; };
+		627B5E872320EC760046E23D /* MTJ_04_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E772320EC760046E23D /* MTJ_04_KeyMapping.swift */; };
+		627B5E882320EC760046E23D /* MTJ_05_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E782320EC760046E23D /* MTJ_05_CustomValue.swift */; };
+		627B5E892320EC760046E23D /* MTJ_02_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E792320EC760046E23D /* MTJ_02_NestedModel.swift */; };
+		627B5E8A2320EC760046E23D /* MTJ_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E7A2320EC760046E23D /* MTJ_01_Basic.swift */; };
+		627B5E8B2320EC760046E23D /* MTJ_03_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E7B2320EC760046E23D /* MTJ_03_ModelArray.swift */; };
+		627B5E8C2320EC760046E23D /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E7D2320EC760046E23D /* Coding.swift */; };
+		627B5E8D2320EC760046E23D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E7E2320EC760046E23D /* Global.swift */; };
+		627B5E8E2320EC760046E23D /* JTM_01_Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E802320EC760046E23D /* JTM_01_Basic.swift */; };
+		627B5E8F2320EC760046E23D /* JTM_02_DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E812320EC760046E23D /* JTM_02_DataType.swift */; };
+		627B5E902320EC760046E23D /* JTM_06_CustomValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E822320EC760046E23D /* JTM_06_CustomValue.swift */; };
+		627B5E912320EC760046E23D /* JTM_05_KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E832320EC760046E23D /* JTM_05_KeyMapping.swift */; };
+		627B5E922320EC760046E23D /* JTM_07_DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */; };
+		627B5E932320EC760046E23D /* JTM_04_ModelArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */; };
+		627B5E942320EC760046E23D /* JTM_03_NestedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */; };
+		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_41 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
+		OBJ_43 /* KakaJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "KakaJSON::KakaJSON::Product" /* KakaJSON.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		627B5E0C2320EBC80046E23D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "KakaJSON::KakaJSON";
+			remoteInfo = KakaJSON;
+		};
+		627B5E0D2320EBCA0046E23D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "KakaJSON::KakaJSONTests";
+			remoteInfo = KakaJSONTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		627B5E0F2320EC480046E23D /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
+		627B5E102320EC480046E23D /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		627B5E112320EC480046E23D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		627B5E132320EC480046E23D /* FieldList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldList.swift; sourceTree = "<group>"; };
+		627B5E142320EC480046E23D /* ClassLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassLayout.swift; sourceTree = "<group>"; };
+		627B5E152320EC480046E23D /* FunctionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionLayout.swift; sourceTree = "<group>"; };
+		627B5E162320EC480046E23D /* ProtocolLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolLayout.swift; sourceTree = "<group>"; };
+		627B5E172320EC480046E23D /* TupleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleLayout.swift; sourceTree = "<group>"; };
+		627B5E182320EC480046E23D /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		627B5E192320EC480046E23D /* EnumLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumLayout.swift; sourceTree = "<group>"; };
+		627B5E1A2320EC480046E23D /* BaseLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayout.swift; sourceTree = "<group>"; };
+		627B5E1B2320EC480046E23D /* StructLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructLayout.swift; sourceTree = "<group>"; };
+		627B5E1D2320EC480046E23D /* TupleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleType.swift; sourceTree = "<group>"; };
+		627B5E1E2320EC480046E23D /* ForeignClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForeignClassType.swift; sourceTree = "<group>"; };
+		627B5E1F2320EC480046E23D /* FunctionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionType.swift; sourceTree = "<group>"; };
+		627B5E202320EC480046E23D /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		627B5E212320EC480046E23D /* ProtocolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolType.swift; sourceTree = "<group>"; };
+		627B5E222320EC480046E23D /* ClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassType.swift; sourceTree = "<group>"; };
+		627B5E232320EC480046E23D /* StructType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructType.swift; sourceTree = "<group>"; };
+		627B5E242320EC480046E23D /* MetaType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetaType.swift; sourceTree = "<group>"; };
+		627B5E252320EC480046E23D /* Kind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kind.swift; sourceTree = "<group>"; };
+		627B5E262320EC480046E23D /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
+		627B5E272320EC480046E23D /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
+		627B5E282320EC480046E23D /* BaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseType.swift; sourceTree = "<group>"; };
+		627B5E292320EC480046E23D /* EnumType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumType.swift; sourceTree = "<group>"; };
+		627B5E2A2320EC480046E23D /* ObjCClassType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCClassType.swift; sourceTree = "<group>"; };
+		627B5E2C2320EC480046E23D /* ClassDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassDescriptor.swift; sourceTree = "<group>"; };
+		627B5E2D2320EC480046E23D /* Descriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Descriptor.swift; sourceTree = "<group>"; };
+		627B5E2E2320EC480046E23D /* FieldDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldDescriptor.swift; sourceTree = "<group>"; };
+		627B5E2F2320EC480046E23D /* EnumDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumDescriptor.swift; sourceTree = "<group>"; };
+		627B5E302320EC480046E23D /* StructDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructDescriptor.swift; sourceTree = "<group>"; };
+		627B5E322320EC480046E23D /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
+		627B5E332320EC480046E23D /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		627B5E342320EC480046E23D /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		627B5E362320EC480046E23D /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		627B5E372320EC480046E23D /* ConvertibleEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertibleEnum.swift; sourceTree = "<group>"; };
+		627B5E382320EC480046E23D /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
+		627B5E392320EC480046E23D /* KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KJ.swift; sourceTree = "<group>"; };
+		627B5E3A2320EC480046E23D /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		627B5E3B2320EC480046E23D /* ConvertibleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertibleConfig.swift; sourceTree = "<group>"; };
+		627B5E3C2320EC480046E23D /* TypeProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeProxy.swift; sourceTree = "<group>"; };
+		627B5E3E2320EC480046E23D /* Pointer+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pointer+KJ.swift"; sourceTree = "<group>"; };
+		627B5E3F2320EC480046E23D /* Array+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+KJ.swift"; sourceTree = "<group>"; };
+		627B5E402320EC480046E23D /* JSONSerialization+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+KJ.swift"; sourceTree = "<group>"; };
+		627B5E412320EC480046E23D /* Dictionary+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+KJ.swift"; sourceTree = "<group>"; };
+		627B5E422320EC480046E23D /* Optional+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+KJ.swift"; sourceTree = "<group>"; };
+		627B5E432320EC480046E23D /* NSObject+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+KJ.swift"; sourceTree = "<group>"; };
+		627B5E442320EC480046E23D /* String+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+KJ.swift"; sourceTree = "<group>"; };
+		627B5E452320EC480046E23D /* Data+KJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+KJ.swift"; sourceTree = "<group>"; };
+		627B5E772320EC760046E23D /* MTJ_04_KeyMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_04_KeyMapping.swift; sourceTree = "<group>"; };
+		627B5E782320EC760046E23D /* MTJ_05_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_05_CustomValue.swift; sourceTree = "<group>"; };
+		627B5E792320EC760046E23D /* MTJ_02_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_02_NestedModel.swift; sourceTree = "<group>"; };
+		627B5E7A2320EC760046E23D /* MTJ_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_01_Basic.swift; sourceTree = "<group>"; };
+		627B5E7B2320EC760046E23D /* MTJ_03_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTJ_03_ModelArray.swift; sourceTree = "<group>"; };
+		627B5E7D2320EC760046E23D /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
+		627B5E7E2320EC760046E23D /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		627B5E802320EC760046E23D /* JTM_01_Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_01_Basic.swift; sourceTree = "<group>"; };
+		627B5E812320EC760046E23D /* JTM_02_DataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_02_DataType.swift; sourceTree = "<group>"; };
+		627B5E822320EC760046E23D /* JTM_06_CustomValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_06_CustomValue.swift; sourceTree = "<group>"; };
+		627B5E832320EC760046E23D /* JTM_05_KeyMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_05_KeyMapping.swift; sourceTree = "<group>"; };
+		627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_07_DynamicModel.swift; sourceTree = "<group>"; };
+		627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_04_ModelArray.swift; sourceTree = "<group>"; };
+		627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTM_03_NestedModel.swift; sourceTree = "<group>"; };
+		627B5E972320F08F0046E23D /* KakaJSON.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KakaJSON.podspec; sourceTree = "<group>"; };
+		627B5E992320F2710046E23D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		627B5E9A2320F2D40046E23D /* DevGuideline.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DevGuideline.md; sourceTree = "<group>"; };
+		"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KakaJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_43 /* KakaJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		627B5E0E2320EC480046E23D /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E0F2320EC480046E23D /* Metadata.swift */,
+				627B5E102320EC480046E23D /* Property.swift */,
+				627B5E112320EC480046E23D /* LICENSE */,
+				627B5E122320EC480046E23D /* Layout */,
+				627B5E1C2320EC480046E23D /* Type */,
+				627B5E2B2320EC480046E23D /* Descriptor */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
+		627B5E122320EC480046E23D /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E132320EC480046E23D /* FieldList.swift */,
+				627B5E142320EC480046E23D /* ClassLayout.swift */,
+				627B5E152320EC480046E23D /* FunctionLayout.swift */,
+				627B5E162320EC480046E23D /* ProtocolLayout.swift */,
+				627B5E172320EC480046E23D /* TupleLayout.swift */,
+				627B5E182320EC480046E23D /* Layout.swift */,
+				627B5E192320EC480046E23D /* EnumLayout.swift */,
+				627B5E1A2320EC480046E23D /* BaseLayout.swift */,
+				627B5E1B2320EC480046E23D /* StructLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		627B5E1C2320EC480046E23D /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E1D2320EC480046E23D /* TupleType.swift */,
+				627B5E1E2320EC480046E23D /* ForeignClassType.swift */,
+				627B5E1F2320EC480046E23D /* FunctionType.swift */,
+				627B5E202320EC480046E23D /* Type.swift */,
+				627B5E212320EC480046E23D /* ProtocolType.swift */,
+				627B5E222320EC480046E23D /* ClassType.swift */,
+				627B5E232320EC480046E23D /* StructType.swift */,
+				627B5E242320EC480046E23D /* MetaType.swift */,
+				627B5E252320EC480046E23D /* Kind.swift */,
+				627B5E262320EC480046E23D /* ModelType.swift */,
+				627B5E272320EC480046E23D /* OptionalType.swift */,
+				627B5E282320EC480046E23D /* BaseType.swift */,
+				627B5E292320EC480046E23D /* EnumType.swift */,
+				627B5E2A2320EC480046E23D /* ObjCClassType.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		627B5E2B2320EC480046E23D /* Descriptor */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E2C2320EC480046E23D /* ClassDescriptor.swift */,
+				627B5E2D2320EC480046E23D /* Descriptor.swift */,
+				627B5E2E2320EC480046E23D /* FieldDescriptor.swift */,
+				627B5E2F2320EC480046E23D /* EnumDescriptor.swift */,
+				627B5E302320EC480046E23D /* StructDescriptor.swift */,
+			);
+			path = Descriptor;
+			sourceTree = "<group>";
+		};
+		627B5E312320EC480046E23D /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E322320EC480046E23D /* Coding.swift */,
+				627B5E332320EC480046E23D /* Model.swift */,
+				627B5E342320EC480046E23D /* JSON.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		627B5E352320EC480046E23D /* Convert */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E362320EC480046E23D /* Logger.swift */,
+				627B5E372320EC480046E23D /* ConvertibleEnum.swift */,
+				627B5E382320EC480046E23D /* Convertible.swift */,
+				627B5E392320EC480046E23D /* KJ.swift */,
+				627B5E3A2320EC480046E23D /* Values.swift */,
+				627B5E3B2320EC480046E23D /* ConvertibleConfig.swift */,
+				627B5E3C2320EC480046E23D /* TypeProxy.swift */,
+			);
+			path = Convert;
+			sourceTree = "<group>";
+		};
+		627B5E3D2320EC480046E23D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E3E2320EC480046E23D /* Pointer+KJ.swift */,
+				627B5E3F2320EC480046E23D /* Array+KJ.swift */,
+				627B5E402320EC480046E23D /* JSONSerialization+KJ.swift */,
+				627B5E412320EC480046E23D /* Dictionary+KJ.swift */,
+				627B5E422320EC480046E23D /* Optional+KJ.swift */,
+				627B5E432320EC480046E23D /* NSObject+KJ.swift */,
+				627B5E442320EC480046E23D /* String+KJ.swift */,
+				627B5E452320EC480046E23D /* Data+KJ.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		627B5E762320EC760046E23D /* Model_To_JSON */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E7A2320EC760046E23D /* MTJ_01_Basic.swift */,
+				627B5E792320EC760046E23D /* MTJ_02_NestedModel.swift */,
+				627B5E7B2320EC760046E23D /* MTJ_03_ModelArray.swift */,
+				627B5E772320EC760046E23D /* MTJ_04_KeyMapping.swift */,
+				627B5E782320EC760046E23D /* MTJ_05_CustomValue.swift */,
+			);
+			path = Model_To_JSON;
+			sourceTree = "<group>";
+		};
+		627B5E7C2320EC760046E23D /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E7D2320EC760046E23D /* Coding.swift */,
+				627B5E7E2320EC760046E23D /* Global.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		627B5E7F2320EC760046E23D /* JSON_To_Model */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E802320EC760046E23D /* JTM_01_Basic.swift */,
+				627B5E812320EC760046E23D /* JTM_02_DataType.swift */,
+				627B5E862320EC760046E23D /* JTM_03_NestedModel.swift */,
+				627B5E852320EC760046E23D /* JTM_04_ModelArray.swift */,
+				627B5E832320EC760046E23D /* JTM_05_KeyMapping.swift */,
+				627B5E822320EC760046E23D /* JTM_06_CustomValue.swift */,
+				627B5E842320EC760046E23D /* JTM_07_DynamicModel.swift */,
+			);
+			path = JSON_To_Model;
+			sourceTree = "<group>";
+		};
+		627B5E962320F06E0046E23D /* Deployment */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E972320F08F0046E23D /* KakaJSON.podspec */,
+				OBJ_6 /* Package.swift */,
+			);
+			name = Deployment;
+			sourceTree = "<group>";
+		};
+		627B5E982320F2580046E23D /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E992320F2710046E23D /* CHANGELOG.md */,
+				627B5E9A2320F2D40046E23D /* DevGuideline.md */,
+			);
+			name = Development;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* KakaJSONTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_11 /* KakaJSONTests */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E7F2320EC760046E23D /* JSON_To_Model */,
+				627B5E762320EC760046E23D /* Model_To_JSON */,
+				627B5E7C2320EC760046E23D /* Other */,
+				OBJ_13 /* XCTestManifests.swift */,
+			);
+			name = KakaJSONTests;
+			path = Tests/KakaJSONTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */,
+				"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				627B5E982320F2580046E23D /* Development */,
+				627B5E962320F06E0046E23D /* Deployment */,
+				OBJ_7 /* Sources */,
+				OBJ_10 /* Tests */,
+				OBJ_14 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* KakaJSON */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* KakaJSON */ = {
+			isa = PBXGroup;
+			children = (
+				627B5E352320EC480046E23D /* Convert */,
+				627B5E3D2320EC480046E23D /* Extension */,
+				627B5E312320EC480046E23D /* Global */,
+				627B5E0E2320EC480046E23D /* Metadata */,
+			);
+			name = KakaJSON;
+			path = Sources/KakaJSON;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"KakaJSON::KakaJSON" /* KakaJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_18 /* Build configuration list for PBXNativeTarget "KakaJSON" */;
+			buildPhases = (
+				OBJ_21 /* Sources */,
+				OBJ_23 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KakaJSON;
+			productName = KakaJSON;
+			productReference = "KakaJSON::KakaJSON::Product" /* KakaJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"KakaJSON::KakaJSONTests" /* KakaJSONTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_36 /* Build configuration list for PBXNativeTarget "KakaJSONTests" */;
+			buildPhases = (
+				OBJ_39 /* Sources */,
+				OBJ_42 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_44 /* PBXTargetDependency */,
+			);
+			name = KakaJSONTests;
+			productName = KakaJSONTests;
+			productReference = "KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"KakaJSON::SwiftPMPackageDescription" /* KakaJSONPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_25 /* Build configuration list for PBXNativeTarget "KakaJSONPackageDescription" */;
+			buildPhases = (
+				OBJ_28 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KakaJSONPackageDescription;
+			productName = KakaJSONPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "KakaJSON" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"KakaJSON::KakaJSON" /* KakaJSON */,
+				"KakaJSON::SwiftPMPackageDescription" /* KakaJSONPackageDescription */,
+				"KakaJSON::KakaJSONPackageTests::ProductTarget" /* KakaJSONPackageTests */,
+				"KakaJSON::KakaJSONTests" /* KakaJSONTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				627B5E6C2320EC490046E23D /* ConvertibleConfig.swift in Sources */,
+				627B5E492320EC490046E23D /* ClassLayout.swift in Sources */,
+				627B5E5B2320EC490046E23D /* OptionalType.swift in Sources */,
+				627B5E552320EC490046E23D /* ProtocolType.swift in Sources */,
+				627B5E722320EC490046E23D /* Optional+KJ.swift in Sources */,
+				627B5E472320EC490046E23D /* Property.swift in Sources */,
+				627B5E642320EC490046E23D /* Coding.swift in Sources */,
+				627B5E4F2320EC490046E23D /* BaseLayout.swift in Sources */,
+				627B5E5E2320EC490046E23D /* ObjCClassType.swift in Sources */,
+				627B5E712320EC490046E23D /* Dictionary+KJ.swift in Sources */,
+				627B5E6B2320EC490046E23D /* Values.swift in Sources */,
+				627B5E5A2320EC490046E23D /* ModelType.swift in Sources */,
+				627B5E6E2320EC490046E23D /* Pointer+KJ.swift in Sources */,
+				627B5E5C2320EC490046E23D /* BaseType.swift in Sources */,
+				627B5E532320EC490046E23D /* FunctionType.swift in Sources */,
+				627B5E5D2320EC490046E23D /* EnumType.swift in Sources */,
+				627B5E522320EC490046E23D /* ForeignClassType.swift in Sources */,
+				627B5E662320EC490046E23D /* JSON.swift in Sources */,
+				627B5E542320EC490046E23D /* Type.swift in Sources */,
+				627B5E4E2320EC490046E23D /* EnumLayout.swift in Sources */,
+				627B5E4C2320EC490046E23D /* TupleLayout.swift in Sources */,
+				627B5E602320EC490046E23D /* Descriptor.swift in Sources */,
+				627B5E732320EC490046E23D /* NSObject+KJ.swift in Sources */,
+				627B5E502320EC490046E23D /* StructLayout.swift in Sources */,
+				627B5E512320EC490046E23D /* TupleType.swift in Sources */,
+				627B5E482320EC490046E23D /* FieldList.swift in Sources */,
+				627B5E742320EC490046E23D /* String+KJ.swift in Sources */,
+				627B5E462320EC490046E23D /* Metadata.swift in Sources */,
+				627B5E4D2320EC490046E23D /* Layout.swift in Sources */,
+				627B5E682320EC490046E23D /* ConvertibleEnum.swift in Sources */,
+				627B5E6F2320EC490046E23D /* Array+KJ.swift in Sources */,
+				627B5E4A2320EC490046E23D /* FunctionLayout.swift in Sources */,
+				627B5E582320EC490046E23D /* MetaType.swift in Sources */,
+				627B5E652320EC490046E23D /* Model.swift in Sources */,
+				627B5E752320EC490046E23D /* Data+KJ.swift in Sources */,
+				627B5E672320EC490046E23D /* Logger.swift in Sources */,
+				627B5E562320EC490046E23D /* ClassType.swift in Sources */,
+				627B5E632320EC490046E23D /* StructDescriptor.swift in Sources */,
+				627B5E692320EC490046E23D /* Convertible.swift in Sources */,
+				627B5E572320EC490046E23D /* StructType.swift in Sources */,
+				627B5E622320EC490046E23D /* EnumDescriptor.swift in Sources */,
+				627B5E6A2320EC490046E23D /* KJ.swift in Sources */,
+				627B5E5F2320EC490046E23D /* ClassDescriptor.swift in Sources */,
+				627B5E702320EC490046E23D /* JSONSerialization+KJ.swift in Sources */,
+				627B5E4B2320EC490046E23D /* ProtocolLayout.swift in Sources */,
+				627B5E592320EC490046E23D /* Kind.swift in Sources */,
+				627B5E6D2320EC490046E23D /* TypeProxy.swift in Sources */,
+				627B5E612320EC490046E23D /* FieldDescriptor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_29 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				627B5E902320EC760046E23D /* JTM_06_CustomValue.swift in Sources */,
+				627B5E922320EC760046E23D /* JTM_07_DynamicModel.swift in Sources */,
+				627B5E8D2320EC760046E23D /* Global.swift in Sources */,
+				627B5E8F2320EC760046E23D /* JTM_02_DataType.swift in Sources */,
+				627B5E8B2320EC760046E23D /* MTJ_03_ModelArray.swift in Sources */,
+				627B5E932320EC760046E23D /* JTM_04_ModelArray.swift in Sources */,
+				627B5E8A2320EC760046E23D /* MTJ_01_Basic.swift in Sources */,
+				627B5E912320EC760046E23D /* JTM_05_KeyMapping.swift in Sources */,
+				627B5E8C2320EC760046E23D /* Coding.swift in Sources */,
+				627B5E882320EC760046E23D /* MTJ_05_CustomValue.swift in Sources */,
+				627B5E872320EC760046E23D /* MTJ_04_KeyMapping.swift in Sources */,
+				627B5E942320EC760046E23D /* JTM_03_NestedModel.swift in Sources */,
+				627B5E892320EC760046E23D /* MTJ_02_NestedModel.swift in Sources */,
+				OBJ_41 /* XCTestManifests.swift in Sources */,
+				627B5E8E2320EC760046E23D /* JTM_01_Basic.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "KakaJSON::KakaJSONTests" /* KakaJSONTests */;
+			targetProxy = 627B5E0D2320EBCA0046E23D /* PBXContainerItemProxy */;
+		};
+		OBJ_44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "KakaJSON::KakaJSON" /* KakaJSON */;
+			targetProxy = 627B5E0C2320EBC80046E23D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = KakaJSON.xcodeproj/KakaJSON_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = KakaJSON;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = KakaJSON;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = KakaJSON.xcodeproj/KakaJSON_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = KakaJSON;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = KakaJSON;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+					"DEBUG=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = KakaJSON.xcodeproj/KakaJSONTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = KakaJSONTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = KakaJSON.xcodeproj/KakaJSONTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = KakaJSONTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_18 /* Build configuration list for PBXNativeTarget "KakaJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_19 /* Debug */,
+				OBJ_20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "KakaJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_25 /* Build configuration list for PBXNativeTarget "KakaJSONPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_26 /* Debug */,
+				OBJ_27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_31 /* Build configuration list for PBXAggregateTarget "KakaJSONPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_32 /* Debug */,
+				OBJ_33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_36 /* Build configuration list for PBXNativeTarget "KakaJSONTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_37 /* Debug */,
+				OBJ_38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
