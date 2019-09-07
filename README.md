@@ -75,7 +75,7 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [Set](#set)
   - [Dictionary](#dictionary)
 - [JSON To Model_03_Key Mapping](#json-to-model_03_key-mapping)
-  - [Basic Usage](#basic-usage-1)
+  - [Basic Usage](#basic-usage)
   - [Camel -> Underline](#camel---underline)
   - [Underline -> Camel](#underline---camel)
   - [Inheritance](#inheritance-1)
@@ -1749,11 +1749,11 @@ struct Car: Convertible {
  
 /*
  If there are many settings of modelKey, the rule is （e.g. Student）
- ① use Student's kj_modelKey firstly
- ② if ① dosen't exist, use ConvertibleConfig of Student
- ③ if ①② dosen't exist, use ConvertibleConfig of Student's superclass
- ④ if ①②③ dosen't exist, use ConvertibleConfig of Student's superclass's superclass...
- ⑤  if ①②③④ dosen't exist, use gloabal ConvertibleConfig
+ 1. use Student's kj_modelKey firstly
+ 2. if 1 dosen't exist, use ConvertibleConfig of Student
+ 3. if 1\2 dosen't exist, use ConvertibleConfig of Student's superclass
+ 4. if 1\2\3 dosen't exist, use ConvertibleConfig of Student's superclass's superclass...
+ 5. if 1\2\3\4 dosen't exist, use gloabal ConvertibleConfig
  */
  
 // Person, Student, Car all have kj_modelKey, so use kj_modelKey firstly
@@ -1796,9 +1796,10 @@ struct Dog: Convertible {
         // name -> data[1]["dog"]["name"]
         case "name": return "data.1.dog.name"
         // try every mapping of array orderly until success
-        // ① nickName -> nick_name
-        // ② nickName -> dog["nickName"]
-        // ③ nickName -> dog["nick_name"]
+        // 1. nickName -> nickName
+        // 2. nickName -> nick_name
+        // 3. nickName -> dog["nickName"]
+        // 4. nickName -> dog["nick_name"]
         case "nickName": return ["nickName", "nick_name", "dog.nickName", "dog.nick_name"]
         default: return property.name
         }
@@ -1831,6 +1832,57 @@ XCTAssert(dog.age == age)
 XCTAssert(dog.nickName == nickName1)
 XCTAssert(dog.toy?.name == toy.name)
 XCTAssert(dog.toy?.price == toy.price)
+
+
+/*-------------------------------------------------*/
+
+struct Team: Convertible {
+    var name: String?
+    var captainName: String?
+    
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
+        switch property.name {
+        case "captainName":     return "captain.name"
+        default:                return property.name
+        }
+    }
+}
+
+let teamName = "V"
+let captainName = "Quentin"
+
+let json: [String: Any] = [
+    "name": teamName,
+    "captain.name": captainName,
+]
+let team = json.kj.model(Team.self)
+XCTAssert(team.name == teamName)
+XCTAssert(team.captainName == captainName)
+
+/*-------------------------------------------------*/
+
+struct Model: Convertible {
+    var valueA: String?
+    var valueB: String?
+    
+    func kj_modelKey(from property: Property) -> ModelPropertyKey {
+        switch property.name {
+        case "valueA":          return "a.0.a"
+        case "valueB":          return "b.0.b.0.b"
+        default:                return property.name
+        }
+    }
+}
+
+let json: [String: Any] = [
+    "a": [ "l", "u", "o" ],
+    "b": [
+        [ "b": [ "x", "i", "u" ] ]
+    ]
+]
+let model = json.kj.model(Model.self)
+XCTAssert(model.valueA == "l")
+XCTAssert(model.valueB == "x")
 ```
 
 
@@ -1907,6 +1959,55 @@ XCTAssert(person.name == "Jack")
 let pet = person.pet as? Dog
 XCTAssert(pet?.name == "Wang")
 XCTAssert(pet?.weight == 109.5)
+
+/*-------------------------------------------------*/
+
+class Book: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+    required init() {}
+}
+
+struct Person: Convertible {
+    var name: String = ""
+    // [AnyObject]、[Convertible]、NSArray、NSMutableArray
+    var books: [Any]?
+    
+    func kj_modelValue(from jsonValue: Any?,
+                       _ property: Property) -> Any? {
+        if property.name != "books" { return jsonValue }
+        // if books is `NSMutableArray`, neet convert `Array` to `NSMutableArray`
+        // because `Array` to `NSMutableArray` is not a bridging conversion
+        return (jsonValue as? [Any])?.kj.modelArray(Book.self)
+    }
+}
+
+let name = "Jack"
+let books = [
+    (name: "Fast C++", price: 666),
+    (name: "Data Structure And Algorithm", price: 1666)
+]
+
+let json: [String: Any] = [
+    "name": name,
+    "books": [
+        ["name": books[0].name, "price": books[0].price],
+        ["name": books[1].name, "price": books[1].price]
+    ]
+]
+
+let person = json.kj.model(Person.self)
+XCTAssert(person.name == name)
+
+XCTAssert(person.books?.count == books.count)
+
+let book0 = person.books?[0] as? Book
+XCTAssert(book0?.name == books[0].name)
+XCTAssert(book0?.price == Double(books[0].price))
+
+let book1 = person.books?[1] as? Book
+XCTAssert(book1?.name == books[1].name)
+XCTAssert(book1?.price == Double(books[1].price))
 ```
 
 ### Example
