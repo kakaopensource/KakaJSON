@@ -19,7 +19,9 @@ public struct Metadata {
         
         // name
         let name = String(describing: type)
-        if name == "Swift._SwiftObject" || name == "NSObject" { return nil }
+        if name == "Swift._SwiftObject"
+            || name == "NSObject"
+            || name == "_TtCs12_SwiftObject" { return nil }
         
         typeLock.lock()
         defer { typeLock.unlock() }

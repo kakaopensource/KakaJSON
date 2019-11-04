@@ -2,7 +2,9 @@
 
 ---
 
-## new
+## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-11-04)
+- Closed issues
+	- [iOS 9 Crash](https://github.com/kakaopensource/KakaJSON/issues/31)
 - Merged pull requests
 	- [use isUppercase to check if the character is uppercase](https://github.com/kakaopensource/KakaJSON/pull/20)
 	- [A key should be able to contain dot](https://github.com/kakaopensource/KakaJSON/pull/21)
