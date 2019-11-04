@@ -13,6 +13,9 @@ public struct Metadata {
     private static var types = [TypeKey: BaseType]()
     
     public static func type(_ type: Any.Type) -> BaseType? {
+        typeLock.lock()
+        defer { typeLock.unlock() }
+        
         // get from cache
         let key = typeKey(type)
         if let mt = types[key] { return mt }
@@ -22,11 +25,6 @@ public struct Metadata {
         if name == "Swift._SwiftObject"
             || name == "NSObject"
             || name == "_TtCs12_SwiftObject" { return nil }
-        
-        typeLock.lock()
-        defer { typeLock.unlock() }
-        // judge after lock
-        if let mt = types[key] { return mt }
         
         // type judge
         var mtt: BaseType.Type

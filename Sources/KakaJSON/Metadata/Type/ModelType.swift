@@ -18,8 +18,6 @@ public class ModelType: BaseType {
     
     func modelKey(from propertyName: String,
                   _ createdKey: @autoclosure () -> ModelPropertyKey) -> ModelPropertyKey {
-        if let key = modelKeys[propertyName] { return key }
-        
         modelKeysLock.wait()
         defer { modelKeysLock.signal() }
         if let key = modelKeys[propertyName] { return key }
@@ -31,8 +29,6 @@ public class ModelType: BaseType {
     
     func JSONKey(from propertyName: String,
                  _ createdKey: @autoclosure () -> String) -> String {
-        if let key = jsonKeys[propertyName] { return key }
-        
         jsonKeysLock.wait()
         defer { jsonKeysLock.signal() }
         if let key = jsonKeys[propertyName] { return key }

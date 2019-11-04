@@ -3,6 +3,7 @@
 ---
 
 ## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-11-04)
+- Adjust Lock
 - Closed issues
 	- [iOS 9 Crash](https://github.com/kakaopensource/KakaJSON/issues/31)
 - Merged pull requests
