@@ -274,12 +274,64 @@ class JTM_03_NestedModel: XCTestCase {
         XCTAssert(book?.price == bookPrice)
     }
     
+    func testModelArrayInDictionary() {
+        struct Book: Convertible {
+            var name: String = ""
+            var price: Double = 0.0
+        }
+
+        struct Person: Convertible {
+            var name: String = ""
+            var books: [String: [Book?]?]?
+        }
+
+        let name = "Jack"
+        let mobileBooks = [
+            (name: "iOS", price: 10.5),
+            (name: "Android", price: 8.5)
+        ]
+        let serverBooks = [
+            (name: "Java", price: 20.5),
+            (name: "Go", price: 18.5)
+        ]
+
+        let json: [String: Any] = [
+            "name": name,
+            "books": [
+                "mobile": [
+                    ["name": mobileBooks[0].name, "price": mobileBooks[0].price],
+                    ["name": mobileBooks[1].name, "price": mobileBooks[1].price]
+                ],
+                "server": [
+                    ["name": serverBooks[0].name, "price": serverBooks[0].price],
+                    ["name": serverBooks[1].name, "price": serverBooks[1].price]
+                ]
+            ]
+        ]
+
+        let person = json.kj.model(Person.self)
+        XCTAssert(person.name == name)
+        let books0 = person.books?["mobile"]
+        XCTAssert(books0??.count == mobileBooks.count)
+        for i in 0..<mobileBooks.count {
+            XCTAssert(books0??[i]?.name == mobileBooks[i].name);
+            XCTAssert(books0??[i]?.price == mobileBooks[i].price);
+        }
+        let books1 = person.books?["server"]
+        XCTAssert(books1??.count == serverBooks.count)
+        for i in 0..<serverBooks.count {
+            XCTAssert(books1??[i]?.name == serverBooks[i].name);
+            XCTAssert(books1??[i]?.price == serverBooks[i].price);
+        }
+    }
+    
     static var allTests = [
         "testNormal": testNormal,
         "testDefaultValue": testDefaultValue,
         "testRecursive": testRecursive,
         "testGeneric": testGeneric,
         "testOptional": testOptional,
-        "testSet": testSet
+        "testSet": testSet,
+        "testModelArrayInDictionary": testModelArrayInDictionary
     ]
 }

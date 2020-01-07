@@ -95,11 +95,13 @@ private extension Values {
         guard let json = _anyArray(value) else { return nil }
         
         let mt = Metadata.type(type)
-        if let type = (mt as? NominalType)?.genericTypes?.first,
-            let modelType = type~! as? Convertible.Type {
-            return json.kj.modelArray(type: modelType)
+        if let type = (mt as? NominalType)?.genericTypes?.first {
+            if let modelType = type~! as? Convertible.Type {
+                return json.kj.modelArray(type: modelType)
+            } else if let enumType = type~! as? ConvertibleEnum.Type {
+                return json.kj.enumArray(type: enumType)
+            }
         }
-        
         return type is NSMutableArray.Type
             ? NSMutableArray(array: json) : json
     }
@@ -116,21 +118,61 @@ private extension Values {
         guard let dict = value as? [String: Any] else { return nil }
         
         let mt = Metadata.type(type)
-        if type is SwiftDictionaryValue.Type,
-            let json = value as? [String: [String: Any]?],
-            let type = (mt as? NominalType)?.genericTypes?.last,
-            let modelType = type~! as? Convertible.Type {
+        guard type is SwiftDictionaryValue.Type,
+            let valueType = (mt as? NominalType)?.genericTypes?.last else {
+            return type is NSMutableDictionary.Type
+                ? NSMutableDictionary(dictionary: dict) : dict
+        }
+        
+        // [String: Convertible]
+        if let json = value as? [String: [String: Any]?],
+            let modelType = valueType~! as? Convertible.Type {
             
             var modelDict = [String: Any]()
             for (k, v) in json {
-                guard let m = v?.kj.model(type: modelType) else { continue }
-                modelDict[k] = m
+                guard let e = v?.kj.model(type: modelType) else { continue }
+                modelDict[k] = e
             }
             return modelDict.isEmpty ? nil : modelDict
         }
         
-        return type is NSMutableDictionary.Type
-            ? NSMutableDictionary(dictionary: dict) : dict
+        // [String: ConvertibleEnum]
+        if let enumType = valueType~! as? ConvertibleEnum.Type {
+            var enumDict = [String: Any]()
+            for (k, v) in dict {
+                guard let m = Values.value(v, enumType) else { continue }
+                enumDict[k] = m
+            }
+            return enumDict.isEmpty ? nil : enumDict
+        }
+        
+        guard let json = value as? [String: [Any]?],
+            let subtype = (Metadata.type(valueType~!) as? NominalType)?.genericTypes?.last
+            else { return dict }
+        
+        // [String: [Convertible]]
+        if let json = value as? [String: [[String: Any]?]?],
+            let modelType = subtype~! as? Convertible.Type {
+            
+            var modelArrayDict = [String: Any]()
+            for (k, v) in json {
+                guard let ma = v?.kj.modelArray(type: modelType) else { continue }
+                modelArrayDict[k] = ma
+            }
+            return modelArrayDict.isEmpty ? nil : modelArrayDict
+        }
+        
+        // [String: [ConvertibleEnum]]
+        if let enumType = subtype~! as? ConvertibleEnum.Type {
+            var enumArrayDict = [String: Any]()
+            for (k, v) in json {
+                guard let ea = v?.kj.enumArray(type: enumType) else { continue }
+                enumArrayDict[k] = ea
+            }
+            return enumArrayDict.isEmpty ? nil : enumArrayDict
+        }
+        
+        return dict
     }
     
     static func _string(_ value: Any, _ type: Any.Type) -> StringValue? {

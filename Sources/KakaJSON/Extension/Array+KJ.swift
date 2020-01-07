@@ -14,6 +14,20 @@ extension Set: KJCompatible {}
 extension NSSet: KJCompatible {}
 
 public extension KJ where Base: ExpressibleByArrayLiteral & Sequence {
+    /// JSONObjectArray -> EnumArray
+    func enumArray<M: ConvertibleEnum>(_ type: M.Type) -> [M] {
+        return enumArray(type: type) as! [M]
+    }
+    
+    /// JSONObjectArray -> EnumArray
+    func enumArray(type: ConvertibleEnum.Type) -> [ConvertibleEnum] {
+        guard let _ = Metadata.type(type) as? EnumType else { return [] }
+        return base.compactMap {
+            let vv = Values.value($0, type.kj_valueType)
+            return type.kj_convert(from: vv as Any)
+        }
+    }
+    
     /// JSONObjectArray -> ModelArray
     func modelArray<M: Convertible>(_ type: M.Type) -> [M] {
         return modelArray(type: type) as! [M]

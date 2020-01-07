@@ -285,6 +285,31 @@ class JTM_01_Basic: XCTestCase {
         XCTAssert(student.score == score)
     }
     
+    func testOCModel() {
+        // Not support model extends pure oc model
+        final class Person: OCModel, Convertible {
+            var name: String = ""
+            var age: Int = 0
+        }
+        
+        /*
+        let name = "Jack"
+        let age = 20
+        let no = 1
+        let json: [String: Any] = [
+            "no": no,
+            "name": name,
+            "age": age
+        ]
+        
+        
+        let person = json.kj.model(Person.self)
+        XCTAssert(person.name == name)
+        XCTAssert(person.age == age)
+        XCTAssert(person.no == no)
+         */
+    }
+    
     static var allTests = [
         "testGeneric": testGeneric,
         "testAny": testAny,
@@ -296,6 +321,7 @@ class JTM_01_Basic: XCTestCase {
         "testNSObjectClass": testNSObjectClass,
         "testConvert": testConvert,
         "testCallback1": testCallback1,
-        "testCallback2": testCallback2
+        "testCallback2": testCallback2,
+        "testOCModel": testOCModel
     ]
 }

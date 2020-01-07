@@ -16,7 +16,8 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(MTJ_04_KeyMapping.allTests),
         testCase(MTJ_05_CustomValue.allTests),
         testCase(TestCoding.allTests),
-        testCase(Global.allTests)
+        testCase(TestGlobal.allTests),
+        testCase(TestBugs.allTests)
     ]
 }
 #endif

@@ -22,8 +22,20 @@ public class ModelType: BaseType {
         defer { modelKeysLock.signal() }
         if let key = modelKeys[propertyName] { return key }
 
-        let resultKey = createdKey()
-        modelKeys[propertyName] = resultKey
+        var resultKey = createdKey()
+        if let stringKey = resultKey as? String {
+            if stringKey != propertyName {
+                resultKey = [stringKey, propertyName]
+            }
+        } else if var arrayKey = resultKey as? [String] {
+            if arrayKey.count == 0 {
+                resultKey = propertyName
+            } else if arrayKey.last != propertyName {
+                arrayKey.append(propertyName)
+                resultKey = arrayKey
+            }
+        }
+        modelKeys[propertyName] = resultKey;
         return resultKey
     }
     

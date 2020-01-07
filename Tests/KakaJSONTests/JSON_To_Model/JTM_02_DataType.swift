@@ -234,7 +234,7 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student.name4 == longDecimalString as NSString)
         XCTAssert(student.name5 == "6.66")
         XCTAssert(student.name6 == "false")
-        XCTAssert(student.name7 == "file:///users/mj/desktop")
+        XCTAssert(student.name7.starts(with: "file:///users/mj/desktop"))
         XCTAssert(student.name8 == "http://www.520suanfa.com")
         XCTAssert(student.name9 == timeIntevalString)
     }
@@ -531,6 +531,80 @@ class JTM_02_DataType: XCTestCase {
         XCTAssert(student.grade4 == .perfect)
     }
     
+    func testEnumArray() {
+        enum Grade: String, ConvertibleEnum {
+            case perfect = "A"
+            case great = "B"
+            case good = "C"
+            case bad = "D"
+        }
+
+        struct Student: Convertible {
+            var name: String?
+            var grades: [Grade]?
+        }
+
+        let json: [String: Any] = [
+            "name": "Jack",
+            "grades": ["D", "B"]
+        ]
+
+        let stu = json.kj.model(Student.self)
+        XCTAssert(stu.name == "Jack")
+        XCTAssert(stu.grades?[0] == .bad)
+        XCTAssert(stu.grades?[1] == .great)
+    }
+    
+    func testEnumArrayInDict() {
+        enum Grade: String, ConvertibleEnum {
+            case perfect = "A"
+            case great = "B"
+            case good = "C"
+            case bad = "D"
+        }
+
+        struct Student: Convertible {
+            var name: String?
+            var grades: [String: [Grade?]]?
+        }
+
+        let json: [String: Any] = [
+            "name": "Jack",
+            "grades": ["2019": ["A", "B"], "2020": ["C", "D"]]
+        ]
+
+        let stu = json.kj.model(Student.self)
+        XCTAssert(stu.name == "Jack")
+        XCTAssert(stu.grades?["2019"]?[0] == .perfect)
+        XCTAssert(stu.grades?["2019"]?[1] == .great)
+        XCTAssert(stu.grades?["2020"]?[0] == .good)
+        XCTAssert(stu.grades?["2020"]?[1] == .bad)
+    }
+    
+    func testEnumDict() {
+        enum Grade: String, ConvertibleEnum {
+            case perfect = "A"
+            case great = "B"
+            case good = "C"
+            case bad = "D"
+        }
+
+        struct Student: Convertible {
+            var name: String?
+            var grades: [String: Grade]?
+        }
+
+        let json: [String: Any] = [
+            "name": "Jack",
+            "grades": ["2019": "D", "2020": "B"]
+        ]
+
+        let stu = json.kj.model(Student.self)
+        XCTAssert(stu.name == "Jack")
+        XCTAssert(stu.grades?["2019"] == .bad)
+        XCTAssert(stu.grades?["2020"] == .great)
+    }
+    
     // MARK: - Array Type
     func testArray() {
         struct Person: Convertible {
@@ -638,6 +712,9 @@ class JTM_02_DataType: XCTestCase {
         "testDate": testDate,
         "testEnum1": testEnum1,
         "testEnum2": testEnum2,
+        "testEnumArray": testEnumArray,
+        "testEnumDict": testEnumDict,
+        "testEnumArrayInDict": testEnumArrayInDict,
         "testArray": testArray,
         "testSet": testSet,
         "testDictionary": testDictionary

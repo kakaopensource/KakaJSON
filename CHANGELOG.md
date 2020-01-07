@@ -2,6 +2,12 @@
 
 ---
 
+## [1.1.2](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.2) (2019-12-23)
+- Supporting convert from [String: [[String: Any]]] to [String: [Model]]
+- Supporting 'enum array', 'enum dict'
+- Closed issues
+	- [嵌套解析出错](https://github.com/kakaopensource/KakaJSON/issues/39)
+
 ## [1.1.1](https://github.com/kakaopensource/KakaJSON/releases/tag/1.1.1) (2019-11-04)
 - Adjust Lock
 - Closed issues

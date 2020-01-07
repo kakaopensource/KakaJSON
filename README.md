@@ -18,12 +18,12 @@
 
 ### CocoaPods
 ```ruby
-pod 'KakaJSON', '~> 1.1.1' 
+pod 'KakaJSON', '~> 1.1.2' 
 ```
 
 ### Carthage
 ```ruby
-github "kakaopensource/KakaJSON" ~> 1.1.1
+github "kakaopensource/KakaJSON" ~> 1.1.2
 ```
 
 ### Swift Package Manager
@@ -54,6 +54,7 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [Recursive](#recursive)
   - [Generic](#generic)
   - [Model Array](#model-array)
+  - [Model Array In Dictionary](#model-array-in-dictionary)
   - [Convert](#convert)
   - [Listen](#listen)
 - [JSON To Model_02_Data Type](#json-to-model_02_data-type)
@@ -71,6 +72,9 @@ Or you can login Xcode with your GitHub account. just search **KakaJSON**.
   - [Data](#data)
   - [Date](#date)
   - [Enum](#enum)
+  - [Enum In Array](#enum-in-array)
+  - [Enum In Dictionary](#enum-in-dictionary)
+  - [Enum Array In Dictionary](#enum-array-in-dictionary)
   - [Array](#array)
   - [Set](#set)
   - [Dictionary](#dictionary)
@@ -635,6 +639,58 @@ let cars7 = jsonString.kj.modelArray(type: type) as? [Car]
 let cars8 = modelArray(from: jsonString, type: type) as? [Car]
 ```
 
+### Model Array In Dictionary
+```swift
+struct Book: Convertible {
+    var name: String = ""
+    var price: Double = 0.0
+}
+
+struct Person: Convertible {
+    var name: String = ""
+    var books: [String: [Book?]?]?
+}
+
+let name = "Jack"
+let mobileBooks = [
+    (name: "iOS", price: 10.5),
+    (name: "Android", price: 8.5)
+]
+let serverBooks = [
+    (name: "Java", price: 20.5),
+    (name: "Go", price: 18.5)
+]
+
+let json: [String: Any] = [
+    "name": name,
+    "books": [
+        "mobile": [
+            ["name": mobileBooks[0].name, "price": mobileBooks[0].price],
+            ["name": mobileBooks[1].name, "price": mobileBooks[1].price]
+        ],
+        "server": [
+            ["name": serverBooks[0].name, "price": serverBooks[0].price],
+            ["name": serverBooks[1].name, "price": serverBooks[1].price]
+        ]
+    ]
+]
+
+let person = json.kj.model(Person.self)
+XCTAssert(person.name == name)
+let books0 = person.books?["mobile"]
+XCTAssert(books0??.count == mobileBooks.count)
+for i in 0..<mobileBooks.count {
+    XCTAssert(books0??[i]?.name == mobileBooks[i].name);
+    XCTAssert(books0??[i]?.price == mobileBooks[i].price);
+}
+let books1 = person.books?["server"]
+XCTAssert(books1??.count == serverBooks.count)
+for i in 0..<serverBooks.count {
+    XCTAssert(books1??[i]?.name == serverBooks[i].name);
+    XCTAssert(books1??[i]?.price == serverBooks[i].price);
+}
+```
+
 ### Convert
 ```swift
 struct Cat: Convertible {
@@ -651,7 +707,7 @@ var cat = Cat()
 // fill a cat instance with json
 // .kj_m is a mutable version of .kj
 cat.kj_m.convert(json)
-XCTAssert(cat.name == "Miaomiao"
+XCTAssert(cat.name == "Miaomiao")
 XCTAssert(cat.weight == 6.66)
 
 ```
@@ -1274,6 +1330,83 @@ XCTAssert(student2?.grade1 == .bad)
 XCTAssert(student2?.grade2 == .good)
 XCTAssert(student2?.grade3 == .great)
 XCTAssert(student2?.grade4 == .perfect)
+```
+
+### Enum In Array
+```swift
+enum Grade: String, ConvertibleEnum {
+    case perfect = "A"
+    case great = "B"
+    case good = "C"
+    case bad = "D"
+}
+
+struct Student: Convertible {
+    var name: String?
+    var grades: [Grade]?
+}
+
+let json: [String: Any] = [
+    "name": "Jack",
+    "grades": ["D", "B"]
+]
+
+let stu = json.kj.model(Student.self)
+XCTAssert(stu.name == "Jack")
+XCTAssert(stu.grades?[0] == .bad)
+XCTAssert(stu.grades?[1] == .great)
+```
+
+### Enum In Dictionary
+```swift
+enum Grade: String, ConvertibleEnum {
+    case perfect = "A"
+    case great = "B"
+    case good = "C"
+    case bad = "D"
+}
+
+struct Student: Convertible {
+    var name: String?
+    var grades: [String: Grade]?
+}
+
+let json: [String: Any] = [
+    "name": "Jack",
+    "grades": ["2019": "D", "2020": "B"]
+]
+
+let stu = json.kj.model(Student.self)
+XCTAssert(stu.name == "Jack")
+XCTAssert(stu.grades?["2019"] == .bad)
+XCTAssert(stu.grades?["2020"] == .great)
+```
+
+### Enum Array In Dictionary
+```swift
+enum Grade: String, ConvertibleEnum {
+    case perfect = "A"
+    case great = "B"
+    case good = "C"
+    case bad = "D"
+}
+
+struct Student: Convertible {
+    var name: String?
+    var grades: [String: [Grade?]]?
+}
+
+let json: [String: Any] = [
+    "name": "Jack",
+    "grades": ["2019": ["A", "B"], "2020": ["C", "D"]]
+]
+
+let stu = json.kj.model(Student.self)
+XCTAssert(stu.name == "Jack")
+XCTAssert(stu.grades?["2019"]?[0] == .perfect)
+XCTAssert(stu.grades?["2019"]?[1] == .great)
+XCTAssert(stu.grades?["2020"]?[0] == .good)
+XCTAssert(stu.grades?["2020"]?[1] == .bad)
 ```
 
 ### Array

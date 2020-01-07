@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2D6B733823C4DDE40021DF3A /* Bugs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BC67323C4A29B00A2C4D6 /* Bugs.swift */; };
+		2D79463E23B0D10B00B9B538 /* OCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79463D23B0D10B00B9B538 /* OCModel.m */; };
 		627B5E462320EC490046E23D /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E0F2320EC480046E23D /* Metadata.swift */; };
 		627B5E472320EC490046E23D /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E102320EC480046E23D /* Property.swift */; };
 		627B5E482320EC490046E23D /* FieldList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B5E132320EC480046E23D /* FieldList.swift */; };
@@ -106,6 +108,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D4BC67323C4A29B00A2C4D6 /* Bugs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bugs.swift; sourceTree = "<group>"; };
+		2D79463B23B0D10A00B9B538 /* KakaJSONTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaJSONTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D79463C23B0D10B00B9B538 /* OCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCModel.h; sourceTree = "<group>"; };
+		2D79463D23B0D10B00B9B538 /* OCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCModel.m; sourceTree = "<group>"; };
 		627B5E0F2320EC480046E23D /* Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		627B5E102320EC480046E23D /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		627B5E112320EC480046E23D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -172,7 +178,7 @@
 		627B5E972320F08F0046E23D /* KakaJSON.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = KakaJSON.podspec; sourceTree = "<group>"; };
 		627B5E992320F2710046E23D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		627B5E9A2320F2D40046E23D /* DevGuideline.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DevGuideline.md; sourceTree = "<group>"; };
-		"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"KakaJSON::KakaJSON::Product" /* KakaJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KakaJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"KakaJSON::KakaJSONTests::Product" /* KakaJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = KakaJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -197,6 +203,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D79463723B0D0C600B9B538 /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				2D79463C23B0D10B00B9B538 /* OCModel.h */,
+				2D79463D23B0D10B00B9B538 /* OCModel.m */,
+				2D79463B23B0D10A00B9B538 /* KakaJSONTests-Bridging-Header.h */,
+			);
+			path = OC;
+			sourceTree = "<group>";
+		};
 		627B5E0E2320EC480046E23D /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +331,7 @@
 			children = (
 				627B5E7D2320EC760046E23D /* Coding.swift */,
 				627B5E7E2320EC760046E23D /* Global.swift */,
+				2D4BC67323C4A29B00A2C4D6 /* Bugs.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -362,6 +379,7 @@
 		OBJ_11 /* KakaJSONTests */ = {
 			isa = PBXGroup;
 			children = (
+				2D79463723B0D0C600B9B538 /* OC */,
 				627B5E7F2320EC760046E23D /* JSON_To_Model */,
 				627B5E762320EC760046E23D /* Model_To_JSON */,
 				627B5E7C2320EC760046E23D /* Other */,
@@ -469,6 +487,14 @@
 			attributes = {
 				LastSwiftMigration = 9999;
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"KakaJSON::KakaJSON" = {
+						LastSwiftMigration = 1030;
+					};
+					"KakaJSON::KakaJSONTests" = {
+						LastSwiftMigration = 1030;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "KakaJSON" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -559,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				2D6B733823C4DDE40021DF3A /* Bugs.swift in Sources */,
 				627B5E902320EC760046E23D /* JTM_06_CustomValue.swift in Sources */,
 				627B5E922320EC760046E23D /* JTM_07_DynamicModel.swift in Sources */,
 				627B5E8D2320EC760046E23D /* Global.swift in Sources */,
@@ -566,6 +593,7 @@
 				627B5E8B2320EC760046E23D /* MTJ_03_ModelArray.swift in Sources */,
 				627B5E932320EC760046E23D /* JTM_04_ModelArray.swift in Sources */,
 				627B5E8A2320EC760046E23D /* MTJ_01_Basic.swift in Sources */,
+				2D79463E23B0D10B00B9B538 /* OCModel.m in Sources */,
 				627B5E912320EC760046E23D /* JTM_05_KeyMapping.swift in Sources */,
 				627B5E8C2320EC760046E23D /* Coding.swift in Sources */,
 				627B5E882320EC760046E23D /* MTJ_05_CustomValue.swift in Sources */,
@@ -596,6 +624,8 @@
 		OBJ_19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -614,6 +644,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = KakaJSON;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -624,6 +655,8 @@
 		OBJ_20 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -725,6 +758,8 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/KakaJSONTests/OC/KakaJSONTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = KakaJSONTests;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -751,6 +786,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/KakaJSONTests/OC/KakaJSONTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = KakaJSONTests;
 				TVOS_DEPLOYMENT_TARGET = 9.0;

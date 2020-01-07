@@ -9,7 +9,7 @@
 import XCTest
 @testable import KakaJSON
 
-class Global: XCTestCase {
+class TestGlobal: XCTestCase {
     struct Cat: Convertible {
         var age: Int = 0
         var name: String = ""
