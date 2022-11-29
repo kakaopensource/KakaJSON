@@ -214,9 +214,7 @@ private extension Values {
         
         // digit
         if let digitType = type as? DigitValue.Type {
-            return Double("\(decimal)")
-                .flatMap { NSNumber(value: $0) }
-                .flatMap { digitType.init(truncating: $0) }
+            return digitType.init(truncating: NSDecimalNumber(decimal: decimal))
         }
         
         // decimal number
